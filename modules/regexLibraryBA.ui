@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>RegexLibraryBA</class>
- <widget class="Q3MainWindow" name="RegexLibraryBA">
+ <widget class="QMainWindow" name="RegexLibraryBA">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,23 +14,15 @@
    <string>Kodos - Regex Library</string>
   </property>
   <widget class="QWidget" name="widget">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>55</y>
-     <width>491</width>
-     <height>435</height>
-    </rect>
-   </property>
    <layout class="QGridLayout">
     <item row="0" column="0">
-     <widget class="Q3GroupBox" name="groupBox5">
+     <widget class="QGroupBox" name="groupBox5">
       <property name="title">
        <string>Description</string>
       </property>
       <layout class="QGridLayout">
        <item row="0" column="0">
-        <widget class="Q3ListBox" name="descriptionListBox"/>
+        <widget class="QListWidget" name="descriptionListBox"/>
        </item>
       </layout>
      </widget>
@@ -43,11 +35,7 @@
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="Q3TextBrowser" name="regexTextBrowser">
-          <property name="textFormat">
-           <enum>Qt::PlainText</enum>
-          </property>
-         </widget>
+         <widget class="QTextBrowser" name="regexTextBrowser"/>
         </item>
        </layout>
       </widget>
@@ -57,11 +45,7 @@
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="Q3TextBrowser" name="noteTextBrowser">
-          <property name="textFormat">
-           <enum>Qt::PlainText</enum>
-          </property>
-         </widget>
+         <widget class="QTextBrowser" name="noteTextBrowser"/>
         </item>
         <item row="1" column="0">
          <layout class="QHBoxLayout">
@@ -90,18 +74,16 @@
     </item>
    </layout>
   </widget>
-  <widget class="Q3ToolBar" name="toolBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>41</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="label">
+  <widget class="QToolBar" name="toolBar">
+   <property name="label" stdset="0">
     <string>Tools</string>
    </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
    <addaction name="editPasteAction"/>
   </widget>
   <widget class="QMenuBar" name="MenuBar">
@@ -189,46 +171,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>Q3ToolBar</class>
-   <extends>Q3Frame</extends>
-   <header>q3listview.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3GroupBox</class>
-   <extends>QGroupBox</extends>
-   <header>Qt3Support/Q3GroupBox</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3Frame</class>
-   <extends>QFrame</extends>
-   <header>Qt3Support/Q3Frame</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3MainWindow</class>
-   <extends>QWidget</extends>
-   <header>q3mainwindow.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3ListBox</class>
-   <extends>Q3Frame</extends>
-   <header>q3listbox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3TextEdit</class>
-   <extends>Q3Frame</extends>
-   <header>q3textedit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3TextBrowser</class>
-   <extends>Q3TextEdit</extends>
-   <header>Qt3Support/Q3TextBrowser</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>
