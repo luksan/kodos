@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.2 re -- Regular expression operations</title>
+<META NAME="description" CONTENT="4.2 re -- Regular expression operations">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-struct.html">
+<LINK REL="previous" href="module-string.html">
+<LINK REL="up" href="strings.html">
+<LINK REL="next" href="re-syntax.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<b class="navlabel">Next:</b> <a class="sectref" href="re-syntax.html">4.2.1 Regular Expression Syntax</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006200000000000000000">
+4.2 <tt class="module">re</tt> --
+         Regular expression operations</A>
+</H1>
+
+
+<P>
+
+<P>
+This module provides regular expression matching operations similar to
+those found in Perl.  Regular expression pattern strings may not
+contain null bytes, but can specify the null byte using the
+<code>&#92;<var>number</var></code> notation.  Both patterns and strings to be
+searched can be Unicode strings as well as 8-bit strings.  The
+<tt class="module">re</tt> module is always available.
+
+<P>
+Regular expressions use the backslash character ("<tt class="character">&#92;</tt>") to
+indicate special forms or to allow special characters to be used
+without invoking their special meaning.  This collides with Python's
+usage of the same character for the same purpose in string literals;
+for example, to match a literal backslash, one might have to write
+<code>'&#92;&#92;&#92;&#92;'</code> as the pattern string, because the regular expression
+must be "<tt class="samp">&#92;&#92;</tt>", and each backslash must be expressed as
+"<tt class="samp">&#92;&#92;</tt>" inside a regular Python string literal.
+
+<P>
+The solution is to use Python's raw string notation for regular
+expression patterns; backslashes are not handled in any special way in
+a string literal prefixed with "<tt class="character">r</tt>".  So <code>r"&#92;n"</code> is a
+two-character string containing "<tt class="character">&#92;</tt>" and "<tt class="character">n</tt>",
+while <code>"&#92;n"</code> is a one-character string containing a newline.
+Usually patterns will be expressed in Python code using this raw
+string notation.
+
+<P>
+<b>Implementation note:</b>
+The <tt class="module">re</tt><a name="l2h-708">&nbsp;</a>module has two distinct
+implementations: <tt class="module">sre</tt> is the default implementation and
+includes Unicode support, but may run into stack limitations for some
+patterns.  Though this will be fixed for a future release of Python,
+the older implementation (without Unicode support) is still available
+as the <tt class="module">pre</tt><a name="l2h-709">&nbsp;</a>module.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"
+        >Mastering Regular Expressions</em>
+    <dd>Book on regular expressions
+            by Jeffrey Friedl, published by O'Reilly.  The Python
+            material in this book dates from before the <tt class="module"><a href="module-re.html">re</a></tt>
+            module, but it covers writing good regular expression
+            patterns in great detail.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="re-syntax.html">4.2.1 Regular Expression Syntax</a>
+<LI><A href="matching-searching.html">4.2.2 Matching vs. Searching</a>
+<LI><A href="node99.html">4.2.3 Module Contents</a>
+<LI><A href="re-objects.html">4.2.4 Regular Expression Objects</a>
+<LI><A href="match-objects.html">4.2.5 Match Objects</a>
+<LI><A href="node102.html">4.2.6 Examples</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+
+<b class="navlabel">Next:</b> <a class="sectref" href="re-syntax.html">4.2.1 Regular Expression Syntax</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

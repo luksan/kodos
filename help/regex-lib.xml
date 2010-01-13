@@ -1,0 +1,64 @@
+<entry>
+  <desc>Locate all words in a string</desc>
+  <regex>(?P<word>\w*?)\W+</regex>
+  <text>Here  you will find several   words seperated by    whitespace.
+
+Use the "Match Number" spinbox to cycle through the matches.</text>
+  <tab>1</tab>
+  <replace></replace>
+  <note></note>
+  <contrib>Phil Schwartz</contrib>
+</entry>
+
+<entry>
+  <desc>Replace a word in a string</desc>
+  <regex>(?P<word>WORD)\W+</regex>
+  <text>this example replaces the WORD in this string</text>
+  <tab>3</tab>
+  <replace>__replacement__</replace>
+  <note></note>
+  <contrib>Phil Schwartz</contrib>
+</entry>
+
+<entry>
+  <desc>Find dates in the form Month day, year (eg. January 10, 2003)</desc>
+  <regex>(?i)(?P<month>january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sep|october|oct|november|nov|december|dec)\s+(?P<day>3[01]|[0-2]{0,1}\d),\s*(?P<year>\d{4})\W*</regex>
+  <text>Here is a date: Feb 12, 2003.  This example does not determine if the month actually has the number of days listed.  So it will incorrectly match Feb 31, 2003.</text>
+  <tab>2</tab>
+  <replace></replace>
+  <note>Suitable for most purposes, however, it may be necessary for the user to validate that the day exists in the month (and in the case of February, the year as well).</note>
+  <contrib>Phil Schwartz</contrib>
+</entry>
+
+<entry>
+  <desc>Extract the BODY section from an HTML string</desc>
+  <regex>(?si)<body>(?P<contents>.*)</body></regex>
+  <text><HTML><HEAD><TITLE>test</TITLE></HEAD><BODY>This is an example of extracting the BODY from an HTML string</BODY></HTML></text>
+  <tab>1</tab>
+  <note></note>
+  <contrib>Phil Schwartz</contrib>
+</entry>
+
+<entry>
+  <desc>Strip HTML tags from string</desc>
+  <regex>(?is)<.*?></regex>
+  <tab>3</tab>
+  <note>Primitive example - The replace string is a single space</note>
+  <text><html><head><title>test</title></head><body>test of replacing html tags</body></html></text>
+  <replace> </replace>
+  <contrib>Phil Schwartz</contrib>
+</entry>
+
+<entry>
+  <desc>Replace everything except the contents of BODY section from HTML</desc>
+  <regex>(?is)(<html>.*<head>.*</head>.*<body>)|(</body>.*</html>)</regex>
+  <tab>3</tab>
+  <replace> </replace>
+  <contrib>Phil Schwartz</contrib>
+  <text><html><head><title>test</title></head><body>test of replacing opening and closing html tags.  All that should be left is this string.</body></html></text>
+  <note>Primitive example - The replace string is a single space.
+Assumes that the string is in the form:
+<HTML>...<HEAD>...</HEAD>...<BODY>....</BODY>...</HTML></note>
+</entry>
+
+

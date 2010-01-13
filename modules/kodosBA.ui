@@ -1,0 +1,1286 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>KodosBA</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>KodosBA</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>590</width>
+            <height>713</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Kodos - The Python Regex Debugger</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <property name="iconText">
+        <string>Kodos</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QButtonGroup" row="1" column="0">
+            <property name="name">
+                <cstring>buttonGroup2</cstring>
+            </property>
+            <property name="title">
+                <string>Flags</string>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>ignorecaseCheckBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Ignore Case</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Perform case-insensitive matching; expressions like [A-Z] will match
+lowercase letters, too. This is not affected by the current locale.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>multilineCheckBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Multi Line</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>When specified, the pattern character "^" matches at the beginning of the 
+string and at the beginning of each line (immediately following each newline); 
+and the pattern character "$" matches at the end of the string and at the end 
+of each line (immediately preceding each newline). By default, "^" matches 
+only at the beginning of the string, and "$" only at the end of the string and 
+immediately before the newline (if any) at the end of the string.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>dotallCheckBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Dot All</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Make the "." special character match any character at all, including a 
+newline; without this flag, "." will match anything except a newline.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>verboseCheckBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Verbose</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>This flag allows you to write regular expressions that look nicer. Whitespace 
+within the pattern is ignored, except when in a character class or preceded by 
+an unescaped backslash, and, when a line contains a "#" neither in a character
+class or preceded by an unescaped backslash, all characters from the leftmost 
+such "#" through the end of the line are ignored.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>localeCheckBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Locale</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Make \w, \W, \b, and \B dependent on the current locale.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>unicodeCheckBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Unicode</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>"Make \w, \W, \b, and \B dependent on the Unicode character properties 
+database. New in Python version 2.0.</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QGroupBox" row="0" column="0">
+            <property name="name">
+                <cstring>groupBox1</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>7</hsizetype>
+                    <vsizetype>7</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="lineWidth">
+                <number>1</number>
+            </property>
+            <property name="title">
+                <string>Regular Expression Pattern</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QTextEdit" row="0" column="0">
+                    <property name="name">
+                        <cstring>regexMultiLineEdit</cstring>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <family>Helvetica [Adobe]</family>
+                        </font>
+                    </property>
+                    <property name="textFormat">
+                        <enum>PlainText</enum>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="wordWrap">
+                        <enum>WidgetWidth</enum>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget class="QTabWidget" row="4" column="0">
+            <property name="name">
+                <cstring>resultTabWidget</cstring>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Group</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QTable" row="0" column="0">
+                        <column>
+                            <property name="text">
+                                <string>Group Name</string>
+                            </property>
+                        </column>
+                        <column>
+                            <property name="text">
+                                <string>Match</string>
+                            </property>
+                        </column>
+                        <property name="name">
+                            <cstring>groupTable</cstring>
+                        </property>
+                        <property name="numRows">
+                            <number>0</number>
+                        </property>
+                        <property name="numCols">
+                            <number>2</number>
+                        </property>
+                        <property name="columnMovingEnabled">
+                            <bool>true</bool>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                        <property name="selectionMode">
+                            <enum>SingleRow</enum>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Match</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QTextBrowser" row="0" column="0">
+                        <property name="name">
+                            <cstring>matchTextBrowser</cstring>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>TabPage</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Match All</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QTextBrowser" row="0" column="0">
+                        <property name="name">
+                            <cstring>matchAllTextBrowser</cstring>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>TabPage</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Replace</string>
+                </attribute>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QTextBrowser">
+                        <property name="name">
+                            <cstring>replaceTextBrowser</cstring>
+                        </property>
+                    </widget>
+                </vbox>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>TabPage</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Sample Code</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QTextBrowser" row="0" column="0">
+                        <property name="name">
+                            <cstring>codeTextBrowser</cstring>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+        </widget>
+        <widget class="QTabWidget" row="2" column="0">
+            <property name="name">
+                <cstring>tabWidget3</cstring>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Search String</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QTextEdit" row="0" column="0">
+                        <property name="name">
+                            <cstring>stringMultiLineEdit</cstring>
+                        </property>
+                        <property name="textFormat">
+                            <enum>PlainText</enum>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Replace String</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QTextEdit" row="0" column="0">
+                        <property name="name">
+                            <cstring>replaceTextEdit</cstring>
+                        </property>
+                        <property name="textFormat">
+                            <enum>PlainText</enum>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+        </widget>
+        <widget class="QLayoutWidget" row="3" column="0">
+            <property name="name">
+                <cstring>layout3</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer1</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>70</width>
+                            <height>31</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Match Number</string>
+                    </property>
+                </widget>
+                <widget class="QSpinBox">
+                    <property name="name">
+                        <cstring>matchNumberSpinBox</cstring>
+                    </property>
+                    <property name="maxValue">
+                        <number>9999</number>
+                    </property>
+                    <property name="minValue">
+                        <number>1</number>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>spacerLabel</cstring>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>image1</pixmap>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>replaceLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Replace Number</string>
+                    </property>
+                </widget>
+                <widget class="QSpinBox">
+                    <property name="name">
+                        <cstring>replaceNumberSpinBox</cstring>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer3</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>118</width>
+                            <height>21</height>
+                        </size>
+                    </property>
+                </spacer>
+            </hbox>
+        </widget>
+    </grid>
+</widget>
+<menubar>
+    <property name="name">
+        <cstring>menubar</cstring>
+    </property>
+    <item text="&amp;File" name="fileMenu">
+        <action name="fileNewAction"/>
+        <action name="fileOpenAction"/>
+        <action name="fileSaveAction"/>
+        <action name="fileSaveAsAction"/>
+        <separator/>
+        <action name="FileRevertAction"/>
+        <separator/>
+        <action name="fileImportFileAction"/>
+        <action name="fileImportURLAction"/>
+        <separator/>
+        <action name="fileExitAction"/>
+        <separator/>
+    </item>
+    <item text="&amp;Edit" name="editMenu">
+        <action name="editUndoAction"/>
+        <action name="editRedoAction"/>
+        <separator/>
+        <action name="editCutAction"/>
+        <action name="editCopyAction"/>
+        <action name="editPasteAction"/>
+        <separator/>
+        <action name="examineAction"/>
+        <action name="editPauseAction"/>
+        <separator/>
+        <action name="editPreferencesAction"/>
+    </item>
+    <item text="&amp;Help" name="helpMenu">
+        <separator/>
+        <action name="helpHelpAction"/>
+        <action name="helpPythonHelpAction"/>
+        <separator/>
+        <action name="helpRegexReferenceAction"/>
+        <action name="helpRegexLibAction"/>
+        <separator/>
+        <action name="helpVisitWebsiteAction"/>
+        <action name="helpCheckForUpdateAction"/>
+        <action name="helpReportBugAction"/>
+        <separator/>
+        <action name="helpAboutAction"/>
+    </item>
+</menubar>
+<toolbars>
+    <toolbar dock="2">
+        <property name="name">
+            <cstring>toolBar</cstring>
+        </property>
+        <property name="label">
+            <string>Tools</string>
+        </property>
+        <action name="fileOpenAction"/>
+        <action name="fileSaveAction"/>
+        <separator/>
+        <action name="editCutAction"/>
+        <action name="editCopyAction"/>
+        <action name="editPasteAction"/>
+        <separator/>
+        <action name="editPauseAction"/>
+        <action name="examineAction"/>
+        <separator/>
+        <action name="helpRegexReferenceAction"/>
+        <action name="helpRegexLibAction"/>
+    </toolbar>
+</toolbars>
+<actions>
+    <action>
+        <property name="name">
+            <cstring>fileNewAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image2</iconset>
+        </property>
+        <property name="text">
+            <string>New</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;New</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+N</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileOpenAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image3</iconset>
+        </property>
+        <property name="text">
+            <string>Open</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Open...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+O</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileSaveAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image4</iconset>
+        </property>
+        <property name="text">
+            <string>Save</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Save</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+S</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileSaveAsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Save As</string>
+        </property>
+        <property name="menuText">
+            <string>Save &amp;As...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileExitAction</cstring>
+        </property>
+        <property name="text">
+            <string>Exit</string>
+        </property>
+        <property name="menuText">
+            <string>E&amp;xit</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editUndoAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image5</iconset>
+        </property>
+        <property name="text">
+            <string>Undo</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Undo</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+Z</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editRedoAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image6</iconset>
+        </property>
+        <property name="text">
+            <string>Redo</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Redo</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+Y</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editCutAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image7</iconset>
+        </property>
+        <property name="text">
+            <string>Cut</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Cut</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+X</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editCopyAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image8</iconset>
+        </property>
+        <property name="text">
+            <string>Copy</string>
+        </property>
+        <property name="menuText">
+            <string>C&amp;opy</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+C</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editPasteAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image9</iconset>
+        </property>
+        <property name="text">
+            <string>Paste</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Paste</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+V</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>examineAction</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>image10</iconset>
+        </property>
+        <property name="text">
+            <string>Examine Regex for Match</string>
+        </property>
+        <property name="menuText">
+            <string>E&amp;xamine Regex</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+X</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpContentsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Contents</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Contents...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpIndexAction</cstring>
+        </property>
+        <property name="text">
+            <string>Index</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Index...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpAboutAction</cstring>
+        </property>
+        <property name="text">
+            <string>About</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;About</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>regexChangedAction</cstring>
+        </property>
+        <property name="text">
+            <string>Action</string>
+        </property>
+        <property name="menuText">
+            <string>Action</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editPauseAction</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>image11</iconset>
+        </property>
+        <property name="text">
+            <string>Pause Processing</string>
+        </property>
+        <property name="menuText">
+            <string>Pause Processing</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+P</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editPreferencesAction</cstring>
+        </property>
+        <property name="text">
+            <string>Preferences</string>
+        </property>
+        <property name="menuText">
+            <string>Preferences</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpHelpAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image12</iconset>
+        </property>
+        <property name="text">
+            <string>Help</string>
+        </property>
+        <property name="menuText">
+            <string>Help</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+/</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpPythonHelpAction</cstring>
+        </property>
+        <property name="text">
+            <string>Python Regex Help</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Python Regex Help</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpRegexReferenceAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image13</iconset>
+        </property>
+        <property name="text">
+            <string>Regex Reference Guide</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Regex Reference Guide</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+R</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpVisitWebsiteAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image14</iconset>
+        </property>
+        <property name="text">
+            <string>&amp;Visit Kodos Website</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Visit Kodos Website</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpCheckForUpdateAction</cstring>
+        </property>
+        <property name="text">
+            <string>Check for Kodos Update</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Check for Kodos Update</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpReportBugAction</cstring>
+        </property>
+        <property name="text">
+            <string>Report a Bug</string>
+        </property>
+        <property name="menuText">
+            <string>Report a &amp;Bug</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>noopAction</cstring>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>image15</iconset>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+        <property name="menuText">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileImportFileAction</cstring>
+        </property>
+        <property name="text">
+            <string>Import File</string>
+        </property>
+        <property name="menuText">
+            <string>Import &amp;File</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileImportURLAction</cstring>
+        </property>
+        <property name="text">
+            <string>Import URL</string>
+        </property>
+        <property name="menuText">
+            <string>Import &amp;URL</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpRegexLibAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image16</iconset>
+        </property>
+        <property name="text">
+            <string>Regex Library</string>
+        </property>
+        <property name="menuText">
+            <string>Regex &amp;Library</string>
+        </property>
+        <property name="toolTip">
+            <string>Open the Regex Library</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+L</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>FileRevertAction</cstring>
+        </property>
+        <property name="text">
+            <string>Revert Kodos File</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Revert Kodos File</string>
+        </property>
+    </action>
+</actions>
+<images>
+    <image name="image0">
+        <data format="PNG" length="3339">89504e470d0a1a0a0000000d4948445200000040000000400806000000aa6971de00000cd249444154789ced5a7b7414559efeead6a3bbaaabfa91ce93bc310319c2c3c080081203098823b88303ee82b8a3332aa23bc2eaa0ebd97199a333ce41701d957595d15d7715147771465d7cf0545ef18520189e43200909e49d7e55755757d5dd3f8848924e27214d64cff29dd3275d37bfbedf77bfaa7bebdedfbdc0155cc1155cc1155cc1ff5b3009aa670480ac3ec4d50038d2cfbacb00b0fd88ff0c80afafc15c3fc5c484e0607fada4f0b3ed6e2eda538cd66608c1a6e89bba6aded5c76a19de4e568b6e6ea1922e98f102a909a6fe60d0cd106605b5e8a6fe684f88018480fde10d5e79c868b9c798daaf02f86a7d03e96395ac20b16bbdf9f61f4fbe2753215ccf0f6a246862fb33357ede4e1e8b86addff6537a620c4830044162df4d1fe1b8ee9a9fa53b18d273e3b57603dbfeb9c61f099a8f1a11eb858b21bbdc0c700812bb39e747ca98b1b7a649f146a8605314db9fa9f1eb21f35ed3a06f5c2ce1e564804790d81d05d7bb0b46ce4ab6c70bf4d545f0f173b5fea866cdb74cfafe40482f1703d27891ec1e71a3377bd8348f102fb0e5a4869d2fd4b5ebaa391bc0ae81125f0e06e4f222d95d3c37352d6fa22bae9e862321bae7e5fab6a8669503d89708f2efdb80425e249f4cb83d2339738c1cf70d717a7fc0fae2f5b3cd51cd2a0170345102be4f03c6f122d934e9ee4c4fda7029ee84ec6485cfd8bfa1f16c54b326e3dc642a61f8be0c28111cec3b53eecb727bf3e28e7738bab5553ff4414b4d47e31b132d64d00d202c338b17c9dad225d94ed7105bdcd883ef36874fec6c3f16d5aceb01b45f0a3d836a8011b17e2438d8b9d31eca51e464bee7400aec5ddfa0d6ee0decd355730600f552691a540344175730f5c11c518c33d8538be2d357cf041b0eab3b75d5fc0900fd526aea36f27a5cce650086249a484ee131e3d1bcb88db70c8a9dff5a176838acbed7f19ebfa48d07621890e476cec1b9256842e1c9b683b3f7fca6332216b6ffa1d6df7a2afc9aae9ab70188bb024c14ba29bae58652836549f960907f0b5d35b175558ddf7f26f2acae9af703a083c5dddd809953db049e9f39580200a06a978f061af4b68b59ce0e14dd0c98583cb2d52608128082c11251382389f9c1544faa20b1150094c1e2056218400173fa940900306d30858c9993220e2ff314f122f90c8077b078bb19c000e6cde525b2d7e3fa9b44125966efddfa8733bdb65137a714f022f902404622f97b42ac61d9985d761d8221ed5a00ce4411d51f08a26a777baf2e1494b8f9b1b7a6e5f022f912405ea2f87b422c034c972263d2d8516100b313454429f0e5ba061cd9dc1ae92d367782939df0b719e91ddda130511a6221e613000077cc9be57288f6db1349c68b64c3914dad870fbcd314ee2d3673b44c26dd9599c28b643780e244eab81031074100f8abe9254cd4304b90c06e405826a0abe6e4aa5dbe2ff7bed1a0f6f6b64f2b949892fbb3920489dd066072a27474d2d4b580e9987eba1419a513c74609c3fc758239555d35cb6abf0a7cf2e9abf5416ac577c19b2fa27469b6db26b31b19821b12ac25661738bfabb2ec9e854e45713c9a685200baae9ab3cf1e5237ee7ab12e6019f14d7067da30eda11c974de6de221c333791426219707edd5d36793c3c4e250d404922493b60eaaa39bfb94a5bf7f173b50143b7e2062ba902ca97e538ed0afb0a2b303f4f948858069ccfba300c8365f72c9432529397278ab00b6854b3eef5d5475ed8f6748d3faac537414ae251fe48ae5374f1cf7076f2602204c432e0e4851777cc9d057f203405407e22086321aa59ff106c8e3eb96565b53f128cbf08b42b1cca1fce713abcfc725e248f0f943b9601cd175e48a21d8f2cbe9d4bf6b89e1b28593c18616b85d6663cbc6545b55f6b37e2c60a128bb287729cce74db525e24cf6300bbdcb10c18d9b5e0c15f2c604ccb9a0660ecc512f505866ebd14f61b8bb63c55ed0f36f5b8d10c00e06c04a54bb295a45cf16782c4fe2762b7a55774fbd19d4f3c76eff153b59dca1c9288dffd6ab15d96c4672f86a43f300dfa6624682ed8baaadaefab8f3f6964790625f7652aa9c3a49f0812fb270071128db1d1cd806ffcdf644dfce99d7a634b5ba7f2450be690248fab9810667e7f49fa0bcba41b234173f6f63fd4b6b79e8a3f69645806d7de3544ce1c23970912bb0940fc3c7b17743260deca2236ff1a4f41ea187b74e61d0f04a3c6777d911082b75f5ce1b009c28b0032bb56a4f90c041af51e3f9a2f7ebf8e811d7ac89cfec9eadab6b38742345eddc1261d8533921c9e6cdb2441627700e8f9a04217741a3ce6ad2c1a0de06b4a811d2f5537cf1a37d5f6ca8a5f774a503cfeeccbc6536b5edf1352b55274a4ae381bf9474e6016f44666e8f4df8d88b5aaafe23a902738d80d84f4edce5a160c3d645600588c3ea4d6ba1a7037803500100d5bd8bcaaaaede987ffdebe68c11cf13b020b57ff78a17aa2a66eb5aa851fe957532e43741d0352befdc2db09a6dc93ed5ef2c4d3d69eaf0e9e7f7e0921d8baee05c9e352ee631866f1a029bd44e86ac0f10b2f94541b33feb60cdbf4dbff4eab3dd370be3c25c98d1d6fbd24bb147995c0f3b70e86d04b85ae0674db76ce2854b8a2595eaeb07c5e705fe5b1f373d5a1d999a878fb65497688af0a3cbf1c893b7237a8e86ac061000d5d83f2c6bbc5d1b7a4f293e6fe5cddbdf7c0f97dbac2abf250b9e94d71587ece32b753fe08fd187d2f17743a80786873935534235501707dd74057ba8d736608e477cbdfd0278c296a2dc8cd5200407648b863de2ca1b5dd97f7f5e1e34b39963d6998e63783a47fc0e87602b36846ea71000f20c6244949b191a43c5158f1c45b7c416ed6d151c30b520180e738ccbcfe5a32efa632e1ebc3c76f6ef3051e763be5dc90aa5523317bfa12ce65a652d18f53a07d41cc7e3b6f65d17f01e831f1d05aab61c79a53e6946bae3efde7d5ab7215d9d1e9ff474e9cc27f6c789fbeb2fe1d8d5234a6a77ad71d3d51fd69d4306a01d40168ea52a51b8007e71a388265d9518a439a10d1f5e15a38e2e53836cab16c94e7b8881a0e8b9645b7504ab700f81f005517dffc9e0d980a8a6df186b568c4c2d7ef9db51a2a43a1d79e7ee2cc2d334a87758da194627bc55ebcfde17654d5d6d393b5f57a5d4313130ca97cb2c71d50c3615b48d56c92688f2a0e494ff17a3072d850f6ea11c3ed23870d45d1b0a1c8cd4c07c37c27c41708e2838f2bccff7e7feb990f3fa9708723fa3ba6653d0ee058c20c101caccc0be474e9e27c97e489bfbe683816c4176fd59b23aece3efce1f3ffe24856927acd1b504a51555307b74b81d7ed8a1bf7a78f3e46ed9946d43734418b443075e238944f1e0f457620100c61d51fd78656ad59cb80c17a550bff1240a837fe0bd1e33d261cb344b0b3bf9f7a7fbe2827c73dba07334a7160e3599cfcbc9de60f4f697cf2815fd2b9e5e5e917deb9bec2b42cecfc7c3fd6bfb7d97863e3264b9048d8932946442fe11801ce96bf84ad86aa005f307c081e5b74176e9d391d16a5f8edf3ffa6ae5cf3ba1e8ee8bfb02cebedbef2c555c8dbc92280593d6eee102e7b4cefd9f168d844f55e1faa3e6d85e633cc319373cf4c19576cceb9ae3c635251b1406218d2ee0fe0f3fd95a8d87750ff60d79ee08143271c828384b3c72af6ec62974df67637df3229ea0efa717c670b2c8d60dedc523cb5f841541eabc26d4bff291c54b54dcdaded0b01040664408709d7308479376f9cdb5d7443aac0d9fa9677683ea9a2f12f21b49dd6e06b88406dd5e14e1735cb04ac28654cc3227ac46001c09d2186bdf9a223295b44528e08c9ddb9dbb5d78771f6681082c4c22e73b0c92cbcb91200a0b546c3b19d2d683812c46df3a7e3c9fb1ec0532fbe66bebcfe5d1594de1908a91b0664c0b73ed864eef746c45c9251a8703f98e24572bed4c79f9e03a540db690d2cc7801508589e80e319707616b17a4a2468a0eab336ebf8aed6b011318933cdfe11008f65d234cd17cd1244561a52a43043462848ce9760442c1cded68c137b5a317ad455b8655a19feb8eecfba6959db4e9f695c00a0ad3b4bffa7af0ed92b2c8d86cd25bc9d758eba31cd96394a41bc23ed7d05b5281a4f84d07442d54f1ff00503cdba8b10e63dcba4cb011ce8aa9be5996239d9b628aa99374542667a669142d286cb4cd62827ea2b03a8dad3669a41c21464e790ca6355618768bfbbb1a56d2dba2c912f563903e046d1c5fd26ec37c60912abb933452b394f923d5976464e16c0f2042cc78070dffe6510099908070c840351840306349f415b6bd4406b6d9809fba30e9bcced8b048d6d946223ce1d84eeeb3921274398f98e24fea7a1d6e8b4a46cd19f53ec52588ee15aaa35b3fe60103ccb512d1c616449aa08aa9a6c59a644290a13b18061000c05309661305690d8a9a641332985084a056a81a7143cb528cb724c90f0a48db04c13c3e06c24687c43292a71eee0732580f81b037d830dc04d0c4139cb937243b7ae129d7cbbe68b269d174c98166ad1d701fceaffe40aae9f2000c6777cb7004401ecfffee45cc1155c56f85f101afdb5c8d994b70000000049454e44ae426082</data>
+    </image>
+    <image name="image1">
+        <data format="PNG" length="149">89504e470d0a1a0a0000000d49484452000000480000001f080600000044668b080000005c49444154789cedd04111002110c0b0e3fceb5a5d2860fa8447a2a0d335331f67ffed80d719140c0a0605838241c1a06050302818140c0a0605838241c1a06050302818140c0a0605838241c1a06050302818140c0a0605838241610393e5029027167fa80000000049454e44ae426082</data>
+    </image>
+    <image name="image2">
+        <data format="PNG" length="187">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000008249444154789ced95310ac0200c4593d2c334d0c535e0d2c3e75ae9d442353521e0e60741233ee5f355141198a1bd2d30b346168a088ee637aba8aabf0d00804e720f60823d95525c7867454474d0db6766b56c4981af7a7dc6163c05e6ca7dad81a7c088c340e4c04f32bccd52a98868811778810732af74e42df084b3febc6956dc1a2d33a30ed7998d0000000049454e44ae426082</data>
+    </image>
+    <image name="image3">
+        <data format="PNG" length="230">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000ad49444154789cb594510ec3200c436db45371b7699a76375f8b7d8caa11cd18d1827f225af1621908256187ca16ea4ef02dbaa1d6daec5a12c7ff9218021f9bbc4692689b32ebf02c541253321ee3017ac6bf728b420180005a6b00d08e25c835eecc403fbc130ab077e2e57ba47931c68375aee2395eab73b91947b3f6e4666ca1af670c787f7caa9bf1bf50f34072a117c7595003ce859e56bbb2a08019f4995060f5b67fd16c56a4cde3516f027970cdf09ae9310000000049454e44ae426082</data>
+    </image>
+    <image name="image4">
+        <data format="PNG" length="230">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000ad49444154789cd595c10a85201045af0f172e5af83d0afd5944f4670f9aef69e1a25d2d62c2b230c302cf460c3b5ca7310511e10d24001863e69c52221292277db78e4d0b0cff2149646bbbbd636b0b00f8650a1920e34bce514e63aac66dce49996862e53494d3c1735f0aaca5e472de123f255a8a63b2bbbc96b83c7150e3be0b5b2786df0d97e2ab85a97cdb6e4d9b2e3aeef2f191f67f5467dfa4bc762b4f2cf8cecb753d1191d88973b300c3df2bacefca13a90000000049454e44ae426082</data>
+    </image>
+    <image name="image5">
+        <data format="PNG" length="212">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000009b49444154789ced943b0e80200c865be3a95889c73286702cd3b5d7c2092d282f098389ffd896af0d7d2033c3084d43a83f586a6e09568adc93dd1a00bd689436f453a11439e6d05902c692ef838a63780c2c25a69d9caffcf6c73e48429935a6a032e1ba5db6c7e6c5d01430a7ec54bc8516c1b54d6b06f7c0ab16a404f77e6b2e1bf65c37dac9c949903de95ae91414a0b3e29cbe77dd7ef0a903174346d138b4e0890000000049454e44ae426082</data>
+    </image>
+    <image name="image6">
+        <data format="PNG" length="204">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000009349444154789ced943d0e80200c46a9f154acc46319433816e9da6be10456046c5036be8504da47ff0088488dd032843ac15c6bbe811ec37e948d890c48c1c0a7426b0c12a7da055a6388672962f417b4e5c8576e9707956a1cd36fa54b64a0042b65dad5bc56a49fc039fc57f05ba3bbc092e9496067654ed291acceb1b34a994dfe2072dd4ac11b527b7d52c1fc8f27f8a1134d7646057c031e3c0000000049454e44ae426082</data>
+    </image>
+    <image name="image7">
+        <data format="PNG" length="214">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000009d49444154789ccdd4410e80200c04c0d6f8aa5e7937d7fd169e9a20222ca0d15e4c340eeda64101c81bb5b53e9a591a794fc32bf51f988981826b10005d8219600af6f2aed918444494d9e31c64a7f8762bbccb91ccc98c63ca9f8fc08e79b76631310774ee8a9880701a1f080a04ede1b7700d2d0f68e155b88732f80566d15e0ded3193ed145c566bba7df4e7bceb5664d5bb221f77366fea129aa903c8ac61b05bd6f0220000000049454e44ae426082</data>
+    </image>
+    <image name="image8">
+        <data format="PNG" length="266">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000d149444154789cb595310e83300c456dc4a51a7563eed2b3549db2c1b5587dadcf5099462426c1285ff2929f3c7f9944b088500f0d5da844c44484b30d22c26e30506633b31b3e1e212a6d0680981957e13bd84aed85efa32825feadcda70091a9d8ac61c63301d1f017133efc37715669c3a3a77a3c2385b066c9763080ac5259defb55869bb7426196afdee7ab2b914258a06369ba1567bece5915c20a91896f252e7d546d743bb12577e25af36e89074d63559ab856a9c6dafbd7fbe99e714dee195f39d4a226f0f111349de9f533dd00ff89977eef2e17db0000000049454e44ae426082</data>
+    </image>
+    <image name="image9">
+        <data format="PNG" length="296">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000ef49444154789cb5955b0e83201045ef98ae0a92fe745b12d3c0b6fad344b635fd402d8f41d1d29b98098f39730541f2dee31fbaed0d2aa538eff3de530b9856c712040038eaa50a522a36b442a5f62a299f003000d8a70560005898c96ca0d865dc96e6c7ce0900e793e6f72c5b8ba4efba80c7e021843018e219d5f396afc22693f45d3782d33c01fc1d8c5fef5c4c35c895afc454cbe6d5e1662a9364a59b27ae71ee8479ace2881c98c7e2f0146b5c8313b9021a170c70c7de3fa8d9f1916b09decd710eefe2582afab363a92091ebbbc6dd1c4bda0c2c173dd71fcb670558a6a37f9e52afcaf5beaf43f0557d001dfde3e8c2862e6b0000000049454e44ae426082</data>
+    </image>
+    <image name="image10">
+        <data format="PNG" length="725">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000029c49444154789cb595b16b5c471087bf275ccc8314fb8c8bf7849b05352752e4ae3b91143a48a12369046e6c52e6af1257a7303e17826b129222700a38dc753a15c2fb0a73bb85b8dd22b0d3bd146707394e72328e7edd2eb3dffc989d9d2de6f339f7a1bd7ba1020f6e2f3669d3b5aec5bff14455002a11ec81c55a4b2965f1d1e075587717af96988386fe9331180120b48ec58f4bdcb563f8d5b07b681ede095ecce773d661dd4d9f4f39fa66c4f0e929009a15552593499a98ff30a37ca38cbf1ddfc9f95ed6dc5dbcba60f4fd537a27a32dd009da367055937e2b492172783282c786c57271a752ec39e7300796e1f10800090db10d785de06585a8412e2c3945ecb0c7eadab1499b6e3738787ac33e8a9213b82b476b2ed13ae171a82484120d0a22c8e38ae0c36ec7fa87521943ca89209ef485474c89a64c85050c2e5da24641a134820f7e27f801405445145045013423c122dae0dd1cedb58021a704086ca3fedb31e816a88a6a06cd6405d112bf5a927a016ad9c608e4941091dde0fa518d6bddb6b514725214c5ab43eb8802fa764f93926e22d6dadd606b2de1d7d5f6b0a6bf006536d00a31c56d4285e83d0d2595a97683f7ebfda27e6458fcf2336fcb0c288e25c9aca8a424c5488a11fdddd1fbbc87a90debb0eeb2e67f6dbb3d80417f407503f17c89a8222a9846105b210a8d023fad38faf288c3de61e1ae1cb3f31993b309ebb0fe4778f16e6c66cddd62b96075ed1053c267db0bd29b88288cbe1eb15fef17001d5d373b9f317d39c518c3e9935306fdc17b4fbdf8fb3cdea44d177c20a6482925c618acb514141fcc87d7ee7537399b1042e0f8f8f8bde41f803f565973373b9ff1e2e50b9abae1d977cf18f407c52783dfe97275d94dce26f8e0199f8c3fddf16d6dd2a69b3e9fa2aaff2ff8b6eeedcffb13ec5b7cf0fea054b80000000049454e44ae426082</data>
+    </image>
+    <image name="image11">
+        <data format="XPM.GZ" length="1038">789cd5cdbf0ac2301006f03d4f11daad8835a548417c04c1511087cb25fddf45eb20e2bb6b924b855a37877a64c88f2f5f2e8ef861bfe351cc2e3df415722ce1cc2375edbadbf1b4bdb32059f3d7112917c18205c091872b3b867a6066a888a9237a0afbb824662e6d3d5d5a3b8a34b19496995f1412e9e78a48dd86888e85a11816e5444a9786b91dcbaf33f7340409682e08a0609c8206d0946a3d4e95ef2a39d58577173ed27fdc2b21d7b60bc544b7ac34d6e6d240db56bfdc3b35334d1f1bf604bdd1d730</data>
+    </image>
+    <image name="image12">
+        <data format="PNG" length="505">89504e470d0a1a0a0000000d49484452000000140000001408060000008d891d0d000001c049444154789ca5943d6bdb5014861f150d194ba60e3158d00cdeaad2e5164f012fce526cda2185822fe92285fc828442939f50b45981847868b1dbc16829740ad252e2d1830b12b5070f25cd3fb81d6449712c2576f3c2e55ecec7735e0e429aeffb5c5d5fa9de971e0f51e37583f5c7eb9a9ec0dc13f741c01954e909acf10aba3b65d8a8af469978343b516a484fe2296c55e0469d2e7b68dfa279600a2b6dcf02363fbe3b0c4770f953321c0da9d7025e0ad8aa5919709c98700078943fd6061c0e3e0afefe81b6bb4665b3c2e10778fbee0961e8141a2e004218427011d0fb6a02707018ef683a9d12fe2ade4021d0302ccc6726a6691677e748bf2b793910e9fbfc2cbe4555603c0d5677785bedb332b225393f0d300cabb02ec7a1bd18d987b613b1555b038a614b390c4387c160c070745fe592c0e323497011b0b768fcff80cf5fc49f8ba88a7b2a63653b9c78f15d9a2fb02d0b3b6f6de37ad697f4de04363b11dd1d0fc69fa0e4cd37e4ca4bf3cd4e94857ddf47b6a40214a0d4ef7e767c4ba9cfe53477d7912da9fa5e5fe900bbef773540b9276ee668e2a1bd89278baaa0b25929701a2bfdc12e647240b3814b690198c0644ba653978501fc03748cb2b0f070ad480000000049454e44ae426082</data>
+    </image>
+    <image name="image13">
+        <data format="XPM.GZ" length="1032">789ced93bb0ac2401045fb7cc590e9826c4cd64040fc04c152108bd915d1228dc642c47f37b3d99751d442acbc90c7610e372976f20c968b396479726ca9dd6bd03b3a40b63935cd79b59e5d92544a282b9840918e921441038e4d1815632deba2968cc4a82b5dea8a51306e4d0cbe8b97b08f1fc46c253fb6cf80e8247ef51d682f0b3ceb250a12f1a0bb7b899e48820889c46b894427fd9bbed644bff8277bc85c93e35842d507d134c51c24e5d3c1009d1407d580fdf10db19f8b221e57ea7e694c3edbbbeb34b90144f9d184</data>
+    </image>
+    <image name="image14">
+        <data format="PNG" length="1220">89504e470d0a1a0a0000000d4948445200000018000000180806000000e0773df80000048b49444154789cad946b4c536718c7ffa7a797d3f6b4b4a7945690725190cb40c401b22d6c0c75f31aa6b2844cb73993395d328d331a33cd62e6a299dbbeb8b80f269a4c66986e2e599c19db12351bd90406322aa8800384b5a51d507a399c5bcf3e4019a82d9aecf976def37fffbfe779def77d08c4084392bad860571f52908408005c50eaf77687f7ced424666a775209cacae8371710696f0fbb15803bbaa68c050081fca20dd66adaaa0600fc51eff9d5db1d9efe6d49a7de59b49c793f6531cd00c0d82037d17ade737aa63900286202e2049346bd955dc51c8c9afb5d1cd77ade53e7eb65dfbe5ffbd800268d7a23abd27c38b5d86005808087e75beb3df5be5ef6cd87e91f0b6076509b1754983e4c2b31260140d027882de7dc5f4ff55d8e0930d27a662e733e24d932ca133eca5896600780d0882036d7b9bff5f6b05b62994f0352ecd68373014a36dbb3165698e601003b264acd67dd97bcdde15a009178fb1400f0dcb2a549006cf1844acd7fddfcedf4dfcee13be18d00a4b9125300c0ee6db5b441af5b3b97381a4fac4dccb0646a0f3d8a560100d9e9a952616e56793ce140cbb83f224eb63a295b67cc5f65d96dc9d0ee7f24000071497e760e00752ca1bb3374abf1d4508b244c42ec797a53ee4a661f934eed7a1440f0c08ed7175b19d38e584252ad105cced00b4d5fb85aa2952417d2cca22ae63d269dda3e176038d9964857942e598978e303187139436b9aeadc6d116912925a6cb0663d6b3e6c7650afc60434de687700c007efee28d269a957e20020f29161f7cdd0ba962f3d7fca531734add4685bf08ce99839957af981ca01e056c4b9374de7b09415e533ff8cfaedbfb739af6a683235adc4f8925a4f02005cced0c0e8c0c41900900439c0fac51f825e7ec5bc023a892000b38332c8925cce8e89bd1301e9761440d41ccf270184871aa4b60b473e2eb35b2d28addedad039d87b947168f644c7f54440eaf77687f7cccc8e329056265d7b8a5411d3ef2130cc07c706b9d7669551733c7f7ce3b13cdfba179f6ee7ef34ca01e71579cb86d54d29766bacb7a101b03e35d9560320275e4b8929c0f7005687c70437dd357fa0fe93a3a500d0d8d22e9eacfba643a356fb26388e4d30d03a1da5b1653a52cc1565c576b54aa9ec1b7471672f5ebe76bdbd73534fdfbd402c402d807300303ac8faf91b74d7e5cf4f3ca9d752f16e147841805aa5c204c763d7e14ffbdc5edfeaef7efea5eb01c0d24dc9063e2cddcda94c4c04004988a0ebc791f6d2ac026355e1530ebd464b2a4912815018d79d1da23b30ecee1f190a090a8e935932b12cb3487fe2c0fe846dfb8e0479417cfeab4b3f35cf0200c0fc0263b575a1feccc272c6145d15b908d87111b22c4fce4c0230da34d3d979ba43d0e84928350af45d0bb876aeaf55dded710bfd83aee5171bae76ce0200808a52a49be76b3f4bce3338520a8cb93a936a568b22928c917b6cd8f757b8c3d51518d29954572211999304798d9e51151304914ccb4657826456fac743156d376f8fce02cc081ba952acb038b4ab142a42800cc83240aa08bfab2b78418ec8ed00ee3f5042ad234b8d499aed9220177363110bcbf27b1f66febfc6bf0d79ca414a0996180000000049454e44ae426082</data>
+    </image>
+    <image name="image15">
+        <data format="XPM.GZ" length="1214">789cd3d7528808f055d0d2e72a2e492cc94c5648ce482c52d04a29cdcdad8c8eb5ade6523236520022430543251d2e253d856405e53430007309805135a36a46d58caaa1899a5a6b2e0001ccd7cc</data>
+    </image>
+    <image name="image16">
+        <data format="PNG" length="493">89504e470d0a1a0a0000000d49484452000000220000002208060000003a470bc2000001b449444154789ced98bf6bc24014c7bf29fd03742d5d02993a79912cb745f21f543b38066287ace212e8d6cd35437fe02685e29f20748b43d0747329d8a1b8ead82d1dc46062727ae66c2de40b8124bcdc7d7879f7eebd933ccfc329e89cc798521aa6bdf73c4ffa55100020151344b311f82e002078efe56500009c091945800a90a43263242b30796c79829819ace30713aa4631f1574bbc7adb03d16c008805ece075b0f56dfda6be2fc36e9034f59eaa7bdb263dc5f2103346548d62f47d25a91a85aa510080698da38b54cc98fdc5e585e43ebad133b14c90f019c48adba589e9915aa70fbb65876d7f8a493001c0f68873e78476cbde39293748b72143559690170b341519d5e11b33a11d0ab113e47eb844b35cc2e8a38cd9e7ece049f6d1c9e4910224a90224a954109e7d8647ac71b74028a5a16ee80000c728e15a59a2a92ce018a5dc20baa167c2c440362180f4147f2c18668cd43a7dccbfe661fb658a5aa72f04244b1148d21bc02ac5af7f4db7210b9b34cd2bdcab66b31e11a9a3d6233ce20631ad71741ff8aeb076e2ff7aa468b07894ac59ff0c244fcd2a14244fcd2aadcf478eb5e3b2b4d9e748a77250f3038d539d515497a52d0000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>dotallCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>checkbox_slot()</slot>
+    </connection>
+    <connection>
+        <sender>editCopyAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>editCopy()</slot>
+    </connection>
+    <connection>
+        <sender>editCutAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>editCut()</slot>
+    </connection>
+    <connection>
+        <sender>editPasteAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>editPaste()</slot>
+    </connection>
+    <connection>
+        <sender>editRedoAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>editRedo()</slot>
+    </connection>
+    <connection>
+        <sender>editUndoAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>editUndo()</slot>
+    </connection>
+    <connection>
+        <sender>examineAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>examine()</slot>
+    </connection>
+    <connection>
+        <sender>fileExitAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>close()</slot>
+    </connection>
+    <connection>
+        <sender>fileNewAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>fileNew()</slot>
+    </connection>
+    <connection>
+        <sender>fileOpenAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>fileOpen()</slot>
+    </connection>
+    <connection>
+        <sender>fileSaveAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>fileSave()</slot>
+    </connection>
+    <connection>
+        <sender>fileSaveAsAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>fileSaveAs()</slot>
+    </connection>
+    <connection>
+        <sender>helpAboutAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>helpAbout()</slot>
+    </connection>
+    <connection>
+        <sender>helpContentsAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>helpContents()</slot>
+    </connection>
+    <connection>
+        <sender>helpHelpAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>helpHelp()</slot>
+    </connection>
+    <connection>
+        <sender>helpIndexAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>helpIndex()</slot>
+    </connection>
+    <connection>
+        <sender>ignorecaseCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>checkbox_slot()</slot>
+    </connection>
+    <connection>
+        <sender>localeCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>checkbox_slot()</slot>
+    </connection>
+    <connection>
+        <sender>matchNumberSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>match_num_slot()</slot>
+    </connection>
+    <connection>
+        <sender>multilineCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>checkbox_slot()</slot>
+    </connection>
+    <connection>
+        <sender>regexMultiLineEdit</sender>
+        <signal>textChanged()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>regex_changed_slot()</slot>
+    </connection>
+    <connection>
+        <sender>stringMultiLineEdit</sender>
+        <signal>textChanged()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>string_changed_slot()</slot>
+    </connection>
+    <connection>
+        <sender>unicodeCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>checkbox_slot()</slot>
+    </connection>
+    <connection>
+        <sender>verboseCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>checkbox_slot()</slot>
+    </connection>
+    <connection>
+        <sender>editPauseAction</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>pause()</slot>
+    </connection>
+    <connection>
+        <sender>editPreferencesAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>preferences()</slot>
+    </connection>
+    <connection>
+        <sender>helpReportBugAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>report_bug()</slot>
+    </connection>
+    <connection>
+        <sender>helpPythonHelpAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>helpPythonRegex()</slot>
+    </connection>
+    <connection>
+        <sender>helpRegexReferenceAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>reference_guide()</slot>
+    </connection>
+    <connection>
+        <sender>helpVisitWebsiteAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>kodos_website()</slot>
+    </connection>
+    <connection>
+        <sender>helpCheckForUpdateAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>check_for_update()</slot>
+    </connection>
+    <connection>
+        <sender>replaceTextEdit</sender>
+        <signal>textChanged()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>replace_changed_slot()</slot>
+    </connection>
+    <connection>
+        <sender>replaceNumberSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>replace_num_slot()</slot>
+    </connection>
+    <connection>
+        <sender>fileImportFileAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>importFile()</slot>
+    </connection>
+    <connection>
+        <sender>fileImportURLAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>importURL()</slot>
+    </connection>
+    <connection>
+        <sender>helpRegexLibAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>helpRegexLib()</slot>
+    </connection>
+    <connection>
+        <sender>regexMultiLineEdit</sender>
+        <signal>textChanged()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>kodos_edited_slot()</slot>
+    </connection>
+    <connection>
+        <sender>stringMultiLineEdit</sender>
+        <signal>textChanged()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>kodos_edited_slot()</slot>
+    </connection>
+    <connection>
+        <sender>ignorecaseCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>kodos_edited_slot()</slot>
+    </connection>
+    <connection>
+        <sender>replaceTextEdit</sender>
+        <signal>textChanged()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>kodos_edited_slot()</slot>
+    </connection>
+    <connection>
+        <sender>multilineCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>kodos_edited_slot()</slot>
+    </connection>
+    <connection>
+        <sender>dotallCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>kodos_edited_slot()</slot>
+    </connection>
+    <connection>
+        <sender>verboseCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>kodos_edited_slot()</slot>
+    </connection>
+    <connection>
+        <sender>localeCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>kodos_edited_slot()</slot>
+    </connection>
+    <connection>
+        <sender>unicodeCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>KodosBA</receiver>
+        <slot>kodos_edited_slot()</slot>
+    </connection>
+    <connection>
+        <sender>FileRevertAction</sender>
+        <signal>activated()</signal>
+        <receiver>KodosBA</receiver>
+        <slot>revert_file_slot()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>regexMultiLineEdit</tabstop>
+    <tabstop>stringMultiLineEdit</tabstop>
+    <tabstop>resultTabWidget</tabstop>
+    <tabstop>ignorecaseCheckBox</tabstop>
+    <tabstop>multilineCheckBox</tabstop>
+    <tabstop>dotallCheckBox</tabstop>
+    <tabstop>verboseCheckBox</tabstop>
+    <tabstop>localeCheckBox</tabstop>
+    <tabstop>unicodeCheckBox</tabstop>
+    <tabstop>matchNumberSpinBox</tabstop>
+    <tabstop>matchTextBrowser</tabstop>
+    <tabstop>codeTextBrowser</tabstop>
+</tabstops>
+<slots>
+    <slot>fileNew()</slot>
+    <slot>fileOpen()</slot>
+    <slot>fileSave()</slot>
+    <slot>fileSaveAs()</slot>
+    <slot>filePrint()</slot>
+    <slot>fileExit()</slot>
+    <slot>editUndo()</slot>
+    <slot>editRedo()</slot>
+    <slot>editCut()</slot>
+    <slot>editCopy()</slot>
+    <slot>editPaste()</slot>
+    <slot>examine()</slot>
+    <slot>helpIndex()</slot>
+    <slot>helpContents()</slot>
+    <slot>helpAbout()</slot>
+    <slot>regex_changed_slot()</slot>
+    <slot>string_changed_slot()</slot>
+    <slot>checkbox_slot()</slot>
+    <slot>match_num_slot()</slot>
+    <slot>helpHelp()</slot>
+    <slot>pause()</slot>
+    <slot>preferences()</slot>
+    <slot>helpPythonRegex()</slot>
+    <slot>reference_guide()</slot>
+    <slot>kodos_website()</slot>
+    <slot>check_for_update()</slot>
+    <slot>report_bug()</slot>
+    <slot>replace_changed_slot()</slot>
+    <slot>replace_num_slot()</slot>
+    <slot>importFile()</slot>
+    <slot>importURL()</slot>
+    <slot>helpRegexLib()</slot>
+    <slot>kodos_edited_slot()</slot>
+    <slot>revert_file_slot()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

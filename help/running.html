@@ -1,0 +1,141 @@
+<html>
+<head>
+<title>
+Kodos - The Python Regex GUI Debugger
+</title>
+
+
+</head>
+<body bgcolor=white>
+<center>
+<h2><font color=green>Kodos - Help</font></h2>
+<!--
+<img src=../images/kodos-logo1.gif>
+<img src=../images/logo.gif alt="Kodos">
+<img src=../images/kodos-logo1.gif>
+-->
+</center>
+
+<table width=100% border=0>
+<tr>
+<td width=20% valign=top>
+<font size=-1>
+<table border=0 cellpadding=5 width=20%>
+<tr>
+<td>
+	<a href=overview.html>Overview</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=running.html>Running Kodos</a>
+</td>
+</tr>
+
+
+<tr>
+<td>
+	<a href=mainwin.html>The Kodos Main Window</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=example.html>An example</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=toolbar.html>The Kodos Toolbar</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=examine.html>Examining a regex</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=pause.html>Pause processing of regex</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=prefs.html>Preferences</a>
+</td>
+</tr>
+
+
+</table>
+</font>
+
+</td>
+<td width=80%>
+    <h3>Running Kodos</h3>
+
+    Before you can run Kodos you will need to have a recent versions of
+python (1.5+, 2.1+ recommended), pyqt(2.3+) and sip (dependent on pyqt).  This document assumes that your system meets these requirements.
+<p>
+
+<h3>Prequisites</h3>
+If you have not already done so, download the latest version of Kodos from
+http://kodos.sourceforge.net
+<p>
+Unpack the Kodos tgz or zip file that you have downloaded.  This will
+create a "kodos" subdirectory which will contain the application and
+supprt modules.
+<p>
+
+<h3>Running Kodos</h3>
+cd into the kodos subdirectory:
+<br>
+<b>$ cd kodos</b>
+<p>
+Run the program:<br>
+<b>$ python kodos.py</b>
+<br>
+This assumes that you have a python interpreter executable in your PATH and
+that this is the version that pyqt has been compiled against.  It is not 
+uncommon for systems to have multiple versions of python installed so you
+should ensure that pyqt has been installed for the python interpreter 
+that you invoke.  If you have multiple python interpreters and you are unsure 
+which one you have installed pyqt for you can try each one to verify:<p>
+<b>$ python</b><br>
+<b>>>>import qt</b><br>
+<i>Traceback .... </i><br>
+<p>
+<b>$ python2.1</b><br>
+<b>>>>import qt</b><br>
+<i>>>></i><br>
+
+In the first case above, qt fails to import.  In the second case, qt imports
+successfully.<p>
+<p>
+If you receive an exception traceback upon launching the Kodos application then
+it is most likely caused by an improper pyqt installation.  Make sure that
+you are using the correct version of python for the version of pyqt that you
+are using and that the libraries are installed such that python can find them
+(either by placing them in the python site-packages directory or modifying your
+PYTHONPATH).  If the qt shared objects are in an unusual place you may also 
+have to modify your LD_LIBRARY_PATH to include this directory.<p>
+
+Since there are a variety of reasons why kodos could fail to run considering
+it's many dependencies (python, qt, pyqt and sip) there is no way I could 
+easily list specific solutions.  If you do come across a situation where you
+are unable to run kodos because of these dependenicies and if you find a way 
+to resolve it I'd appreciate knowing the initial problems and the solution so
+that I can include it here for the reference of others.
+
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+

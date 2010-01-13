@@ -1,0 +1,173 @@
+<html>
+<head>
+<title>
+Kodos - The Python Regex GUI Debugger
+</title>
+
+
+</head>
+<body bgcolor=white>
+<center>
+<h2><font color=green>Kodos - Help</font></h2>
+<!--
+<img src=../images/kodos-logo1.gif>
+<img src=../images/logo.gif alt="Kodos">
+<img src=../images/kodos-logo1.gif>
+-->
+</center>
+
+<table width=100% border=0>
+<tr>
+<td width=20% valign=top>
+<font size=-1>
+<table border=0 cellpadding=5 width=20%>
+<tr>
+<td>
+	<a href=overview.html>Overview</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=running.html>Running Kodos</a>
+</td>
+</tr>
+
+
+<tr>
+<td>
+	<a href=mainwin.html>The Kodos Main Window</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=example.html>An example</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=toolbar.html>The Kodos Toolbar</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=examine.html>Examining a regex</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=pause.html>Pause processing of regex</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=prefs.html>Preferences</a>
+</td>
+</tr>
+
+
+</table>
+</font>
+
+</td>
+<td width=80%>
+<h3>The Kodos Main Window</h3>
+The Kodos main window is divided into several components: Regular Expression, Flags, String and the Output Tab<p>
+
+The regular expression entry box allows you to enter and edit a regular expression.
+<br>
+<center><img src="../screenshots/regex2.png" border=0><br>
+<b>Fig. The regular expression entry dialog</b>
+<p>
+</center>
+<p>
+You can set the python regular expressions flags by selecting from the
+"flags" chceckboxes
+<p>
+
+<center><img src="../screenshots/flags.png" border=0><br>
+<b>Fig. The flags checkboxes</b>
+<p>
+</center>
+<p>
+
+The string entry dialog allows you to test your regular expression against 
+a string.
+<br>
+
+<center><img src="../screenshots/string3.png" border=0><br>
+<b>Fig. The string entry dialog</b>
+<p>
+</center>
+<p>
+
+If your regular expression contains groupings then a list of the groups and string matches are displayed.  If the groups are named (ie. (?P<something>) ) then
+the group name will also appear.
+<br>
+
+<center><img src="../screenshots/groups3.png" border=0><br>
+<b>Fig. The groups output list tab</b>
+<p>
+</center>
+<p>
+
+The Match output tab displays the regex match context in relation to the
+input string
+<br>
+
+<center><img src="../screenshots/match.png" border=0><br>
+<b>Fig. The match output tab</b>
+<p>
+</center>
+<p>
+
+If the regex matches the input string more than once, then the "Match Number"
+spinbox is enabled and allows you to scroll through the range of matched items.
+As you scroll through the matches, the Match output tab and the Group output 
+tab will be updated to reflect the match number.<br>
+<br>
+
+<center><img src="../screenshots/matchnum.png" border=0><br>
+<b>Fig. The match number spinbox</b>
+<p>
+</center>
+<p>
+
+
+Depending on the state of your regular expression and string you will see
+one of the following displayed on the status bar:
+<br>
+
+<center><img src="../screenshots/yellow.png" border=0><br>
+<b>Fig. Waiting for user input</b>
+<p>
+</center>
+<p><p>
+
+<center><img src="../screenshots/red.png" border=0><br>
+<b>Fig. Pattern does not match or there is a syntax error</b>
+<p>
+</center>
+<p><p>
+
+<center><img src="../screenshots/green.png" border=0><br>
+<b>Fig. The pattern matches the string</b>
+<p><p>
+
+</center>
+<p>
+
+
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+

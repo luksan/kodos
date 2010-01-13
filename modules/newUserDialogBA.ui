@@ -1,0 +1,188 @@
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<class>NewUserDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>NewUserDialog</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>338</width>
+            <height>326</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>1</hsizetype>
+            <vsizetype>5</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="caption">
+        <string>Kodos new user information</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout14</cstring>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&lt;h3&gt;Welcome to Kodos.&lt;/h3&gt;
+&lt;p&gt;&lt;/p&gt;
+It appears that this is your first time using 
+Kodos - The Python Regular Expression Debugger.
+&lt;p&gt;&lt;/p&gt;
+In order to help you familiarize yourself with Kodos, you may wish to explore
+the Regex Library.  Additionally, Kodos contains a Python Regex Reference Guide. 
+You can access these tools by clicking on the appropriate toolbar icon.</string>
+                    </property>
+                    <property name="alignment">
+                        <set>WordBreak|AlignVCenter</set>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout13</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel" row="1" column="1">
+                            <property name="name">
+                                <cstring>pixmapLabel2</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap>image1</pixmap>
+                            </property>
+                            <property name="scaledContents">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="1" column="0">
+                            <property name="name">
+                                <cstring>textLabel4</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&lt;b&gt;Regex Reference Guide&lt;/b&gt;</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="1">
+                            <property name="name">
+                                <cstring>pixmapLabel1</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap>image2</pixmap>
+                            </property>
+                            <property name="scaledContents">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>textLabel3</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&lt;b&gt;Regex Library&lt;/b&gt;</string>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+            </vbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout15</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer10</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>241</width>
+                            <height>21</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="1437">789c7d94cf4ec3300cc6ef7d8a68be4da8a35d5369423c02882312e2d0a44d9b7529128c0342bc3bb1932cfdb77953972ff9e9b31d6fdb6dd9ebcb13dbee92af7375d692c9aefa64dbfadb989fb7f7c7df64b3cf997d6725cb3677c92665923d7f0c0daec1aee19e026517e441a2d4412a85523ac9b9837b274bee4e0dca7da694932dca222b8a82921e51f29c739ea31428cb5c367b3a6d501e64286370b2e4b24679425915555615282b94b2968d4b54a3c4ac2539ab20dd691a0362c4cd090350c588d498017f8641ab25e3f641482984240ae68c4384052c625f119a338410769d11a1ad359f80049f1134652ce48d8488adcd7d04d4141e5a3080b9ea3a40801b0b061cd37806d6183165c40a83e58ceac182d66a1ef775a3f7cb052d7b9f1a0971635e539f75063c05708da11c23a3c8b86f258c67ba98bbd581014556f8316722d42a5b896a3b7d4905e0198488d19d3aaa56eb3e30d6906a761031bdee4e2df4a60fa902938267008cc1f6b5369ec193c8b8ebb5496c68a3978cbf3afbecc9a70fd733f12160340a744e97b9c4e58743310c7eb8a12fa0c7300d67efe645ff247025ec3dff3d24ff497e58df</data>
+    </image>
+    <image name="image1">
+        <data format="XPM.GZ" length="1098">789ced93c14ac4301086ef7d8aa1bd15e9ba5b0215d947503c0ae2213399ac1e56615d0f22bebb9949ba198aa007f1e49fcb7ce1ef971c9a550fb73757d0af9a97a33f3e12d0833f401f5ef7fbb7bbfbed7bd38e236c1c5cc0ba3d6b5a0f04d7cf4f2c7367e6c1cc98e6ee5c231805a7715a4fa360c8e8d979411624471b72823bc1e09c0b8a2418357a4af7cdd22b0e69618ece4b2ea684a441d46f2be26c924ad9a580e9db19d2aed8d4845c4b9c5a485c4b8cc5644ac48ccc644b5f982895fe4dbf66e2bfb853cec934b33561fe9b23a29a2c57533c25c10267930dc60517934d39cea4be96b276f9c683ddf33f7b771f97cd27ed8759f9</data>
+    </image>
+    <image name="image2">
+        <data format="XPM.GZ" length="1772">789cbd94c16ee2301445f77c4584776894164882ac6a167cc08c6659a99a8563270102c4404ca1a3fefbf8bd17cfa4895316adeab0c811d797938795bb49f0f8eb4730b91b9d6a51af652057e2184c94d9edae4fbfbfff198de751603f331e4cc7df46e33090c1cf6a9fc13db3f7ec1e17a0029c4fe7f7c90c5036182502f04c98c484870639e19130cfb9041488dced3d11baf033a10bbf381411a0068ca65114a1b041141671ef05309ec5718c924b446111bfbd36c809d780c92c89a5024c1185c3ac41ae62c01a70912ef822052c01851442a0e4a6c18cb0024c2391a5e8bc02948a731addf61fa2460ea86287fb0615610198e732a369ec1cd234c29bab9362b86ea6442ae4ed94ca94f8c4ae7753248e5dbd6768a5f2225fb175b6166c53da6b20b5dd6df7d45256f66af7b552455814d0256d57a837ec703c7952baaa8debd2b6ebfc7cf6a4d00be7455ea7e3c193ba54f5959e91bcce2fbeae65595f685ed4e5f75a76bbbc5eaeebabbc98d78bbd4d31e39d9761ed14339afea18e97a6984b593465adbb5e76f3ff940d69b62dec99e878698a3529a34def7ca117fd64bbab73bec86ba8ebad57afabe8740d7b75e7e5f7eacd6ba8ab7dee07bc9a2efd01aff756d87b4f0cacf1ebc3e82f498eb2de</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>okButton</sender>
+        <signal>clicked()</signal>
+        <receiver>NewUserDialog</receiver>
+        <slot>accept()</slot>
+    </connection>
+</connections>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

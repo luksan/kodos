@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.2.4 Regular Expression Objects </title>
+<META NAME="description" CONTENT="4.2.4 Regular Expression Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="match-objects.html">
+<LINK REL="previous" HREF="node99.html">
+<LINK REL="up" href="module-re.html">
+<LINK REL="next" href="match-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node99.html">4.2.3 Module Contents</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="match-objects.html">4.2.5 Match Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006240000000000000000">&nbsp;</A>
+<BR>
+4.2.4 Regular Expression Objects 
+</H2>
+
+<P>
+Compiled regular expression objects support the following methods and
+attributes:
+
+<P>
+<dl><dt><b><a name="l2h-731"><tt class="method">search</tt></a></b>(<var>string</var><big>[</big><var>, pos</var><big>[</big><var>,
+                                        endpos</var><big>]</big><big>]</big>)
+<dd>
+  Scan through <var>string</var> looking for a location where this regular
+  expression produces a match, and return a
+  corresponding <tt class="class">MatchObject</tt> instance.  Return <code>None</code> if no
+  position in the string matches the pattern; note that this is
+  different from finding a zero-length match at some point in the string.
+
+<P>
+The optional <var>pos</var> and <var>endpos</var> parameters have the same
+  meaning as for the <tt class="method">match()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-732"><tt class="method">match</tt></a></b>(<var>string</var><big>[</big><var>, pos</var><big>[</big><var>,
+                                       endpos</var><big>]</big><big>]</big>)
+<dd>
+  If zero or more characters at the beginning of <var>string</var> match
+  this regular expression, return a corresponding
+  <tt class="class">MatchObject</tt> instance.  Return <code>None</code> if the string does not
+  match the pattern; note that this is different from a zero-length
+  match.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+If you want to locate a match anywhere in
+  <var>string</var>, use <tt class="method">search()</tt> instead.</span>
+
+<P>
+The optional second parameter <var>pos</var> gives an index in the string
+  where the search is to start; it defaults to <code>0</code>.  This is not
+  completely equivalent to slicing the string; the <code>''</code> pattern
+  character matches at the real beginning of the string and at positions
+  just after a newline, but not necessarily at the index where the search
+  is to start.
+
+<P>
+The optional parameter <var>endpos</var> limits how far the string will
+  be searched; it will be as if the string is <var>endpos</var> characters
+  long, so only the characters from <var>pos</var> to <var>endpos</var> will be
+  searched for a match.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-733"><tt class="method">split</tt></a></b>(<var>string</var><big>[</big><var>,
+                                       maxsplit<code> = 0</code></var><big>]</big>)
+<dd>
+Identical to the <tt class="function">split()</tt> function, using the compiled pattern.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-734"><tt class="method">findall</tt></a></b>(<var>string</var>)
+<dd>
+Identical to the <tt class="function">findall()</tt> function, using the compiled pattern.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-735"><tt class="method">sub</tt></a></b>(<var>repl, string</var><big>[</big><var>, count<code> = 0</code></var><big>]</big>)
+<dd>
+Identical to the <tt class="function">sub()</tt> function, using the compiled pattern.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-736"><tt class="method">subn</tt></a></b>(<var>repl, string</var><big>[</big><var>,
+                                      count<code> = 0</code></var><big>]</big>)
+<dd>
+Identical to the <tt class="function">subn()</tt> function, using the compiled pattern.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-737"><tt class="member">flags</tt></a></b>
+<dd>
+The flags argument used when the RE object was compiled, or
+<code>0</code> if no flags were provided.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-738"><tt class="member">groupindex</tt></a></b>
+<dd>
+A dictionary mapping any symbolic group names defined by
+<tt class="regexp">(?P&lt;<var>id</var>&gt;)</tt> to group numbers.  The dictionary is empty if no
+symbolic groups were used in the pattern.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-739"><tt class="member">pattern</tt></a></b>
+<dd>
+The pattern string from which the RE object was compiled.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node99.html">4.2.3 Module Contents</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="match-objects.html">4.2.5 Match Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

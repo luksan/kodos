@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.2.1 Regular Expression Syntax </title>
+<META NAME="description" CONTENT="4.2.1 Regular Expression Syntax ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="matching-searching.html">
+<LINK REL="previous" href="module-re.html">
+<LINK REL="up" href="module-re.html">
+<LINK REL="next" href="matching-searching.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="matching-searching.html">4.2.2 Matching vs. Searching</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006210000000000000000">&nbsp;</A>
+<BR>
+4.2.1 Regular Expression Syntax 
+</H2>
+
+<P>
+A regular expression (or RE) specifies a set of strings that matches
+it; the functions in this module let you check if a particular string
+matches a given regular expression (or if a given regular expression
+matches a particular string, which comes down to the same thing).
+
+<P>
+Regular expressions can be concatenated to form new regular
+expressions; if <i>A</i> and <i>B</i> are both regular expressions,
+then <i>AB</i> is also a regular expression.  If a string <i>p</i>
+matches A and another string <i>q</i> matches B, the string <i>pq</i>
+will match AB if <i>A</i> and <i>B</i> do no specify boundary
+conditions that are no longer satisfied by <i>pq</i>.  Thus, complex
+expressions can easily be constructed from simpler primitive
+expressions like the ones described here.  For details of the theory
+and implementation of regular expressions, consult the Friedl book
+referenced below, or almost any textbook about compiler construction.
+
+<P>
+A brief explanation of the format of regular expressions follows.  For
+further information and a gentler presentation, consult the Regular
+Expression HOWTO, accessible from <a class="url" href="http://www.python.org/doc/howto/">http://www.python.org/doc/howto/</a>.
+
+<P>
+Regular expressions can contain both special and ordinary characters.
+Most ordinary characters, like "<tt class="character">A</tt>", "<tt class="character">a</tt>", or
+"<tt class="character">0</tt>", are the simplest regular expressions; they simply match
+themselves.  You can concatenate ordinary characters, so <tt class="regexp">last</tt>
+matches the string <code>'last'</code>.  (In the rest of this section, we'll
+write RE's in <tt class="regexp">this special style</tt>, usually without quotes, and
+strings to be matched <code>'in single quotes'</code>.)
+
+<P>
+Some characters, like "<tt class="character">|</tt>" or "<tt class="character">(</tt>", are special.
+Special characters either stand for classes of ordinary characters, or
+affect how the regular expressions around them are interpreted.
+
+<P>
+The special characters are:
+
+<P>
+
+<DL COMPACT>
+<DT>"<tt class="character">.</tt>"
+<DD>(Dot.)  In the default mode, this matches any
+character except a newline.  If the <tt class="constant">DOTALL</tt> flag has been
+specified, this matches any character including a newline.
+
+<P>
+<DT>"<tt class="character">^</tt>"
+<DD>(Caret.)  Matches the start of the string, and in
+<tt class="constant">MULTILINE</tt> mode also matches immediately after each newline.
+
+<P>
+<DT>"<tt class="character">$</tt>"
+<DD>Matches the end of the string or just before the
+newline at the end of the string, and in <tt class="constant">MULTILINE</tt> mode
+also matches before a newline.  <tt class="regexp">foo</tt> matches both 'foo' and
+'foobar', while the regular expression <tt class="regexp">foo$</tt> matches only
+'foo'.  More interestingly, searching for <tt class="regexp">foo$</tt> in
+'foo1&#92;nfoo2&#92;n' matches 'foo2' normally,
+but 'foo1' in <tt class="constant">MULTILINE</tt> mode.
+
+<P>
+<DT>"<tt class="character">*</tt>"
+<DD>Causes the resulting RE to
+match 0 or more repetitions of the preceding RE, as many repetitions
+as are possible.  <tt class="regexp">ab*</tt> will
+match 'a', 'ab', or 'a' followed by any number of 'b's.
+
+<P>
+<DT>"<tt class="character">+</tt>"
+<DD>Causes the
+resulting RE to match 1 or more repetitions of the preceding RE.
+<tt class="regexp">ab+</tt> will match 'a' followed by any non-zero number of 'b's; it
+will not match just 'a'.
+
+<P>
+<DT>"<tt class="character">?</tt>"
+<DD>Causes the resulting RE to
+match 0 or 1 repetitions of the preceding RE.  <tt class="regexp">ab?</tt> will
+match either 'a' or 'ab'.
+
+<P>
+<DT><code>*?</code>, <code>+?</code>, <code>??</code>
+<DD>The "<tt class="character">*</tt>",
+"<tt class="character">+</tt>", and "<tt class="character">?</tt>" qualifiers are all <i class="dfn">greedy</i>; they
+match as much text as possible.  Sometimes this behaviour isn't
+desired; if the RE <tt class="regexp">&lt;.*&gt;</tt> is matched against
+<code>'&lt;H1&gt;title&lt;/H1&gt;'</code>, it will match the entire string, and not just
+<code>'&lt;H1&gt;'</code>.  Adding "<tt class="character">?</tt>" after the qualifier makes it
+perform the match in <i class="dfn">non-greedy</i> or <i class="dfn">minimal</i> fashion; as
+<i>few</i> characters as possible will be matched.  Using <tt class="regexp">.*?</tt>
+in the previous expression will match only <code>'&lt;H1&gt;'</code>.
+
+<P>
+<DT><code>{<var>m</var>}</code>
+<DD>Specifies that exactly <var>m</var> copies of the previous RE should be
+matched; fewer matches cause the entire RE not to match.  For example,
+<tt class="regexp">a{6}</tt> will match exactly six "<tt class="character">a</tt>" characters, but
+not five.
+
+<P>
+<DT><code>{<var>m</var>,<var>n</var>}</code>
+<DD>Causes the resulting RE to match from
+<var>m</var> to <var>n</var> repetitions of the preceding RE, attempting to
+match as many repetitions as possible.  For example, <tt class="regexp">a{3,5}</tt>
+will match from 3 to 5 "<tt class="character">a</tt>" characters.  Omitting <var>n</var>
+specifies an infinite upper bound; you can't omit <var>m</var>.  As an
+example, <tt class="regexp">a{4,}b</tt> will match <code>aaaab</code>, a thousand
+"<tt class="character">a</tt>" characters followed by a <code>b</code>, but not <code>aaab</code>.
+The comma may not be omitted or the modifier would be confused with
+the previously described form.
+
+<P>
+<DT><code>{<var>m</var>,<var>n</var>}?</code>
+<DD>Causes the resulting RE to
+match from <var>m</var> to <var>n</var> repetitions of the preceding RE,
+attempting to match as <i>few</i> repetitions as possible.  This is
+the non-greedy version of the previous qualifier.  For example, on the
+6-character string <code>'aaaaaa'</code>, <tt class="regexp">a{3,5}</tt> will match 5
+"<tt class="character">a</tt>" characters, while <tt class="regexp">a{3,5}?</tt> will only match 3
+characters.
+
+<P>
+<DT>"<tt class="character">&#92;</tt>"
+<DD>Either escapes special characters (permitting
+you to match characters like "<tt class="character">*</tt>", "<tt class="character">?</tt>", and so
+forth), or signals a special sequence; special sequences are discussed
+below.
+
+<P>
+If you're not using a raw string to
+express the pattern, remember that Python also uses the
+backslash as an escape sequence in string literals; if the escape
+sequence isn't recognized by Python's parser, the backslash and
+subsequent character are included in the resulting string.  However,
+if Python would recognize the resulting sequence, the backslash should
+be repeated twice.  This is complicated and hard to understand, so
+it's highly recommended that you use raw strings for all but the
+simplest expressions.
+
+<P>
+<DT><code>[]</code>
+<DD>Used to indicate a set of characters.  Characters can
+be listed individually, or a range of characters can be indicated by
+giving two characters and separating them by a "<tt class="character">-</tt>".  Special
+characters are not active inside sets.  For example, <tt class="regexp">[akm$]</tt>
+will match any of the characters "<tt class="character">a</tt>", "<tt class="character">k</tt>",
+"<tt class="character">m</tt>", or "<tt class="character">$</tt>"; <tt class="regexp">[a-z]</tt>
+will match any lowercase letter, and <code>[a-zA-Z0-9]</code> matches any
+letter or digit.  Character classes such as <code>&#92;w</code> or <code>&#92;S</code>
+(defined below) are also acceptable inside a range.  If you want to
+include a "<tt class="character">]</tt>" or a "<tt class="character">-</tt>" inside a set, precede it with a
+backslash, or place it as the first character.  The
+pattern <tt class="regexp">[]]</tt> will match <code>']'</code>, for example.
+
+<P>
+You can match the characters not within a range by <i class="dfn">complementing</i>
+the set.  This is indicated by including a "<tt class="character">^</tt>" as the first
+character of the set; "<tt class="character">^</tt>" elsewhere will simply match the
+"<tt class="character">^</tt>" character.  For example, <tt class="regexp">[^5]</tt> will match
+any character except "<tt class="character">5</tt>".
+
+<P>
+<DT>"<tt class="character">|</tt>"
+<DD><code>A|B</code>, where A and B can be arbitrary REs,
+creates a regular expression that will match either A or B.  An
+arbitrary number of REs can be separated by the "<tt class="character">|</tt>" in this
+way.  This can be used inside groups (see below) as well.  REs
+separated by "<tt class="character">|</tt>" are tried from left to right, and the first
+one that allows the complete pattern to match is considered the
+accepted branch.  This means that if <code>A</code> matches, <code>B</code> will
+never be tested, even if it would produce a longer overall match.  In
+other words, the "<tt class="character">|</tt>" operator is never greedy.  To match a
+literal "<tt class="character">|</tt>", use <tt class="regexp">&#92;|</tt>, or enclose it inside a
+character class, as in <tt class="regexp">[|]</tt>.
+
+<P>
+<DT><code>(...)</code>
+<DD>Matches whatever regular expression is inside the
+parentheses, and indicates the start and end of a group; the contents
+of a group can be retrieved after a match has been performed, and can
+be matched later in the string with the <tt class="regexp">&#92;<var>number</var></tt> special
+sequence, described below.  To match the literals "<tt class="character">(</tt>" or
+"<tt class="character">)</tt>", use <tt class="regexp">&#92;(</tt> or <tt class="regexp">&#92;)</tt>, or enclose them
+inside a character class: <tt class="regexp">[(] [)]</tt>.
+
+<P>
+<DT><code>(?...)</code>
+<DD>This is an extension notation (a "<tt class="character">?</tt>"
+following a "<tt class="character">(</tt>" is not meaningful otherwise).  The first
+character after the "<tt class="character">?</tt>"
+determines what the meaning and further syntax of the construct is.
+Extensions usually do not create a new group;
+<tt class="regexp">(?P&lt;<var>name</var>&gt;...)</tt> is the only exception to this rule.
+Following are the currently supported extensions.
+
+<P>
+<DT><code>(?iLmsux)</code>
+<DD>(One or more letters from the set "<tt class="character">i</tt>",
+"<tt class="character">L</tt>", "<tt class="character">m</tt>", "<tt class="character">s</tt>", "<tt class="character">u</tt>",
+"<tt class="character">x</tt>".)  The group matches the empty string; the letters set
+the corresponding flags (<tt class="constant">re.I</tt>, <tt class="constant">re.L</tt>,
+<tt class="constant">re.M</tt>, <tt class="constant">re.S</tt>, <tt class="constant">re.U</tt>, <tt class="constant">re.X</tt>)
+for the entire regular expression.  This is useful if you wish to
+include the flags as part of the regular expression, instead of
+passing a <var>flag</var> argument to the <tt class="function">compile()</tt> function.
+
+<P>
+Note that the <tt class="regexp">(?x)</tt> flag changes how the expression is parsed.
+It should be used first in the expression string, or after one or more
+whitespace characters.  If there are non-whitespace characters before
+the flag, the results are undefined.
+
+<P>
+<DT><code>(?:...)</code>
+<DD>A non-grouping version of regular parentheses.
+Matches whatever regular expression is inside the parentheses, but the
+substring matched by the
+group <i>cannot</i> be retrieved after performing a match or
+referenced later in the pattern.
+
+<P>
+<DT><code>(?P&lt;<var>name</var>&gt;...)</code>
+<DD>Similar to regular parentheses, but
+the substring matched by the group is accessible via the symbolic group
+name <var>name</var>.  Group names must be valid Python identifiers, and
+each group name must be defined only once within a regular expression.  A
+symbolic group is also a numbered group, just as if the group were not
+named.  So the group named 'id' in the example above can also be
+referenced as the numbered group 1.
+
+<P>
+For example, if the pattern is
+<tt class="regexp">(?P&lt;id&gt;[a-zA-Z_]&#92;w*)</tt>, the group can be referenced by its
+name in arguments to methods of match objects, such as
+<code>m.group('id')</code> or <code>m.end('id')</code>, and also by name in
+pattern text (for example, <tt class="regexp">(?P=id)</tt>) and replacement text
+(such as <code>&#92;g&lt;id&gt;</code>).
+
+<P>
+<DT><code>(?P=<var>name</var>)</code>
+<DD>Matches whatever text was matched by the
+earlier group named <var>name</var>.
+
+<P>
+<DT><code>(?#...)</code>
+<DD>A comment; the contents of the parentheses are
+simply ignored.
+
+<P>
+<DT><code>(?=...)</code>
+<DD>Matches if <tt class="regexp">...</tt> matches next, but doesn't
+consume any of the string.  This is called a lookahead assertion.  For
+example, <tt class="regexp">Isaac (?=Asimov)</tt> will match <code>'Isaac&nbsp;'</code> only if it's
+followed by <code>'Asimov'</code>.
+
+<P>
+<DT><code>(?!...)</code>
+<DD>Matches if <tt class="regexp">...</tt> doesn't match next.  This
+is a negative lookahead assertion.  For example,
+<tt class="regexp">Isaac (?!Asimov)</tt> will match <code>'Isaac&nbsp;'</code> only if it's <i>not</i>
+followed by <code>'Asimov'</code>.
+
+<P>
+<DT><code>(?&lt;=...)</code>
+<DD>Matches if the current position in the string
+is preceded by a match for <tt class="regexp">...</tt> that ends at the current
+position.  This is called a positive lookbehind assertion.
+<tt class="regexp">(?&lt;=abc)def</tt> will match "<tt class="samp">abcdef</tt>", since the lookbehind
+will back up 3 characters and check if the contained pattern matches.
+The contained pattern must only match strings of some fixed length,
+meaning that <tt class="regexp">abc</tt> or <tt class="regexp">a|b</tt> are allowed, but <tt class="regexp">a*</tt>
+isn't.
+
+<P>
+<DT><code>(?&lt;!...)</code>
+<DD>Matches if the current position in the string
+is not preceded by a match for <tt class="regexp">...</tt>.  This
+is called a negative lookbehind assertion.  Similar to positive lookbehind
+assertions, the contained pattern must only match strings of some
+fixed length.
+
+<P>
+</DD>
+</DL>
+
+<P>
+The special sequences consist of "<tt class="character">&#92;</tt>" and a character from the
+list below.  If the ordinary character is not on the list, then the
+resulting RE will match the second character.  For example,
+<tt class="regexp">&#92;$</tt> matches the character "<tt class="character">$</tt>".
+
+<P>
+
+<DL COMPACT>
+<DT><code>&#92;<var>number</var></code>
+<DD>Matches the contents of the group of the
+same number.  Groups are numbered starting from 1.  For example,
+<tt class="regexp">(.+) &#92;1</tt> matches <code>'the the'</code> or <code>'55 55'</code>, but not
+<code>'the end'</code> (note
+the space after the group).  This special sequence can only be used to
+match one of the first 99 groups.  If the first digit of <var>number</var>
+is 0, or <var>number</var> is 3 octal digits long, it will not be interpreted
+as a group match, but as the character with octal value <var>number</var>.
+(There is a group 0, which is the entire matched pattern, but it can't
+be referenced with <tt class="regexp">&#92;0</tt>; instead, use <tt class="regexp">&#92;g&lt;0&gt;</tt>.)
+Inside the "<tt class="character">[</tt>" and "<tt class="character">]</tt>" of a character class, all numeric
+escapes are treated as characters.
+
+<P>
+<DT><code>&#92;A</code>
+<DD>Matches only at the start of the string.
+
+<P>
+<DT><code>&#92;b</code>
+<DD>Matches the empty string, but only at the
+beginning or end of a word.  A word is defined as a sequence of
+alphanumeric characters, so the end of a word is indicated by
+whitespace or a non-alphanumeric character.  Inside a character range,
+<tt class="regexp">&#92;b</tt> represents the backspace character, for compatibility with
+Python's string literals.
+
+<P>
+<DT><code>&#92;B</code>
+<DD>Matches the empty string, but only when it is
+<i>not</i> at the beginning or end of a word.
+
+<P>
+<DT><code>&#92;d</code>
+<DD>Matches any decimal digit; this is
+equivalent to the set <tt class="regexp">[0-9]</tt>.
+
+<P>
+<DT><code>&#92;D</code>
+<DD>Matches any non-digit character; this is
+equivalent to the set <tt class="regexp">[^0-9]</tt>.
+
+<P>
+<DT><code>&#92;s</code>
+<DD>Matches any whitespace character; this is
+equivalent to the set <tt class="regexp">[ &#92;t&#92;n&#92;r&#92;f&#92;v]</tt>.
+
+<P>
+<DT><code>&#92;S</code>
+<DD>Matches any non-whitespace character; this is
+equivalent to the set <tt class="regexp">[^ &#92;t&#92;n&#92;r&#92;f&#92;v]</tt>.
+
+<P>
+<DT><code>&#92;w</code>
+<DD>When the <tt class="constant">LOCALE</tt> and <tt class="constant">UNICODE</tt>
+flags are not specified,
+matches any alphanumeric character; this is equivalent to the set
+<tt class="regexp">[a-zA-Z0-9_]</tt>.  With <tt class="constant">LOCALE</tt>, it will match the set
+<tt class="regexp">[0-9_]</tt> plus whatever characters are defined as letters for
+the current locale.  If <tt class="constant">UNICODE</tt> is set, this will match the
+characters <tt class="regexp">[0-9_]</tt> plus whatever is classified as alphanumeric
+in the Unicode character properties database.
+
+<P>
+<DT><code>&#92;W</code>
+<DD>When the <tt class="constant">LOCALE</tt> and <tt class="constant">UNICODE</tt>
+flags are not specified, matches any non-alphanumeric character; this
+is equivalent to the set <tt class="regexp">[^a-zA-Z0-9_]</tt>.   With
+<tt class="constant">LOCALE</tt>, it will match any character not in the set
+<tt class="regexp">[0-9_]</tt>, and not defined as a letter for the current locale.
+If <tt class="constant">UNICODE</tt> is set, this will match anything other than
+<tt class="regexp">[0-9_]</tt> and characters marked at alphanumeric in the Unicode
+character properties database.
+
+<P>
+<DT><code>&#92;Z</code>
+<DD>Matches only at the end of the string.
+
+<P>
+<DT><code>&#92;&#92;</code>
+<DD>Matches a literal backslash.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="matching-searching.html">4.2.2 Matching vs. Searching</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

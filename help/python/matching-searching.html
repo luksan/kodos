@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.2.2 Matching vs. Searching </title>
+<META NAME="description" CONTENT="4.2.2 Matching vs. Searching ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node99.html">
+<LINK REL="previous" href="re-syntax.html">
+<LINK REL="up" href="module-re.html">
+<LINK REL="next" HREF="node99.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+
+<b class="navlabel">Previous:</b> <a class="sectref" href="re-syntax.html">4.2.1 Regular Expression Syntax</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node99.html">4.2.3 Module Contents</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006220000000000000000">&nbsp;</A>
+<BR>
+4.2.2 Matching vs. Searching 
+</H2>
+
+<P>
+Python offers two different primitive operations based on regular
+expressions: match and search.  If you are accustomed to Perl's
+semantics, the search operation is what you're looking for.  See the
+<tt class="function">search()</tt> function and corresponding method of compiled
+regular expression objects.
+
+<P>
+Note that match may differ from search using a regular expression
+beginning with "<tt class="character">^</tt>": "<tt class="character">^</tt>" matches only at the
+start of the string, or in <tt class="constant">MULTILINE</tt> mode also immediately
+following a newline.  The ``match'' operation succeeds only if the
+pattern matches at the start of the string regardless of mode, or at
+the starting position given by the optional <var>pos</var> argument
+regardless of whether a newline precedes it.
+
+<P>
+<dl><dd><pre class="verbatim">
+re.compile("a").match("ba", 1)           # succeeds
+re.compile("^a").search("ba", 1)         # fails; 'a' not at start
+re.compile("^a").search("\na", 1)        # fails; 'a' not at start
+re.compile("^a", re.M).search("\na", 1)  # succeeds
+re.compile("^a", re.M).search("ba", 1)   # fails; no preceding \n
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<b class="navlabel">Previous:</b> <a class="sectref" href="re-syntax.html">4.2.1 Regular Expression Syntax</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node99.html">4.2.3 Module Contents</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

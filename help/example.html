@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>
+Kodos - The Python Regex GUI Debugger
+</title>
+
+
+</head>
+<body bgcolor=white>
+<center>
+<h2><font color=green>Kodos - Help</font></h2>
+<!--
+<img src=../images/kodos-logo1.gif>
+<img src=../images/logo.gif alt="Kodos">
+<img src=../images/kodos-logo1.gif>
+-->
+</center>
+
+<table width=100% border=0>
+<tr>
+<td width=20% valign=top>
+<font size=-1>
+<table border=0 cellpadding=5 width=20%>
+<tr>
+<td>
+	<a href=overview.html>Overview</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=running.html>Running Kodos</a>
+</td>
+</tr>
+
+
+<tr>
+<td>
+	<a href=mainwin.html>The Kodos Main Window</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=example.html>An example</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=toolbar.html>The Kodos Toolbar</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=examine.html>Examining a regex</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=pause.html>Pause processing of regex</a>
+</td>
+</tr>
+
+<tr>
+<td>
+	<a href=prefs.html>Preferences</a>
+</td>
+</tr>
+
+
+</table>
+</font>
+
+</td>
+<td width=80%>
+<h3>An Example</h3>
+
+In this example we will create a trivial domain name parser.  This is not
+intended to be the best example of using Kodos, rather, it will focus on using
+as many features as possible.
+<p>
+
+First, let us enter our regular expression.  This regular expression 
+will use group names to capture the <b>host</b>, <b>domain</b> and the domain <b>class</b> as well as the <b>port</b> number.  Additionally, an unnamed group will be
+captured which seperates the class from the port (for the sole purpose of demonstration).
+
+<center><img src="../screenshots/regex.png" border=0><br>
+<b>Fig. Our regular expression</b>
+<p>
+</center>
+In this case, we would like the make this case-insensitive, so we select
+the appropriate flags checkbox
+
+<center><img src="../screenshots/flags2.png" border=0><br>
+<b>Fig. Ignoring case</b>
+<p>
+</center>
+
+We will then enter a partial string.  We can see from the status bar that
+this string does not match our regular expression
+
+<center><img src="../screenshots/string.png" border=0><br>
+<b>Fig. Our initial string</b>
+<p>
+</center>
+<center><img src="../screenshots/red.png" border=0><br>
+<b>Fig. Pattern does not match or there is a syntax error</b>
+<p>
+</center>
+
+Finally, we enter our string in it's entirety.  Upon doing so, our status will indicate success and our groups will appear in the "groups" list.
+
+<center><img src="../screenshots/string2.png" border=0><br>
+<b>Fig. Our final string</b>
+<p>
+</center>
+
+<center><img src="../screenshots/green.png" border=0><br>
+<b>Fig. Pattern successfully matches the input string</b>
+<p>
+</center>
+
+<center><img src="../screenshots/groups4.png" border=0><br>
+<b>Fig. The groups list</b>
+<p>
+</center>
+
+If we used this regular expression in a python application, we could
+retrieve the group data as such:
+<table>
+<tr>
+<th>by group number</th>
+<th>by group name</th>
+<th>match</th>
+</tr>
+<tr>
+<td>re.group(1)</td>
+<td>re.group('host')</td>
+<td>www</td>
+</tr>
+<tr>
+<td>re.group(2)</td>
+<td>re.group('domain')</td>
+<td>supplysolution</td>
+</tr>
+<tr>
+<td>re.group(3)</td>
+<td>re.group('class')</td>
+<td>com</td>
+</tr>
+<tr>
+<td>re.group(4)</td>
+<td>Not applicable</td>
+<td>:</td>
+</tr>
+<tr>
+<td>re.group(5)</td>
+<td>re.group('port')</td>
+<td>80</td>
+</tr>
+</table>
+
+<p>
+
+The matching string can be seen by viewing the "match" output tab<br>
+
+<center><img src="../screenshots/match2.png" border=0><br>
+<b>Fig. The groups list</b>
+<p>
+</center>
+
+
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+

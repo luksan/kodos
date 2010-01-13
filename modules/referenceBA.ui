@@ -1,0 +1,935 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>ReferenceBA</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>ReferenceBA</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>600</width>
+            <height>605</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Kodos - Regex Reference Guide</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QListView" row="0" column="0">
+            <column>
+                <property name="text">
+                    <string>Symbol</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <column>
+                <property name="text">
+                    <string>Definition</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+        <item>
+            <property name="text">
+                <string>.</string>
+            </property>
+            <property name="text">
+                <string>Matches any character</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>*</string>
+            </property>
+            <property name="text">
+                <string>Matches 0 or more repetition of preceeding RE</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>+</string>
+            </property>
+            <property name="text">
+                <string>Matches 1 or more repetition of preceeding RE</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>?</string>
+            </property>
+            <property name="text">
+                <string>Matches 0 or 1 repetition of preceeding RE</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>^</string>
+            </property>
+            <property name="text">
+                <string>Matches start of string</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>$</string>
+            </property>
+            <property name="text">
+                <string>Matches the end of the string</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\A</string>
+            </property>
+            <property name="text">
+                <string>Matches only at the start of the string</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\B</string>
+            </property>
+            <property name="text">
+                <string>Matches the empty string, but only when it is not at the beginning or end of a  word</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\b</string>
+            </property>
+            <property name="text">
+                <string>Matches the empty string, but only at the beginning or end of a word</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\d</string>
+            </property>
+            <property name="text">
+                <string>Matches any decimal digit</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\D</string>
+            </property>
+            <property name="text">
+                <string>Matches any non-digit character</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\z</string>
+            </property>
+            <property name="text">
+                <string>Matches only at the end of the string</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\W</string>
+            </property>
+            <property name="text">
+                <string>Matches any non-word</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\w</string>
+            </property>
+            <property name="text">
+                <string>Matches any word</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\S</string>
+            </property>
+            <property name="text">
+                <string>Matches any non-whitespace character</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\s</string>
+            </property>
+            <property name="text">
+                <string>Matches any whitespace character</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\\</string>
+            </property>
+            <property name="text">
+                <string>Matches a literal backslash</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>??</string>
+            </property>
+            <property name="text">
+                <string>Non-greedy ?</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>*?</string>
+            </property>
+            <property name="text">
+                <string>Non-greedy *</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>+?</string>
+            </property>
+            <property name="text">
+                <string>Non-greedy +</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>()</string>
+            </property>
+            <property name="text">
+                <string>Capturing Parenthesis</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>(?:)</string>
+            </property>
+            <property name="text">
+                <string>Non-capturing Parenthesis</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>[]</string>
+            </property>
+            <property name="text">
+                <string>Character class</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>{m,n}</string>
+            </property>
+            <property name="text">
+                <string>match from m to n repetitions of the preceding RE, attempting to match as many repetitions as possible. </string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>{m,n}?</string>
+            </property>
+            <property name="text">
+                <string>match from m to n repetitions of the preceding RE, attempting to match as few repetitions as possible. </string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>(?P&lt;name&gt;...)</string>
+            </property>
+            <property name="text">
+                <string>Similar to regular parentheses, but the substring matched by the group is accessible via the symbolic group name name.</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>(?P=name)</string>
+            </property>
+            <property name="text">
+                <string>Matches whatever text was matched by the earlier group named name. </string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>\number </string>
+            </property>
+            <property name="text">
+                <string>Matches the contents of the group of the same number. Groups are numbered starting from 1.</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>(?&lt;=...)</string>
+            </property>
+            <property name="text">
+                <string>Matches if the current position in the string is preceded by a match for ... that ends at the current position. This is called a positive lookbehind assertion.</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>(?&lt;!...)</string>
+            </property>
+            <property name="text">
+                <string>Matches if the current position in the string is not preceded by a match for .... This is called a negative lookbehind assertion.</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>(?=...) </string>
+            </property>
+            <property name="text">
+                <string>Matches if ... matches next, but doesn't consume any of the string. This is called a lookahead assertion.</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>(?!...)</string>
+            </property>
+            <property name="text">
+                <string>Matches if ... doesn't match next. This is a negative lookahead assertion</string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+        <item>
+            <property name="text">
+                <string>(?#...) </string>
+            </property>
+            <property name="text">
+                <string>A comment; the contents of the parentheses are simply ignored.  </string>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+            <property name="pixmap">
+                <pixmap></pixmap>
+            </property>
+        </item>
+            <property name="name">
+                <cstring>referenceListView</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>5</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="frameShape">
+                <enum>StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="vScrollBarMode">
+                <enum>Auto</enum>
+            </property>
+            <property name="hScrollBarMode">
+                <enum>Auto</enum>
+            </property>
+            <property name="allColumnsShowFocus">
+                <bool>true</bool>
+            </property>
+        </widget>
+    </grid>
+</widget>
+<menubar>
+    <property name="name">
+        <cstring>MenuBar</cstring>
+    </property>
+    <item text="&amp;File" name="fileMenu">
+        <separator/>
+        <action name="fileExitAction"/>
+    </item>
+    <item text="&amp;Edit" name="editMenu">
+        <action name="editPasteAction"/>
+        <separator/>
+    </item>
+    <item text="&amp;Help" name="helpMenu">
+        <action name="helpAction"/>
+        <action name="helpPythonAction"/>
+    </item>
+</menubar>
+<toolbars>
+    <toolbar dock="2">
+        <property name="name">
+            <cstring>toolBar</cstring>
+        </property>
+        <property name="label">
+            <string>Tools</string>
+        </property>
+        <action name="fileExitAction"/>
+        <action name="editPasteAction"/>
+        <action name="helpContentsAction"/>
+    </toolbar>
+</toolbars>
+<actions>
+    <action>
+        <property name="name">
+            <cstring>fileNewAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image1</iconset>
+        </property>
+        <property name="text">
+            <string>New</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;New</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+N</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileOpenAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image2</iconset>
+        </property>
+        <property name="text">
+            <string>Open</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Open...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+O</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileSaveAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image3</iconset>
+        </property>
+        <property name="text">
+            <string>Save</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Save</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+S</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileSaveAsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Save As</string>
+        </property>
+        <property name="menuText">
+            <string>Save &amp;As...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>filePrintAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image4</iconset>
+        </property>
+        <property name="text">
+            <string>Print</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Print...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+P</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileExitAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image5</iconset>
+        </property>
+        <property name="text">
+            <string>Exit</string>
+        </property>
+        <property name="menuText">
+            <string>E&amp;xit</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editUndoAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image6</iconset>
+        </property>
+        <property name="text">
+            <string>Undo</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Undo</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+Z</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editRedoAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image7</iconset>
+        </property>
+        <property name="text">
+            <string>Redo</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Redo</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+Y</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editCutAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image8</iconset>
+        </property>
+        <property name="text">
+            <string>Cut</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Cut</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+X</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editCopyAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image9</iconset>
+        </property>
+        <property name="text">
+            <string>Copy</string>
+        </property>
+        <property name="menuText">
+            <string>C&amp;opy</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+C</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editPasteAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image10</iconset>
+        </property>
+        <property name="text">
+            <string>Paste</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Paste</string>
+        </property>
+        <property name="toolTip">
+            <string>Paste selection into Kodos</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+V</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editFindAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image11</iconset>
+        </property>
+        <property name="text">
+            <string>Find</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Find...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+F</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpContentsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Contents</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Contents...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpIndexAction</cstring>
+        </property>
+        <property name="text">
+            <string>Index</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Index...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpAboutAction</cstring>
+        </property>
+        <property name="text">
+            <string>About</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;About</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image12</iconset>
+        </property>
+        <property name="text">
+            <string>Help</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Help</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpPythonAction</cstring>
+        </property>
+        <property name="text">
+            <string>Python Regex Help</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Python Regex Help</string>
+        </property>
+    </action>
+</actions>
+<images>
+    <image name="image0">
+        <data format="PNG" length="625">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af40000023849444154789cad57cb75e42010acf69b8c20059d7cf04929b0214c0c0e6149c1215821a0986a0fa83162f849de3ecc1b41375553fd412324316b2232ed4c5266fc1e578043b84e764444460a88086bc0d6d6cf2d7dad952e89b7abe0d60aac15b8608015c00ab860d2b3eee7847aa96b126881276000ee69e09e0600e03ff7f8fd20344ba299821601ac48a02df39f3bf0754e472b155345989b7b1a78bbf77d8281ffeafb7409f4e4f7768f69e898fa582b49054d43a9423505bdca57f0960af9fe4c474ca7a004275dd54fc4a7aec8156859b70d1538b71e380090ee459dd6cc9822303ac08bbf1d3b4d605474bf899d2ac23cffc05c0de4be7ad6ed220c81494a2d3069485f76c9a808a7bb202791038d6246562540525ab3201f4465b5f748fdbf519c81fca6386f13d05fdd021fdd13b709d43aa146225f9b9a8422c22bef7a3d05bcddd37eed2ea8d9430fabdd543500921079550340dabb6229052589b213b40d97657901228965598ed94000f60452eb0055fd348a95448ff1b67d43c48324d6754de0dbf60dc001ed7bea04ae0abe9194bc7287245cfc10f1787fff38c037c001e6889acd3f8028df711fd00543170ce3725c0b810c8144d49686a4e1cfb3c60124f0b3a7711adbc269b6a1aa90df0100e025aa50eb024360bf5683e739306ab1781159781f50a60d00f63f800b16c0dcdbd00b8112b8396c9c05dc793d029fcf52f57aed5d4d416b9c5e1db37f5d0070fe535bfea0873a9c5f38e30cc8d7f4b0bb565397a4c83154124395ebca78be638af30fc5fdcbe83f34ebc80000000049454e44ae426082</data>
+    </image>
+    <image name="image1">
+        <data format="PNG" length="184">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000007f49444154789ced95510a0021084475d9db041ec0e8fa5ecbfdda852d4b11fa6b2028a3570c53a188c00edd7d819935b2504470357f5945559d36000022720f60823d11910b1fac88a894f2f599592d5b52e05aeb6f6cc153e0d6da50ebe12930e2321039f09b0c6fb3542a223ae0033ee085cc2b1d790b3ce1ae3f6f9b150f6d5433af8c7fa5080000000049454e44ae426082</data>
+    </image>
+    <image name="image2">
+        <data format="PNG" length="231">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000ae49444154789cb594510ec3200c436db45371b6691fd3cee66bb18f5135a219235af04f442b5e2c03a124ec50d942dd09be4537d45a9b5d4be2f85f1243e06393d748126d53661d9e854a624ac6633c40cff8576e51280010406b0d00dab104b9c69d19e887774201f64ebc7c8f342fc678b0ce553cc76b752e37e368d69edc8c2df4f58c01ef8f4f7533fe176a1e482ef4e2380b6ac0b9d0d36a57161430833e130aacdef62f9acd8ab4793cea0d051970cd5b32cc0a0000000049454e44ae426082</data>
+    </image>
+    <image name="image3">
+        <data format="PNG" length="230">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000ad49444154789cd595310e842010453f8686c482f3d0ccc58c85f16234731e0b922d770b3386150d62d084d7100cbe7cc6411433e309340038e7be35a5ccacb44ce6691d8711f0de178988687b878800005da590093abfe418132c3efdb2cd25a9904d6c82850936791e4b81b59452ce4be2bb644bb14f7695c712b7274e6a3c4f69ebe488bbe1547cb6b09477db6d18cb45fb5dde3ed2f18feae89bb4d76eed8995dc79b5ae2766567fe2dafc0045362bc8b49ae4470000000049454e44ae426082</data>
+    </image>
+    <image name="image4">
+        <data format="PNG" length="709">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000028c49444154789c8d95af7bdb301086dfec0938319bc530b061350c2cf458cb5a18b83f6181a363a3851debd8020b1dd6b01a0adacc62772c03b21de7d7b38a28962eef7dbaef2c4fcab2e4d268db762f22a4697ab46e6600a82a0021049224c1393719c74d2f52011121cff30174ba371280f7fe2ce62a18a0aaaa33d8692255c539f779f02580999d25e8e753f8972bdcbd990dc1ce399c7347f5eeeb2f2267f5bdaa5855499284b66d1191c1a8f1b874fccf28c6ccce3a620ced935d32f7aae25ecd25a5e375553dea90ff82ebba663e9f9365d955786fe476bb2584b01749c8b274a8f5115855f7de7baa5d851482880c80d3b957dad62d6559d284869b9b9b7d5114a4693a99f46f9eaaeeabca13ea063580cb4a019ca408020e7ced797fdfd13435aac6623167b55a45c5bdd2e2ee0e97a6a81a9872668b1920946c79e32f4b5bb2fcc8a9aa1da8e1808ff70f7ee933d3086d78f8fa40324baeaaec4745c54f7ee0f1ecd8f1222f14fe9e97f699ba0e1846e33dd3d0049e9eeeafba7b3a5252ee5852221414dcdede9248466b35cf2fbf092190ce52a606785fc77e340311628e9848041c2e56dc14c4f1cdbe738f27b38c1d1598916659dcefdc99b6758d1789f53463f0cd4174b13b89335001e29a00de1a8c7887f8aa1a3c7174edd62f580fc486a650a229b19d87c8a173a4f7743414658a80b5a33f6827761c688028d8e98ec3aca53b677f36f27cc9176ca47210abf1d1baf908eafab00eda01bb72ce663356aba7a8d87bdf5b0562100408d139b388915e951d601c6a8e1922b05eafc9b26c329dcfe7bc6ddef8b3d9a06ac4fb47386a3e193dcb01399cb3eba6f57a4d9ee71380e195aeeb7afffabaa1e9be5f8a76a61c9c397c3540b58dbf83912f731e1f1f592c16c325f40f010f7cb01c5264d10000000049454e44ae426082</data>
+    </image>
+    <image name="image5">
+        <data format="PNG" length="1468">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af40000058349444154789ced974d885bd715c77ff7bdfb21c51ff33c8e3f4a9330096e70f3c1287168d3d2c4aa0a218b2ee46eda4db10cddb49b2a14ba49c06e97059386403609b60c5d7411c24c4b16819a8ad245971204425d6718a776e2693c2369c6334f7a1ff776f19e66a4d18c87816e4a7be0f2a47b9fceff77cfbde7dc2bf8bffdaf9bd863fce21ee35da0b50fbd16d0db0f807bf929c5f1299f957541627d3cdfc3f77d3ccf43780221bccc89001c38e758598d585e8d70ce11f653ee76e2ed7e3775e55ec8a74e2a1e0e0ca78dc1188dd21aa5145229a49f0109e121043807d65a6c9a922409711273e3d61aef7ef8f988a61bf3bf27c0d1c0600a065328608c416b8dd20aa514be94f8be8f10022104ce39acb5a4490620e3186d060ff4bf1de04da004d4813680311a63720853c0189d4368640ee0791e882cfc36b5a4694a1cc7c8c8471bc383567a083005342f5ebc58aa56ab542a9566a7d3a90168add1c6608ca150c89e3a8f84540a29870002671dd6e6b38f3238adf59e11989d9e9e9ebb7cf9f24cad5603606161212897cb73ed761ba5b3196b9d099b42015330686d505a21a59c5882248ef17d89e77968adf604f8edf5ebd7674aa5d266671004349b4dcae532ad4fffc5cbcf1f466b85d6c3e5c8f6c370fd872684c0f3f22cf17d8400a91e0ce001ad4b972ed1ed76c706861077d327f9a0f93952a92c03b4c6e849f1511342a094caa2242700c6843ce0b5f9f9f95ab95cde15e291a75fe5bdf91b2829f3dd3f2ebeb2d423ec3fca91a32f70ef1fb7b973f33384104825b975f7fe7680b1c2e5e5cf6bed767b47088046a3c1e3cfbcc2dbbf6fd38fec98f87aef3e279e7895576aaff3b5e75fe2a5ef7e8742e713a27e84e7796cf4133ccfcf9b37e17bb4e75abbddae9d3973a6db6a4d56d746a3c1f77ff81abff8cd9f585b8fb60056eff3dcb75f24ee7d46b27a9b64ed0e81e9d1fd726573732a5d44e9024a1727fc6eaf03d7161616a856ab8dc5c5c58997ebf53add6e97f73f9ae3c20fb636edf2c77fa078f030d1ca4d5617fecc8ddb21274f6ea59f5285cdcf83fef8926c07383f3b3bdb68341a13e200ad568bf7de7d875ffdecc5cdbee38f9ee42f7ffc1dcf3d9eb2d6bdc7c70b3d9693137cfdf834ce39700e9dcfdcede07314e0cdb367cfd6e7e6e6088260e2c546a3c1afdff8396ffce45b9c7aecc8d8d8b167cef0b7bfdf4470107b4cf38dd3a73241eb70644bb0a37a0e300534ce9f3f5fdd6de6f57a9d8fe6af71e9a7dfe4e1e903a4693a9686baa07962f6a9b1df38e7889318290b28e5efac9e0334af5ebd5a1a56c151eb76bbd46a35963efd2bbffcf1d368df1145d9ee36c6e4c566b21638e788e398681061ad1b89c064182430560587b6b8b848b55ae5c9e00b7ef4bdaf10c711fec043781e90955da5f5d661940b5b6bb3a3388a180c0619802a028e38ea4fe87840b952a98ca55eabd5a2542ad1fde2139e9d29100d2206c3d6ef33e8f709c3907063837023240c43fa790b37f216f6e9877dacb59b29e8768940bbd3e9942b954af3ca952b41b7dbe5c2850b2da079f898ac475184e77bd90d68fb2cd5d6a1331c4bad254d129238268a63d2d4a2551107483979320eb3a0dde97466ce9d3bd7c8bfd780bab38e68304078622bc42ebff1a80429e5261cf9125b9b920e6f4451ccbdce60b3004969009a3b014076593c373ae85cb6e9f2e965e77d6a49758a8c637ce98f648360b937e09f4bebacac17b9b3a2e96c1ca478e834460d01768fc0aee69c231a44f965c392a60971a2b8df87a54e42272cb01c4ed3eb1fc4d78f11045f054005702cc8c33214cb22b03f0080de7aca976b09a135ac264708ed518a871ee1d0e1e3c803058a071c93557e4bdce50c52ed0f60f1ce8a6dbef5e1c60c3093752de50d0e4d9dc86afc2e156ed48a0f05141f0a0837264fdabdfe17ecd7a6c82eb50fb245e0d67f58f7bfd8fe0d5f566bf9f4ebbaf30000000049454e44ae426082</data>
+    </image>
+    <image name="image6">
+        <data format="PNG" length="212">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000009b49444154789ced943b0e80200c865be3a91889c7320e8463998ebd164e68417949184cfcc7b67c6de803991946681a42fdc152734bb052e49eecd600e845a3b4a19f0aa5c83187ce1230967c1f541cc363602931ede47ce5b73ff64112caac31059509d7edb23d362f86a6803965a7e22db408ae6d5a33b8075eb52025b8f75b73d9b0e7bad14e4e4e82ec49d74aa7a0009d15e7f4bdebf6834f1d172546d1c0edc5370000000049454e44ae426082</data>
+    </image>
+    <image name="image7">
+        <data format="PNG" length="204">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000009349444154789ced943d0e80200c46a9f1548cc4631907c2b148c75e0b27b0226083b2f12d24d03efa0740446a849621d409e65af30df418f6a36c4c64400a063e155a639038d52ed01a433c4b11a3bfa02d47be72bb3ca854e3987e2b5d2203255829d3aee6b522fd04cee1bf82df1add05964c4f023b2b73928e64758e9d55ca6cf20791eb560ade90daeb930ae67f3cc10f9d5ba746084960f50a0000000049454e44ae426082</data>
+    </image>
+    <image name="image8">
+        <data format="PNG" length="214">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000009d49444154789ccdd4410e80200c04c0d6f8aa9e7936e7fd169e9a20222ca0d15e4c340eeda64101c81bb5b53e9a591a794fc32bf51f988981826b10005d8219600af6f2aed918444494d9e31c64a7f8762bbccb91ccc98c63ca9f8fc08e79b76631310774ee8a9880701a1f080a04ede1b7700d2d0f68e155b88732f80566d15e0ded3193ed145c566bba7df4e7bceb5664d5bb221f77366fea129aa903bb2561ada571a9330000000049454e44ae426082</data>
+    </image>
+    <image name="image9">
+        <data format="PNG" length="268">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000d349444154789cb595b10e83300c44cf88af8a18d9f91936d485aa7fd5d99fd5eb5099461093109493bc70c9f3c94984a82a5aa86b4205200078b64055a51a4ca6d922520deff7109335230911e155f806f652d7c2b751a412ffbeada700d531d9ac60c62bc887e33f5d78f75f24878a1bee3dd3302c08e17d48b681491e2a96e74d531aeede0a8379be79f3dc01f8005810c28b3696a25b71e6db9c4d21bca93acaadc4a943b546b7137baa4e9c6bde2c716769bc8a13e72a569f7bff763fab679c53f58caf6c2a511178ff088af6b4fa997e01dfa4987bb2f330600000000049454e44ae426082</data>
+    </image>
+    <image name="image10">
+        <data format="PNG" length="293">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000ec49444154789cb5954d0e83201085df989e6a1237bd96c44583d7eaa6c95c6bba402dc850d0d29798093ff3cd13044944f00fddbe0d32b31efb44845ac0b439b62000a0512f159056b1a1156ab53759f9044001c03f3c0007c0c3cd6e07c52ee3b6353f764e00f438495ef50de59133780c1e420883219e51396ffd2a7c3289476e04a77906f83318bfdeb9986ab02b5f89a9d6cd2bc3dd9c27d94a37cf5ce3a313d5a988235aa03a6587275be3129c68c9a071c1005f54e44ecd8e6bae2d7837c7477817c756d19f1d5b058996be6bdccdb1a5ddc07ad16bf9f17a568057aafdf3989f85ebfdbbaae0ab7a030d36e3e726e8d8990000000049454e44ae426082</data>
+    </image>
+    <image name="image11">
+        <data format="PNG" length="658">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000025949444154789cb59521931b3910469fb7027a98c42c2838cb6cb686031d689685f95d86816b66c385033dcc0305354c62dd6c021c576d2e97f3a672fb21a94bf5f449ad6e2dfabee723f4f02154e0d3db4929654e299173a69a01e04488311263a4699ac51f8373ce737f3ee36360bdfb0c4eaef194185ecfa494d86c36b3f7fe5df045dff7e49ce7979717369f3b365f760098196a8a6154abf4df8e4836b6dbedbb9c3fa8eadc9f7bbaafcfb4db0e33c392a0690963a0f642c98576db41f00cc3f0aeab784829e16364d37500485e525266b2814946c43cd247ac56e2a6654c8952ca7c1f3c4db49b35866105d298487e4443219330293408960d4490e0c839df776caa38ef2856c8cd44594f8813ac188e0878521d51a76020ae619aa6bbe04f00550d11401503304372a4b1404e3dda26c063a50202d755ffed180cccae49b3db181a13f278a6b4198280292660b52022f7c1c107524a985e81560dc3c896b05031c0ca35a65529a51263bc0f8e3192fb0b5a15b37a051443cc43126aadfc3808354f0404e7dc3b1c87b008de33bcbea2802a80923853dc8813a1944a29151b126ddbe28327e73cabea6f9fdd03c06ab5c215a8c7338d298d35f8658344871804035e2f3c3d3df1f8f8b84863e2743ab1dfefc939ff2b7c716b9baa3a0fc3c09812e2049a6b82ac54c4a0eb3a4208b7529e8fc72387c301e71cbbdd8ed56af553a92ffed98f4b2973ce995a2b2282f7fe96ac5ffa434a69fee19aaeeb7edafc17f09f4a55e7d3e9c4e17060b95cf2fcfccc7abd5efc35f8a6cbe532eff77ba66962bbddfebde3b72aa5cc87c30155fd7fc16ff5617fde773b427a024c411e200000000049454e44ae426082</data>
+    </image>
+    <image name="image12">
+        <data format="PNG" length="489">89504e470d0a1a0a0000000d49484452000000140000001408060000008d891d0d000001b049444154789cad94a14feb501487bf3e6a9e9b264cb53cbd2c98992b48a87c61c982c0713333ba0483426140e1c82455a4e265c91e8889ca2baa20997e5b27d83281da7f70115d5bc6da650bef97dcdce69c7bbef3cbe9cd35c230643e9feb6eb7cb77d4683428954a8699c03ccffb167001d566023b3e86dee93eec39db51a601757f981a3293780adb16b8e7d0e312e3ef701998c2cabf17813641d0218ae0e545321a8d383c54d46ae0386e069c242662e08ffcb66db4ee707323787f8787879fd8b6cdf5359c9ded12459d42c30540188f4129c5f3731580abab7846b3d98c282a9e4021d0b25caad52a954aa5b83a47e6bae4eb6b2dfd7e7c8c77210496a5b677f855beff0b29259ea7b02cb7f05c8ec3f64ae4e26287fbfb7f38ce11500cdbc8611475180c066b7fc456c0db5b89528af3f3ff043c3888af8b1062236036c36910efe5e503ad964bab95533971b2baa4f633b0ee0fe99d02933b2807cb05b90ad27cdd1f66e1300c91526a40035abf3d652b74b5feb39fe6d62d29a5eef7fbda0468369b06a03dcfcb1c4d038c93b8b31002dbb60b9cc64a1fd8954c0e68d17023ad0013989432edba290ce0037626b473783342b10000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>fileExitAction</sender>
+        <signal>activated()</signal>
+        <receiver>ReferenceBA</receiver>
+        <slot>close()</slot>
+    </connection>
+    <connection>
+        <sender>editPasteAction</sender>
+        <signal>activated()</signal>
+        <receiver>ReferenceBA</receiver>
+        <slot>editPaste()</slot>
+    </connection>
+    <connection>
+        <sender>helpAction</sender>
+        <signal>activated()</signal>
+        <receiver>ReferenceBA</receiver>
+        <slot>help_slot()</slot>
+    </connection>
+    <connection>
+        <sender>referenceListView</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>ReferenceBA</receiver>
+        <slot>editPaste()</slot>
+    </connection>
+    <connection>
+        <sender>helpPythonAction</sender>
+        <signal>activated()</signal>
+        <receiver>ReferenceBA</receiver>
+        <slot>help_python_slot()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>fileNew()</slot>
+    <slot>fileOpen()</slot>
+    <slot>fileSave()</slot>
+    <slot>fileSaveAs()</slot>
+    <slot>filePrint()</slot>
+    <slot>fileExit()</slot>
+    <slot>editUndo()</slot>
+    <slot>editRedo()</slot>
+    <slot>editCut()</slot>
+    <slot>editCopy()</slot>
+    <slot>editPaste()</slot>
+    <slot>editFind()</slot>
+    <slot>helpIndex()</slot>
+    <slot>helpContents()</slot>
+    <slot>helpAbout()</slot>
+    <slot>help_slot()</slot>
+    <slot>help_python_slot()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

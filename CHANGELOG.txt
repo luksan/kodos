@@ -1,0 +1,17 @@
+Kodos ChangeLog
+
+2.4.9
+=====
+ *) Fixed help window (corrects problem related to tooltip api changes)
+ *) Fixed regex reference guide (missing exit icon)
+
+2.4.8
+=====
+ *) Uses the new logo/icons contributed by Konstantin Ryabitsev
+ *) Fixed reportBug bug-- dialog would not load due to attribute error
+
+2.4.7
+=====
+ *) packaging now contains python2.3 and python2.4 specific rpms (rather than just an "rpm")
+ *) Windows binary is now complied against python2.4 rather than 2.3
+

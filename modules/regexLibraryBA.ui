@@ -1,0 +1,257 @@
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<class>RegexLibraryBA</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>RegexLibraryBA</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>491</width>
+            <height>490</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Kodos - Regex Library</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QGroupBox" row="0" column="0">
+            <property name="name">
+                <cstring>groupBox5</cstring>
+            </property>
+            <property name="title">
+                <string>Description</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QListBox" row="0" column="0">
+                    <property name="name">
+                        <cstring>descriptionListBox</cstring>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget class="QTabWidget" row="1" column="0">
+            <property name="name">
+                <cstring>tabWidget3</cstring>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Regex</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QTextBrowser" row="0" column="0">
+                        <property name="name">
+                            <cstring>regexTextBrowser</cstring>
+                        </property>
+                        <property name="textFormat">
+                            <enum>PlainText</enum>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Notes</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QTextBrowser" row="0" column="0">
+                        <property name="name">
+                            <cstring>noteTextBrowser</cstring>
+                        </property>
+                        <property name="textFormat">
+                            <enum>PlainText</enum>
+                        </property>
+                    </widget>
+                    <widget class="QLayoutWidget" row="1" column="0">
+                        <property name="name">
+                            <cstring>layout3</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>textLabel3</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Contributed By:</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit">
+                                <property name="name">
+                                    <cstring>contribEdit</cstring>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                </grid>
+            </widget>
+        </widget>
+    </grid>
+</widget>
+<menubar>
+    <property name="name">
+        <cstring>MenuBar</cstring>
+    </property>
+    <item text="&amp;File" name="fileMenu">
+        <separator/>
+        <action name="exitAction"/>
+    </item>
+    <item text="&amp;Edit" name="editMenu">
+        <action name="editPasteAction"/>
+        <separator/>
+    </item>
+    <item text="&amp;Help" name="helpMenu">
+        <action name="helpHelpAction"/>
+    </item>
+</menubar>
+<toolbars>
+    <toolbar dock="2">
+        <property name="name">
+            <cstring>toolBar</cstring>
+        </property>
+        <property name="label">
+            <string>Tools</string>
+        </property>
+        <action name="editPasteAction"/>
+    </toolbar>
+</toolbars>
+<actions>
+    <action>
+        <property name="name">
+            <cstring>editPasteAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image1</iconset>
+        </property>
+        <property name="text">
+            <string>Paste</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Paste Example Into Kodos</string>
+        </property>
+        <property name="toolTip">
+            <string>Paste This Example Into Kodos</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+V</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpHelpAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image2</iconset>
+        </property>
+        <property name="text">
+            <string>Help</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Help</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+/</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>exitAction</cstring>
+        </property>
+        <property name="text">
+            <string>Exit</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Exit</string>
+        </property>
+    </action>
+</actions>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="1437">789c7d94cf4ec3300cc6ef7d8a68be4da8a35d5369423c02882312e2d0a44d9b7529128c0342bc3bb1932cfdb77953972ff9e9b31d6fdb6dd9ebcb13dbee92af7375d692c9aefa64dbfadb989fb7f7c7df64b3cf997d6725cb3677c92665923d7f0c0daec1aee19e026517e441a2d4412a85523ac9b9837b274bee4e0dca7da694932dca222b8a82921e51f29c739ea31428cb5c367b3a6d501e64286370b2e4b24679425915555615282b94b2968d4b54a3c4ac2539ab20dd691a0362c4cd090350c588d498017f8641ab25e3f641482984240ae68c4384052c625f119a338410769d11a1ad359f80049f1134652ce48d8488adcd7d04d4141e5a3080b9ea3a40801b0b061cd37806d6183165c40a83e58ceac182d66a1ef775a3f7cb052d7b9f1a0971635e539f75063c05708da11c23a3c8b86f258c67ba98bbd581014556f8316722d42a5b896a3b7d4905e0198488d19d3aaa56eb3e30d6906a761031bdee4e2df4a60fa902938267008cc1f6b5369ec193c8b8ebb5496c68a3978cbf3afbecc9a70fd733f12160340a744e97b9c4e58743310c7eb8a12fa0c7300d67efe645ff247025ec3dff3d24ff497e58df</data>
+    </image>
+    <image name="image1">
+        <data format="XPM.GZ" length="736">789c7d92d10a82301486ef7d8ae1ee24321561103d42d165105dcce3465d54507611d1bbb7736cbaadd93f85fd7efb183af38cedb66b96e5c9bd93dd09181ce58d65ede37c7eee0fab57929625339760453a4bd23903b6b95e14ceb999f30505abb255545801aba844d1d3c6d69eb658a186126aac12ab36e9176b5bb5a64da37108c784841e7229251f319101b8885e8837d018c2e9a6b925585a1b6a9640030ec1e63a6302c71faee38fd051434247f51f4c2bad4247936008a2b88368c23128ea50628e9e741ce23bdfcd9cf3e1bf8e3d5fe5e5cf1ff25e261ff1b8c16c</data>
+    </image>
+    <image name="image2">
+        <data format="XPM.GZ" length="825">789c6d91df4e83301487ef798a66dc2d86416164c4f8081a2f4d8c17a7ff2814c636e78531bebb3d3d3259dd0f08fdbe9653386cd6ece5f991ad37c9fb19ce9d64d2c289add5c7387ebebe3d7c252b9e333a8bd55db2ca98644fd35ee358f8719a8720ee118b1d1e8847449ef38a87d9036259947919eab8804d29cb0651226ef9f6b71420d6bc2e6a8e780a08b5aa017140dc95bb8216f7884dd56c09534451895a54885d402580662744a595265488c600d04b6a4259d3468650732a35121a43cfda1969713ba331a151294449b3f07a20a2401a3e5948a51751520079a5cd326af6dab4aded7a704367ad357ae1ede8060b623fc57e12077f892ef6f600b7bdcf20dcbf3a98234cd1be419fba708bfde4fa9bdeb7e3a6ef858bbcd2f612ff532e7d90ca20477dcb7c6113965df739f3131aadbbfe2fe883cdfe327b7c365bfaeffbe4078b9aec5e</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>editPasteAction</sender>
+        <signal>activated()</signal>
+        <receiver>RegexLibraryBA</receiver>
+        <slot>editPaste()</slot>
+    </connection>
+    <connection>
+        <sender>descriptionListBox</sender>
+        <signal>highlighted(QListBoxItem*)</signal>
+        <receiver>RegexLibraryBA</receiver>
+        <slot>descSelectedSlot()</slot>
+    </connection>
+    <connection>
+        <sender>exitAction</sender>
+        <signal>activated()</signal>
+        <receiver>RegexLibraryBA</receiver>
+        <slot>close()</slot>
+    </connection>
+    <connection>
+        <sender>descriptionListBox</sender>
+        <signal>doubleClicked(QListBoxItem*)</signal>
+        <receiver>RegexLibraryBA</receiver>
+        <slot>editPaste()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>fileNew()</slot>
+    <slot>fileOpen()</slot>
+    <slot>fileSave()</slot>
+    <slot>fileSaveAs()</slot>
+    <slot>filePrint()</slot>
+    <slot>fileExit()</slot>
+    <slot>editUndo()</slot>
+    <slot>editRedo()</slot>
+    <slot>editCut()</slot>
+    <slot>editCopy()</slot>
+    <slot>editPaste()</slot>
+    <slot>editFind()</slot>
+    <slot>helpIndex()</slot>
+    <slot>helpContents()</slot>
+    <slot>helpAbout()</slot>
+    <slot>descSelectedSlot()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
