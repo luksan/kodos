@@ -86,18 +86,15 @@
     </layout>
    </item>
    <item row="0" column="0">
-    <widget class="Q3GroupBox" name="groupBox1">
+    <widget class="QGroupBox" name="groupBox1">
      <property name="title">
       <string>Enter URL to import</string>
      </property>
      <layout class="QGridLayout">
       <item row="0" column="0">
-       <widget class="Q3TextEdit" name="URLTextEdit">
-        <property name="text">
+       <widget class="QPlainTextEdit" name="URLTextEdit">
+        <property name="plainText">
          <string>http://kodos.sourceforge.net</string>
-        </property>
-        <property name="wordWrap">
-         <enum>Q3TextEdit::WidgetWidth</enum>
         </property>
        </widget>
       </item>
@@ -107,25 +104,6 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>Q3GroupBox</class>
-   <extends>QGroupBox</extends>
-   <header>Qt3Support/Q3GroupBox</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3Frame</class>
-   <extends>QFrame</extends>
-   <header>Qt3Support/Q3Frame</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3TextEdit</class>
-   <extends>Q3Frame</extends>
-   <header>q3textedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>
