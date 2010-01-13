@@ -61,7 +61,7 @@
     </layout>
    </item>
    <item row="1" column="0">
-    <widget class="Q3GroupBox" name="GroupBox6">
+    <widget class="QGroupBox" name="GroupBox6">
      <property name="title">
       <string>Kodos State Information</string>
      </property>
@@ -111,15 +111,15 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="Q3MultiLineEdit" name="regexMultiLineEdit" native="true">
-          <property name="readOnly" stdset="0">
+         <widget class="QPlainTextEdit" name="regexMultiLineEdit">
+          <property name="readOnly">
            <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="Q3MultiLineEdit" name="stringMultiLineEdit" native="true">
-          <property name="readOnly" stdset="0">
+         <widget class="QPlainTextEdit" name="stringMultiLineEdit">
+          <property name="readOnly">
            <bool>true</bool>
           </property>
          </widget>
@@ -130,7 +130,7 @@
     </widget>
    </item>
    <item row="0" column="0">
-    <widget class="Q3GroupBox" name="GroupBox5">
+    <widget class="QGroupBox" name="GroupBox5">
      <property name="title">
       <string>System Information</string>
      </property>
@@ -184,7 +184,7 @@
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="Q3GroupBox" name="GroupBox7">
+    <widget class="QGroupBox" name="GroupBox7">
      <property name="title">
       <string>Comments</string>
      </property>
@@ -203,10 +203,7 @@
         <property name="spacing">
          <number>6</number>
         </property>
-        <item row="1" column="1">
-         <widget class="Q3MultiLineEdit" name="commentsMultiLineEdit" native="true"/>
-        </item>
-        <item row="1" column="0">
+        <item row="2" column="0">
          <widget class="QLabel" name="TextLabel3_2">
           <property name="text">
            <string>Comments:</string>
@@ -235,6 +232,9 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="1">
+         <widget class="QPlainTextEdit" name="commentsMultiLineEdit"/>
+        </item>
        </layout>
       </item>
      </layout>
@@ -244,29 +244,13 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>Q3GroupBox</class>
-   <extends>QGroupBox</extends>
-   <header>Qt3Support/Q3GroupBox</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3MultiLineEdit</class>
-   <extends>QWidget</extends>
-   <header>q3multilineedit.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>OSEdit</tabstop>
   <tabstop>pythonVersionEdit</tabstop>
   <tabstop>PyQtVersionEdit</tabstop>
   <tabstop>emailAddressEdit</tabstop>
-  <tabstop>commentsMultiLineEdit</tabstop>
   <tabstop>submitButton</tabstop>
   <tabstop>cancelButton</tabstop>
-  <tabstop>regexMultiLineEdit</tabstop>
-  <tabstop>stringMultiLineEdit</tabstop>
  </tabstops>
  <resources/>
  <connections>
