@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>KodosBA</class>
- <widget class="Q3MainWindow" name="KodosBA">
+ <widget class="QMainWindow" name="KodosBA">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>590</width>
-    <height>713</height>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,116 +17,9 @@
    <string>Kodos</string>
   </property>
   <widget class="QWidget" name="widget">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>55</y>
-     <width>590</width>
-     <height>658</height>
-    </rect>
-   </property>
    <layout class="QGridLayout">
-    <item row="1" column="0">
-     <widget class="Q3ButtonGroup" name="buttonGroup2">
-      <property name="title">
-       <string>Flags</string>
-      </property>
-      <layout class="QHBoxLayout">
-       <item>
-        <widget class="QCheckBox" name="ignorecaseCheckBox">
-         <property name="toolTip">
-          <string>Perform case-insensitive matching; expressions like [A-Z] will match
-lowercase letters, too. This is not affected by the current locale.</string>
-         </property>
-         <property name="text">
-          <string>Ignore Case</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string/>
-         </attribute>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="multilineCheckBox">
-         <property name="toolTip">
-          <string>When specified, the pattern character &quot;^&quot; matches at the beginning of the 
-string and at the beginning of each line (immediately following each newline); 
-and the pattern character &quot;$&quot; matches at the end of the string and at the end 
-of each line (immediately preceding each newline). By default, &quot;^&quot; matches 
-only at the beginning of the string, and &quot;$&quot; only at the end of the string and 
-immediately before the newline (if any) at the end of the string.</string>
-         </property>
-         <property name="text">
-          <string>Multi Line</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string/>
-         </attribute>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="dotallCheckBox">
-         <property name="toolTip">
-          <string>Make the &quot;.&quot; special character match any character at all, including a 
-newline; without this flag, &quot;.&quot; will match anything except a newline.</string>
-         </property>
-         <property name="text">
-          <string>Dot All</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string/>
-         </attribute>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="verboseCheckBox">
-         <property name="toolTip">
-          <string>This flag allows you to write regular expressions that look nicer. Whitespace 
-within the pattern is ignored, except when in a character class or preceded by 
-an unescaped backslash, and, when a line contains a &quot;#&quot; neither in a character
-class or preceded by an unescaped backslash, all characters from the leftmost 
-such &quot;#&quot; through the end of the line are ignored.</string>
-         </property>
-         <property name="text">
-          <string>Verbose</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string/>
-         </attribute>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="localeCheckBox">
-         <property name="toolTip">
-          <string>Make \w, \W, \b, and \B dependent on the current locale.</string>
-         </property>
-         <property name="text">
-          <string>Locale</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string/>
-         </attribute>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="unicodeCheckBox">
-         <property name="toolTip">
-          <string>&quot;Make \w, \W, \b, and \B dependent on the Unicode character properties 
-database. New in Python version 2.0.</string>
-         </property>
-         <property name="text">
-          <string>Unicode</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string/>
-         </attribute>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
     <item row="0" column="0">
-     <widget class="Q3GroupBox" name="groupBox1">
+     <widget class="QGroupBox" name="groupBox1">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -136,54 +29,31 @@ database. New in Python version 2.0.</string>
       <property name="title">
        <string>Regular Expression Pattern</string>
       </property>
-      <property name="lineWidth">
-       <number>1</number>
-      </property>
       <layout class="QGridLayout">
        <item row="0" column="0">
-        <widget class="Q3TextEdit" name="regexMultiLineEdit">
-         <property name="font">
-          <font>
-           <family>Helvetica [Adobe]</family>
-          </font>
-         </property>
-         <property name="textFormat">
-          <enum>Qt::PlainText</enum>
-         </property>
-         <property name="text">
+        <widget class="QTextEdit" name="regexMultiLineEdit">
+         <property name="text" stdset="0">
           <string/>
-         </property>
-         <property name="wordWrap">
-          <enum>Q3TextEdit::WidgetWidth</enum>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
     </item>
-    <item row="4" column="0">
+    <item row="5" column="0">
      <widget class="QTabWidget" name="resultTabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
         <string>Group</string>
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="Q3Table" name="groupTable">
-          <property name="numRows">
-           <number>0</number>
-          </property>
-          <property name="numCols">
-           <number>2</number>
-          </property>
-          <property name="columnMovingEnabled">
-           <bool>true</bool>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
+         <widget class="QTableWidget" name="groupTable">
           <property name="selectionMode">
-           <enum>Q3Table::SingleRow</enum>
+           <enum>QAbstractItemView::SingleSelection</enum>
           </property>
           <column>
            <property name="text">
@@ -205,7 +75,7 @@ database. New in Python version 2.0.</string>
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="Q3TextBrowser" name="matchTextBrowser"/>
+         <widget class="QTextBrowser" name="matchTextBrowser"/>
         </item>
        </layout>
       </widget>
@@ -215,7 +85,7 @@ database. New in Python version 2.0.</string>
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="Q3TextBrowser" name="matchAllTextBrowser"/>
+         <widget class="QTextBrowser" name="matchAllTextBrowser"/>
         </item>
        </layout>
       </widget>
@@ -225,7 +95,7 @@ database. New in Python version 2.0.</string>
        </attribute>
        <layout class="QVBoxLayout">
         <item>
-         <widget class="Q3TextBrowser" name="replaceTextBrowser"/>
+         <widget class="QTextBrowser" name="replaceTextBrowser"/>
         </item>
        </layout>
       </widget>
@@ -235,13 +105,13 @@ database. New in Python version 2.0.</string>
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="Q3TextBrowser" name="codeTextBrowser"/>
+         <widget class="QTextBrowser" name="codeTextBrowser"/>
         </item>
        </layout>
       </widget>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item row="3" column="0">
      <widget class="QTabWidget" name="tabWidget3">
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -249,11 +119,7 @@ database. New in Python version 2.0.</string>
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="Q3TextEdit" name="stringMultiLineEdit">
-          <property name="textFormat">
-           <enum>Qt::PlainText</enum>
-          </property>
-         </widget>
+         <widget class="QTextEdit" name="stringMultiLineEdit"/>
         </item>
        </layout>
       </widget>
@@ -263,17 +129,13 @@ database. New in Python version 2.0.</string>
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="Q3TextEdit" name="replaceTextEdit">
-          <property name="textFormat">
-           <enum>Qt::PlainText</enum>
-          </property>
-         </widget>
+         <widget class="QTextEdit" name="replaceTextEdit"/>
         </item>
        </layout>
       </widget>
      </widget>
     </item>
-    <item row="3" column="0">
+    <item row="4" column="0">
      <layout class="QHBoxLayout">
       <item>
        <spacer name="spacer1">
@@ -352,20 +214,99 @@ database. New in Python version 2.0.</string>
       </item>
      </layout>
     </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string>Flags</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QCheckBox" name="ignorecaseCheckBox">
+         <property name="toolTip">
+          <string>Perform case-insensitive matching; expressions like [A-Z] will match
+lowercase letters, too. This is not affected by the current locale.</string>
+         </property>
+         <property name="text">
+          <string>Ignore Case</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="multilineCheckBox">
+         <property name="toolTip">
+          <string>When specified, the pattern character &quot;^&quot; matches at the beginning of the 
+string and at the beginning of each line (immediately following each newline); 
+and the pattern character &quot;$&quot; matches at the end of the string and at the end 
+of each line (immediately preceding each newline). By default, &quot;^&quot; matches 
+only at the beginning of the string, and &quot;$&quot; only at the end of the string and 
+immediately before the newline (if any) at the end of the string.</string>
+         </property>
+         <property name="text">
+          <string>Multi Line</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="dotallCheckBox">
+         <property name="toolTip">
+          <string>Make the &quot;.&quot; special character match any character at all, including a 
+newline; without this flag, &quot;.&quot; will match anything except a newline.</string>
+         </property>
+         <property name="text">
+          <string>Dot All</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="verboseCheckBox">
+         <property name="toolTip">
+          <string>This flag allows you to write regular expressions that look nicer. Whitespace 
+within the pattern is ignored, except when in a character class or preceded by 
+an unescaped backslash, and, when a line contains a &quot;#&quot; neither in a character
+class or preceded by an unescaped backslash, all characters from the leftmost 
+such &quot;#&quot; through the end of the line are ignored.</string>
+         </property>
+         <property name="text">
+          <string>Verbose</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="localeCheckBox">
+         <property name="toolTip">
+          <string>Make \w, \W, \b, and \B dependent on the current locale.</string>
+         </property>
+         <property name="text">
+          <string>Locale</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="unicodeCheckBox">
+         <property name="toolTip">
+          <string>&quot;Make \w, \W, \b, and \B dependent on the Unicode character properties 
+database. New in Python version 2.0.</string>
+         </property>
+         <property name="text">
+          <string>Unicode</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
-  <widget class="Q3ToolBar" name="toolBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>310</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="label">
+  <widget class="QToolBar" name="toolBar">
+   <property name="label" stdset="0">
     <string>Tools</string>
    </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
    <addaction name="fileOpenAction"/>
    <addaction name="fileSaveAction"/>
    <addaction name="separator"/>
@@ -878,62 +819,10 @@ database. New in Python version 2.0.</string>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>Q3ToolBar</class>
-   <extends>Q3Frame</extends>
-   <header>q3listview.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3GroupBox</class>
-   <extends>QGroupBox</extends>
-   <header>Qt3Support/Q3GroupBox</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3Frame</class>
-   <extends>QFrame</extends>
-   <header>Qt3Support/Q3Frame</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3MainWindow</class>
-   <extends>QWidget</extends>
-   <header>q3mainwindow.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3ButtonGroup</class>
-   <extends>Q3GroupBox</extends>
-   <header>Qt3Support/Q3ButtonGroup</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3Table</class>
-   <extends>Q3Frame</extends>
-   <header>q3table.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3TextEdit</class>
-   <extends>Q3Frame</extends>
-   <header>q3textedit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3TextBrowser</class>
-   <extends>Q3TextEdit</extends>
-   <header>Qt3Support/Q3TextBrowser</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>regexMultiLineEdit</tabstop>
   <tabstop>stringMultiLineEdit</tabstop>
   <tabstop>resultTabWidget</tabstop>
-  <tabstop>ignorecaseCheckBox</tabstop>
-  <tabstop>multilineCheckBox</tabstop>
-  <tabstop>dotallCheckBox</tabstop>
-  <tabstop>verboseCheckBox</tabstop>
-  <tabstop>localeCheckBox</tabstop>
-  <tabstop>unicodeCheckBox</tabstop>
   <tabstop>matchNumberSpinBox</tabstop>
   <tabstop>matchTextBrowser</tabstop>
   <tabstop>codeTextBrowser</tabstop>
