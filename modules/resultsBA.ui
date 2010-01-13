@@ -22,6 +22,9 @@
    </property>
    <item row="1" column="0">
     <widget class="QTabWidget" name="infoTabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
        <string>Group</string>
@@ -34,44 +37,29 @@
         <number>11</number>
        </property>
        <item>
-        <widget class="Q3ListView" name="groupListView">
+        <widget class="QTreeWidget" name="groupListView">
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
          <property name="allColumnsShowFocus">
           <bool>true</bool>
          </property>
-         <property name="showSortIndicator">
+         <property name="showSortIndicator" stdset="0">
           <bool>true</bool>
          </property>
          <column>
           <property name="text">
            <string>Group #</string>
           </property>
-          <property name="clickable">
-           <bool>true</bool>
-          </property>
-          <property name="resizable">
-           <bool>true</bool>
-          </property>
          </column>
          <column>
           <property name="text">
            <string>Group Name</string>
           </property>
-          <property name="clickable">
-           <bool>true</bool>
-          </property>
-          <property name="resizable">
-           <bool>true</bool>
-          </property>
          </column>
          <column>
           <property name="text">
            <string>Match</string>
-          </property>
-          <property name="clickable">
-           <bool>true</bool>
-          </property>
-          <property name="resizable">
-           <bool>true</bool>
           </property>
          </column>
         </widget>
@@ -90,11 +78,7 @@
         <number>11</number>
        </property>
        <item>
-        <widget class="Q3TextBrowser" name="matchTextBrowser">
-         <property name="textFormat">
-          <enum>Qt::RichText</enum>
-         </property>
-        </widget>
+        <widget class="QTextBrowser" name="matchTextBrowser"/>
        </item>
       </layout>
      </widget>
@@ -110,7 +94,7 @@
         <number>11</number>
        </property>
        <item>
-        <widget class="Q3TextBrowser" name="codeTextBrowser"/>
+        <widget class="QTextBrowser" name="codeTextBrowser"/>
        </item>
       </layout>
      </widget>
@@ -187,29 +171,6 @@
   </layout>
  </widget>
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>Q3Frame</class>
-   <extends>QFrame</extends>
-   <header>Qt3Support/Q3Frame</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3ListView</class>
-   <extends>Q3Frame</extends>
-   <header>q3listview.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3TextEdit</class>
-   <extends>Q3Frame</extends>
-   <header>q3textedit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3TextBrowser</class>
-   <extends>Q3TextEdit</extends>
-   <header>Qt3Support/Q3TextBrowser</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>
