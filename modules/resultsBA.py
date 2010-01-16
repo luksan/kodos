@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'resultsBA.ui'
 #
-# Created: Wed Jan 13 15:13:28 2010
+# Created: Wed Jan 13 17:29:23 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -91,4 +91,11 @@ class Ui_Form3(object):
         self.infoTabWidget.setTabText(self.infoTabWidget.indexOf(self.tab1), QtGui.QApplication.translate("Form3", "Match", None, QtGui.QApplication.UnicodeUTF8))
         self.infoTabWidget.setTabText(self.infoTabWidget.indexOf(self.tab2), QtGui.QApplication.translate("Form3", "Sample Code", None, QtGui.QApplication.UnicodeUTF8))
         self.TextLabel3.setText(QtGui.QApplication.translate("Form3", "Match number:", None, QtGui.QApplication.UnicodeUTF8))
+
+
+class Form3(QtGui.QWidget, Ui_Form3):
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QWidget.__init__(self, parent, f)
+
+        self.setupUi(self)
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'newUserDialogBA.ui'
 #
-# Created: Wed Jan 13 13:17:04 2010
+# Created: Wed Jan 13 17:29:22 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -89,4 +89,11 @@ class Ui_NewUserDialog(object):
         self.textLabel3.setText(QtGui.QApplication.translate("NewUserDialog", "<b>Regex Library</b>", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setText(QtGui.QApplication.translate("NewUserDialog", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setShortcut(QtGui.QApplication.translate("NewUserDialog", "Alt+O", None, QtGui.QApplication.UnicodeUTF8))
+
+
+class NewUserDialog(QtGui.QDialog, Ui_NewUserDialog):
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QDialog.__init__(self, parent, f)
+
+        self.setupUi(self)
 

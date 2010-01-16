@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'regexLibraryBA.ui'
 #
-# Created: Wed Jan 13 14:57:16 2010
+# Created: Wed Jan 13 23:30:07 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -97,9 +97,8 @@ class Ui_RegexLibraryBA(object):
 
         self.retranslateUi(RegexLibraryBA)
         QtCore.QObject.connect(self.editPasteAction, QtCore.SIGNAL("activated()"), RegexLibraryBA.editPaste)
-        QtCore.QObject.connect(self.descriptionListBox, QtCore.SIGNAL("highlighted(Q3ListBoxItem*)"), RegexLibraryBA.descSelectedSlot)
         QtCore.QObject.connect(self.exitAction, QtCore.SIGNAL("activated()"), RegexLibraryBA.close)
-        QtCore.QObject.connect(self.descriptionListBox, QtCore.SIGNAL("doubleClicked(Q3ListBoxItem*)"), RegexLibraryBA.editPaste)
+        QtCore.QObject.connect(self.descriptionListBox, QtCore.SIGNAL("currentRowChanged(int)"), RegexLibraryBA.descSelectedSlot)
         QtCore.QMetaObject.connectSlotsByName(RegexLibraryBA)
 
     def retranslateUi(self, RegexLibraryBA):
@@ -120,4 +119,11 @@ class Ui_RegexLibraryBA(object):
         self.helpHelpAction.setShortcut(QtGui.QApplication.translate("RegexLibraryBA", "Ctrl+/", None, QtGui.QApplication.UnicodeUTF8))
         self.exitAction.setText(QtGui.QApplication.translate("RegexLibraryBA", "&Exit", None, QtGui.QApplication.UnicodeUTF8))
         self.exitAction.setIconText(QtGui.QApplication.translate("RegexLibraryBA", "Exit", None, QtGui.QApplication.UnicodeUTF8))
+
+
+class RegexLibraryBA(QtGui.QMainWindow, Ui_RegexLibraryBA):
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QMainWindow.__init__(self, parent, f)
+
+        self.setupUi(self)
 

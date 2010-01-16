@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefsBA.ui'
 #
-# Created: Wed Jan 13 13:46:58 2010
+# Created: Wed Jan 13 17:29:22 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -151,4 +151,11 @@ class Ui_PrefsBA(object):
         self.buttonApply.setText(QtGui.QApplication.translate("PrefsBA", "&Apply", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonOk.setText(QtGui.QApplication.translate("PrefsBA", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonCancel.setText(QtGui.QApplication.translate("PrefsBA", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))
+
+
+class PrefsBA(QtGui.QDialog, Ui_PrefsBA):
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QDialog.__init__(self, parent, f)
+
+        self.setupUi(self)
 

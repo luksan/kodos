@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'reportBugBA.ui'
 #
-# Created: Wed Jan 13 15:08:48 2010
+# Created: Wed Jan 13 17:29:23 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -147,4 +147,11 @@ class Ui_reportBugBA(object):
         self.GroupBox7.setTitle(QtGui.QApplication.translate("reportBugBA", "Comments", None, QtGui.QApplication.UnicodeUTF8))
         self.TextLabel3_2.setText(QtGui.QApplication.translate("reportBugBA", "Comments:", None, QtGui.QApplication.UnicodeUTF8))
         self.TextLabel2_2.setText(QtGui.QApplication.translate("reportBugBA", "Email address:", None, QtGui.QApplication.UnicodeUTF8))
+
+
+class reportBugBA(QtGui.QWidget, Ui_reportBugBA):
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QWidget.__init__(self, parent, f)
+
+        self.setupUi(self)
 

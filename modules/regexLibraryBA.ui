@@ -190,22 +190,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>descriptionListBox</sender>
-   <signal>highlighted(Q3ListBoxItem*)</signal>
-   <receiver>RegexLibraryBA</receiver>
-   <slot>descSelectedSlot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>exitAction</sender>
    <signal>activated()</signal>
    <receiver>RegexLibraryBA</receiver>
@@ -223,19 +207,22 @@
   </connection>
   <connection>
    <sender>descriptionListBox</sender>
-   <signal>doubleClicked(Q3ListBoxItem*)</signal>
+   <signal>currentRowChanged(int)</signal>
    <receiver>RegexLibraryBA</receiver>
-   <slot>editPaste()</slot>
+   <slot>descSelectedSlot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>274</x>
+     <y>168</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>280</x>
+     <y>-11</y>
     </hint>
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>descSelectedSlot()</slot>
+ </slots>
 </ui>

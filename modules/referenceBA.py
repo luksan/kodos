@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'referenceBA.ui'
 #
-# Created: Wed Jan 13 14:35:23 2010
+# Created: Wed Jan 13 17:29:23 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -306,4 +306,11 @@ class Ui_ReferenceBA(object):
         self.helpAction.setIconText(QtGui.QApplication.translate("ReferenceBA", "Help", None, QtGui.QApplication.UnicodeUTF8))
         self.helpPythonAction.setText(QtGui.QApplication.translate("ReferenceBA", "&Python Regex Help", None, QtGui.QApplication.UnicodeUTF8))
         self.helpPythonAction.setIconText(QtGui.QApplication.translate("ReferenceBA", "Python Regex Help", None, QtGui.QApplication.UnicodeUTF8))
+
+
+class ReferenceBA(QtGui.QMainWindow, Ui_ReferenceBA):
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QMainWindow.__init__(self, parent, f)
+
+        self.setupUi(self)
 

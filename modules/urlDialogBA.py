@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'urlDialogBA.ui'
 #
-# Created: Wed Jan 13 15:18:29 2010
+# Created: Wed Jan 13 17:29:24 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -59,4 +59,11 @@ class Ui_URLDialogBA(object):
         self.buttonCancel.setText(QtGui.QApplication.translate("URLDialogBA", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox1.setTitle(QtGui.QApplication.translate("URLDialogBA", "Enter URL to import", None, QtGui.QApplication.UnicodeUTF8))
         self.URLTextEdit.setPlainText(QtGui.QApplication.translate("URLDialogBA", "http://kodos.sourceforge.net", None, QtGui.QApplication.UnicodeUTF8))
+
+
+class URLDialogBA(QtGui.QDialog, Ui_URLDialogBA):
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QDialog.__init__(self, parent, f)
+
+        self.setupUi(self)
 
