@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'aboutBA.ui'
 #
-# Created: Wed Jan 13 13:14:43 2010
+# Created: Wed Jan 13 18:36:58 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -192,10 +192,10 @@ class Ui_AboutBA(object):
         self.TextLabel1_5.setWordWrap(False)
         self.TextLabel1_5.setObjectName("TextLabel1_5")
         self._7.addWidget(self.TextLabel1_5)
-        self.versionLabel_3 = QtGui.QLabel(self.groupBox)
-        self.versionLabel_3.setWordWrap(False)
-        self.versionLabel_3.setObjectName("versionLabel_3")
-        self._7.addWidget(self.versionLabel_3)
+        self.versionLabel = QtGui.QLabel(self.groupBox)
+        self.versionLabel.setWordWrap(False)
+        self.versionLabel.setObjectName("versionLabel")
+        self._7.addWidget(self.versionLabel)
         self.gridLayout.addLayout(self._7, 1, 4, 1, 1)
         spacerItem1 = QtGui.QSpacerItem(247, 17, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem1, 1, 2, 1, 1)
@@ -256,10 +256,17 @@ class Ui_AboutBA(object):
         self.buttonOk.setText(QtGui.QApplication.translate("AboutBA", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setTitle(QtGui.QApplication.translate("AboutBA", "About...", None, QtGui.QApplication.UnicodeUTF8))
         self.TextLabel1_5.setText(QtGui.QApplication.translate("AboutBA", "Version:", None, QtGui.QApplication.UnicodeUTF8))
-        self.versionLabel_3.setText(QtGui.QApplication.translate("AboutBA", "0.8", None, QtGui.QApplication.UnicodeUTF8))
+        self.versionLabel.setText(QtGui.QApplication.translate("AboutBA", "0.8", None, QtGui.QApplication.UnicodeUTF8))
         self.TextLabel1_3.setText(QtGui.QApplication.translate("AboutBA", "Kodos", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel3_3.setText(QtGui.QApplication.translate("AboutBA", "Developed by: Phil Schwartz", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel4_3.setText(QtGui.QApplication.translate("AboutBA", "phil_schwartz@users.sourceforge.net", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel1_3.setText(QtGui.QApplication.translate("AboutBA", "Logo designed by: Konstantin Ryabitsev", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel2_3.setText(QtGui.QApplication.translate("AboutBA", "icon@fedoraproject.org", None, QtGui.QApplication.UnicodeUTF8))
+
+
+class AboutBA(QtGui.QDialog, Ui_AboutBA):
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QDialog.__init__(self, parent, f)
+
+        self.setupUi(self)
 

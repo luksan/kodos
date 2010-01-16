@@ -1,6 +1,5 @@
 #  about.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from qt import *
 from aboutBA import *
 from util import getPixmap
 import version
