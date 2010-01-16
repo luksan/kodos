@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'kodosBA.ui'
 #
-# Created: Wed Jan 13 15:42:40 2010
+# Created: Wed Jan 13 21:16:48 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ class Ui_KodosBA(object):
         self.groupBox1.setObjectName("groupBox1")
         self.gridlayout1 = QtGui.QGridLayout(self.groupBox1)
         self.gridlayout1.setObjectName("gridlayout1")
-        self.regexMultiLineEdit = QtGui.QTextEdit(self.groupBox1)
+        self.regexMultiLineEdit = QtGui.QPlainTextEdit(self.groupBox1)
         self.regexMultiLineEdit.setObjectName("regexMultiLineEdit")
         self.gridlayout1.addWidget(self.regexMultiLineEdit, 0, 0, 1, 1)
         self.gridlayout.addWidget(self.groupBox1, 0, 0, 1, 1)
@@ -86,7 +86,7 @@ class Ui_KodosBA(object):
         self.tab2.setObjectName("tab2")
         self.gridlayout6 = QtGui.QGridLayout(self.tab2)
         self.gridlayout6.setObjectName("gridlayout6")
-        self.stringMultiLineEdit = QtGui.QTextEdit(self.tab2)
+        self.stringMultiLineEdit = QtGui.QPlainTextEdit(self.tab2)
         self.stringMultiLineEdit.setObjectName("stringMultiLineEdit")
         self.gridlayout6.addWidget(self.stringMultiLineEdit, 0, 0, 1, 1)
         self.tabWidget3.addTab(self.tab2, "")
@@ -370,8 +370,6 @@ class Ui_KodosBA(object):
         QtCore.QObject.connect(self.localeCheckBox, QtCore.SIGNAL("toggled(bool)"), KodosBA.checkbox_slot)
         QtCore.QObject.connect(self.matchNumberSpinBox, QtCore.SIGNAL("valueChanged(int)"), KodosBA.match_num_slot)
         QtCore.QObject.connect(self.multilineCheckBox, QtCore.SIGNAL("toggled(bool)"), KodosBA.checkbox_slot)
-        QtCore.QObject.connect(self.regexMultiLineEdit, QtCore.SIGNAL("textChanged()"), KodosBA.regex_changed_slot)
-        QtCore.QObject.connect(self.stringMultiLineEdit, QtCore.SIGNAL("textChanged()"), KodosBA.string_changed_slot)
         QtCore.QObject.connect(self.unicodeCheckBox, QtCore.SIGNAL("toggled(bool)"), KodosBA.checkbox_slot)
         QtCore.QObject.connect(self.verboseCheckBox, QtCore.SIGNAL("toggled(bool)"), KodosBA.checkbox_slot)
         QtCore.QObject.connect(self.editPauseAction, QtCore.SIGNAL("toggled(bool)"), KodosBA.pause)
@@ -386,8 +384,6 @@ class Ui_KodosBA(object):
         QtCore.QObject.connect(self.fileImportFileAction, QtCore.SIGNAL("activated()"), KodosBA.importFile)
         QtCore.QObject.connect(self.fileImportURLAction, QtCore.SIGNAL("activated()"), KodosBA.importURL)
         QtCore.QObject.connect(self.helpRegexLibAction, QtCore.SIGNAL("activated()"), KodosBA.helpRegexLib)
-        QtCore.QObject.connect(self.regexMultiLineEdit, QtCore.SIGNAL("textChanged()"), KodosBA.kodos_edited_slot)
-        QtCore.QObject.connect(self.stringMultiLineEdit, QtCore.SIGNAL("textChanged()"), KodosBA.kodos_edited_slot)
         QtCore.QObject.connect(self.ignorecaseCheckBox, QtCore.SIGNAL("toggled(bool)"), KodosBA.kodos_edited_slot)
         QtCore.QObject.connect(self.replaceTextEdit, QtCore.SIGNAL("textChanged()"), KodosBA.kodos_edited_slot)
         QtCore.QObject.connect(self.multilineCheckBox, QtCore.SIGNAL("toggled(bool)"), KodosBA.kodos_edited_slot)
@@ -396,6 +392,8 @@ class Ui_KodosBA(object):
         QtCore.QObject.connect(self.localeCheckBox, QtCore.SIGNAL("toggled(bool)"), KodosBA.kodos_edited_slot)
         QtCore.QObject.connect(self.unicodeCheckBox, QtCore.SIGNAL("toggled(bool)"), KodosBA.kodos_edited_slot)
         QtCore.QObject.connect(self.FileRevertAction, QtCore.SIGNAL("activated()"), KodosBA.revert_file_slot)
+        QtCore.QObject.connect(self.regexMultiLineEdit, QtCore.SIGNAL("textChanged()"), KodosBA.regex_changed_slot)
+        QtCore.QObject.connect(self.stringMultiLineEdit, QtCore.SIGNAL("textChanged()"), KodosBA.string_changed_slot)
         QtCore.QMetaObject.connectSlotsByName(KodosBA)
         KodosBA.setTabOrder(self.regexMultiLineEdit, self.stringMultiLineEdit)
         KodosBA.setTabOrder(self.stringMultiLineEdit, self.resultTabWidget)
@@ -514,4 +512,11 @@ class Ui_KodosBA(object):
         self.helpRegexLibAction.setShortcut(QtGui.QApplication.translate("KodosBA", "Ctrl+L", None, QtGui.QApplication.UnicodeUTF8))
         self.FileRevertAction.setText(QtGui.QApplication.translate("KodosBA", "&Revert Kodos File", None, QtGui.QApplication.UnicodeUTF8))
         self.FileRevertAction.setIconText(QtGui.QApplication.translate("KodosBA", "Revert Kodos File", None, QtGui.QApplication.UnicodeUTF8))
+
+
+class KodosBA(QtGui.QMainWindow, Ui_KodosBA):
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QMainWindow.__init__(self, parent, f)
+
+        self.setupUi(self)
 

@@ -31,11 +31,7 @@
       </property>
       <layout class="QGridLayout">
        <item row="0" column="0">
-        <widget class="QTextEdit" name="regexMultiLineEdit">
-         <property name="text" stdset="0">
-          <string/>
-         </property>
-        </widget>
+        <widget class="QPlainTextEdit" name="regexMultiLineEdit"/>
        </item>
       </layout>
      </widget>
@@ -119,7 +115,7 @@
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="QTextEdit" name="stringMultiLineEdit"/>
+         <widget class="QPlainTextEdit" name="stringMultiLineEdit"/>
         </item>
        </layout>
       </widget>
@@ -1150,38 +1146,6 @@ database. New in Python version 2.0.</string>
    </hints>
   </connection>
   <connection>
-   <sender>regexMultiLineEdit</sender>
-   <signal>textChanged()</signal>
-   <receiver>KodosBA</receiver>
-   <slot>regex_changed_slot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>stringMultiLineEdit</sender>
-   <signal>textChanged()</signal>
-   <receiver>KodosBA</receiver>
-   <slot>string_changed_slot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>unicodeCheckBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>KodosBA</receiver>
@@ -1406,38 +1370,6 @@ database. New in Python version 2.0.</string>
    </hints>
   </connection>
   <connection>
-   <sender>regexMultiLineEdit</sender>
-   <signal>textChanged()</signal>
-   <receiver>KodosBA</receiver>
-   <slot>kodos_edited_slot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>stringMultiLineEdit</sender>
-   <signal>textChanged()</signal>
-   <receiver>KodosBA</receiver>
-   <slot>kodos_edited_slot()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>ignorecaseCheckBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>KodosBA</receiver>
@@ -1556,6 +1488,38 @@ database. New in Python version 2.0.</string>
    <slot>revert_file_slot()</slot>
    <hints>
     <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>regexMultiLineEdit</sender>
+   <signal>textChanged()</signal>
+   <receiver>KodosBA</receiver>
+   <slot>regex_changed_slot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stringMultiLineEdit</sender>
+   <signal>textChanged()</signal>
+   <receiver>KodosBA</receiver>
+   <slot>string_changed_slot()</slot>
+   <hints>
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
@@ -1566,4 +1530,8 @@ database. New in Python version 2.0.</string>
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>regex_changed_slot()</slot>
+  <slot>string_changed_slot()</slot>
+ </slots>
 </ui>
