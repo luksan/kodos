@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #  kodos.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
 import sys
@@ -13,7 +14,8 @@ import urllib
 import signal
 
 try:
-    from qt import *
+    from PyQt4.QtGui import *
+    from PyQt4.QtCore import *
 except:
     print """Could not locate the PyQt module.  Please make sure that
 you have installed PyQt for the version of Python that you are running."""
@@ -71,12 +73,6 @@ GEO = "kodos_geometry"
 # colors for normal & examination mode
 QCOLOR_WHITE  = QColor(Qt.white)     # normal
 QCOLOR_YELLOW = QColor(255,255,127)  # examine
-
-QT_VERS = int(QT_VERSION_STR[0])
-
-if QT_VERS < 3:
-    print "Qt versions prior to 3.0 are no longer supported"
-    sys.exit(0)
 
 try:
     signal.SIGALRM
@@ -140,22 +136,22 @@ class Kodos(KodosBA):
                                         self.prefs.recentFilesSpinBox.value(),
                                         self.debug)
 
-        self.matchTextBrowser.setTextFormat(QTextEdit.PlainText)
+        #FIXME self.matchTextBrowser.setTextFormat(QTextEdit.PlainText)
 
         if filename and self.openFile(filename):
             qApp.processEvents()
 
-        self.connect(self, PYSIGNAL('prefsSaved()'), self.prefsSaved)
+        self.connect(self, SIGNAL('prefsSaved()'), self.prefsSaved)
 
         self.connect(self.fileMenu,
                      SIGNAL('activated(int)'),
                      self.fileMenuHandler)
         
-        self.connect(self, PYSIGNAL('pasteSymbol()'), self.paste_symbol)
+        self.connect(self, SIGNAL('pasteSymbol()'), self.paste_symbol)
 
-        self.connect(self, PYSIGNAL('urlImported()'), self.urlImported)
+        self.connect(self, SIGNAL('urlImported()'), self.urlImported)
 
-        self.connect(self, PYSIGNAL('pasteRegexLib()'), self.pasteFromRegexLib)
+        self.connect(self, SIGNAL('pasteRegexLib()'), self.pasteFromRegexLib)
 
         kodos_toolbar_logo(self.toolBar)
         if self.replace:  self.show_replace_widgets()
@@ -363,12 +359,12 @@ class Kodos(KodosBA):
             
 
     def __refresh_regex_widget(self, base_qcolor, regex):
-        self.regexMultiLineEdit.setPaletteBackgroundColor(base_qcolor)
+        # FIXME: self.regexMultiLineEdit.setPaletteBackgroundColor(base_qcolor)
         
         self.regexMultiLineEdit.blockSignals(1)
         self.regexMultiLineEdit.clear()
         self.regexMultiLineEdit.blockSignals(0)
-        self.regexMultiLineEdit.setText(regex)
+        self.regexMultiLineEdit.setPlainText(regex)
 
 
     def match_num_slot(self, num):
@@ -382,21 +378,27 @@ class Kodos(KodosBA):
         
 
     def regex_changed_slot(self):
+        t = self.regexMultiLineEdit.toPlainText()
         try:
-            self.regex = str(self.regexMultiLineEdit.text())
+            self.regex = str(t)
         except UnicodeError:
-            self.regex = unicode(self.regexMultiLineEdit.text())
+            self.regex = unicode(t)
             
         self.process_regex()
 
 
     def string_changed_slot(self):
+        t = self.stringMultiLineEdit.toPlainText()
         try:
-            self.matchstring = str(self.stringMultiLineEdit.text())
+            self.matchstring = str(t)
         except UnicodeError:
-            self.matchstring = unicode(self.stringMultiLineEdit.text())
+            self.matchstring = unicode(t)
         self.process_regex()
 
+    def helpContents(self, x = None):
+        pass #FIXME
+    def helpIndex(self, x = None):
+        pass #FIXME
 
     def hide_replace_widgets(self):
         self.spacerLabel.hide()
@@ -413,10 +415,11 @@ class Kodos(KodosBA):
         self.replaceTextBrowser.setEnabled(TRUE)
 
     def replace_changed_slot(self):
+        t = self.replaceTextEdit.toPlainText()
         try:
-            self.replace = str(self.replaceTextEdit.text())
+            self.replace = str(t)
         except UnicodeError:
-            self.replace = unicode(self.replaceTextEdit.text())
+            self.replace = unicode(t)
             
         self.process_regex()
         if not self.replace:
@@ -444,17 +447,19 @@ class Kodos(KodosBA):
 
 
     def populate_group_table(self, tuples):
-        self.groupTable.setNumRows(len(tuples))
+        # FIXME: this isn't called when the last group is removed
 
+        rows = len(tuples)
+        # Remove old rows for groups that no longer exist
+        for i in range(rows, self.groupTable.rowCount()):
+            self.groupTable.removeRow(i)
+
+        self.groupTable.setRowCount(rows)
         row = 0
         for t in tuples:
-            self.groupTable.setText(row, 0, unicode(t[1]))
-            self.groupTable.setText(row, 1, unicode(t[2]))
-            self.groupTable.adjustRow(row)
+            self.groupTable.setItem(row, 0, QTableWidgetItem(t[1]))
+            self.groupTable.setItem(row, 1, QTableWidgetItem(t[2]))
             row += 1
-            
-        self.groupTable.adjustColumn(0)
-        self.groupTable.adjustColumn(1)
 
 
     def populate_code_textbrowser(self):
@@ -518,14 +523,15 @@ class Kodos(KodosBA):
 
         colors = (QColor(Qt.black), QColor(Qt.blue) )
         i = 0
-        pos = widget.getCursorPosition()
+        #FIXME: what is the purpose of getCursorPosition() ?
+        #pos = widget.getCursorPosition()
         for s in strings:
-            widget.setColor(colors[i%2])            
-            widget.insert(s)
-            if i == cursorOffset: pos = widget.getCursorPosition()
+            widget.setTextColor(colors[i%2])            
+            widget.insertPlainText(s)
+            if i == cursorOffset: pass #FIXME pos = widget.getCursorPosition()
             i += 1
             
-        widget.setCursorPosition(pos[0], pos[1])
+        #FIXME widget.setCursorPosition(pos[0], pos[1])
         
 
     def populate_match_textbrowser(self, startpos, endpos):
@@ -553,7 +559,7 @@ class Kodos(KodosBA):
         if num == 0: num = nummatches
         text = self.matchstring
         
-        replace_text = unicode(self.replaceTextEdit.text())
+        replace_text = unicode(self.replaceTextEdit.toPlainText())
         if RX_BACKREF.search(replace_text):
             # if the replace string contains a backref we just use the
             # python regex methods for the substitution
@@ -608,8 +614,11 @@ class Kodos(KodosBA):
 
         
     def clear_results(self):
-        #self.groupListView.clear()
-        self.groupTable.setNumRows(0)
+        # .clear() destroys the headers, and .clearContents() doesn't do 
+        # anything at all, so remove the rows one by one
+        for i in range(self.groupTable.rowCount()):
+            self.groupTable.removeRow(i)
+
         self.codeTextBrowser.setText("")
         self.matchTextBrowser.setText("")
         self.matchNumberSpinBox.setEnabled(FALSE)
@@ -643,9 +652,9 @@ class Kodos(KodosBA):
 
             replace_spans = []
             if allmatches and len(allmatches):
-                self.matchNumberSpinBox.setMaxValue(len(allmatches))
+                self.matchNumberSpinBox.setMaximum(len(allmatches))
                 self.matchNumberSpinBox.setEnabled(TRUE)
-                self.replaceNumberSpinBox.setMaxValue(len(allmatches))
+                self.replaceNumberSpinBox.setMaximum(len(allmatches))
                 self.replaceNumberSpinBox.setEnabled(TRUE)
             else:
                 self.matchNumberSpinBox.setEnabled(FALSE)
@@ -775,9 +784,9 @@ class Kodos(KodosBA):
         self.checkEditState()
         self.filename = ""
         
-        self.regexMultiLineEdit.setText("")
-        self.stringMultiLineEdit.setText("")
-        self.replaceTextEdit.setText("")
+        self.regexMultiLineEdit.setPlainText("")
+        self.stringMultiLineEdit.setPlainText("")
+        self.replaceTextEdit.setPlainText("")
         self.set_flags(0)
         self.editstate = 0
 
@@ -817,11 +826,10 @@ class Kodos(KodosBA):
 
         
     def fileOpen(self):       
-        fn = QFileDialog.getOpenFileName(self.filename,
-                                         "*.kds\nAll (*)",
-                                         self,
-                                         "Open",
-                                         self.tr("Open Kodos File"))        
+        fn = QFileDialog.getOpenFileName(self,
+                                         self.tr("Open Kodos File"),
+                                         self.filename,
+                                         self.tr("Kodos file (*.kds);;All (*)"))
         if not fn.isEmpty():
             filename = str(fn)
             if self.openFile(filename):
@@ -842,55 +850,54 @@ class Kodos(KodosBA):
 
         try:
             u = cPickle.Unpickler(fp)
-            self.matchNumberSpinBox.setValue(1)
             self.regex = u.load()
-            self.regexMultiLineEdit.setText(self.regex)
-
             self.matchstring = u.load()
-            self.stringMultiLineEdit.setText(self.matchstring)
-            
             flags = u.load()
-            self.set_flags(flags)
-
-            try:
-                replace = u.load()
-            except:
-                # versions prior to 1.7 did not have replace functionality
-                # so kds files saved w/ these versions will throw exception
-                # here.
-                replace = ""
-            self.replaceTextEdit.setText(replace)
-            
-            self.filename = filename
-            msg = "%s %s" % (filename, unicode(self.tr("loaded successfully")))
-            self.updateStatus(msg, -1, 5, TRUE)
-            self.editstate = STATE_UNEDITED
-            return 1
-        except Exception, e:
-            if self.debug:  print unicode(e)
+        except Exception, e: #FIXME: don't catch everything
+            if self.debug:
+                print unicode(e)
             msg = "%s %s" % (unicode(self.tr("Error reading from file:")),
                              filename)
             self.updateStatus(msg, -1, 5, TRUE)
             return 0
 
+        self.matchNumberSpinBox.setValue(1)
+        self.regexMultiLineEdit.setPlainText(self.regex)
+        self.stringMultiLineEdit.setPlainText(self.matchstring)
+        
+        self.set_flags(flags)
+
+        try:
+            replace = u.load()
+        except:
+            # versions prior to 1.7 did not have replace functionality
+            # so kds files saved w/ these versions will throw exception
+            # here.
+            replace = ""
+        self.replaceTextEdit.setText(replace)
+        
+        self.filename = filename
+        msg = "%s %s" % (filename, unicode(self.tr("loaded successfully")))
+        self.updateStatus(msg, -1, 5, TRUE)
+        self.editstate = STATE_UNEDITED
+        return 1
+    
+
 
     def fileSaveAs(self):
         while 1:
-            self.filedialog = QFileDialog(self.filename,
-                                          "*.kds\nAll (*)",
-                                          self,
-                                          "Save",
-                                          TRUE)
-            self.filedialog.setCaption(self.tr("Save Kodos File"))
-            self.filedialog.setMode(QFileDialog.AnyFile)
+            self.filedialog = QFileDialog(self,
+                                          self.tr("Save Kodos File"),
+                                          self.filename,
+                                          "Kodos file (*.kds);;All (*)")
             #self.filedialog.show()
-            ok = self.filedialog.exec_loop()
+            ok = self.filedialog.exec_()
 
-            filename = unicode(self.filedialog.selectedFile())
-            if not ok or not filename:
+            filename = self.filedialog.selectedFiles()
+            if not ok or filename.isEmpty():
                 self.updateStatus(self.tr("No file selected to save"), -1, 5, TRUE)
                 return
-            filename = os.path.normcase(filename)
+            filename = os.path.normcase(unicode(filename.first()))
 
             basename = os.path.basename(filename)
             if basename.find(".") == -1:
@@ -1246,9 +1253,9 @@ def main():
 
     kodos = Kodos(filename, debug)
 
-    qApp.setMainWidget(kodos)
+    kodos.show()
 
-    qApp.exec_loop()    
+    sys.exit(qApp.exec_())
 
 
 
