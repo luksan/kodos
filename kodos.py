@@ -149,7 +149,7 @@ class Kodos(KodosBA):
         
         self.connect(self, SIGNAL('pasteSymbol()'), self.paste_symbol)
 
-        self.connect(self, SIGNAL('urlImported()'), self.urlImported)
+        self.connect(self, SIGNAL('urlImported(str, str)'), self.urlImported)
 
         self.connect(self, SIGNAL('pasteRegexLib()'), self.pasteFromRegexLib)
 
@@ -797,7 +797,7 @@ class Kodos(KodosBA):
 
     def urlImported(self, html, url):
         self.url = url
-        self.stringMultiLineEdit.setText(html)
+        self.stringMultiLineEdit.setPlainText(html)
         
 
     def importFile(self):
