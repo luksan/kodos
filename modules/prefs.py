@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
 #  prefs.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
+from PyQt4.QtCore import SIGNAL
+from PyQt4.QtGui import *
 from util import *
 from prefsBA import PrefsBA
 import help
@@ -71,7 +74,7 @@ class Preferences(PrefsBA):
         fp.write("Email Server: %s\n" % str(self.emailServerEdit.text()))
         fp.write("Recent Files: %s\n" % str(self.recentFilesSpinBox.text()))
         fp.close()
-        self.parent.emit(PYSIGNAL('prefsSaved()'), () )
+        self.parent.emit(SIGNAL('prefsSaved()'))
 
 
     def parseFontStr(self, fontstr, meth):
