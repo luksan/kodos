@@ -1,6 +1,10 @@
+# -*- coding: utf-8 -*-
 #  status_bar.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
 from tooltip import *
+
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
 
 class Status_Bar:
     def __init__(self, parent, progress_bar=FALSE, message=''):
@@ -11,7 +15,7 @@ class Status_Bar:
 
         self.parent.connect(self.__statusTimer, SIGNAL("timeout()"), self.reset_message)
         
-        self.__statusLabel = QLabel(self.statusBar, "msg")
+        self.__statusLabel = QLabel("msg", self.statusBar)
         self.tooltip = Tooltip('')
         self.tooltip.addWidget(self.__statusLabel)
         
@@ -22,8 +26,8 @@ class Status_Bar:
         self.pixmapLabel = QLabel("image", self.statusBar)
         self.pixmapLabel.setPixmap(pixmap)
         
-        self.statusBar.addWidget(self.pixmapLabel, 0, TRUE)
-        self.statusBar.addWidget(self.__statusLabel, 1, TRUE)
+        self.statusBar.addWidget(self.pixmapLabel)
+        self.statusBar.addWidget(self.__statusLabel)
         if progress_bar:
             self.progressBar = QProgressBar(self.statusBar)
             self.statusBar.addWidget(self.progressBar, 1, TRUE)
@@ -48,7 +52,8 @@ class Status_Bar:
         self.__statusLabel.setText(message)
 
         if duration > 0:
-            self.__statusTimer.start(1000 * duration, TRUE)
+            self.__statusTimer.setSingleShot(True)
+            self.__statusTimer.start(1000 * duration)
 
         if tooltip:
             self.tooltip.set_tooltip(tooltip)

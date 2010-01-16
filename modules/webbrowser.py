@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 #  webbrowser.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
 from os import access, X_OK, spawnv, P_NOWAIT 
-from qt import QMessageBox
+from PyQt4.QtGui import *
 import sys
 
 def launch_browser(browser, url, caption=None, message=None):

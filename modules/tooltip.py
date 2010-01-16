@@ -1,31 +1,29 @@
+# -*- coding: utf-8 -*-
 #  tooltip.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from qt import *
+from PyQt4.QtGui import *
+from PyQt4.QtCore import *
 from util import *
 
 class Tooltip(QLabel):
     def __init__(self, text, bgcolor="#ffd700",fgcolor="#000000",delay=1000):
         self.delay = delay
-        QLabel.__init__(self, None, "tooltip", Qt.WStyle_StaysOnTop
-                        | Qt.WStyle_Customize
-                        | Qt.WStyle_NoBorder
-                        | Qt.WStyle_Tool)
+        QLabel.__init__(self, None, Qt.WindowStaysOnTopHint
+                        | Qt.FramelessWindowHint
+                        | Qt.Tool)
         self.setMargin(1)
         self.setIndent(0)
-        self.setAutoMask(FALSE)
         self.setFrameStyle(QFrame.Plain | QFrame.Box)
         self.setLineWidth(1)
-        self.polish()
         self.setText(text)
         self.adjustSize()
 
         # set the pallete...
         pal = QPalette()
-        cg = QColorGroup()
-        cg.setColor(QColorGroup.Background, QColor(bgcolor))
-        cg.setColor(QColorGroup.Foreground, QColor(fgcolor))
-        pal.setActive(cg)
-        pal.setInactive(cg)
+        pal.setColor(QPalette.Active, QPalette.Window, QColor(bgcolor))
+        pal.setColor(QPalette.Active, QPalette.WindowText, QColor(fgcolor))
+        pal.setColor(QPalette.Inactive, QPalette.Window, QColor(bgcolor))
+        pal.setColor(QPalette.Inactive, QPalette.WindowText, QColor(fgcolor))
         self.setPalette(pal)
 
         self.enter_timer_id = None

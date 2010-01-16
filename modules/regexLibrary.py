@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 from regexLibraryBA import RegexLibraryBA
 from parseRegexLib import ParseRegexLib
-from qt import *
 from util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo
 
 import os
@@ -33,13 +33,13 @@ class RegexLibrary(RegexLibraryBA):
         
     def populateListBox(self):
         for d in self.xml_dicts:
-            self.descriptionListBox.insertItem(d.get('desc', "<unknown>"))
+            self.descriptionListBox.addItem(d.get('desc', "<unknown>"))
 
         
     def descSelectedSlot(self, qlistboxitem):
         if qlistboxitem == None: return
 
-        itemnum = self.descriptionListBox.currentItem()
+        itemnum = self.descriptionListBox.currentRow()
         self.populateSelected(self.xml_dicts[itemnum])
 
 

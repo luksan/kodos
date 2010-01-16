@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
 #  reportBug.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
 from reportBugBA import reportBugBA
 from util import *
-import qt 
+from PyQt4.QtGui import *
+from PyQt4.QtCore import *
+from PyQt4 import *
 import sys
 import string
 import smtplib
@@ -13,7 +16,7 @@ AUTHOR_ADDR = "phil_schwartz@users.sourceforge.net"
 
 class reportBug(reportBugBA):
     def __init__(self, parent=None, name=None):
-        reportBugBA.__init__(self, parent, name)
+        reportBugBA.__init__(self, parent)
         self.parent = parent
         self.kodos_main = parent.kodos_main
         self.populate()
@@ -23,9 +26,9 @@ class reportBug(reportBugBA):
         self.OSEdit.setText(sys.platform)
         pyvers = string.replace(sys.version, "\n", " - ")
         self.pythonVersionEdit.setText(pyvers)
-        self.PyQtVersionEdit.setText(qt.QT_VERSION_STR)
-        self.regexMultiLineEdit.setText(self.kodos_main.regexMultiLineEdit.text())
-        self.stringMultiLineEdit.setText(self.kodos_main.stringMultiLineEdit.text())
+        self.PyQtVersionEdit.setText(QT_VERSION_STR)
+        self.regexMultiLineEdit.setPlainText(self.kodos_main.regexMultiLineEdit.toPlainText())
+        self.stringMultiLineEdit.setPlainText(self.kodos_main.stringMultiLineEdit.toPlainText())
 
 
     def cancel_slot(self):
@@ -73,14 +76,13 @@ class reportBug(reportBugBA):
 class reportBugWindow(QMainWindow):
     def __init__(self, kodos_main):
         self.kodos_main = kodos_main
-
-        QMainWindow.__init__(self, None, None,
-                             Qt.WType_TopLevel | Qt.WDestructiveClose)
+        QMainWindow.__init__(self, kodos_main)#, Qt.Window | Qt.WA_DeleteOnClose)
         
         self.setGeometry(100, 50, 800, 600)
-        self.setCaption(self.tr("Report a Bug"))
+        # FIXME: setCaption and setIcon
+        #self.setCaption(self.tr("Report a Bug"))
         #self.setIcon(getPixmap("kodos_icon.png", "PNG"))
-        self.setIcon(QPixmap(xpm.kodosIcon))
+        #self.setIcon(QPixmap(xpm.kodosIcon))
         self.bug_report = reportBug(self)
         self.setCentralWidget(self.bug_report)
 
@@ -92,15 +94,17 @@ class reportBugWindow(QMainWindow):
 
 
     def createMenu(self):
-        self.filemenu = QPopupMenu()
-        id = self.filemenu.insertItem(self.tr("&Close"), self, SLOT("close()"))
+        pass
+        # FIXME: QPopupMenu
+        #self.filemenu = QPopupMenu()
+        #id = self.filemenu.insertItem(self.tr("&Close"), self, SLOT("close()"))
 
-        self.menubar = QMenuBar(self)
-        self.menubar.insertItem(self.tr("&File"), self.filemenu)
+        #self.menubar = QMenuBar(self)
+        #self.menubar.addMenu(self.tr("&File"), self.filemenu)
 
 
     def createToolBar(self):
         toolbar = QToolBar(self)
-        toolbar.setStretchableWidget(self.menubar)
+        # FIXME toolbar.setStretchableWidget(self.menubar)
         self.logolabel = kodos_toolbar_logo(toolbar)
  

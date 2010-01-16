@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 #  reference.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from qt import *
 from referenceBA import *
 from util import *
 import xpm

@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 
 from util import getHomeDirectory
 import os
 import string
-from qt import *
+from PyQt4.QtGui import QIcon, QPixmap
 import xpm
 
 MAX_SIZE = 50 # max number of files to retain
@@ -56,7 +57,7 @@ class RecentFiles:
     def clearMenu(self):
         # clear each menu entry...
         for idx in self.__indecies:
-            self.parent.fileMenu.removeItem(idx)
+            self.parent.fileMenu.removeAction(idx)
 
         # clear list of menu entry indecies
         self.__indecies = []
@@ -69,8 +70,8 @@ class RecentFiles:
         num = min(self.numShown, len(self.__recent_files))
         for i in range(num):
             filename = self.__recent_files[i]
-            idx = self.parent.fileMenu.insertItem(
-                QIconSet(QPixmap(xpm.newIcon)),
+            idx = self.parent.fileMenu.addAction(
+                QIcon(QPixmap(xpm.newIcon)),
                 filename)
 
             self.__indecies.insert(0, idx)

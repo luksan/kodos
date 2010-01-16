@@ -1,6 +1,5 @@
 from urlDialogBA import URLDialogBA
 import help
-from qt import *
 import urllib
 
 

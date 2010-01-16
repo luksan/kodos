@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #  util.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
 import os
@@ -5,9 +6,10 @@ import os.path
 import sys
 import time
 import string
-from qt import *
 from debug import *
 import xpm
+
+from PyQt4.QtGui import QPixmap, QLabel
 
 # QT constants that should be defined
 FALSE = 0
@@ -165,7 +167,7 @@ def kodos_toolbar_logo(toolbar):
     # hack to move logo to right
 
     blanklabel = QLabel("", toolbar)
-    toolbar.setStretchableWidget(blanklabel)
+    # FIXME: toolbar.setStretchableWidget(blanklabel)
     
     #banner = getPixmap("kodos_text_logo.gif", "GIF")
     
