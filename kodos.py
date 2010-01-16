@@ -801,8 +801,10 @@ class Kodos(KodosBA):
         
 
     def importFile(self):
-        fn = QFileDialog.getOpenFileName(self.filename, "All (*)",
-                                         self, "Import File")
+        fn = QFileDialog.getOpenFileName(self,
+                                         self.tr("Import File"),
+                                         self.filename, 
+                                         self.tr("All (*)"))
         
         if fn.isEmpty():
             self.updateStatus(self.tr("A file was not selected for import"),
@@ -822,7 +824,7 @@ class Kodos(KodosBA):
         
         data = fp.read()
         fp.close()
-        self.stringMultiLineEdit.setText(data)
+        self.stringMultiLineEdit.setPlainText(data)
 
         
     def fileOpen(self):       
