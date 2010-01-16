@@ -142,11 +142,9 @@ class Kodos(KodosBA):
             qApp.processEvents()
 
         self.connect(self, SIGNAL('prefsSaved()'), self.prefsSaved)
-
-        self.connect(self.fileMenu,
-                     SIGNAL('activated(int)'),
-                     self.fileMenuHandler)
         
+        self.fileMenu.triggered.connect(self.fileMenuHandler)
+
         self.connect(self, SIGNAL('pasteSymbol()'), self.paste_symbol)
 
         self.connect(self, SIGNAL('urlImported(str, str)'), self.urlImported)
@@ -186,9 +184,9 @@ class Kodos(KodosBA):
 
     def fileMenuHandler(self, menuid):
         if self.recent_files.isRecentFile(menuid):
-            fn = str(self.fileMenu.text(menuid))
-            self.recent_files.add(fn)
-            self.openFile(fn)
+            fn = str(menuid.text())
+            if self.openFile(fn):
+                self.recent_files.add(fn)
 
     def prefsSaved(self):
         if self.debug: print "prefsSaved slot"
