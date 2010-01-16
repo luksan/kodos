@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 #  help.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from qt import *
+from PyQt4.QtGui import *
+from PyQt4.QtCore import *
 from util import *
 import xpm
 from webbrowser import launch_browser
@@ -11,7 +13,7 @@ class textbrowser(QTextBrowser):
     # future: launch web browser
     def __init__(self, parent=None, name=None):
         self.parent = parent
-        QTextBrowser.__init__(self, parent, name)
+        QTextBrowser.__init__(self)
 
 
     def setSource(self, src):
@@ -21,20 +23,21 @@ class textbrowser(QTextBrowser):
             launch_browser(self.parent.external_browser, s)
             return
 
-        QTextBrowser.setSource(self, src)
+        QTextBrowser.setSource(self, QUrl(src))
                 
     
                 
 
 class Help(HelpBA):
     def __init__(self, parent, filename, external_browser=None):
-        HelpBA.__init__(self, None, None)
+        HelpBA.__init__(self, parent)
         #Qt.WType_TopLevel | Qt.WDestructiveClose)
         
         self.external_browser = external_browser
         self.setGeometry(100, 50, 800, 600)
-        self.setCaption("Help")
-        self.setIcon(QPixmap(xpm.kodosIcon))
+        # FIXME: setCaption and setIcon
+        #self.setCaption("Help")
+        #self.setIcon(QPixmap(xpm.kodosIcon))
         #self.setIcon(getPixmap("kodos_icon.png", "PNG"))
         
         self.textBrowser = textbrowser(self)

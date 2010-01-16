@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'helpBA.ui'
 #
-# Created: Wed Jan 13 13:15:28 2010
+# Created: Wed Jan 13 23:15:46 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -14,13 +14,11 @@ class Ui_HelpBA(object):
         HelpBA.setObjectName("HelpBA")
         HelpBA.resize(494, 585)
         self.widget = QtGui.QWidget(HelpBA)
-        self.widget.setGeometry(QtCore.QRect(0, 55, 494, 530))
         self.widget.setObjectName("widget")
         HelpBA.setCentralWidget(self.widget)
         self.toolBar = QtGui.QToolBar(HelpBA)
-        self.toolBar.setGeometry(QtCore.QRect(0, 0, 110, 31))
         self.toolBar.setObjectName("toolBar")
-        HelpBA.addToolBar(self.toolBar)
+        HelpBA.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
         self.menubar = QtGui.QMenuBar(HelpBA)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 494, 24))
         self.menubar.setObjectName("menubar")
@@ -72,7 +70,6 @@ class Ui_HelpBA(object):
 
     def retranslateUi(self, HelpBA):
         HelpBA.setWindowTitle(QtGui.QApplication.translate("HelpBA", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
-        self.toolBar.setLabel(QtGui.QApplication.translate("HelpBA", "Tools", None, QtGui.QApplication.UnicodeUTF8))
         self.fileMenu.setTitle(QtGui.QApplication.translate("HelpBA", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.fileHomeAction.setText(QtGui.QApplication.translate("HelpBA", "Home", None, QtGui.QApplication.UnicodeUTF8))
         self.fileHomeAction.setIconText(QtGui.QApplication.translate("HelpBA", "Home", None, QtGui.QApplication.UnicodeUTF8))
@@ -86,4 +83,11 @@ class Ui_HelpBA(object):
         self.fileExitAction.setText(QtGui.QApplication.translate("HelpBA", "Exit", None, QtGui.QApplication.UnicodeUTF8))
         self.fileExitAction.setIconText(QtGui.QApplication.translate("HelpBA", "Exit", None, QtGui.QApplication.UnicodeUTF8))
         self.fileExitAction.setShortcut(QtGui.QApplication.translate("HelpBA", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
+
+
+class HelpBA(QtGui.QMainWindow, Ui_HelpBA):
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QMainWindow.__init__(self, parent, f)
+
+        self.setupUi(self)
 
