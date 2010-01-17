@@ -79,10 +79,9 @@ class reportBugWindow(QMainWindow):
         QMainWindow.__init__(self, kodos_main)#, Qt.Window | Qt.WA_DeleteOnClose)
         
         self.setGeometry(100, 50, 800, 600)
-        # FIXME: setCaption and setIcon
-        #self.setCaption(self.tr("Report a Bug"))
-        #self.setIcon(getPixmap("kodos_icon.png", "PNG"))
-        #self.setIcon(QPixmap(xpm.kodosIcon))
+        self.setWindowTitle(self.tr("Report a Bug"))
+        self.setWindowIcon(QIcon(QPixmap(":images/kodos_icon.png")))
+
         self.bug_report = reportBug(self)
         self.setCentralWidget(self.bug_report)
 
@@ -94,16 +93,13 @@ class reportBugWindow(QMainWindow):
 
 
     def createMenu(self):
-        pass
-        # FIXME: QPopupMenu
-        #self.filemenu = QPopupMenu()
-        #id = self.filemenu.insertItem(self.tr("&Close"), self, SLOT("close()"))
-
-        #self.menubar = QMenuBar(self)
-        #self.menubar.addMenu(self.tr("&File"), self.filemenu)
+        self.menubar = self.menuBar()
+        self.filemenu = self.menubar.addMenu(self.tr("&File"))
+        self.filemenu.addAction(self.tr("&Close"), self, SLOT("close()"))
 
 
     def createToolBar(self):
+        return #FIXME empty menubar with the kodos logo to the far right
         toolbar = QToolBar(self)
         # FIXME toolbar.setStretchableWidget(self.menubar)
         self.logolabel = kodos_toolbar_logo(toolbar)
