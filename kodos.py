@@ -25,7 +25,7 @@ you have installed PyQt for the version of Python that you are running."""
 import os.path
 from distutils.sysconfig import get_python_lib
 
-sys.path.insert(0, os.path.join(get_python_lib(), "kodos")) 
+sys.path.append(os.path.join(get_python_lib(), "kodos")) 
 
 ###################################################################
 
