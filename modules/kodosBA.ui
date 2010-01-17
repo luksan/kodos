@@ -75,7 +75,11 @@
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="QTextBrowser" name="matchTextBrowser"/>
+         <widget class="QTextBrowser" name="matchTextBrowser">
+          <property name="acceptRichText">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
