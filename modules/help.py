@@ -35,11 +35,7 @@ class Help(HelpBA):
         
         self.external_browser = external_browser
         self.setGeometry(100, 50, 800, 600)
-        # FIXME: setCaption and setIcon
-        #self.setCaption("Help")
-        #self.setIcon(QPixmap(xpm.kodosIcon))
-        #self.setIcon(getPixmap("kodos_icon.png", "PNG"))
-        
+
         self.textBrowser = textbrowser(self)
         absPath = self.getHelpFile(filename)
 

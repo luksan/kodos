@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Kodos Help</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../kodos.qrc">
+    <normaloff>:/images/kodos_icon.png</normaloff>:/images/kodos_icon.png</iconset>
+  </property>
   <widget class="QWidget" name="widget"/>
   <widget class="QToolBar" name="toolBar">
    <attribute name="toolBarArea">

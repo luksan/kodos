@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'helpBA.ui'
 #
-# Created: Sun Jan 17 14:35:32 2010
+# Created: Sun Jan 17 20:44:09 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,6 +13,9 @@ class Ui_HelpBA(object):
     def setupUi(self, HelpBA):
         HelpBA.setObjectName("HelpBA")
         HelpBA.resize(494, 585)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/images/kodos_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        HelpBA.setWindowIcon(icon)
         self.widget = QtGui.QWidget(HelpBA)
         self.widget.setObjectName("widget")
         HelpBA.setCentralWidget(self.widget)
@@ -26,21 +29,21 @@ class Ui_HelpBA(object):
         self.fileMenu.setObjectName("fileMenu")
         HelpBA.setMenuBar(self.menubar)
         self.fileHomeAction = QtGui.QAction(HelpBA)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/images/go-home.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.fileHomeAction.setIcon(icon)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/images/go-home.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.fileHomeAction.setIcon(icon1)
         self.fileHomeAction.setProperty("name", QtCore.QVariant("fileHomeAction"))
         self.fileHomeAction.setObjectName("fileHomeAction")
         self.fileBackAction = QtGui.QAction(HelpBA)
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/images/go-previous.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.fileBackAction.setIcon(icon1)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/images/go-previous.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.fileBackAction.setIcon(icon2)
         self.fileBackAction.setProperty("name", QtCore.QVariant("fileBackAction"))
         self.fileBackAction.setObjectName("fileBackAction")
         self.fileForwardAction = QtGui.QAction(HelpBA)
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/images/go-next.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.fileForwardAction.setIcon(icon2)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(":/images/go-next.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.fileForwardAction.setIcon(icon3)
         self.fileForwardAction.setProperty("name", QtCore.QVariant("fileForwardAction"))
         self.fileForwardAction.setObjectName("fileForwardAction")
         self.fileExitAction = QtGui.QAction(HelpBA)
