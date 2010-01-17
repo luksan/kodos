@@ -445,8 +445,6 @@ class Kodos(KodosBA):
 
 
     def populate_group_table(self, tuples):
-        # FIXME: this isn't called when the last group is removed
-
         rows = len(tuples)
         # Remove old rows for groups that no longer exist
         for i in range(rows, self.groupTable.rowCount()):
@@ -716,6 +714,9 @@ class Kodos(KodosBA):
             #print group_tuples
             self.populate_group_table(self.group_tuples)
             #self.populate_group_listview(self.group_tuples)
+        else:
+            # clear the group table
+            self.populate_group_table([])
 
         str_pattern_matches = unicode(self.tr("Pattern matches"))
         str_found = unicode(self.tr("found"))
