@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Kodos - The Python Regex Debugger</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../kodos.qrc">
+    <normaloff>:/images/kodos_icon.png</normaloff>:/images/kodos_icon.png</iconset>
+  </property>
   <property name="windowIconText">
    <string>Kodos</string>
   </property>
@@ -294,8 +298,8 @@ database. New in Python version 2.0.</string>
    </layout>
   </widget>
   <widget class="QToolBar" name="toolBar">
-   <property name="label" stdset="0">
-    <string>Tools</string>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -381,8 +385,8 @@ database. New in Python version 2.0.</string>
   </widget>
   <action name="fileNewAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image2</normaloff>image2</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/document-new.png</normaloff>:/images/document-new.png</iconset>
    </property>
    <property name="text">
     <string>&amp;New</string>
@@ -399,8 +403,8 @@ database. New in Python version 2.0.</string>
   </action>
   <action name="fileOpenAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image3</normaloff>image3</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/document-open.png</normaloff>:/images/document-open.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Open...</string>
@@ -411,14 +415,11 @@ database. New in Python version 2.0.</string>
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
-   <property name="name" stdset="0">
-    <cstring>fileOpenAction</cstring>
-   </property>
   </action>
   <action name="fileSaveAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image4</normaloff>image4</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/document-save.png</normaloff>:/images/document-save.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Save</string>
@@ -434,6 +435,10 @@ database. New in Python version 2.0.</string>
    </property>
   </action>
   <action name="fileSaveAsAction">
+   <property name="icon">
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/document-save-as.png</normaloff>:/images/document-save-as.png</iconset>
+   </property>
    <property name="text">
     <string>Save &amp;As...</string>
    </property>
@@ -463,8 +468,8 @@ database. New in Python version 2.0.</string>
   </action>
   <action name="editUndoAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image5</normaloff>image5</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/edit-undo.png</normaloff>:/images/edit-undo.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Undo</string>
@@ -475,14 +480,11 @@ database. New in Python version 2.0.</string>
    <property name="shortcut">
     <string>Ctrl+Z</string>
    </property>
-   <property name="name" stdset="0">
-    <cstring>editUndoAction</cstring>
-   </property>
   </action>
   <action name="editRedoAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image6</normaloff>image6</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/edit-redo.png</normaloff>:/images/edit-redo.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Redo</string>
@@ -493,14 +495,11 @@ database. New in Python version 2.0.</string>
    <property name="shortcut">
     <string>Ctrl+Y</string>
    </property>
-   <property name="name" stdset="0">
-    <cstring>editRedoAction</cstring>
-   </property>
   </action>
   <action name="editCutAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image7</normaloff>image7</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/edit-cut.png</normaloff>:/images/edit-cut.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Cut</string>
@@ -511,14 +510,11 @@ database. New in Python version 2.0.</string>
    <property name="shortcut">
     <string>Ctrl+X</string>
    </property>
-   <property name="name" stdset="0">
-    <cstring>editCutAction</cstring>
-   </property>
   </action>
   <action name="editCopyAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image8</normaloff>image8</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/edit-copy.png</normaloff>:/images/edit-copy.png</iconset>
    </property>
    <property name="text">
     <string>C&amp;opy</string>
@@ -529,14 +525,11 @@ database. New in Python version 2.0.</string>
    <property name="shortcut">
     <string>Ctrl+C</string>
    </property>
-   <property name="name" stdset="0">
-    <cstring>editCopyAction</cstring>
-   </property>
   </action>
   <action name="editPasteAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image9</normaloff>image9</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/edit-paste.png</normaloff>:/images/edit-paste.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Paste</string>
@@ -547,29 +540,20 @@ database. New in Python version 2.0.</string>
    <property name="shortcut">
     <string>Ctrl+V</string>
    </property>
-   <property name="name" stdset="0">
-    <cstring>editPasteAction</cstring>
-   </property>
   </action>
   <action name="examineAction">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>image10</normaloff>image10</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/page-zoom.png</normaloff>:/images/page-zoom.png</iconset>
    </property>
    <property name="text">
     <string>E&amp;xamine Regex</string>
    </property>
    <property name="iconText">
     <string>Examine Regex for Match</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+X</string>
-   </property>
-   <property name="name" stdset="0">
-    <cstring>examineAction</cstring>
    </property>
   </action>
   <action name="helpContentsAction">
@@ -630,8 +614,8 @@ database. New in Python version 2.0.</string>
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>image11</normaloff>image11</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/media-playback-pause.png</normaloff>:/images/media-playback-pause.png</iconset>
    </property>
    <property name="text">
     <string>Pause Processing</string>
@@ -642,9 +626,6 @@ database. New in Python version 2.0.</string>
    <property name="shortcut">
     <string>Ctrl+P</string>
    </property>
-   <property name="name" stdset="0">
-    <cstring>editPauseAction</cstring>
-   </property>
   </action>
   <action name="editPreferencesAction">
    <property name="text">
@@ -653,14 +634,11 @@ database. New in Python version 2.0.</string>
    <property name="iconText">
     <string>Preferences</string>
    </property>
-   <property name="name" stdset="0">
-    <cstring>editPreferencesAction</cstring>
-   </property>
   </action>
   <action name="helpHelpAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image12</normaloff>image12</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
    </property>
    <property name="text">
     <string>Help</string>
@@ -688,8 +666,8 @@ database. New in Python version 2.0.</string>
   </action>
   <action name="helpRegexReferenceAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image13</normaloff>image13</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/book.png</normaloff>:/images/book.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Regex Reference Guide</string>
@@ -706,8 +684,8 @@ database. New in Python version 2.0.</string>
   </action>
   <action name="helpVisitWebsiteAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image14</normaloff>image14</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/kodos_icon.png</normaloff>:/images/kodos_icon.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Visit Kodos Website</string>
@@ -783,8 +761,8 @@ database. New in Python version 2.0.</string>
   </action>
   <action name="helpRegexLibAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image16</normaloff>image16</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/library.png</normaloff>:/images/library.png</iconset>
    </property>
    <property name="text">
     <string>Regex &amp;Library</string>
@@ -823,7 +801,9 @@ database. New in Python version 2.0.</string>
   <tabstop>matchTextBrowser</tabstop>
   <tabstop>codeTextBrowser</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../kodos.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>dotallCheckBox</sender>
@@ -1488,8 +1468,8 @@ database. New in Python version 2.0.</string>
    <slot>revert_file_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>

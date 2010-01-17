@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'aboutBA.ui'
 #
-# Created: Sun Jan 17 13:10:42 2010
+# Created: Sun Jan 17 16:21:49 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -166,7 +166,7 @@ class Ui_AboutBA(object):
         self.gridlayout.setObjectName("gridlayout")
         self.PixmapLabel1 = QtGui.QLabel(AboutBA)
         self.PixmapLabel1.setPixmap(QtGui.QPixmap(":/images/kodos.png"))
-        self.PixmapLabel1.setScaledContents(True)
+        self.PixmapLabel1.setScaledContents(False)
         self.PixmapLabel1.setWordWrap(False)
         self.PixmapLabel1.setObjectName("PixmapLabel1")
         self.gridlayout.addWidget(self.PixmapLabel1, 1, 0, 1, 1)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'referenceBA.ui'
 #
-# Created: Wed Jan 13 17:29:23 2010
+# Created: Sun Jan 17 15:32:48 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -106,9 +106,8 @@ class Ui_ReferenceBA(object):
         self.filePrintAction.setObjectName("filePrintAction")
         self.fileExitAction = QtGui.QAction(ReferenceBA)
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("image5"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap(":/images/dialog-close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.fileExitAction.setIcon(icon4)
-        self.fileExitAction.setProperty("name", QtCore.QVariant("fileExitAction"))
         self.fileExitAction.setObjectName("fileExitAction")
         self.editUndoAction = QtGui.QAction(ReferenceBA)
         icon5 = QtGui.QIcon()
@@ -136,9 +135,8 @@ class Ui_ReferenceBA(object):
         self.editCopyAction.setObjectName("editCopyAction")
         self.editPasteAction = QtGui.QAction(ReferenceBA)
         icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap("image10"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon9.addPixmap(QtGui.QPixmap(":/images/edit-paste.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.editPasteAction.setIcon(icon9)
-        self.editPasteAction.setProperty("name", QtCore.QVariant("editPasteAction"))
         self.editPasteAction.setObjectName("editPasteAction")
         self.editFindAction = QtGui.QAction(ReferenceBA)
         icon10 = QtGui.QIcon()
@@ -147,7 +145,6 @@ class Ui_ReferenceBA(object):
         self.editFindAction.setProperty("name", QtCore.QVariant("editFindAction"))
         self.editFindAction.setObjectName("editFindAction")
         self.helpContentsAction = QtGui.QAction(ReferenceBA)
-        self.helpContentsAction.setProperty("name", QtCore.QVariant("helpContentsAction"))
         self.helpContentsAction.setObjectName("helpContentsAction")
         self.helpIndexAction = QtGui.QAction(ReferenceBA)
         self.helpIndexAction.setProperty("name", QtCore.QVariant("helpIndexAction"))
@@ -157,7 +154,7 @@ class Ui_ReferenceBA(object):
         self.helpAboutAction.setObjectName("helpAboutAction")
         self.helpAction = QtGui.QAction(ReferenceBA)
         icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap("image12"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon11.addPixmap(QtGui.QPixmap(":/images/help.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.helpAction.setIcon(icon11)
         self.helpAction.setProperty("name", QtCore.QVariant("helpAction"))
         self.helpAction.setObjectName("helpAction")
@@ -166,7 +163,6 @@ class Ui_ReferenceBA(object):
         self.helpPythonAction.setObjectName("helpPythonAction")
         self.toolBar.addAction(self.fileExitAction)
         self.toolBar.addAction(self.editPasteAction)
-        self.toolBar.addAction(self.helpContentsAction)
         self.fileMenu.addSeparator()
         self.fileMenu.addAction(self.fileExitAction)
         self.editMenu.addAction(self.editPasteAction)
@@ -307,6 +303,7 @@ class Ui_ReferenceBA(object):
         self.helpPythonAction.setText(QtGui.QApplication.translate("ReferenceBA", "&Python Regex Help", None, QtGui.QApplication.UnicodeUTF8))
         self.helpPythonAction.setIconText(QtGui.QApplication.translate("ReferenceBA", "Python Regex Help", None, QtGui.QApplication.UnicodeUTF8))
 
+import kodos_rc
 
 class ReferenceBA(QtGui.QMainWindow, Ui_ReferenceBA):
     def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):

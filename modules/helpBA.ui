@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Kodos Help</string>
   </property>
   <widget class="QWidget" name="widget"/>
   <widget class="QToolBar" name="toolBar">
@@ -50,8 +50,8 @@
   </widget>
   <action name="fileHomeAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image0</normaloff>image0</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/go-home.png</normaloff>:/images/go-home.png</iconset>
    </property>
    <property name="text">
     <string>Home</string>
@@ -68,8 +68,8 @@
   </action>
   <action name="fileBackAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image1</normaloff>image1</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/go-previous.png</normaloff>:/images/go-previous.png</iconset>
    </property>
    <property name="text">
     <string>Back</string>
@@ -86,8 +86,8 @@
   </action>
   <action name="fileForwardAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image2</normaloff>image2</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/go-next.png</normaloff>:/images/go-next.png</iconset>
    </property>
    <property name="text">
     <string>Forward</string>
@@ -103,10 +103,6 @@
    </property>
   </action>
   <action name="fileExitAction">
-   <property name="icon">
-    <iconset>
-     <normaloff>image3</normaloff>image3</iconset>
-   </property>
    <property name="text">
     <string>Exit</string>
    </property>
@@ -122,7 +118,9 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../kodos.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>fileExitAction</sender>

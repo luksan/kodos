@@ -325,7 +325,6 @@
    </attribute>
    <addaction name="fileExitAction"/>
    <addaction name="editPasteAction"/>
-   <addaction name="helpContentsAction"/>
   </widget>
   <widget class="QMenuBar" name="MenuBar">
    <property name="geometry">
@@ -449,8 +448,8 @@
   </action>
   <action name="fileExitAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image5</normaloff>image5</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/dialog-close.png</normaloff>:/images/dialog-close.png</iconset>
    </property>
    <property name="text">
     <string>E&amp;xit</string>
@@ -460,9 +459,6 @@
    </property>
    <property name="shortcut">
     <string/>
-   </property>
-   <property name="name" stdset="0">
-    <cstring>fileExitAction</cstring>
    </property>
   </action>
   <action name="editUndoAction">
@@ -539,8 +535,8 @@
   </action>
   <action name="editPasteAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image10</normaloff>image10</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/edit-paste.png</normaloff>:/images/edit-paste.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Paste</string>
@@ -553,9 +549,6 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
-   </property>
-   <property name="name" stdset="0">
-    <cstring>editPasteAction</cstring>
    </property>
   </action>
   <action name="editFindAction">
@@ -585,9 +578,6 @@
    </property>
    <property name="shortcut">
     <string/>
-   </property>
-   <property name="name" stdset="0">
-    <cstring>helpContentsAction</cstring>
    </property>
   </action>
   <action name="helpIndexAction">
@@ -620,8 +610,8 @@
   </action>
   <action name="helpAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image12</normaloff>image12</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Help</string>
@@ -646,7 +636,9 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../kodos.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>fileExitAction</sender>

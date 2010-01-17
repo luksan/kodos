@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'regexLibraryBA.ui'
 #
-# Created: Wed Jan 13 23:30:07 2010
+# Created: Sun Jan 17 16:21:49 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -57,7 +57,6 @@ class Ui_RegexLibraryBA(object):
         self.gridlayout.addWidget(self.tabWidget3, 1, 0, 1, 1)
         RegexLibraryBA.setCentralWidget(self.widget)
         self.toolBar = QtGui.QToolBar(RegexLibraryBA)
-        self.toolBar.setProperty("label", QtCore.QVariant(QtGui.QApplication.translate("RegexLibraryBA", "Tools", None, QtGui.QApplication.UnicodeUTF8)))
         self.toolBar.setObjectName("toolBar")
         RegexLibraryBA.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
         self.MenuBar = QtGui.QMenuBar(RegexLibraryBA)
@@ -72,13 +71,13 @@ class Ui_RegexLibraryBA(object):
         RegexLibraryBA.setMenuBar(self.MenuBar)
         self.editPasteAction = QtGui.QAction(RegexLibraryBA)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("image1"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/images/edit-paste.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.editPasteAction.setIcon(icon)
         self.editPasteAction.setProperty("name", QtCore.QVariant("editPasteAction"))
         self.editPasteAction.setObjectName("editPasteAction")
         self.helpHelpAction = QtGui.QAction(RegexLibraryBA)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("image2"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/images/help.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.helpHelpAction.setIcon(icon1)
         self.helpHelpAction.setProperty("name", QtCore.QVariant("helpHelpAction"))
         self.helpHelpAction.setObjectName("helpHelpAction")
@@ -120,6 +119,7 @@ class Ui_RegexLibraryBA(object):
         self.exitAction.setText(QtGui.QApplication.translate("RegexLibraryBA", "&Exit", None, QtGui.QApplication.UnicodeUTF8))
         self.exitAction.setIconText(QtGui.QApplication.translate("RegexLibraryBA", "Exit", None, QtGui.QApplication.UnicodeUTF8))
 
+import kodos_rc
 
 class RegexLibraryBA(QtGui.QMainWindow, Ui_RegexLibraryBA):
     def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):

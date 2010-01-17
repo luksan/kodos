@@ -75,9 +75,6 @@
    </layout>
   </widget>
   <widget class="QToolBar" name="toolBar">
-   <property name="label" stdset="0">
-    <string>Tools</string>
-   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -121,8 +118,8 @@
   </widget>
   <action name="editPasteAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image1</normaloff>image1</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/edit-paste.png</normaloff>:/images/edit-paste.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Paste Example Into Kodos</string>
@@ -142,8 +139,8 @@
   </action>
   <action name="helpHelpAction">
    <property name="icon">
-    <iconset>
-     <normaloff>image2</normaloff>image2</iconset>
+    <iconset resource="../kodos.qrc">
+     <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Help</string>
@@ -171,7 +168,9 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../kodos.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>editPasteAction</sender>

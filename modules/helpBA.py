@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'helpBA.ui'
 #
-# Created: Wed Jan 13 23:15:46 2010
+# Created: Sun Jan 17 14:35:32 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,26 +27,23 @@ class Ui_HelpBA(object):
         HelpBA.setMenuBar(self.menubar)
         self.fileHomeAction = QtGui.QAction(HelpBA)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("image0"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/images/go-home.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.fileHomeAction.setIcon(icon)
         self.fileHomeAction.setProperty("name", QtCore.QVariant("fileHomeAction"))
         self.fileHomeAction.setObjectName("fileHomeAction")
         self.fileBackAction = QtGui.QAction(HelpBA)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("image1"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/images/go-previous.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.fileBackAction.setIcon(icon1)
         self.fileBackAction.setProperty("name", QtCore.QVariant("fileBackAction"))
         self.fileBackAction.setObjectName("fileBackAction")
         self.fileForwardAction = QtGui.QAction(HelpBA)
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("image2"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/images/go-next.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.fileForwardAction.setIcon(icon2)
         self.fileForwardAction.setProperty("name", QtCore.QVariant("fileForwardAction"))
         self.fileForwardAction.setObjectName("fileForwardAction")
         self.fileExitAction = QtGui.QAction(HelpBA)
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("image3"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.fileExitAction.setIcon(icon3)
         self.fileExitAction.setProperty("name", QtCore.QVariant("fileExitAction"))
         self.fileExitAction.setObjectName("fileExitAction")
         self.toolBar.addAction(self.fileBackAction)
@@ -69,7 +66,7 @@ class Ui_HelpBA(object):
         QtCore.QMetaObject.connectSlotsByName(HelpBA)
 
     def retranslateUi(self, HelpBA):
-        HelpBA.setWindowTitle(QtGui.QApplication.translate("HelpBA", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
+        HelpBA.setWindowTitle(QtGui.QApplication.translate("HelpBA", "Kodos Help", None, QtGui.QApplication.UnicodeUTF8))
         self.fileMenu.setTitle(QtGui.QApplication.translate("HelpBA", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.fileHomeAction.setText(QtGui.QApplication.translate("HelpBA", "Home", None, QtGui.QApplication.UnicodeUTF8))
         self.fileHomeAction.setIconText(QtGui.QApplication.translate("HelpBA", "Home", None, QtGui.QApplication.UnicodeUTF8))
@@ -84,6 +81,7 @@ class Ui_HelpBA(object):
         self.fileExitAction.setIconText(QtGui.QApplication.translate("HelpBA", "Exit", None, QtGui.QApplication.UnicodeUTF8))
         self.fileExitAction.setShortcut(QtGui.QApplication.translate("HelpBA", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
 
+import kodos_rc
 
 class HelpBA(QtGui.QMainWindow, Ui_HelpBA):
     def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
