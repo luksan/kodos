@@ -149,7 +149,7 @@ class Kodos(KodosBA):
 
         self.connect(self, SIGNAL('urlImported(str, str)'), self.urlImported)
 
-        self.connect(self, SIGNAL('pasteRegexLib()'), self.pasteFromRegexLib)
+        self.connect(self, SIGNAL('pasteRegexLib(dict)'), self.pasteFromRegexLib)
 
         kodos_toolbar_logo(self.toolBar)
         if self.replace:  self.show_replace_widgets()
@@ -1005,14 +1005,14 @@ class Kodos(KodosBA):
         self.filename = ""
         self.checkEditState()
 
-        self.regexMultiLineEdit.setText(d.get('regex'), "")
-        self.stringMultiLineEdit.setText(d.get('text'), "")
-        self.replaceTextEdit.setText(d.get('replace'), "")
+        self.regexMultiLineEdit.setPlainText(d.get('regex', ""))
+        self.stringMultiLineEdit.setPlainText(d.get('text', ""))
+        self.replaceTextEdit.setPlainText(d.get('replace', ""))
 
         try:
             # set the current page if applicable
-            self.resultTabWidget.setCurrentPage(int(d['tab']))
-        except:
+            self.resultTabWidget.setCurrentIndex(int(d['tab']))
+        except KeyError:
             pass
         self.editstate = STATE_UNEDITED
 

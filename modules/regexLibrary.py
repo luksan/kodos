@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from PyQt4.QtCore import SIGNAL
 from regexLibraryBA import RegexLibraryBA
 from parseRegexLib import ParseRegexLib
 from util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo
@@ -52,7 +53,7 @@ class RegexLibrary(RegexLibraryBA):
         
     def editPaste(self):
         if self.selected:
-            self.parent.emit(PYSIGNAL('pasteRegexLib()'), (self.selected,) )
+            self.parent.emit(SIGNAL('pasteRegexLib(dict)'), self.selected )
 
 
 
