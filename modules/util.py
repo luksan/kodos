@@ -165,6 +165,8 @@ def escapeSQLq(qstr):
 
 def kodos_toolbar_logo(toolbar):
     # hack to move logo to right
+    # FIXME: how to place the logo to the right with Qt4?
+    return
 
     blanklabel = QLabel("", toolbar)
     # FIXME: toolbar.setStretchableWidget(blanklabel)
