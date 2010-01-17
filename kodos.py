@@ -430,20 +430,6 @@ class Kodos(KodosBA):
         self.updateStatus(msg, val)
 
 
-    def populate_group_listview(self, tuples):
-        # deprecated as of 2.4.0 - now uses QTable instead of QListView
-        self.groupListView.clear()
-
-        num_cols = 3
-        for t in tuples:
-            item = QListViewItem(self.groupListView)
-            for col in range(num_cols):
-                try:
-                    item.setText(col, str(t[col]))
-                except UnicodeError:
-                    item.setText(col, unicode(t[col]))
-
-
     def populate_group_table(self, tuples):
         rows = len(tuples)
         # Remove old rows for groups that no longer exist
@@ -711,9 +697,7 @@ class Kodos(KodosBA):
             else:
                 self.group_tuples.append( (1, group_nums.get(1, ""), g) )
                         
-            #print group_tuples
             self.populate_group_table(self.group_tuples)
-            #self.populate_group_listview(self.group_tuples)
         else:
             # clear the group table
             self.populate_group_table([])
