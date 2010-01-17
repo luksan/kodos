@@ -1,5 +1,25 @@
 <RCC>
   <qresource>
+    <file>images/dialog-close.png</file>
+    <file>images/go-home.png</file>
+    <file>images/go-next.png</file>
+    <file>images/go-previous.png</file>
+    <file>images/document-save-as.png</file>
+    <file>images/edit-redo.png</file>
+    <file>images/edit-undo.png</file>
+    <file>images/document-new.png</file>
+    <file>images/edit-copy.png</file>
+    <file>images/edit-cut.png</file>
+    <file>images/edit-paste.png</file>
+    <file>images/document-open.png</file>
+    <file>images/document-save.png</file>
+    <file>images/page-zoom.png</file>
+    <file>images/media-playback-pause.png</file>
+    <file>images/book.png</file>
+    <file>images/help.png</file>
+    <file>images/kodos_icon.png</file>
+    <file>images/library.png</file>
+    <file>images/pause_toolbar.png</file>
     <file>images/kodos.png</file>
   </qresource>
 </RCC>
