@@ -9,7 +9,7 @@ import string
 from debug import *
 import xpm
 
-from PyQt4.QtGui import QPixmap, QLabel
+from PyQt4.QtGui import *
 
 # QT constants that should be defined
 FALSE = 0
@@ -165,19 +165,15 @@ def escapeSQLq(qstr):
 
 def kodos_toolbar_logo(toolbar):
     # hack to move logo to right
-    # FIXME: how to place the logo to the right with Qt4?
-    return
+    blanklabel = QLabel()
+    blanklabel.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
 
-    blanklabel = QLabel("", toolbar)
-    # FIXME: toolbar.setStretchableWidget(blanklabel)
+    logolabel = QLabel("kodos_logo")
+    logolabel.setPixmap(QPixmap(":/images/kodos_icon.png"))
     
-    #banner = getPixmap("kodos_text_logo.gif", "GIF")
-    
-    logolabel = QLabel("kodos_logo", toolbar)
-    #logolabel.setPixmap(banner)
-    
-    logolabel.setPixmap(QPixmap(xpm.kodosIcon))
-    #logolabel.setPixmap(getPixmap("kodos_icon.png", "PNG"))
+    toolbar.addWidget(blanklabel)
+    toolbar.addWidget(logolabel)
+
     return logolabel
 
 

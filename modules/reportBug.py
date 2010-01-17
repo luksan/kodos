@@ -99,8 +99,7 @@ class reportBugWindow(QMainWindow):
 
 
     def createToolBar(self):
-        return #FIXME empty menubar with the kodos logo to the far right
-        toolbar = QToolBar(self)
-        # FIXME toolbar.setStretchableWidget(self.menubar)
+        toolbar = QToolBar()
+        self.addToolBar(toolbar)
         self.logolabel = kodos_toolbar_logo(toolbar)
  
