@@ -145,7 +145,7 @@ class Kodos(KodosBA):
         
         self.fileMenu.triggered.connect(self.fileMenuHandler)
 
-        self.connect(self, SIGNAL('pasteSymbol()'), self.paste_symbol)
+        self.connect(self, SIGNAL('pasteSymbol(str)'), self.paste_symbol)
 
         self.connect(self, SIGNAL('urlImported(str, str)'), self.urlImported)
 
@@ -950,7 +950,7 @@ class Kodos(KodosBA):
 
 
     def paste_symbol(self, symbol):
-        self.regexMultiLineEdit.insert(symbol)
+        self.regexMultiLineEdit.insertPlainText(symbol)
 
 
     def process_embedded_flags(self, regex):

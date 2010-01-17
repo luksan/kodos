@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #  reference.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
+from PyQt4.QtCore import SIGNAL
 from referenceBA import *
 from util import *
 import xpm
@@ -24,12 +25,12 @@ class Reference(ReferenceBA):
 
 
     def editPaste(self):
-        list_view_item = self.referenceListView.selectedItem()
+        list_view_item = self.referenceListView.currentItem()
         if list_view_item == None:
             return
         
         symbol = str(list_view_item.text(0))
-        self.parent.emit(PYSIGNAL('pasteSymbol()'), (symbol,))
+        self.parent.emit(SIGNAL('pasteSymbol(str)'), symbol)
 
 
     def help_slot(self):
