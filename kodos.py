@@ -355,7 +355,9 @@ class Kodos(KodosBA):
             
 
     def __refresh_regex_widget(self, base_qcolor, regex):
-        # FIXME: self.regexMultiLineEdit.setPaletteBackgroundColor(base_qcolor)
+        pal = QPalette()
+        pal.setColor(pal.Base, base_qcolor)
+        self.regexMultiLineEdit.setPalette(pal)
         
         self.regexMultiLineEdit.blockSignals(1)
         self.regexMultiLineEdit.clear()
