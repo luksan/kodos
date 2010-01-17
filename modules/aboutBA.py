@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'aboutBA.ui'
 #
-# Created: Wed Jan 13 18:36:58 2010
+# Created: Sun Jan 17 13:10:42 2010
 #      by: PyQt4 UI code generator 4.5.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_AboutBA(object):
     def setupUi(self, AboutBA):
         AboutBA.setObjectName("AboutBA")
-        AboutBA.resize(474, 496)
+        AboutBA.resize(474, 525)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -165,7 +165,7 @@ class Ui_AboutBA(object):
         self.gridlayout.setSpacing(6)
         self.gridlayout.setObjectName("gridlayout")
         self.PixmapLabel1 = QtGui.QLabel(AboutBA)
-        self.PixmapLabel1.setPixmap(QtGui.QPixmap("image0"))
+        self.PixmapLabel1.setPixmap(QtGui.QPixmap(":/images/kodos.png"))
         self.PixmapLabel1.setScaledContents(True)
         self.PixmapLabel1.setWordWrap(False)
         self.PixmapLabel1.setObjectName("PixmapLabel1")
@@ -212,11 +212,11 @@ class Ui_AboutBA(object):
         self.TextLabel1_3.setObjectName("TextLabel1_3")
         self.gridLayout.addWidget(self.TextLabel1_3, 1, 1, 1, 1)
         spacerItem2 = QtGui.QSpacerItem(247, 16, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Preferred)
-        self.gridLayout.addItem(spacerItem2, 7, 2, 1, 1)
+        self.gridLayout.addItem(spacerItem2, 8, 2, 1, 1)
         spacerItem3 = QtGui.QSpacerItem(86, 16, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem3, 8, 1, 1, 1)
+        self.gridLayout.addItem(spacerItem3, 9, 1, 1, 1)
         spacerItem4 = QtGui.QSpacerItem(84, 16, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem4, 8, 4, 1, 1)
+        self.gridLayout.addItem(spacerItem4, 9, 4, 1, 1)
         spacerItem5 = QtGui.QSpacerItem(100, 16, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem5, 3, 4, 1, 1)
         spacerItem6 = QtGui.QSpacerItem(102, 16, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
@@ -242,9 +242,11 @@ class Ui_AboutBA(object):
         self.textLabel2_3.setWordWrap(False)
         self.textLabel2_3.setObjectName("textLabel2_3")
         self.verticalLayout_2.addWidget(self.textLabel2_3)
-        self.gridLayout.addLayout(self.verticalLayout_2, 8, 2, 1, 1)
+        self.gridLayout.addLayout(self.verticalLayout_2, 9, 2, 1, 1)
         spacerItem7 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem7, 9, 2, 1, 1)
+        self.gridLayout.addItem(spacerItem7, 10, 2, 1, 1)
+        spacerItem8 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem8, 7, 2, 1, 1)
         self.gridlayout.addWidget(self.groupBox, 3, 0, 1, 1)
 
         self.retranslateUi(AboutBA)
@@ -256,13 +258,14 @@ class Ui_AboutBA(object):
         self.buttonOk.setText(QtGui.QApplication.translate("AboutBA", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setTitle(QtGui.QApplication.translate("AboutBA", "About...", None, QtGui.QApplication.UnicodeUTF8))
         self.TextLabel1_5.setText(QtGui.QApplication.translate("AboutBA", "Version:", None, QtGui.QApplication.UnicodeUTF8))
-        self.versionLabel.setText(QtGui.QApplication.translate("AboutBA", "0.8", None, QtGui.QApplication.UnicodeUTF8))
+        self.versionLabel.setText(QtGui.QApplication.translate("AboutBA", "X", None, QtGui.QApplication.UnicodeUTF8))
         self.TextLabel1_3.setText(QtGui.QApplication.translate("AboutBA", "Kodos", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel3_3.setText(QtGui.QApplication.translate("AboutBA", "Developed by: Phil Schwartz", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel4_3.setText(QtGui.QApplication.translate("AboutBA", "phil_schwartz@users.sourceforge.net", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel1_3.setText(QtGui.QApplication.translate("AboutBA", "Logo designed by: Konstantin Ryabitsev", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel2_3.setText(QtGui.QApplication.translate("AboutBA", "icon@fedoraproject.org", None, QtGui.QApplication.UnicodeUTF8))
 
+import kodos_rc
 
 class AboutBA(QtGui.QDialog, Ui_AboutBA):
     def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
