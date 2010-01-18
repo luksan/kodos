@@ -614,15 +614,14 @@ class Kodos(KodosBA):
 
         if self.is_paused:
             return
-        
+
+        self.process_embedded_flags(self.regex)
+
         if not self.regex or not self.matchstring:
             self.update_results(self.MSG_NA, MATCH_NA)
             self.clear_results()
             return
 
-        self.process_embedded_flags(self.regex)
-        #print self.resultTabWidget.currentPageIndex()
-        
         if HAS_ALARM:
             signal.signal(signal.SIGALRM, timeout)
             signal.alarm(TIMEOUT)
