@@ -10,6 +10,7 @@ from debug import *
 import xpm
 
 from PyQt4.QtGui import *
+from PyQt4.QtCore import *
 
 # QT constants that should be defined
 FALSE = 0
@@ -225,20 +226,20 @@ def saveWindowSettings(window, filename):
 def restoreWindowSettings(window, filename):
     path = os.path.join(getHomeDirectory(), ".kodos", filename)
 
+    d = getSavedWindowSettings(path)
+
+    x = d['x']
+    y = d['y']
+    width = d['width']
+    height = d['height']
+    #print "load:", d
+    sz = QSize(width, height)
+
     try:
-        d = getSavedWindowSettings(path)
-
-        x = d['x']
-        y = d['y']
-        width = d['width']
-        height = d['height']
-        #print "load:", d
-        sz = QSize(width, height)
-
         window.move(x, y)
         window.resize(sz)
-    except:
-        pass
+    except Exception, e:
+        print window.tr("Restoring of saved window geometry failed.")
     
 
 def findFile(filename):
