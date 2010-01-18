@@ -4,7 +4,6 @@
 from PyQt4.QtCore import SIGNAL
 from referenceBA import *
 from util import *
-import xpm
 #from tooltip import *
 #from status_bar import *
 

@@ -10,7 +10,6 @@ import sys
 import string
 import smtplib
 from version import VERSION
-import xpm
 
 AUTHOR_ADDR = "phil_schwartz@users.sourceforge.net"
 
