@@ -1,5 +1,6 @@
 <RCC>
   <qresource>
+    <file>images/document-open-recent.png</file>
     <file>images/pause.png</file>
     <file>images/green.png</file>
     <file>images/red.png</file>

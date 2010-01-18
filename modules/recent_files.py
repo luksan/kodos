@@ -4,7 +4,6 @@ from util import getHomeDirectory
 import os
 import string
 from PyQt4.QtGui import QIcon, QPixmap
-import xpm
 
 MAX_SIZE = 50 # max number of files to retain
 
@@ -71,7 +70,7 @@ class RecentFiles:
         for i in range(num):
             filename = self.__recent_files[i]
             idx = self.parent.fileMenu.addAction(
-                QIcon(QPixmap(xpm.newIcon)),
+                QIcon(QPixmap(":images/document-open-recent.png")),
                 filename)
 
             self.__indecies.insert(0, idx)
@@ -96,7 +95,7 @@ class RecentFiles:
         menu = self.parent.fileMenu
         idx = menu.indexOf(self.__indecies[0])
         menu.removeItem(menuid)
-        menu.insertItem(QIconSet(QPixmap(xpm.newIcon)),
+        menu.insertItem(QIconSet(QPixmap(":images/document-open-recent.png")),
                         filename,
                         -1,
                         idx)
