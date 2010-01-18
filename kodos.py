@@ -1084,7 +1084,7 @@ class Kodos(KodosBA):
         lines = fp.readlines()
         html = string.join(lines)
 
-        rawstr = r"""kodos-(?P<version>.*?)\<"""
+        rawstr = r"""kodos-(?P<version>.*?)\.\w{3,4}\<"""
         #rawstr = r"""release_id=.*\">.*(kodos-)(?P<version>.*?)</[aA]>"""
         match_obj = re.search(rawstr, html)
         if match_obj:
