@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Kodos - Regex Library</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../kodos.qrc">
+    <normaloff>:/images/kodos_icon.png</normaloff>:/images/kodos_icon.png</iconset>
+  </property>
   <widget class="QWidget" name="widget">
    <layout class="QGridLayout">
     <item row="0" column="0">
