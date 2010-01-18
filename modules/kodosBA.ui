@@ -117,6 +117,9 @@
     </item>
     <item row="3" column="0">
      <widget class="QTabWidget" name="tabWidget3">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
         <string>Search String</string>
@@ -816,8 +819,8 @@ database. New in Python version 2.0.</string>
    <slot>checkbox_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>232</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1072,8 +1075,8 @@ database. New in Python version 2.0.</string>
    <slot>checkbox_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>33</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1088,8 +1091,8 @@ database. New in Python version 2.0.</string>
    <slot>checkbox_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>417</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1104,8 +1107,8 @@ database. New in Python version 2.0.</string>
    <slot>match_num_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>239</x>
+     <y>639</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1120,8 +1123,8 @@ database. New in Python version 2.0.</string>
    <slot>checkbox_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>140</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1136,8 +1139,8 @@ database. New in Python version 2.0.</string>
    <slot>checkbox_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>509</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1152,8 +1155,8 @@ database. New in Python version 2.0.</string>
    <slot>checkbox_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>324</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1280,8 +1283,8 @@ database. New in Python version 2.0.</string>
    <slot>replace_changed_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>28</x>
+     <y>421</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1296,8 +1299,8 @@ database. New in Python version 2.0.</string>
    <slot>replace_num_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>425</x>
+     <y>639</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1360,8 +1363,8 @@ database. New in Python version 2.0.</string>
    <slot>kodos_edited_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>33</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1376,8 +1379,8 @@ database. New in Python version 2.0.</string>
    <slot>kodos_edited_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>28</x>
+     <y>421</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1392,8 +1395,8 @@ database. New in Python version 2.0.</string>
    <slot>kodos_edited_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>140</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1408,8 +1411,8 @@ database. New in Python version 2.0.</string>
    <slot>kodos_edited_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>232</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1424,8 +1427,8 @@ database. New in Python version 2.0.</string>
    <slot>kodos_edited_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>324</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1440,8 +1443,8 @@ database. New in Python version 2.0.</string>
    <slot>kodos_edited_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>417</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1456,8 +1459,8 @@ database. New in Python version 2.0.</string>
    <slot>kodos_edited_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>509</x>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1488,8 +1491,8 @@ database. New in Python version 2.0.</string>
    <slot>regex_changed_slot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>33</x>
+     <y>110</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1513,9 +1516,42 @@ database. New in Python version 2.0.</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>stringMultiLineEdit</sender>
+   <signal>textChanged()</signal>
+   <receiver>KodosBA</receiver>
+   <slot>kodos_edited_slot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>359</x>
+     <y>469</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>379</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>regexMultiLineEdit</sender>
+   <signal>textChanged()</signal>
+   <receiver>KodosBA</receiver>
+   <slot>kodos_edited_slot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>453</x>
+     <y>200</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>530</x>
+     <y>-12</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>regex_changed_slot()</slot>
   <slot>string_changed_slot()</slot>
+  <slot>kodos_edited_slot()</slot>
  </slots>
 </ui>
