@@ -40,7 +40,6 @@ from modules.webbrowser import launch_browser
 from modules.reportBug import reportBugWindow
 from modules.version import VERSION
 from modules.recent_files import RecentFiles
-import modules.xpm as xpm
 from modules.urlDialog import URLDialog
 from modules.migrate_settings import MigrateSettings
 from modules.regexLibrary import RegexLibrary
@@ -119,10 +118,11 @@ class Kodos(KodosBA):
         self.MSG_FAIL   = self.tr("Pattern does not match")
 
         
-        self.statusPixmapsDict = {MATCH_NA: QPixmap(xpm.yellowStatusIcon),
-                                  MATCH_OK: QPixmap(xpm.greenStatusIcon),
-                                  MATCH_FAIL: QPixmap(xpm.redStatusIcon),
-                                  MATCH_PAUSED: QPixmap(xpm.pauseStatusIcon)}
+        self.statusPixmapsDict = {  MATCH_NA: QPixmap(":images/yellow.png"),
+                                    MATCH_OK: QPixmap(":images/green.png"),
+                                    MATCH_FAIL: QPixmap(":images/red.png"),
+                                    MATCH_PAUSED: QPixmap(":images/pause.png"),
+                                }
 
         
         self.updateStatus(self.MSG_NA, MATCH_NA)
@@ -496,7 +496,6 @@ class Kodos(KodosBA):
             code += "newstr = compile_obj.subn('%s', %d)\n" % (self.replace,
                                                                self.replace_num)
         
-
         self.codeTextBrowser.setText(code)
 
 

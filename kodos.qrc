@@ -1,5 +1,9 @@
 <RCC>
   <qresource>
+    <file>images/pause.png</file>
+    <file>images/green.png</file>
+    <file>images/red.png</file>
+    <file>images/yellow.png</file>
     <file>images/dialog-close.png</file>
     <file>images/go-home.png</file>
     <file>images/go-next.png</file>
