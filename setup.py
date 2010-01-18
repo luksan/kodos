@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from modules.version import VERSION
 from distutils.core import setup
 #from distutils.sysconfig import get_python_lib
@@ -43,8 +44,6 @@ setup(name="kodos",
                   (HELP_PY_DIR, glob(os.path.join("help", "python", "*.html"))),
                   (IMAGES_DIR, glob(os.path.join("images", "*.png"))),
                   (SCREENSHOTS_DIR, glob(os.path.join("screenshots", "*.png"))),
-                  (libpath, glob('kodos.pro')),
-                  (libpath, glob('kodosqt.pro')),
                   (TRANSLATIONS_DIR, glob(os.path.join("translations", "*"))),
                   (MODULES_DIR, glob("modules/*.ui"))
                   ],

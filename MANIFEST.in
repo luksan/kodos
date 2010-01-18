@@ -10,8 +10,6 @@ include LICENSE.txt
 include README.txt
 include modules/*.ui
 include modules/*.py
-include kodos.pro
-include kodosqt.pro
 include windows/build.bat
 include windows/installer.iss
 include CHANGELOG.txt
