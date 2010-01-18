@@ -747,7 +747,10 @@ class Kodos(KodosBA):
 
 
     def closeEvent(self, ev):
-        self.checkEditState(self.tr("&No, Just Exit Kodos"))
+        if not self.checkEditState():
+            ev.ignore()
+            return
+
         saveWindowSettings(self, GEO)
 
         try:
@@ -763,14 +766,15 @@ class Kodos(KodosBA):
 
 
     def fileNew(self):
-        self.checkEditState()
+        if not self.checkEditState():
+            return
         self.filename = ""
         
         self.regexMultiLineEdit.setPlainText("")
         self.stringMultiLineEdit.setPlainText("")
         self.replaceTextEdit.setPlainText("")
         self.set_flags(0)
-        self.editstate = 0
+        self.editstate = STATE_UNEDITED
 
 
     def importURL(self):
@@ -821,7 +825,8 @@ class Kodos(KodosBA):
 
 
     def openFile(self, filename):
-        self.checkEditState()
+        if not self.checkEditState():
+            return
 
         self.filename = None
 
@@ -968,26 +973,32 @@ class Kodos(KodosBA):
         return 1
 
 
-    def checkEditState(self, noButtonStr=None):
-        if not noButtonStr: noButtonStr = self.tr("&No")
-        
+    def checkEditState(self):
         if self.editstate == STATE_EDITED:
-            message = self.tr("You have made changes. Would you like to save them before continuing")
-            
+            message = self.tr("You have made changes. Would you like to save them before continuing?")
+
             prompt = QMessageBox.warning(None,
                                          self.tr("Save changes?"),
                                          message,
-                                         self.tr("&Yes, Save Changes"),
-                                         noButtonStr)
-            
-            if prompt == 0:
+                                         QMessageBox.Save | 
+                                         QMessageBox.Cancel | 
+                                         QMessageBox.Discard)
+
+            if prompt == QMessageBox.Cancel:
+                return False
+
+            if prompt == QMessageBox.Save:
                 self.fileSave()
-                if not self.filename: self.checkEditState(noButtonStr)
+                if not self.filename: self.checkEditState()
+
+        return True
 
 
     def pasteFromRegexLib(self, d):
+        if not self.checkEditState():
+            return
+
         self.filename = ""
-        self.checkEditState()
 
         self.regexMultiLineEdit.setPlainText(d.get('regex', ""))
         self.stringMultiLineEdit.setPlainText(d.get('text', ""))
