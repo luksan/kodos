@@ -6,6 +6,7 @@ from PyQt4.QtGui import *
 from util import *
 from prefsBA import PrefsBA
 import help
+import string
 
 ##class Prefs(PrefsBA):
 ##    def __init__(self, parent=None, name=None, modal=0):
