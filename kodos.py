@@ -94,7 +94,6 @@ class Kodos(KodosBA):
         self.regex = ""
         self.matchstring = ""
         self.replace = ""
-        self.flags = 0
         self.is_paused = 0
         self.is_examined = 0
         self.filename = ""
@@ -126,6 +125,35 @@ class Kodos(KodosBA):
 
         
         self.updateStatus(self.MSG_NA, MATCH_NA)
+
+        class reFlag:
+            def __init__(self, flag_name, short_flag, checkbox):
+                self.flagName = flag_name
+                self.reFlag = eval(flag_name)
+                self.shortFlag = short_flag
+                self.checkBox = checkbox
+
+        class reFlagList(list):
+            def allFlagsORed(self):
+                ret = 0
+                for f in self:
+                    if f.checkBox.isChecked():
+                        ret |= f.reFlag
+                return ret
+            
+            def clearAll(self):
+                for f in self:
+                    f.checkBox.setChecked(False)
+
+        self.reFlags = reFlagList([
+                    reFlag("re.IGNORECASE", "i", self.ignorecaseCheckBox),
+                    reFlag("re.MULTILINE",  "m", self.multilineCheckBox),
+                    reFlag("re.DOTALL",     "s", self.dotallCheckBox),
+                    reFlag("re.VERBOSE",    "x", self.verboseCheckBox),
+                    reFlag("re.LOCALE",     "L", self.localeCheckBox),
+                    reFlag("re.UNICODE",    "u", self.unicodeCheckBox),
+                    ])
+        self.reFlags.clearAll()
 
         restoreWindowSettings(self, GEO)
         
@@ -197,108 +225,34 @@ class Kodos(KodosBA):
         
 
     def checkbox_slot(self):
-        self.flags = 0
-        
-        if self.ignorecaseCheckBox.isChecked():
-            self.flags = self.flags + re.IGNORECASE
-
-        if self.multilineCheckBox.isChecked():
-            self.flags = self.flags + re.MULTILINE
-
-        if self.dotallCheckBox.isChecked():
-            self.flags = self.flags + re.DOTALL
-
-        if self.verboseCheckBox.isChecked():
-            self.flags = self.flags + re.VERBOSE
-
-        if self.localeCheckBox.isChecked():
-            self.flags = self.flags + re.LOCALE
-
-        if self.unicodeCheckBox.isChecked():
-            self.flags = self.flags + re.UNICODE
-
         self.process_regex()
 
 
     def set_flags(self, flags):
         # from the given integer value of flags, set the checkboxes
         # this is used when loading a saved file
-        if flags & re.IGNORECASE:
-            self.ignorecaseCheckBox.setChecked(1)
-        else:
-            self.ignorecaseCheckBox.setChecked(0)
-
-        if flags & re.MULTILINE:
-            self.multilineCheckBox.setChecked(1)
-        else:
-            self.multilineCheckBox.setChecked(0)
-            
-        if flags & re.DOTALL:
-            self.dotallCheckBox.setChecked(1)
-        else:
-            self.dotallCheckBox.setChecked(0)
-            
-        if flags & re.VERBOSE:
-            self.verboseCheckBox.setChecked(1)
-        else:
-            self.verboseCheckBox.setChecked(0)
-
-        if flags & re.LOCALE:
-            self.localeCheckBox.setChecked(1)
-        else:
-            self.localeCheckBox.setChecked(0)
-
-        if flags & re.UNICODE:
-            self.unicodeCheckBox.setChecked(1)
-        else:
-            self.unicodeCheckBox.setChecked(0)
+        for f in self.reFlags:
+            f.checkbox.setChecked(flags & f.reFlag)
 
 
     def get_flags_string(self):
         flags_str = ""
         
-        if self.ignorecaseCheckBox.isChecked():
-            flags_str += "| re.IGNORECASE"
+        for f in self.reFlags:
+            if f.checkBox.isChecked():
+                flags_str += "| " + f.flagName
 
-        if self.multilineCheckBox.isChecked():
-            flags_str += "| re.MULTILINE"
-
-        if self.dotallCheckBox.isChecked():
-            flags_str += "| re.DOTALL"
-
-        if self.verboseCheckBox.isChecked():
-            flags_str += "| re.VERBOSE"
-
-        if self.localeCheckBox.isChecked():
-            flags_str += "| re.LOCALE"
-
-        if self.unicodeCheckBox.isChecked():
-            flags_str += "| re.UNICODE"
-
-        if flags_str: flags_str = ", " + flags_str[1:]
+        if flags_str:
+            flags_str = ", " + flags_str[1:]
         return flags_str
 
 
     def get_embedded_flags_string(self):
         flags_str = flags = ""
         
-        if self.ignorecaseCheckBox.isChecked():
-            flags += "i"
-
-        if self.multilineCheckBox.isChecked():
-            flags += "m"
-
-        if self.dotallCheckBox.isChecked():
-            flags += "s"
-
-        if self.verboseCheckBox.isChecked():
-            flags += "x"
-
-        if self.localeCheckBox.isChecked():
-            flags += "L"
-
-        if self.unicodeCheckBox.isChecked():
-            flags += "u"
+        for f in self.reFlags:
+            if f.checkBox.isChecked():
+                flags += f.shortFlag
 
         if flags:
             flags_str = "(?" + flags + ")"
@@ -336,7 +290,7 @@ class Kodos(KodosBA):
                 regex = regex[:i]
                 self.process_embedded_flags(self.regex)
                 try:
-                    m = re.search(regex, self.matchstring, self.flags)
+                    m = re.search(regex, self.matchstring, self.reFlags.allFlagsORed())
                     if m:
                         if self.debug: print "examined regex:", regex
                         self.__refresh_regex_widget(color, regex)
@@ -456,15 +410,13 @@ class Kodos(KodosBA):
         code += "\n\n"
         code += "# method 1: using a compile object\n"
         code += "compile_obj = re.compile(rawstr"
-        if self.flags != 0:
-            code += self.get_flags_string()
+        code += self.get_flags_string()
         code += ")\n"
         code += "match_obj = compile_obj.search(matchstr)\n\n"
         
         code += "# method 2: using search function (w/ external flags)\n"
         code += "match_obj = re.search(rawstr, matchstr"
-        if self.flags != 0:
-            code += self.get_flags_string()
+        code += self.get_flags_string()
         code += ")\n\n"
 
         code += "# method 3: using search function (w/ embedded flags)\n"
@@ -627,7 +579,7 @@ class Kodos(KodosBA):
             signal.alarm(TIMEOUT)
 
         try:
-            compile_obj = re.compile(self.regex, self.flags)
+            compile_obj = re.compile(self.regex, self.reFlags.allFlagsORed())
             allmatches = compile_obj.findall(self.matchstring)
 
             replace_spans = []
@@ -927,7 +879,7 @@ class Kodos(KodosBA):
         p = cPickle.Pickler(fp)
         p.dump(self.regex)
         p.dump(self.matchstring)
-        p.dump(self.flags)
+        p.dump(self.reFlags.allFlagsORed())
         p.dump(self.replace)
         
         fp.close()
@@ -955,19 +907,9 @@ class Kodos(KodosBA):
         self.embedded_flags = match.group('flags')
         self.regex_embedded_flags_removed = self.embedded_flags_obj.sub("", regex, 1)
         
-        for flag in self.embedded_flags:
-            if flag == 'i':
-                self.ignorecaseCheckBox.setChecked(1)
-            elif flag == 'L':
-                self.localeCheckBox.setChecked(1)
-            elif flag == 'm':
-                self.multilineCheckBox.setChecked(1)
-            elif flag == 's':
-                self.dotallCheckBox.setChecked(1)
-            elif flag == 'u':
-                self.unicodeCheckBox.setChecked(1)
-            elif flag == 'x':
-                self.verboseCheckBox.setChecked(1)
+        for f in self.reFlags:
+            if f.shortFlag in self.embedded_flags:
+                f.checkBox.setChecked(True)
 
         return 1
 
