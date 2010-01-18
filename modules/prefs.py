@@ -42,8 +42,6 @@ class Preferences(PrefsBA):
                 self.parseFontStr(setting, self.parent.setfont)
             if preference == 'Match Font' and setting:
                 self.parseFontStr(setting, self.parent.setMatchFont)
-            if preference == 'Web Browser' and setting:
-                self.browserEdit.setText(setting)
             if preference == 'Email Server' and setting:
                 self.emailServerEdit.setText(setting)
             if preference == 'Recent Files' and setting:
@@ -71,7 +69,6 @@ class Preferences(PrefsBA):
                   f.bold(), f.italic(),
                   f.underline(), f.strikeOut()))
 
-        fp.write("Web Browser: %s\n" % str(self.browserEdit.text()))
         fp.write("Email Server: %s\n" % str(self.emailServerEdit.text()))
         fp.write("Recent Files: %s\n" % str(self.recentFilesSpinBox.text()))
         fp.close()
@@ -120,13 +117,6 @@ class Preferences(PrefsBA):
         if ok:
             self.fontButtonMatch.setFont(font)
             self.setFontButtonText(self.fontButtonMatch, font)        
-
-    def browser_slot(self):
-        fn = QFileDialog.getOpenFileName(self.browserEdit.text(), "All (*)",
-                                         self, "Choose Web Browser")
-        if not fn.isEmpty():
-            self.browserEdit.setText(fn)
-
 
     def apply_slot(self):
         self.parent.setfont(self.fontButton.font())

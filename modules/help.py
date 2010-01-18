@@ -4,7 +4,6 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from util import *
-from webbrowser import launch_browser
 from helpBA import HelpBA
 
 class textbrowser(QTextBrowser):
@@ -19,7 +18,7 @@ class textbrowser(QTextBrowser):
         #print "setSource:", src
         s = str(src)
         if s[:7] == 'http://':
-            launch_browser(self.parent.external_browser, s)
+            launch_browser(s)
             return
 
         QTextBrowser.setSource(self, QUrl(src))
@@ -28,11 +27,10 @@ class textbrowser(QTextBrowser):
                 
 
 class Help(HelpBA):
-    def __init__(self, parent, filename, external_browser=None):
+    def __init__(self, parent, filename):
         HelpBA.__init__(self, parent)
         #Qt.WType_TopLevel | Qt.WDestructiveClose)
-        
-        self.external_browser = external_browser
+
         self.setGeometry(100, 50, 800, 600)
 
         self.textBrowser = textbrowser(self)

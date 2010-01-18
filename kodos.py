@@ -36,7 +36,6 @@ import modules.help as help
 from modules.status_bar import *
 from modules.reference import *
 from modules.prefs import *
-from modules.webbrowser import launch_browser
 from modules.reportBug import reportBugWindow
 from modules.version import VERSION
 from modules.recent_files import RecentFiles
@@ -1054,9 +1053,7 @@ class Kodos(KodosBA):
 
 
     def helpPythonRegex(self):
-        self.helpWindow = help.Help(self,
-                                    "python" + os.sep + "module-re.html",
-                                    str(self.prefs.browserEdit.text()))
+        self.helpWindow = help.Help(self, "python" + os.sep + "module-re.html")
         
 
     def helpRegexLib(self):
@@ -1118,8 +1115,7 @@ class Kodos(KodosBA):
 
 
     def launch_browser_wrapper(self, url, caption=None, message=None):
-        browser = str(self.prefs.browserEdit.text())
-        if launch_browser(browser, url, caption, message):
+        if launch_browser(url, caption, message):
             self.status_bar.set_message(self.tr("Launching web browser"),
                                         3,
                                         TRUE)

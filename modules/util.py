@@ -5,6 +5,7 @@ import os
 import os.path
 import sys
 from debug import *
+import webbrowser
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
@@ -140,3 +141,19 @@ def findFile(filename):
         if os.access(path, os.R_OK): return path
 
     return None
+
+def launch_browser(url, caption=None, message=None):
+    if not caption: caption = "Info"
+    if not message: message = "Launch web browser?"
+    
+    button = QMessageBox.information(None, caption, message, QMessageBox.Ok | QMessageBox.Cancel)
+    if button == QMessageBox.Cancel:
+        return False
+    try:
+        webbrowser.open(url)
+    except webbrowser.Error, e:
+        if debug:
+            print e
+        print "Couldn't open URL:", url
+        return False
+    return True
