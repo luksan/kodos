@@ -250,7 +250,7 @@ class Kodos(KodosBA):
         # from the given integer value of flags, set the checkboxes
         # this is used when loading a saved file
         for f in self.reFlags:
-            f.checkbox.setChecked(flags & f.reFlag)
+            f.checkBox.setChecked(flags & f.reFlag)
 
 
     def get_flags_string(self):
@@ -782,10 +782,13 @@ class Kodos(KodosBA):
         self.stringMultiLineEdit.setPlainText(data)
 
         
-    def fileOpen(self):       
+    def fileOpen(self):
+        filename = self.filename
+        if filename == None:
+            filename = ""
         fn = QFileDialog.getOpenFileName(self,
                                          self.tr("Open Kodos File"),
-                                         self.filename,
+                                         filename,
                                          self.tr("Kodos file (*.kds);;All (*)"))
         if not fn.isEmpty():
             filename = str(fn)
