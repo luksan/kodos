@@ -348,21 +348,12 @@ class Kodos(KodosBA):
         
 
     def regex_changed_slot(self):
-        t = self.regexMultiLineEdit.toPlainText()
-        try:
-            self.regex = str(t)
-        except UnicodeError:
-            self.regex = unicode(t)
-            
+        self.regex = unicode(self.regexMultiLineEdit.toPlainText())
         self.process_regex()
 
 
     def string_changed_slot(self):
-        t = self.stringMultiLineEdit.toPlainText()
-        try:
-            self.matchstring = str(t)
-        except UnicodeError:
-            self.matchstring = unicode(t)
+        self.matchstring = unicode(self.stringMultiLineEdit.toPlainText())
         self.process_regex()
 
     def helpContents(self, x = None):
@@ -385,12 +376,7 @@ class Kodos(KodosBA):
         self.replaceTextBrowser.setEnabled(TRUE)
 
     def replace_changed_slot(self):
-        t = self.replaceTextEdit.toPlainText()
-        try:
-            self.replace = str(t)
-        except UnicodeError:
-            self.replace = unicode(t)
-            
+        self.replace = unicode(self.replaceTextEdit.toPlainText())
         self.process_regex()
         if not self.replace:
             self.hide_replace_widgets()
@@ -618,7 +604,7 @@ class Kodos(KodosBA):
             match_obj = compile_obj.search(self.matchstring)
 
         except Exception, e:
-            self.update_results(str(e), MATCH_FAIL)
+            self.update_results(unicode(e), MATCH_FAIL)
             return
 
         if HAS_ALARM:
