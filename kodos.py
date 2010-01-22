@@ -417,7 +417,7 @@ class Kodos(KodosBA):
 
 
     def populate_code_textbrowser(self):
-        self.codeTextBrowser.setText("")
+        self.codeTextBrowser.clear()
 
         code =  "import re\n\n"
         code += "# common variables\n\n"
@@ -466,23 +466,28 @@ class Kodos(KodosBA):
             code += "newstr = compile_obj.subn('%s', %d)\n" % (self.replace,
                                                                self.replace_num)
         
-        self.codeTextBrowser.setText(code)
+        self.codeTextBrowser.setPlainText(code)
 
 
     def colorize_strings(self, strings, widget, cursorOffset=0):
         widget.clear()
 
-        colors = (QColor(Qt.black), QColor(Qt.blue) )
+        colors = (QBrush(QColor(Qt.black)), QBrush(QColor(Qt.blue)) )
+        cur = widget.textCursor()
+        format = cur.charFormat()
+
+        pos = cur.position()
         i = 0
-        #FIXME: what is the purpose of getCursorPosition() ?
-        #pos = widget.getCursorPosition()
         for s in strings:
-            widget.setTextColor(colors[i%2])            
-            widget.insertPlainText(s)
-            if i == cursorOffset: pass #FIXME pos = widget.getCursorPosition()
+            format.setForeground(colors[i%2])
+            cur.insertText(s, format)
+            if i == cursorOffset:
+                pos = cur.position()
             i += 1
-            
-        #FIXME widget.setCursorPosition(pos[0], pos[1])
+        
+        cur.setPosition(pos)
+        widget.setTextCursor(cur)
+        widget.centerCursor()
         
 
     def populate_match_textbrowser(self, startpos, endpos):
@@ -515,7 +520,7 @@ class Kodos(KodosBA):
             # if the replace string contains a backref we just use the
             # python regex methods for the substitution
             replaced = compile_obj.subn(replace_text, text, num)[0]
-            self.replaceTextBrowser.setText(replaced)
+            self.replaceTextBrowser.setPlainText(replaced)
             return
         
         numreplaced = idx = 0
@@ -570,12 +575,12 @@ class Kodos(KodosBA):
         for i in range(self.groupTable.rowCount()):
             self.groupTable.removeRow(i)
 
-        self.codeTextBrowser.setText("")
-        self.matchTextBrowser.setText("")
+        self.codeTextBrowser.clear()
+        self.matchTextBrowser.clear()
         self.matchNumberSpinBox.setEnabled(FALSE)
         self.replaceNumberSpinBox.setEnabled(FALSE)
-        self.replaceTextBrowser.setText("")
-        self.matchAllTextBrowser.setText("")
+        self.replaceTextBrowser.clear()
+        self.matchAllTextBrowser.clear()
         
 
     def process_regex(self):
@@ -835,7 +840,7 @@ class Kodos(KodosBA):
             # so kds files saved w/ these versions will throw exception
             # here.
             replace = ""
-        self.replaceTextEdit.setText(replace)
+        self.replaceTextEdit.setPlainText(replace)
         
         self.filename = filename
         msg = "%s %s" % (filename, unicode(self.tr("loaded successfully")))

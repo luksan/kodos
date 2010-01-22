@@ -75,9 +75,12 @@
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="QTextBrowser" name="matchTextBrowser">
-          <property name="acceptRichText">
+         <widget class="QPlainTextEdit" name="matchTextBrowser">
+          <property name="undoRedoEnabled">
            <bool>false</bool>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -89,7 +92,14 @@
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="QTextBrowser" name="matchAllTextBrowser"/>
+         <widget class="QPlainTextEdit" name="matchAllTextBrowser">
+          <property name="undoRedoEnabled">
+           <bool>false</bool>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -99,7 +109,14 @@
        </attribute>
        <layout class="QVBoxLayout">
         <item>
-         <widget class="QTextBrowser" name="replaceTextBrowser"/>
+         <widget class="QPlainTextEdit" name="replaceTextBrowser">
+          <property name="undoRedoEnabled">
+           <bool>false</bool>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -109,7 +126,14 @@
        </attribute>
        <layout class="QGridLayout">
         <item row="0" column="0">
-         <widget class="QTextBrowser" name="codeTextBrowser"/>
+         <widget class="QPlainTextEdit" name="codeTextBrowser">
+          <property name="undoRedoEnabled">
+           <bool>false</bool>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
