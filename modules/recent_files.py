@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from util import getHomeDirectory
-import os
-import string
 from PyQt4.QtGui import QIcon, QPixmap
+from PyQt4.QtCore import QSettings
 
 MAX_SIZE = 50 # max number of files to retain
 
@@ -12,36 +10,46 @@ class RecentFiles:
         self.parent = parent
         self.numShown = int(numShown)
         self.debug = debug
-        self.filename = getHomeDirectory() + os.sep + ".kodos" + os.sep + "recent_files"
         self.__recent_files = []
         self.__indecies = []
         self.load()
 
-
     def load(self):
-        try:
-            fp = open(self.filename, "r")
-            self.__recent_files = map(string.strip, fp.readlines())
-        except Exception, e:
-            #print "Warning: ", str(e)
-            return
-        
-        if self.debug: print "recent_files:", self.__recent_files
-        self.addToMenu()
+        settings = QSettings()
+        cnt = settings.beginReadArray("RecentFiles")
+        # PyQt bug: cnt is always 0, workaround with "None" test below
+        i = -1
+        while True:
+            i += 1
+            settings.setArrayIndex(i)
+            try:
+                s = settings.value("Filename").toPyObject()
+                if s == None:
+                    break
+                self.__recent_files.append(str(s))
+            except Exception, e:
+                print "Loading of recent file entry", i, "failed."
+                if self.debug: print e
+                settings.remove("Filename")
 
+        settings.endArray()
+
+        if self.debug: print "recent_files:", self.__recent_files
+
+        self.addToMenu()
 
     def save(self):
         # truncate list if necessary
         self.__recent_files = self.__recent_files[:MAX_SIZE]
-        try:
-            fp = open(self.filename, "w")
-            for f in self.__recent_files:
-                fp.write("%s\n" % f)
-            fp.close()
-        except Exception, e:
-            print "Could not save recent file list", str(e)
+        s = QSettings()
+        s.beginWriteArray("RecentFiles")
+        cnt = 0
+        for f in self.__recent_files:
+            s.setArrayIndex(cnt)
+            s.setValue("Filename", f)
+            cnt += 1
+        s.sync()
             
-
     def add(self, filename):
         try:
             self.__recent_files.remove(filename)
