@@ -198,21 +198,15 @@ class Kodos(KodosBA):
         if self.replace:  self.show_replace_widgets()
         else:             self.hide_replace_widgets()
 
-        self.checkForKodosDir()
+        self.checkIfNewUser()
 
 
-    def checkForKodosDir(self):
-        kdir = os.path.join(getHomeDirectory(), ".kodos")
-        if os.access(kdir, os.X_OK):
-            return
-
-        try:
-            os.mkdir(kdir, 0755)
-        except:
-            print "Failed to create:", kdir
-
-        self.newuserdialog = NewUserDialog()
-        self.newuserdialog.show()
+    def checkIfNewUser(self):
+        s = QSettings()
+        if s.value('New User', "true").toPyObject() != "false":
+            self.newuserdialog = NewUserDialog()
+            self.newuserdialog.show()
+        s.setValue('New User', "false")
         
 
     def createStatusBar(self):
