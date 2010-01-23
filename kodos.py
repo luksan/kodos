@@ -674,7 +674,7 @@ class Kodos(KodosBA):
             status = "%s (%s %d %s)" % (str_pattern_matches,
                                         str_found,
                                         len(allmatches),
-                                        str_match)
+                                        str_matches)
             
         self.update_results(status, MATCH_OK)
         self.populate_code_textbrowser()
