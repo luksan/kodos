@@ -338,6 +338,7 @@ database. New in Python version 2.0.</string>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="fileNewAction"/>
    <addaction name="fileOpenAction"/>
    <addaction name="fileSaveAction"/>
    <addaction name="separator"/>
@@ -491,7 +492,7 @@ database. New in Python version 2.0.</string>
     <string>Exit</string>
    </property>
    <property name="shortcut">
-    <string/>
+    <string>Ctrl+Q</string>
    </property>
    <property name="name" stdset="0">
     <cstring>fileExitAction</cstring>
