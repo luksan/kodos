@@ -1,95 +1,47 @@
 # -*- coding: utf-8 -*-
 #  prefs.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from PyQt4.QtCore import SIGNAL
-from PyQt4.QtGui import *
-from util import *
+from PyQt4.QtCore import SIGNAL, QSettings
+from PyQt4.QtGui import QDialog, QFontDialog
 from prefsBA import PrefsBA
 import help
-import string
 
-##class Prefs(PrefsBA):
-##    def __init__(self, parent=None, name=None, modal=0):
-##        print type(self)
-##        PrefsBA.__init__(self, parent, name, modal)
-##        self.parent = parent
-
-def get_font_value(s):
-    if s in ('0', 'False'): return 0
-    else:                   return 1
-
-        
 class Preferences(PrefsBA):
     def __init__(self, parent, autoload=0):
         self.parent = parent
         PrefsBA.__init__(self, parent)
 
-        prefsFilename = "prefs"
-        self.prefsPath = getHomeDirectory() + os.sep + ".kodos" + os.sep + prefsFilename
-        if autoload: self.load()
+        self.settings = QSettings()
+
+        if autoload:
+            self.load()
         
-    def load(self):
-        try:
-            fp = open(self.prefsPath, "r")
-        except:
-            return
-        
-        prefsList = fp.readlines()
-        for pref in prefsList:
-            preference, setting = string.split(pref, ":", 1)
-            setting = string.strip(setting)
-            if preference == 'Font' and setting:
-                self.parseFontStr(setting, self.parent.setfont)
-            if preference == 'Match Font' and setting:
-                self.parseFontStr(setting, self.parent.setMatchFont)
-            if preference == 'Email Server' and setting:
-                self.emailServerEdit.setText(setting)
-            if preference == 'Recent Files' and setting:
-                self.recentFilesSpinBox.setValue(int(setting))
+    def load(self):        
+        for preference in self.settings.childKeys():
+            try:
+                setting = self.settings.value(preference)
+                if preference == 'Font':
+                    self.parent.setfont(setting.toPyObject())
+                if preference == 'Match Font':
+                    self.parent.setMatchFont(setting.toPyObject())
+                if preference == 'Email Server':
+                    self.emailServerEdit.setText(setting.toPyObject())
+                if preference == 'Recent Files Count':
+                    self.recentFilesSpinBox.setValue(int(setting.toPyObject()))
+            except Exception, e:
+                print "Loading of configuration key", preference, "failed."
+                if debug: print e
+                self.settings.remove(preference)
             
 
     def save(self):
-        try:
-            fp = open(self.prefsPath, "w")
-        except:
-            print "Could not save preferences:", self.prefsPath
-            return
+        self.settings.setValue('Font', self.parent.getfont())
+        self.settings.setValue('Match Font', self.parent.getMatchFont())
+        self.settings.setValue('Email Server', self.emailServerEdit.text())
+        self.settings.setValue('Recent Files Count', self.recentFilesSpinBox.text())
 
-        #print self.prefsPath
-        f = self.parent.getfont()
-
-        fp.write("Font: %s:%s:%s:%s:%s:%s\n" %
-                 (f.family(), f.pointSize(),
-                  f.bold(), f.italic(),
-                  f.underline(), f.strikeOut()))
-
-        f = self.parent.getMatchFont()
-        fp.write("Match Font: %s:%s:%s:%s:%s:%s\n" %
-                 (f.family(), f.pointSize(),
-                  f.bold(), f.italic(),
-                  f.underline(), f.strikeOut()))
-
-        fp.write("Email Server: %s\n" % str(self.emailServerEdit.text()))
-        fp.write("Recent Files: %s\n" % str(self.recentFilesSpinBox.text()))
-        fp.close()
+        self.settings.sync()
         self.parent.emit(SIGNAL('prefsSaved()'))
-
-
-    def parseFontStr(self, fontstr, meth):
-        # parse a font in the form: family:pt size:bold:italic:underline:strikeout
-        parts = string.split(fontstr, ":")
-        if len(parts) != 6: return
-        
-        f = QFont()
-        f.setFamily(parts[0])
-        f.setPointSize(int(parts[1]))
-        f.setBold(get_font_value(parts[2]))
-        f.setItalic(get_font_value(parts[3]))
-        f.setUnderline(get_font_value(parts[4]))
-        f.setStrikeOut(get_font_value(parts[5]))
-        meth(f)
-        #self.parent.setfont(f)
-
 
     def setFontButtonText(self, button, font):
         #self.fontButton.setText("%s %s" % (str(font.family()),font.pointSize() ))
@@ -123,11 +75,9 @@ class Preferences(PrefsBA):
         self.parent.setMatchFont(self.fontButtonMatch.font())
         self.save()
 
-
     def accept(self):
         self.apply_slot()
         QDialog.accept(self)
-
 
     def help_slot(self):
         self.helpWindow = help.Help(self, "prefs.html")
