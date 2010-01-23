@@ -1162,6 +1162,9 @@ def main():
     MigrateSettings()
 
     qApp = QApplication(sys.argv)
+    qApp.setOrganizationName("kodos")
+    qApp.setApplicationName("kodos")
+    qApp.setOrganizationDomain("kodos.sourceforge.net")
 
     if locale not in (None, 'en'):
         localefile = "kodos_%s.qm" % (locale or QTextCodec.locale())
