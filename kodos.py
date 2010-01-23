@@ -40,7 +40,6 @@ from modules.reportBug import reportBugWindow
 from modules.version import VERSION
 from modules.recent_files import RecentFiles
 from modules.urlDialog import URLDialog
-from modules.migrate_settings import MigrateSettings
 from modules.regexLibrary import RegexLibrary
 from modules.newUserDialogBA import NewUserDialog
 
@@ -1158,8 +1157,6 @@ def main():
             locale = arg
 
     os.environ['KODOS_DIR'] = kodos_dir
-
-    MigrateSettings()
 
     qApp = QApplication(sys.argv)
     qApp.setOrganizationName("kodos")
