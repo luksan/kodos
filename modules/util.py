@@ -36,23 +36,6 @@ def getPixmap(fileStr, fileType="PNG", dir="images"):
     
     return pixmap
 
-
-def getHomeDirectory():
-    "attempt to get the home directory... not sure how this behaves w/ Windoze"
-    if sys.platform != "win32":
-        try:
-            homedir = os.environ["HOME"]
-        except KeyError:
-            homedir = "/tmp"
-    else:
-        try:
-            homedir = os.path.join(os.environ["HOMEDRIVE"],
-                                   os.environ["HOMEPATH"])
-        except KeyError:
-            homedir = ""
-
-    return homedir
-
 def kodos_toolbar_logo(toolbar):
     # hack to move logo to right
     blanklabel = QLabel()
