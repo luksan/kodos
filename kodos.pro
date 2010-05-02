@@ -1,4 +1,4 @@
-SOURCES = kodos.py
+SOURCES = kodos
 	modules/about.py
 	modules/debug.py
 	modules/help.py

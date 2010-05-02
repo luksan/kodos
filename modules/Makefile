@@ -4,6 +4,7 @@ all: *.py
 
 clean:
 	$(RM) -vf *BA.py
+	$(RM) -vf *BA.pyc
 
 %.py: %.ui
 	pyuic4 -w -o $*.py $<
