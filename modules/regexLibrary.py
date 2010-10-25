@@ -45,9 +45,9 @@ class RegexLibrary(RegexLibraryBA):
 
 
     def populateSelected(self, xml_dict):
-        self.regexTextBrowser.setText(xml_dict.get('regex', ""))
+        self.regexTextBrowser.setPlainText(xml_dict.get('regex', ""))
         self.contribEdit.setText(xml_dict.get("contrib", ""))
-        self.noteTextBrowser.setText(xml_dict.get('note', ""))
+        self.noteTextBrowser.setPlainText(xml_dict.get('note', ""))
         self.selected = xml_dict
 
         
