@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-from PyQt4.QtCore import SIGNAL
+from PyQt4.QtCore import pyqtSignal
 from regexLibraryBA import RegexLibraryBA
 from parseRegexLib import ParseRegexLib
 from util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo
 
-import os
-
 GEO = "regex-lib_geometry"
 
 class RegexLibrary(RegexLibraryBA):
-    def __init__(self, parent, filename):
+
+    pasteRegexLib = pyqtSignal(dict)
+
+    def __init__(self, filename):
         RegexLibraryBA.__init__(self, None)
-        self.parent = parent
         self.filename = filename
         self.selected = None
 
@@ -53,7 +53,7 @@ class RegexLibrary(RegexLibraryBA):
         
     def editPaste(self):
         if self.selected:
-            self.parent.emit(SIGNAL('pasteRegexLib(dict)'), self.selected )
+            self.pasteRegexLib.emit(self.selected)
 
 
 

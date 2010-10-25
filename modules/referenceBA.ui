@@ -694,7 +694,7 @@
   </connection>
   <connection>
    <sender>referenceListView</sender>
-   <signal>doubleClicked(QListViewItem*)</signal>
+   <signal>itemDoubleClicked(QTreeWidgetItem*,int)</signal>
    <receiver>ReferenceBA</receiver>
    <slot>editPaste()</slot>
    <hints>

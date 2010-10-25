@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 #  reference.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from PyQt4.QtCore import SIGNAL
-from referenceBA import *
-from util import *
-#from tooltip import *
-#from status_bar import *
+from PyQt4.QtCore import pyqtSignal
+from referenceBA import ReferenceBA
+from util import kodos_toolbar_logo, restoreWindowSettings, saveWindowSettings
 
 GEO = "regex-ref_geometry"
 
 class Reference(ReferenceBA):
+
+    pasteSymbol = pyqtSignal(str)
+
     def __init__(self, parent):
         ReferenceBA.__init__(self, None)
         self.parent = parent
@@ -29,7 +30,7 @@ class Reference(ReferenceBA):
             return
         
         symbol = str(list_view_item.text(0))
-        self.parent.emit(SIGNAL('pasteSymbol(str)'), symbol)
+        self.pasteSymbol.emit(symbol)
 
 
     def help_slot(self):

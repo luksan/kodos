@@ -183,16 +183,8 @@ class Kodos(KodosBA):
 
         if filename and self.openFile(filename):
             qApp.processEvents()
-
-        self.connect(self, SIGNAL('prefsSaved()'), self.prefsSaved)
         
         self.fileMenu.triggered.connect(self.fileMenuHandler)
-
-        self.connect(self, SIGNAL('pasteSymbol(str)'), self.paste_symbol)
-
-        self.connect(self, SIGNAL('urlImported(str, str)'), self.urlImported)
-
-        self.connect(self, SIGNAL('pasteRegexLib(dict)'), self.pasteFromRegexLib)
 
         kodos_toolbar_logo(self.toolBar)
         if self.replace:  self.show_replace_widgets()
@@ -732,6 +724,7 @@ class Kodos(KodosBA):
 
     def importURL(self):
         self.urldialog = URLDialog(self, self.url)
+        self.urldialog.urlImported.connect(self.urlImported)
 
 
     def urlImported(self, html, url):
@@ -994,6 +987,7 @@ class Kodos(KodosBA):
 
     def preferences(self):
         self.prefs.showPrefsDialog()
+        self.prefs.prefsSaved.connect(self.prefsSaved)
             
     def setfont(self, font):
         #print "font: ",  font
@@ -1028,7 +1022,8 @@ class Kodos(KodosBA):
 
     def helpRegexLib(self):
         f = os.path.join("help", "regex-lib.xml")
-        self.regexlibwin = RegexLibrary(self, f)
+        self.regexlibwin = RegexLibrary(f)
+        self.regexlibwin.pasteRegexLib.connect(self.pasteFromRegexLib)
         self.regexlibwin.show()
 
         
@@ -1097,6 +1092,7 @@ class Kodos(KodosBA):
 
     def reference_guide(self):
         self.ref_win = Reference(self)
+        self.ref_win.pasteSymbol.connect(self.paste_symbol)
         self.ref_win.show()
         
 

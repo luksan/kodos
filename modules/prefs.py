@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 #  prefs.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from PyQt4.QtCore import SIGNAL, QSettings
+from PyQt4.QtCore import pyqtSignal, QSettings
 from PyQt4.QtGui import QDialog, QFontDialog
 from prefsBA import PrefsBA
 import help
 
 class Preferences(PrefsBA):
+
+    prefsSaved = pyqtSignal()
+
     def __init__(self, parent, autoload=0):
         self.parent = parent
         PrefsBA.__init__(self, parent)
@@ -41,7 +44,7 @@ class Preferences(PrefsBA):
         self.settings.setValue('Recent Files Count', self.recentFilesSpinBox.text())
 
         self.settings.sync()
-        self.parent.emit(SIGNAL('prefsSaved()'))
+        self.prefsSaved.emit()
 
     def setFontButtonText(self, button, font):
         #self.fontButton.setText("%s %s" % (str(font.family()),font.pointSize() ))
