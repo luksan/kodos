@@ -49,7 +49,7 @@ class RecentFiles:
             s.setValue("Filename", f)
             cnt += 1
         s.sync()
-            
+
     def add(self, filename):
         try:
             self.__recent_files.remove(filename)
@@ -69,7 +69,7 @@ class RecentFiles:
         # clear list of menu entry indecies
         self.__indecies = []
 
-        
+
     def addToMenu(self, clear=1):
         if clear: self.clearMenu()
 
@@ -82,7 +82,7 @@ class RecentFiles:
                 filename)
 
             self.__indecies.insert(0, idx)
-        
+
 
     def setNumShown(self, numShown):
         ns = int(numShown)

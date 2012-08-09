@@ -28,7 +28,7 @@ class Reference(ReferenceBA):
         list_view_item = self.referenceListView.currentItem()
         if list_view_item == None:
             return
-        
+
         symbol = str(list_view_item.text(0))
         self.pasteSymbol.emit(symbol)
 

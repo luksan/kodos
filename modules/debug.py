@@ -29,6 +29,6 @@ DEBUG_ALL  = (
     DEBUG_PRINT | DEBUG_PREFS | DEBUG_PS_TPL
     )
 
-# use a bitwise or (|) to use multiple debug levels 
+# use a bitwise or (|) to use multiple debug levels
 # debug = DEBUG_AUTO_COMPLETE | DEBUG_SESSION
 debug = DEBUG_NONE

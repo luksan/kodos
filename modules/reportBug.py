@@ -19,7 +19,7 @@ class reportBug(reportBugBA):
         self.parent = parent
         self.kodos_main = parent.kodos_main
         self.populate()
-        
+
 
     def populate(self):
         self.OSEdit.setText(sys.platform)
@@ -44,7 +44,7 @@ class reportBug(reportBugBA):
             QMessageBox.information(None,
                                     self.tr("You must supply a valid email address"),
                                     msg)
-            return 
+            return
 
         msg = "Subject: Kodos bug report\n\n"
         msg += "Kodos Version: %s\n" % VERSION
@@ -70,13 +70,13 @@ class reportBug(reportBugBA):
             QMessageBox.information(None,
                                     self.tr("An exception occurred sending bug report"),
                                     str(e))
-        
+
 
 class reportBugWindow(QMainWindow):
     def __init__(self, kodos_main):
         self.kodos_main = kodos_main
         QMainWindow.__init__(self, kodos_main)#, Qt.Window | Qt.WA_DeleteOnClose)
-        
+
         self.setGeometry(100, 50, 800, 600)
         self.setWindowTitle(self.tr("Report a Bug"))
         self.setWindowIcon(QIcon(QPixmap(":images/kodos_icon.png")))
@@ -84,7 +84,7 @@ class reportBugWindow(QMainWindow):
         self.bug_report = reportBug(self)
         self.setCentralWidget(self.bug_report)
 
-        
+
         self.createMenu()
         self.createToolBar()
 
@@ -101,4 +101,4 @@ class reportBugWindow(QMainWindow):
         toolbar = QToolBar()
         self.addToolBar(toolbar)
         self.logolabel = kodos_toolbar_logo(toolbar)
- 
+

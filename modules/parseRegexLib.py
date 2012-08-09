@@ -33,7 +33,7 @@ class ParseRegexLib:
 
     def parse(self, data=""):
         if not data: data = self.data
-        
+
         dicts = []
         allmatches = rx_entry.findall(data)
         rx_keys = RX_DICT.keys()
@@ -49,7 +49,7 @@ class ParseRegexLib:
             dicts.append(d)
 
         return dicts
-            
+
 if __name__ == '__main__':
 
     path = findFile(os.path.join("help", "regex-lib.xml"))
@@ -58,4 +58,4 @@ if __name__ == '__main__':
     dicts = x.parse()
     print dicts
 
-    
+

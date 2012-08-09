@@ -38,7 +38,7 @@ class Tooltip(QLabel):
     def clear_tooltip(self):
         self.text = ''
         self.setText('')
-                
+
 
     def addWidget(self, widget):
         #print "adding widget", widget
@@ -86,7 +86,7 @@ class Tooltip(QLabel):
     def tooltip_open(self):
         if not self.text:
             return
-        
+
         try:
             pos = self.event_widget.mapToGlobal(
                 QPoint(0, self.event_widget.height()))

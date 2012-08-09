@@ -22,9 +22,9 @@ class textbrowser(QTextBrowser):
             return
 
         QTextBrowser.setSource(self, QUrl(src))
-                
-    
-                
+
+
+
 
 class Help(HelpBA):
     def __init__(self, parent, filename):
@@ -38,7 +38,7 @@ class Help(HelpBA):
 
         self.setCentralWidget(self.textBrowser)
         self.textBrowser.setSource(absPath)
-        
+
         self.fwdAvailable = 0
         self.show()
 
@@ -66,10 +66,10 @@ class Help(HelpBA):
         #print "fwdAvail?: ", self.fwdAvailable
         if self.fwdAvailable:
             self.textBrowser.forward()
-    
+
     def getHelpFile(self, filename):
         f = findFile(os.path.join("help", filename))
         return f
-    
 
-        
+
+

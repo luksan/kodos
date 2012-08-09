@@ -18,8 +18,8 @@ class Preferences(PrefsBA):
 
         if autoload:
             self.load()
-        
-    def load(self):        
+
+    def load(self):
         for preference in self.settings.childKeys():
             try:
                 setting = self.settings.value(preference)
@@ -35,7 +35,7 @@ class Preferences(PrefsBA):
                 print "Loading of configuration key", preference, "failed."
                 if debug: print e
                 self.settings.remove(preference)
-            
+
 
     def save(self):
         self.settings.setValue('Font', self.parent.getfont())
@@ -71,7 +71,7 @@ class Preferences(PrefsBA):
         (font, ok) = QFontDialog.getFont(self.fontButtonMatch.font())
         if ok:
             self.fontButtonMatch.setFont(font)
-            self.setFontButtonText(self.fontButtonMatch, font)        
+            self.setFontButtonText(self.fontButtonMatch, font)
 
     def apply_slot(self):
         self.parent.setfont(self.fontButton.font())

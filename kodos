@@ -20,12 +20,12 @@ except:
     print """Could not locate the PyQt module.  Please make sure that
 you have installed PyQt for the version of Python that you are running."""
     sys.exit(1)
-    
+
 ### make sure that this script can find kodos specific modules ###
 import os.path
 from distutils.sysconfig import get_python_lib
 
-sys.path.append(os.path.join(get_python_lib(), "kodos")) 
+sys.path.append(os.path.join(get_python_lib(), "kodos"))
 
 ###################################################################
 
@@ -103,7 +103,7 @@ class Kodos(KodosBA):
 
         self.ref_win = None
         self.regexlibwin = None
-        
+
         self.embedded_flags_obj = re.compile(EMBEDDED_FLAGS)
         self.regex_embedded_flags_removed = ""
 
@@ -113,14 +113,14 @@ class Kodos(KodosBA):
         self.MSG_PAUSED = self.tr("Kodos regex processing is paused.  Click the pause icon to unpause")
         self.MSG_FAIL   = self.tr("Pattern does not match")
 
-        
+
         self.statusPixmapsDict = {  MATCH_NA: QPixmap(":images/yellow.png"),
                                     MATCH_OK: QPixmap(":images/green.png"),
                                     MATCH_FAIL: QPixmap(":images/red.png"),
                                     MATCH_PAUSED: QPixmap(":images/pause.png"),
                                 }
 
-        
+
         self.updateStatus(self.MSG_NA, MATCH_NA)
 
         class reFlag:
@@ -130,7 +130,7 @@ class Kodos(KodosBA):
                 self.shortFlag = short_flag
                 self.checkBox = checkbox
                 self.preEmbedState = None
-            
+
             def clear(self):
                 self.preEmbedState = None
                 self.checkBox.setEnabled(True)
@@ -157,7 +157,7 @@ class Kodos(KodosBA):
                     if f.checkBox.isChecked():
                         ret |= f.reFlag
                 return ret
-            
+
             def clearAll(self):
                 for f in self:
                     f.clear()
@@ -173,7 +173,7 @@ class Kodos(KodosBA):
         self.reFlags.clearAll()
 
         restoreWindowSettings(self, GEO)
-        
+
         self.show()
 
         self.prefs = Preferences(self, 1)
@@ -183,7 +183,7 @@ class Kodos(KodosBA):
 
         if filename and self.openFile(filename):
             qApp.processEvents()
-        
+
         self.fileMenu.triggered.connect(self.fileMenuHandler)
 
         kodos_toolbar_logo(self.toolBar)
@@ -199,7 +199,7 @@ class Kodos(KodosBA):
             self.newuserdialog = NewUserDialog()
             self.newuserdialog.show()
         s.setValue('New User', "false")
-        
+
 
     def createStatusBar(self):
         self.status_bar = Status_Bar(self, FALSE, "")
@@ -219,13 +219,13 @@ class Kodos(KodosBA):
 
     def prefsSaved(self):
         if self.debug: print "prefsSaved slot"
-        self.recent_files.setNumShown(self.prefs.recentFilesSpinBox.value())   
-  
-        
+        self.recent_files.setNumShown(self.prefs.recentFilesSpinBox.value())
+
+
     def kodos_edited_slot(self):
         # invoked whenever the user has edited something
         self.editstate = STATE_EDITED
-        
+
 
     def checkbox_slot(self):
         self.process_regex()
@@ -240,7 +240,7 @@ class Kodos(KodosBA):
 
     def get_flags_string(self):
         flags_str = ""
-        
+
         for f in self.reFlags:
             if f.checkBox.isChecked():
                 flags_str += "| " + f.flagName
@@ -252,7 +252,7 @@ class Kodos(KodosBA):
 
     def get_embedded_flags_string(self):
         flags_str = flags = ""
-        
+
         for f in self.reFlags:
             if f.checkBox.isChecked():
                 flags += f.shortFlag
@@ -261,25 +261,25 @@ class Kodos(KodosBA):
             flags_str = "(?" + flags + ")"
 
         return flags_str
-        
+
 
     def pause(self):
         self.is_paused = not self.is_paused
         if self.debug: print "is_paused:", self.is_paused
-        
+
         if self.is_paused:
             self.update_results(self.MSG_PAUSED, MATCH_PAUSED)
             self.matchNumberSpinBox.setDisabled(1)
 
         else:
             self.process_regex()
-            self.matchNumberSpinBox.setEnabled(1)            
+            self.matchNumberSpinBox.setEnabled(1)
 
 
     def examine(self):
         self.is_examined = not self.is_examined
         if self.debug: print "is_examined:", self.is_examined
-        
+
         if self.is_examined:
             color = QCOLOR_YELLOW
             regex = self.regex
@@ -300,7 +300,7 @@ class Kodos(KodosBA):
                         return
                 except:
                     pass
-                
+
             self.__refresh_regex_widget(color, "")
         else:
             regex = self.regex_saved
@@ -309,13 +309,13 @@ class Kodos(KodosBA):
             self.stringMultiLineEdit.setReadOnly(0)
             self.replaceTextEdit.setReadOnly(0)
             self.__refresh_regex_widget(color, regex)
-            
+
 
     def __refresh_regex_widget(self, base_qcolor, regex):
         pal = QPalette()
         pal.setColor(pal.Base, base_qcolor)
         self.regexMultiLineEdit.setPalette(pal)
-        
+
         self.regexMultiLineEdit.blockSignals(1)
         self.regexMultiLineEdit.clear()
         self.regexMultiLineEdit.blockSignals(0)
@@ -330,7 +330,7 @@ class Kodos(KodosBA):
     def replace_num_slot(self, num):
         self.replace_num = num
         self.process_regex()
-        
+
 
     def regex_changed_slot(self):
         self.regex = unicode(self.regexMultiLineEdit.toPlainText())
@@ -402,7 +402,7 @@ class Kodos(KodosBA):
         code += self.get_flags_string()
         code += ")\n"
         code += "match_obj = compile_obj.search(matchstr)\n\n"
-        
+
         code += "# method 2: using search function (w/ external flags)\n"
         code += "match_obj = re.search(rawstr, matchstr"
         code += self.get_flags_string()
@@ -412,7 +412,7 @@ class Kodos(KodosBA):
         embedded_str = self.get_embedded_flags_string() + self.regex_embedded_flags_removed
         code += "match_obj = re.search(embedded_rawstr, matchstr)\n\n"
 
-        
+
         if self.group_tuples:
             code += "# Retrieve group(s) from match_obj\n"
             code += "all_groups = match_obj.groups()\n\n"
@@ -425,7 +425,7 @@ class Kodos(KodosBA):
                 if grp[1]: named_grps = 1
 
             if named_grps:
-                code += "\n# Retrieve group(s) by name\n"    
+                code += "\n# Retrieve group(s) by name\n"
                 for grp in self.group_tuples:
                     if grp[1]:
                         code += "%s = match_obj.group('%s')\n" % (grp[1], grp[1])
@@ -436,7 +436,7 @@ class Kodos(KodosBA):
             code += "# Replace string\n"
             code += "newstr = compile_obj.subn('%s', %d)\n" % (self.replace,
                                                                self.replace_num)
-        
+
         self.codeTextBrowser.setPlainText(code)
 
 
@@ -455,25 +455,25 @@ class Kodos(KodosBA):
             if i == cursorOffset:
                 pos = cur.position()
             i += 1
-        
+
         cur.setPosition(pos)
         widget.setTextCursor(cur)
         widget.centerCursor()
-        
+
 
     def populate_match_textbrowser(self, startpos, endpos):
         pre = post = match = ""
-        
+
         match = self.matchstring[startpos:endpos]
 
         # prepend the beginning that didn't match
         if startpos > 0:
             pre = self.matchstring[0:startpos]
-            
+
         # append the end that didn't match
         if endpos < len(self.matchstring):
             post = self.matchstring[endpos:]
-            
+
         strings = [pre, match, post]
         self.colorize_strings(strings, self.matchTextBrowser, 1)
 
@@ -485,7 +485,7 @@ class Kodos(KodosBA):
         num = self.replaceNumberSpinBox.value()
         if num == 0: num = nummatches
         text = self.matchstring
-        
+
         replace_text = unicode(self.replaceTextEdit.toPlainText())
         if RX_BACKREF.search(replace_text):
             # if the replace string contains a backref we just use the
@@ -493,7 +493,7 @@ class Kodos(KodosBA):
             replaced = compile_obj.subn(replace_text, text, num)[0]
             self.replaceTextBrowser.setPlainText(replaced)
             return
-        
+
         numreplaced = idx = 0
 
         strings = []
@@ -503,10 +503,10 @@ class Kodos(KodosBA):
                 s = text[idx:span[0]]
             else:
                 s = ""
-                
+
             idx = span[1]
             numreplaced += 1
-            
+
             strings.append(s)
             strings.append(self.replace)
 
@@ -516,7 +516,7 @@ class Kodos(KodosBA):
 
         self.colorize_strings(strings, self.replaceTextBrowser)
 
-    
+
     def populate_matchAll_textbrowser(self, spans):
         self.matchAllTextBrowser.clear()
         if not spans: return
@@ -529,19 +529,19 @@ class Kodos(KodosBA):
                 s = text[idx:span[0]]
             else:
                 s = ""
-                
+
             idx = span[1]
             strings.append(s)
             strings.append(text[span[0]:span[1]])
 
-        if 0 <= idx <= len(text): 
+        if 0 <= idx <= len(text):
             strings.append(text[span[1]:])
-            
+
         self.colorize_strings(strings, self.matchAllTextBrowser)
 
-        
+
     def clear_results(self):
-        # .clear() destroys the headers, and .clearContents() doesn't do 
+        # .clear() destroys the headers, and .clearContents() doesn't do
         # anything at all, so remove the rows one by one
         for i in range(self.groupTable.rowCount()):
             self.groupTable.removeRow(i)
@@ -552,7 +552,7 @@ class Kodos(KodosBA):
         self.replaceNumberSpinBox.setEnabled(FALSE)
         self.replaceTextBrowser.clear()
         self.matchAllTextBrowser.clear()
-        
+
 
     def process_regex(self):
         def timeout(signum, frame):
@@ -604,13 +604,13 @@ class Kodos(KodosBA):
         # match_index is the list element for match_num.
         # Therefor match_num is for ui display
         # and match_index is for application logic.
-        match_index = self.match_num - 1 
-        
+        match_index = self.match_num - 1
+
         if match_index > 0:
             for i in range(match_index):
                 match_obj = compile_obj.search(self.matchstring,
                                                match_obj.end())
-                
+
         self.populate_match_textbrowser(match_obj.start(), match_obj.end())
 
         self.group_tuples = []
@@ -627,7 +627,7 @@ class Kodos(KodosBA):
                     group_nums[compile_obj.groupindex[key]] = key
 
             if self.debug:
-                print "group_nums:", group_nums                         
+                print "group_nums:", group_nums
                 print "grp index: ", compile_obj.groupindex
                 print "groups:", match_obj.groups()
                 print "span: ", match_obj.span()
@@ -640,7 +640,7 @@ class Kodos(KodosBA):
                     self.group_tuples.append(group_tuple)
             else:
                 self.group_tuples.append( (1, group_nums.get(1, ""), g) )
-                        
+
             self.populate_group_table(self.group_tuples)
         else:
             # clear the group table
@@ -660,7 +660,7 @@ class Kodos(KodosBA):
                                         str_found,
                                         len(allmatches),
                                         str_matches)
-            
+
         self.update_results(status, MATCH_OK)
         self.populate_code_textbrowser()
 
@@ -672,19 +672,19 @@ class Kodos(KodosBA):
 
     def findAllSpans(self, compile_obj):
         spans = []
-        
+
         match_obj = compile_obj.search(self.matchstring)
 
         last_span = None
-        
+
         while match_obj:
             start = match_obj.start()
             end   = match_obj.end()
             span = (start, end)
             if last_span == span: break
-            
+
             spans.append(span)
-            
+
             last_span = span
             match_obj = compile_obj.search(self.matchstring, end)
 
@@ -714,7 +714,7 @@ class Kodos(KodosBA):
         if not self.checkEditState():
             return
         self.filename = ""
-        
+
         self.regexMultiLineEdit.setPlainText("")
         self.stringMultiLineEdit.setPlainText("")
         self.replaceTextEdit.setPlainText("")
@@ -730,14 +730,14 @@ class Kodos(KodosBA):
     def urlImported(self, html, url):
         self.url = url
         self.stringMultiLineEdit.setPlainText(html)
-        
+
 
     def importFile(self):
         fn = QFileDialog.getOpenFileName(self,
                                          self.tr("Import File"),
-                                         self.filename, 
+                                         self.filename,
                                          self.tr("All (*)"))
-        
+
         if fn.isEmpty():
             self.updateStatus(self.tr("A file was not selected for import"),
                               -1,
@@ -746,19 +746,19 @@ class Kodos(KodosBA):
             return None
 
         filename = str(fn)
-        
+
         try:
             fp = open(filename, "r")
         except:
             msg = self.tr("Could not open file for reading: ") + filename
             self.updateStatus(msg, -1, 5, TRUE)
             return None
-        
+
         data = fp.read()
         fp.close()
         self.stringMultiLineEdit.setPlainText(data)
 
-        
+
     def fileOpen(self):
         filename = self.filename
         if filename == None:
@@ -802,7 +802,7 @@ class Kodos(KodosBA):
         self.matchNumberSpinBox.setValue(1)
         self.regexMultiLineEdit.setPlainText(self.regex)
         self.stringMultiLineEdit.setPlainText(self.matchstring)
-        
+
         self.set_flags(flags)
 
         try:
@@ -813,7 +813,7 @@ class Kodos(KodosBA):
             # here.
             replace = ""
         self.replaceTextEdit.setPlainText(replace)
-        
+
         self.filename = filename
         msg = "%s %s" % (filename, unicode(self.tr("loaded successfully")))
         self.updateStatus(msg, -1, 5, TRUE)
@@ -838,7 +838,7 @@ class Kodos(KodosBA):
             return
 
         filename = os.path.normcase(unicode(filedialog.selectedFiles().first()))
-        
+
         self.filename = filename
         self.fileSave()
 
@@ -862,7 +862,7 @@ class Kodos(KodosBA):
         p.dump(self.matchstring)
         p.dump(self.reFlags.allFlagsORed())
         p.dump(self.replace)
-        
+
         fp.close()
         msg = "%s %s" % (unicode(self.filename),
                          unicode(self.tr("successfully saved")))
@@ -884,7 +884,7 @@ class Kodos(KodosBA):
         else:
             embedded_flags = match.group('flags')
             self.regex_embedded_flags_removed = self.embedded_flags_obj.sub("", regex, 1)
-        
+
         for f in self.reFlags:
             if f.shortFlag in embedded_flags:
                 f.embed()
@@ -899,8 +899,8 @@ class Kodos(KodosBA):
             prompt = QMessageBox.warning(None,
                                          self.tr("Save changes?"),
                                          message,
-                                         QMessageBox.Save | 
-                                         QMessageBox.Cancel | 
+                                         QMessageBox.Save |
+                                         QMessageBox.Cancel |
                                          QMessageBox.Discard)
 
             if prompt == QMessageBox.Cancel:
@@ -967,14 +967,14 @@ class Kodos(KodosBA):
                 eval("widget.%s" % methodstr)
             except:
                 pass
-        
+
 
     def editUndo(self):
         self.widgetMethod("undo()")
-        
+
     def editRedo(self):
         self.widgetMethod("redo()")
-            
+
     def editCopy(self):
         self.widgetMethod("copy()", 1)
 
@@ -988,7 +988,7 @@ class Kodos(KodosBA):
     def preferences(self):
         self.prefs.showPrefsDialog()
         self.prefs.prefsSaved.connect(self.prefsSaved)
-            
+
     def setfont(self, font):
         #print "font: ",  font
         #return
@@ -1011,14 +1011,14 @@ class Kodos(KodosBA):
     def getMatchFont(self):
         return self.groupTable.font()
 
-    
+
     def helpHelp(self):
         self.helpWindow = help.Help(self, "kodos.html")
 
 
     def helpPythonRegex(self):
         self.helpWindow = help.Help(self, "python" + os.sep + "module-re.html")
-        
+
 
     def helpRegexLib(self):
         f = os.path.join("help", "regex-lib.xml")
@@ -1026,7 +1026,7 @@ class Kodos(KodosBA):
         self.regexlibwin.pasteRegexLib.connect(self.pasteFromRegexLib)
         self.regexlibwin.show()
 
-        
+
     def helpAbout(self):
         self.aboutWindow = About()
         self.aboutWindow.show()
@@ -1035,7 +1035,7 @@ class Kodos(KodosBA):
     def kodos_website(self):
         self.launch_browser_wrapper("http://kodos.sourceforge.net")
 
-            
+
     def check_for_update(self):
         url = "http://sourceforge.net/project/showfiles.php?group_id=43860"
         try:
@@ -1094,11 +1094,11 @@ class Kodos(KodosBA):
         self.ref_win = Reference(self)
         self.ref_win.pasteSymbol.connect(self.paste_symbol)
         self.ref_win.show()
-        
+
 
     def report_bug(self):
         self.bug_report_win = reportBugWindow(self)
-        
+
 
 ##############################################################################
 #
@@ -1140,7 +1140,7 @@ def main():
                 debug = int(arg)
             except:
                 print "debug value must be an integer"
-                usage()            
+                usage()
         if opt in ('-f', '--file'):
             filename = arg
         if opt in ('-l', '--locale'):
@@ -1160,7 +1160,7 @@ def main():
             print "locale changed to:", locale
             print localefile
             print localepath
-    
+
         translator = QTranslator(qApp)
         translator.load(localepath)
 
