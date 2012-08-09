@@ -33,7 +33,6 @@ import modules.help as help
 from modules.status_bar import *
 from modules.reference import *
 from modules.prefs import *
-from modules.reportBug import reportBugWindow
 from modules.version import VERSION
 from modules.recent_files import RecentFiles
 from modules.urlDialog import URLDialog
@@ -1005,7 +1004,8 @@ class Kodos(KodosBA):
 
 
     def report_bug(self):
-        self.bug_report_win = reportBugWindow(self)
+        self.launch_browser_wrapper('https://github.com/luksan/kodos/issues',
+                                    message=self.tr("Launch web browser to report a bug in kodos?"))
 
 
 ##############################################################################
