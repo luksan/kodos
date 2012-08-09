@@ -15,7 +15,6 @@ class textbrowser(QTextBrowser):
 
 
     def setSource(self, src):
-        #print "setSource:", src
         s = str(src)
         if s[:7] == 'http://':
             launch_browser(s)
@@ -29,7 +28,6 @@ class textbrowser(QTextBrowser):
 class Help(HelpBA):
     def __init__(self, parent, filename):
         HelpBA.__init__(self, parent)
-        #Qt.WType_TopLevel | Qt.WDestructiveClose)
 
         self.setGeometry(100, 50, 800, 600)
 
@@ -58,12 +56,10 @@ class Help(HelpBA):
 
 
     def setForwardAvailable(self, bool):
-        #print "bool: ", bool
         self.fwdAvailable = bool
 
 
     def forwardHandler(self):
-        #print "fwdAvail?: ", self.fwdAvailable
         if self.fwdAvailable:
             self.textBrowser.forward()
 

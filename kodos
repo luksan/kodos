@@ -578,7 +578,6 @@ class Kodos(KodosBA):
         self.group_tuples = []
 
         if match_obj.groups():
-            #print match_obj.groups()
             s = "<font color=blue>"
             num_groups = len(match_obj.groups())
 
@@ -952,8 +951,6 @@ class Kodos(KodosBA):
         self.prefs.prefsSaved.connect(self.prefsSaved)
 
     def setfont(self, font):
-        #print "font: ",  font
-        #return
         self.regexMultiLineEdit.setFont(font)
         self.stringMultiLineEdit.setFont(font)
         self.replaceTextEdit.setFont(font)
@@ -1012,7 +1009,6 @@ class Kodos(KodosBA):
         html = string.join(lines)
 
         rawstr = r"""kodos-(?P<version>.*?)\.\w{3,4}\<"""
-        #rawstr = r"""release_id=.*\">.*(kodos-)(?P<version>.*?)</[aA]>"""
         match_obj = re.search(rawstr, html)
         if match_obj:
             latest_version = match_obj.group('version')
