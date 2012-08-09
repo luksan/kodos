@@ -983,7 +983,8 @@ class Kodos(KodosBA):
 
 
     def kodos_website(self):
-        self.launch_browser_wrapper("http://kodos.sourceforge.net")
+        self.launch_browser_wrapper('https://github.com/luksan/kodos',
+                                    message=self.tr('Launch web browser to go to the kodos project page?'))
 
 
     def check_for_update(self):
