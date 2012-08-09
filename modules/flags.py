@@ -5,8 +5,11 @@ import re
 
 class reFlag(object):
     def __init__(self, flag_name, short_flag, checkbox):
+        if not flag_name.startswith('re.'):
+            raise ValueError('Invalid flag name {!r}'.format(flag_name))
+
         self.flagName = flag_name
-        self.reFlag = eval(flag_name)
+        self.reFlag = getattr(re, flag_name[3:])
         self.shortFlag = short_flag
         self.checkBox = checkbox
         self.preEmbedState = None
