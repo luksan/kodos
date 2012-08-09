@@ -17,9 +17,8 @@ try:
     from PyQt4.QtGui import *
     from PyQt4.QtCore import *
 except:
-    print """Could not locate the PyQt module.  Please make sure that
-you have installed PyQt for the version of Python that you are running."""
-    sys.exit(1)
+    sys.exit("""Could not locate the PyQt module.  Please make sure that
+you have installed PyQt for the version of Python that you are running.""")
 
 ### make sure that this script can find kodos specific modules ###
 import os.path
