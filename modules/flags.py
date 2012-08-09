@@ -3,7 +3,7 @@ from __future__ import print_function, absolute_import, unicode_literals
 
 import re
 
-class reFlag:
+class reFlag(object):
     def __init__(self, flag_name, short_flag, checkbox):
         self.flagName = flag_name
         self.reFlag = eval(flag_name)
