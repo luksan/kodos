@@ -987,48 +987,6 @@ class Kodos(KodosBA):
                                     message=self.tr('Launch web browser to go to the kodos project page?'))
 
 
-    def check_for_update(self):
-        url = "http://sourceforge.net/project/showfiles.php?group_id=43860"
-        try:
-            fp = urllib.urlopen(url)
-        except:
-            self.status_bar.set_message(self.tr("Failed to open url"),
-                                        5,
-                                        TRUE)
-            return
-
-        lines = fp.readlines()
-        html = string.join(lines)
-
-        rawstr = r"""kodos-(?P<version>.*?)\.\w{3,4}\<"""
-        match_obj = re.search(rawstr, html)
-        if match_obj:
-            latest_version = match_obj.group('version')
-            if latest_version == VERSION:
-                QMessageBox.information(None,
-                                        self.tr("No Update is Available"),
-                                        unicode(self.tr("You are currently using the latest version of Kodos")) + " (%s)" % VERSION)
-            else:
-                message =  "%s\n\n%s: %s.\n%s: %s.\n\n%s\n" % \
-                          (unicode(self.tr("There is a newer version of Kodos available.")),
-                           unicode(self.tr("You are using version:")),
-                           VERSION,
-                           unicode(self.tr("The latest version is:")),
-                           latest_version,
-                           unicode(self.tr("Press OK to launch browser")))
-
-                self.launch_browser_wrapper(url,
-                                            self.tr("Kodos Update Available"),
-                                            message)
-        else:
-            message = "%s.\n\n%s" % \
-                      (unicode(self.tr("Unable to get version info from Sourceforge")),
-                       unicode(self.tr("Press OK to launch browser")))
-            self.launch_browser_wrapper(url,
-                                        self.tr("Unknown version available"),
-                                        message)
-
-
     def launch_browser_wrapper(self, url, caption=None, message=None):
         if launch_browser(url, caption, message):
             self.status_bar.set_message(self.tr("Launching web browser"),
