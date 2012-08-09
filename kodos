@@ -976,7 +976,7 @@ class Kodos(KodosBA):
 
 
     def helpPythonRegex(self):
-        self.helpWindow = help.Help(self, "python" + os.sep + "module-re.html")
+        self.helpWindow = help.Help(self, os.path.join("python", "module-re.html"))
 
 
     def helpRegexLib(self):
