@@ -20,7 +20,7 @@ class RegexLibrary(RegexLibraryBA):
         self.populateListBox()
         kodos_toolbar_logo(self.toolBar)
 
-        restoreWindowSettings(self, GEO) 
+        restoreWindowSettings(self, GEO)
 
     def closeEvent(self, ev):
         saveWindowSettings(self, GEO)
@@ -31,12 +31,12 @@ class RegexLibrary(RegexLibraryBA):
         parser = ParseRegexLib(self.filename)
         self.xml_dicts = parser.parse()
 
-        
+
     def populateListBox(self):
         for d in self.xml_dicts:
             self.descriptionListBox.addItem(d.get('desc', "<unknown>"))
 
-        
+
     def descSelectedSlot(self, qlistboxitem):
         if qlistboxitem == None: return
 
@@ -50,7 +50,7 @@ class RegexLibrary(RegexLibraryBA):
         self.noteTextBrowser.setPlainText(xml_dict.get('note', ""))
         self.selected = xml_dict
 
-        
+
     def editPaste(self):
         if self.selected:
             self.pasteRegexLib.emit(self.selected)

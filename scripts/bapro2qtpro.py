@@ -29,7 +29,7 @@ class Convert:
                 translations = m.group("files")
         except:
             pass
-        
+
         return translations
 
 
@@ -37,7 +37,7 @@ class Convert:
         fp = open(infile, "r")
         data = fp.read()
         fp.close()
-        
+
         modules = []
 
         m = rx_folder.search(data)
@@ -45,7 +45,7 @@ class Convert:
             start = m.start()
         else:
             start = len(data)
-            
+
         while m:
             folder = m.group("folder")
             moduledata = m.group("data")
@@ -57,7 +57,7 @@ class Convert:
         modules += self.__getModules(None, data, start)
         return modules
 
-            
+
     def __getModules(self, folder, moduledata, end=None):
         modules = []
         pos = 0
@@ -67,7 +67,7 @@ class Convert:
                 m = rx_modules.search(moduledata, pos, end)
             else:
                 m = rx_modules.search(moduledata, pos)
-                
+
             if not m: break
 
             pos = m.end()
@@ -88,7 +88,7 @@ class Convert:
 
         for module in modules:
             fp.write("%s " % module)
-            
+
         fp.write("\n")
         fp.write("TRANSLATIONS = %s\n" % translations)
 
@@ -109,11 +109,11 @@ def convert():
             usage()
     except:
         usage()
-        
+
     c = Convert(infile, outfile)
 
 ##################################################################################
-    
+
 if __name__ == '__main__':
     convert()
 

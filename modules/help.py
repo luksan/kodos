@@ -1,35 +1,36 @@
 # -*- coding: utf-8 -*-
 #  help.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from util import *
+import os
+
+from PyQt4 import QtGui
+from PyQt4 import QtCore
+
+from . import util
 from helpBA import HelpBA
 
-class textbrowser(QTextBrowser):
+class textbrowser(QtGui.QTextBrowser):
     # reimplemented textbrowser that filters out external sources
     # future: launch web browser
     def __init__(self, parent=None, name=None):
         self.parent = parent
-        QTextBrowser.__init__(self)
+        QtGui.QTextBrowser.__init__(self)
 
 
     def setSource(self, src):
-        #print "setSource:", src
         s = str(src)
         if s[:7] == 'http://':
-            launch_browser(s)
+            util.launch_browser(s)
             return
 
-        QTextBrowser.setSource(self, QUrl(src))
-                
-    
-                
+        QtGui.QTextBrowser.setSource(self, QtCore.QUrl(src))
+
+
+
 
 class Help(HelpBA):
     def __init__(self, parent, filename):
         HelpBA.__init__(self, parent)
-        #Qt.WType_TopLevel | Qt.WDestructiveClose)
 
         self.setGeometry(100, 50, 800, 600)
 
@@ -38,7 +39,7 @@ class Help(HelpBA):
 
         self.setCentralWidget(self.textBrowser)
         self.textBrowser.setSource(absPath)
-        
+
         self.fwdAvailable = 0
         self.show()
 
@@ -58,18 +59,16 @@ class Help(HelpBA):
 
 
     def setForwardAvailable(self, bool):
-        #print "bool: ", bool
         self.fwdAvailable = bool
 
 
     def forwardHandler(self):
-        #print "fwdAvail?: ", self.fwdAvailable
         if self.fwdAvailable:
             self.textBrowser.forward()
-    
-    def getHelpFile(self, filename):
-        f = findFile(os.path.join("help", filename))
-        return f
-    
 
-        
+    def getHelpFile(self, filename):
+        f = util.findFile(os.path.join("help", filename))
+        return f
+
+
+

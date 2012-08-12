@@ -30,10 +30,10 @@ def getPixmap(fileStr, fileType="PNG", dir="images"):
     image = getAppPath() + os.sep + dir + os.sep + fileStr
 
     if debug & DEBUG_PIXMAP: print "image:", image
-    
+
     pixmap = QPixmap(image, fileType)
     pixmap.setMask(pixmap.createHeuristicMask(1))
-    
+
     return pixmap
 
 def kodos_toolbar_logo(toolbar):
@@ -43,7 +43,7 @@ def kodos_toolbar_logo(toolbar):
 
     logolabel = QLabel("kodos_logo")
     logolabel.setPixmap(QPixmap(":/images/kodos_icon.png"))
-    
+
     toolbar.addWidget(blanklabel)
     toolbar.addWidget(logolabel)
 
@@ -71,7 +71,7 @@ def findFile(filename):
 def launch_browser(url, caption=None, message=None):
     if not caption: caption = "Info"
     if not message: message = "Launch web browser?"
-    
+
     button = QMessageBox.information(None, caption, message, QMessageBox.Ok | QMessageBox.Cancel)
     if button == QMessageBox.Cancel:
         return False

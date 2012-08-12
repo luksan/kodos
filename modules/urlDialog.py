@@ -14,9 +14,9 @@ class URLDialog(URLDialogBA):
         URLDialogBA.__init__(self, parent)
         if url:
             self.URLTextEdit.setPlainText(url)
-            
+
         self.show()
-        
+
     def help_slot(self):
         self.helpWindow = help.Help(self, "importURL.html")
 
@@ -34,5 +34,5 @@ class URLDialog(URLDialogBA):
         html = ''.join(lines)
 
         self.urlImported.emit(html, url)
-        
+
         URLDialogBA.accept(self)

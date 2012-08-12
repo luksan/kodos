@@ -38,15 +38,13 @@ class Tooltip(QLabel):
     def clear_tooltip(self):
         self.text = ''
         self.setText('')
-                
+
 
     def addWidget(self, widget):
-        #print "adding widget", widget
         widget.installEventFilter(self)
 
 
     def removeWidget(self, widget):
-        #print "removing widget", widget
         widget.removeEventFilter(self)
 
 
@@ -69,16 +67,13 @@ class Tooltip(QLabel):
 
     def eventFilter(self, obj, ev):
         type = ev.type()
-        #print obj, type
         if type == QEvent.Enter:
             self.killCustomTimers()
             self.enter_timer_id = self.startTimer(self.delay)
-            #print "tip!"
             self.event_widget = obj
         elif type == QEvent.Leave:
             self.killCustomTimers()
             self.leave_timer_id = self.startTimer(self.delay)
-            #print "remove tip!"
             self.event_widget = None
         return FALSE ## Always return unhandled for this kind of filter!!!
 
@@ -86,7 +81,7 @@ class Tooltip(QLabel):
     def tooltip_open(self):
         if not self.text:
             return
-        
+
         try:
             pos = self.event_widget.mapToGlobal(
                 QPoint(0, self.event_widget.height()))

@@ -50,7 +50,7 @@ while 1:
 
 
 
-                
+
 
 fp = open(filename, "w")
 fp.write(pycode)
