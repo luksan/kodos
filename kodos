@@ -244,7 +244,6 @@ class Kodos(KodosBA):
             regex = self.regex
             self.regex_saved = self.regex
             length = len(regex)
-            found = 0
             self.regexMultiLineEdit.setReadOnly(1)
             self.stringMultiLineEdit.setReadOnly(1)
             self.replaceTextEdit.setReadOnly(1)
@@ -368,7 +367,6 @@ class Kodos(KodosBA):
         code += ")\n\n"
 
         code += "# method 3: using search function (w/ embedded flags)\n"
-        embedded_str = self.get_embedded_flags_string() + self.regex_embedded_flags_removed
         code += "match_obj = re.search(embedded_rawstr, matchstr)\n\n"
 
 
@@ -535,7 +533,6 @@ class Kodos(KodosBA):
             compile_obj = re.compile(self.regex, self.reFlags.allFlagsORed())
             allmatches = compile_obj.findall(self.matchstring)
 
-            replace_spans = []
             if allmatches and len(allmatches):
                 self.matchNumberSpinBox.setMaximum(len(allmatches))
                 self.matchNumberSpinBox.setEnabled(TRUE)
@@ -575,9 +572,6 @@ class Kodos(KodosBA):
         self.group_tuples = []
 
         if match_obj.groups():
-            s = "<font color=blue>"
-            num_groups = len(match_obj.groups())
-
             group_nums = {}
             if compile_obj.groupindex:
                 keys = compile_obj.groupindex.keys()
