@@ -1,26 +1,29 @@
 # -*- coding: utf-8 -*-
 #  help.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from util import *
+import os
+
+from PyQt4 import QtGui
+from PyQt4 import QtCore
+
+from . import util
 from helpBA import HelpBA
 
-class textbrowser(QTextBrowser):
+class textbrowser(QtGui.QTextBrowser):
     # reimplemented textbrowser that filters out external sources
     # future: launch web browser
     def __init__(self, parent=None, name=None):
         self.parent = parent
-        QTextBrowser.__init__(self)
+        QtGui.QTextBrowser.__init__(self)
 
 
     def setSource(self, src):
         s = str(src)
         if s[:7] == 'http://':
-            launch_browser(s)
+            util.launch_browser(s)
             return
 
-        QTextBrowser.setSource(self, QUrl(src))
+        QtGui.QTextBrowser.setSource(self, QtCore.QUrl(src))
 
 
 
@@ -64,7 +67,7 @@ class Help(HelpBA):
             self.textBrowser.forward()
 
     def getHelpFile(self, filename):
-        f = findFile(os.path.join("help", filename))
+        f = util.findFile(os.path.join("help", filename))
         return f
 
 
