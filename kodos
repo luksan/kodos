@@ -6,7 +6,6 @@ import sys
 import os
 import string
 import re
-import copy
 import cPickle
 import types
 import getopt
