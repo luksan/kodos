@@ -21,7 +21,6 @@ except:
 you have installed PyQt for the version of Python that you are running.""")
 
 ### make sure that this script can find kodos specific modules ###
-import os.path
 from distutils.sysconfig import get_python_lib
 
 sys.path.append(os.path.join(get_python_lib(), "kodos"))
