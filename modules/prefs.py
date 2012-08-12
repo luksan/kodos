@@ -33,7 +33,6 @@ class Preferences(PrefsBA):
                     self.recentFilesSpinBox.setValue(int(setting.toPyObject()))
             except Exception, e:
                 print "Loading of configuration key", preference, "failed."
-                if debug: print e
                 self.settings.remove(preference)
 
 
