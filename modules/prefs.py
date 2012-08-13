@@ -27,8 +27,6 @@ class Preferences(PrefsBA):
                     self.parent.setfont(setting.toPyObject())
                 if preference == 'Match Font':
                     self.parent.setMatchFont(setting.toPyObject())
-                if preference == 'Email Server':
-                    self.emailServerEdit.setText(setting.toPyObject())
                 if preference == 'Recent Files Count':
                     self.recentFilesSpinBox.setValue(int(setting.toPyObject()))
             except Exception, e:
@@ -39,7 +37,6 @@ class Preferences(PrefsBA):
     def save(self):
         self.settings.setValue('Font', self.parent.getfont())
         self.settings.setValue('Match Font', self.parent.getMatchFont())
-        self.settings.setValue('Email Server', self.emailServerEdit.text())
         self.settings.setValue('Recent Files Count', self.recentFilesSpinBox.text())
 
         self.settings.sync()
