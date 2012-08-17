@@ -8,6 +8,7 @@ import os
 import os.path
 import sys
 from glob import glob
+import subprocess
 
 args = sys.argv[1:]
 
@@ -32,7 +33,7 @@ TRANSLATIONS_DIR = os.path.join(libpath, "translations")
 
 class MyInstall(DistutilsInstall):
   def run(self):
-    os.system('make')
+    subprocess.check_call(['make'])
     DistutilsInstall.run(self)
 
 #########################################################################
