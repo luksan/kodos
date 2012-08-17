@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from modules.version import VERSION
+from kodos.version import VERSION
 from distutils.core import setup
 from distutils.command.build_py import build_py as _build_py
 import os
@@ -40,16 +40,15 @@ setup(name="kodos",
       author_email="phil_schwartz@users.sourceforge.net",
       url="http://kodos.sourceforge.net",
       scripts=['bin/kodos'],
-      packages=['modules', "."],
+      packages=['kodos'],
       data_files=[(HELP_DIR, glob(os.path.join("help", "*.*ml"))),
                   (HELP_PY_DIR, glob(os.path.join("help", "python", "*.html"))),
                   (IMAGES_DIR, glob(os.path.join("images", "*.png"))),
                   (SCREENSHOTS_DIR, glob(os.path.join("screenshots", "*.png"))),
                   (TRANSLATIONS_DIR, glob(os.path.join("translations", "*"))),
-                  (MODULES_DIR, glob("modules/*.ui"))
+                  (MODULES_DIR, glob("kodos/*.ui"))
                   ],
       license="GPL",
-      extra_path='kodos',
       long_description="""
       Kodos is a visual regular expression editor and debugger.
       """,
