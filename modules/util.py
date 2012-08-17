@@ -18,7 +18,7 @@ global debug
 
 def getAppPath():
     "Convenience function so that we can find the necessary images"
-    fullpath = os.path.abspath(sys.argv[0])
+    fullpath = os.path.abspath(os.path.join(sys.argv[0], '..'))
     path = os.path.dirname(fullpath)
     return path
 
