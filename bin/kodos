@@ -17,8 +17,8 @@ you have installed PyQt for the version of Python that you are running.""")
 from distutils.sysconfig import get_python_lib
 sys.path.append(os.path.join(get_python_lib(), "kodos"))
 
-from modules.main import Kodos
-from modules.util import findFile
+from kodos.main import Kodos
+from kodos.util import findFile
 
 def usage():
     print "kodos.py [-f filename | --file=filename ] [ -d debug | --debug=debug ] [ -k kodos_dir ]"
