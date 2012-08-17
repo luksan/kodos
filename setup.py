@@ -3,9 +3,7 @@
 from modules.version import VERSION
 from distutils.core import setup
 from distutils.command.build_py import build_py as _build_py
-#from distutils.sysconfig import get_python_lib
 import os
-import os.path
 import sys
 from glob import glob
 import subprocess
@@ -16,8 +14,7 @@ if sys.platform == 'win32':
 #     libpath = '.\\'
      libpath = r"lib\site-packages\kodos"
 else:
-     #libpath = "/usr/local/kodos" # 2.4.0 and prior
-     libpath = "/usr/share/kodos"  # as of 2.4.1
+     libpath = "/usr/share/kodos"
 
 for arg in args:
     if arg == "--formats=wininst":
@@ -36,8 +33,6 @@ class build_py(_build_py):
     subprocess.check_call(['make'])
     _build_py.run(self)
 
-#########################################################################
-
 setup(name="kodos",
       version=VERSION,
       description="Kodos is a visual regular expression editor",
@@ -45,7 +40,6 @@ setup(name="kodos",
       author_email="phil_schwartz@users.sourceforge.net",
       url="http://kodos.sourceforge.net",
       scripts=['bin/kodos'],
-      ##package_dir={'': 'modules'},
       packages=['modules', "."],
       data_files=[(HELP_DIR, glob(os.path.join("help", "*.*ml"))),
                   (HELP_PY_DIR, glob(os.path.join("help", "python", "*.html"))),
@@ -61,4 +55,3 @@ setup(name="kodos",
       """,
       cmdclass={'build_py': build_py},
       )
-
