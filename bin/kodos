@@ -13,10 +13,6 @@ except:
     sys.exit("""Could not locate the PyQt module.  Please make sure that
 you have installed PyQt for the version of Python that you are running.""")
 
-### make sure that this script can find kodos specific modules ###
-from distutils.sysconfig import get_python_lib
-sys.path.append(os.path.join(get_python_lib(), "kodos"))
-
 from kodos.main import Kodos
 from kodos.util import findFile
 
