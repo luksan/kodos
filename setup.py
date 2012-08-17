@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from modules.version import VERSION
 from distutils.core import setup
-from distutils.command.install import install as DistutilsInstall
+from distutils.command.build_py import build_py as _build_py
 #from distutils.sysconfig import get_python_lib
 import os
 import os.path
@@ -31,10 +31,10 @@ SCREENSHOTS_DIR = os.path.join(libpath, "screenshots")
 MODULES_DIR = os.path.join(libpath, "modules")
 TRANSLATIONS_DIR = os.path.join(libpath, "translations")
 
-class MyInstall(DistutilsInstall):
+class build_py(_build_py):
   def run(self):
     subprocess.check_call(['make'])
-    DistutilsInstall.run(self)
+    _build_py.run(self)
 
 #########################################################################
 
@@ -59,6 +59,6 @@ setup(name="kodos",
       long_description="""
       Kodos is a visual regular expression editor and debugger.
       """,
-      cmdclass={'install':MyInstall},
+      cmdclass={'build_py': build_py},
       )
 
