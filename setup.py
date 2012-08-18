@@ -25,7 +25,6 @@ HELP_DIR = os.path.join(libpath, "help")
 HELP_PY_DIR = os.path.join(libpath,  "help", "python")
 IMAGES_DIR = os.path.join(libpath, "images")
 SCREENSHOTS_DIR = os.path.join(libpath, "screenshots")
-MODULES_DIR = os.path.join(libpath, "modules")
 TRANSLATIONS_DIR = os.path.join(libpath, "translations")
 
 class build_py(_build_py):
@@ -46,7 +45,6 @@ setup(name="kodos",
                   (IMAGES_DIR, glob(os.path.join("images", "*.png"))),
                   (SCREENSHOTS_DIR, glob(os.path.join("screenshots", "*.png"))),
                   (TRANSLATIONS_DIR, glob(os.path.join("translations", "*"))),
-                  (MODULES_DIR, glob("kodos/*.ui"))
                   ],
       license="GPL",
       long_description="""
