@@ -4,7 +4,7 @@
 
 import sys
 import os
-import getopt
+import optparse
 
 try:
     from PyQt4 import QtGui
@@ -16,74 +16,39 @@ you have installed PyQt for the version of Python that you are running.""")
 from kodos.main import Kodos
 from kodos.util import findFile
 
-def usage():
-    print "kodos.py [-f filename | --file=filename ] [ -d debug | --debug=debug ] [ -k kodos_dir ]"
-    print
-    print "  -f filename | --filename=filename  : Load filename on startup"
-    print "  -d debug | --debug=debug           : Set debug to this debug level"
-    print "  -k kodos_dir                       : Path containing Kodos images & help subdirs"
-    print "  -l locale | --locale=locale        : 2-letter locale (eg. en)"
-    print
-    sys.exit(0)
+parser = optparse.OptionParser()
+parser.add_option('-f', '--filename', dest='filename',
+                  help='Load filename on startup', metavar='FILE')
+parser.add_option('-d', '--debug', dest='debug', type='int',
+                  help='Set debug to LEVEL', metavar='LEVEL')
+parser.add_option('-k', dest='kodos_dir', type='string',
+                  default=os.path.join(sys.prefix, "kodos"),
+                  help='Set path containing Kodos images & help subdirs',
+                  metavar='DIR')
+parser.add_option('-l', '--locale', dest='locale', type='string',
+                  default='en',
+                  help='2-letter locale', metavar='LEVEL')
+options, args = parser.parse_args()
 
-def main():
-    filename  = None
-    debug     = 0
-    kodos_dir = os.path.join(sys.prefix, "kodos")
-    locale    = None
+os.environ['KODOS_DIR'] = options.kodos_dir
 
-    args = sys.argv[1:]
-    try:
-        (opts, getopts) = getopt.getopt(args, 'd:f:k:l:?h',
-                                        ["file=", "debug=",
-                                         "help", "locale="])
-    except:
-        print "\nInvalid command line option detected."
-        usage()
+qApp = QtGui.QApplication(sys.argv)
+qApp.setOrganizationName("kodos")
+qApp.setApplicationName("kodos")
+qApp.setOrganizationDomain("kodos.sourceforge.net")
 
-    for opt, arg in opts:
-        if opt in ('-h', '-?', '--help'):
-            usage()
-        if opt == '-k':
-            kodos_dir = arg
-        if opt in ('-d', '--debug'):
-            try:
-                debug = int(arg)
-            except:
-                print "debug value must be an integer"
-                usage()
-        if opt in ('-f', '--file'):
-            filename = arg
-        if opt in ('-l', '--locale'):
-            locale = arg
+if options.locale != 'en':
+    localefile = "kodos_%s.qm" % (options.locale or QtCore.QTextCodec.locale())
+    localepath = findFile(os.path.join("translations", localefile))
+    if debug:
+        print "locale changed to:", locale
+        print localefile
+        print localepath
 
-    os.environ['KODOS_DIR'] = kodos_dir
+    translator = QtCore.QTranslator(qApp)
+    translator.load(localepath)
+    qApp.installTranslator(translator)
 
-    qApp = QtGui.QApplication(sys.argv)
-    qApp.setOrganizationName("kodos")
-    qApp.setApplicationName("kodos")
-    qApp.setOrganizationDomain("kodos.sourceforge.net")
-
-    if locale not in (None, 'en'):
-        localefile = "kodos_%s.qm" % (locale or QtCore.QTextCodec.locale())
-        localepath = findFile(os.path.join("translations", localefile))
-        if debug:
-            print "locale changed to:", locale
-            print localefile
-            print localepath
-
-        translator = QtCore.QTranslator(qApp)
-        translator.load(localepath)
-
-        qApp.installTranslator(translator)
-
-    kodos = Kodos(filename, debug)
-
-    kodos.show()
-
-    sys.exit(qApp.exec_())
-
-
-
-if __name__ == '__main__':
-    main()
+kodos = Kodos(options.filename, options.debug)
+kodos.show()
+sys.exit(qApp.exec_())
