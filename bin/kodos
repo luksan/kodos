@@ -55,6 +55,6 @@ if options.locale != 'en':
     translator.load(localepath)
     qApp.installTranslator(translator)
 
-kodos = Kodos(options.filename)
+kodos = Kodos(qApp, options.filename)
 kodos.show()
 sys.exit(qApp.exec_())
