@@ -66,10 +66,11 @@ except:
 ##############################################################################
 
 class Kodos(KodosBA):
-    def __init__(self, filename):
+    def __init__(self, qApp, filename):
         KodosBA.__init__(self)
 
         self.log = logging.getLogger('kodos.main')
+        self.qApp = qApp
         self.regex = ""
         self.matchstring = ""
         self.replace = ""
@@ -123,7 +124,7 @@ class Kodos(KodosBA):
                                         self.prefs.recentFilesSpinBox.value())
 
         if filename and self.openFile(filename):
-            qApp.processEvents()
+            self.qApp.processEvents()
 
         self.fileMenu.triggered.connect(self.fileMenuHandler)
 
@@ -875,7 +876,7 @@ class Kodos(KodosBA):
 
 
     def getWidget(self):
-        widget = qApp.focusWidget()
+        widget = self.qApp.focusWidget()
         if (widget == self.regexMultiLineEdit or
             widget == self.stringMultiLineEdit or
             widget == self.replaceTextEdit or
@@ -889,7 +890,7 @@ class Kodos(KodosBA):
         # execute the methodstr of widget only if widget
         # is one of the editable widgets OR if the method
         # may be applied to any widget.
-        widget = qApp.focusWidget()
+        widget = self.qApp.focusWidget()
         if anywidget or (
             widget == self.regexMultiLineEdit or
             widget == self.stringMultiLineEdit or
