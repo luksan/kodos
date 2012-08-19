@@ -4,6 +4,7 @@
 
 import sys
 import os
+import logging
 import optparse
 
 try:
@@ -19,8 +20,8 @@ from kodos.util import findFile
 parser = optparse.OptionParser()
 parser.add_option('-f', '--filename', dest='filename',
                   help='Load filename on startup', metavar='FILE')
-parser.add_option('-d', '--debug', dest='debug', type='int',
-                  help='Set debug to LEVEL', metavar='LEVEL')
+parser.add_option('-d', '--debug', dest='debug', action='store_true',
+                  help='Set log level to debug')
 parser.add_option('-k', dest='kodos_dir', type='string',
                   default=os.path.join(sys.prefix, "kodos"),
                   help='Set path containing Kodos images & help subdirs',
@@ -29,6 +30,12 @@ parser.add_option('-l', '--locale', dest='locale', type='string',
                   default='en',
                   help='2-letter locale', metavar='LEVEL')
 options, args = parser.parse_args()
+
+if options.debug:
+    logging.basicConfig(level=logging.DEBUG)
+else:
+    logging.basicConfig(level=logging.WARNING)
+log = logging.getLogger('kodos')
 
 os.environ['KODOS_DIR'] = options.kodos_dir
 
@@ -40,15 +47,14 @@ qApp.setOrganizationDomain("kodos.sourceforge.net")
 if options.locale != 'en':
     localefile = "kodos_%s.qm" % (options.locale or QtCore.QTextCodec.locale())
     localepath = findFile(os.path.join("translations", localefile))
-    if debug:
-        print "locale changed to:", locale
-        print localefile
-        print localepath
+    log.debug('locale changed to: %s, file: %s, path: %s' % (locale,
+                                                             localefile,
+                                                             localepath))
 
     translator = QtCore.QTranslator(qApp)
     translator.load(localepath)
     qApp.installTranslator(translator)
 
-kodos = Kodos(options.filename, options.debug)
+kodos = Kodos(options.filename)
 kodos.show()
 sys.exit(qApp.exec_())
