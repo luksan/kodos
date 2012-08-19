@@ -2,17 +2,17 @@
 #  reference.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
 from PyQt4.QtCore import pyqtSignal
-from referenceBA import ReferenceBA
-from util import kodos_toolbar_logo, restoreWindowSettings, saveWindowSettings
+from . import referenceBA
+from .util import kodos_toolbar_logo, restoreWindowSettings, saveWindowSettings
 
 GEO = "regex-ref_geometry"
 
-class Reference(ReferenceBA):
+class Reference(referenceBA.ReferenceBA):
 
     pasteSymbol = pyqtSignal(str)
 
     def __init__(self, parent):
-        ReferenceBA.__init__(self, None)
+        referenceBA.ReferenceBA.__init__(self, None)
         self.parent = parent
 
         restoreWindowSettings(self, GEO)

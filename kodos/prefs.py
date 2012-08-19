@@ -5,17 +5,17 @@ import logging
 
 from PyQt4.QtCore import pyqtSignal, QSettings
 from PyQt4.QtGui import QDialog, QFontDialog
-from prefsBA import PrefsBA
-import help
+from . import prefsBA
+from . import help
 
-class Preferences(PrefsBA):
+class Preferences(prefsBA.PrefsBA):
 
     prefsSaved = pyqtSignal()
 
     def __init__(self, parent, autoload=0):
         self.log = logging.getLogger('kodos.prefs')
         self.parent = parent
-        PrefsBA.__init__(self, parent)
+        prefsBA.PrefsBA.__init__(self, parent)
 
         self.settings = QSettings()
 

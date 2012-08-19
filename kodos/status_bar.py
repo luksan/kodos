@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 #  status_bar.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from tooltip import Tooltip
-from util import TRUE, FALSE
+from . import tooltip
+from .util import TRUE, FALSE
 from PyQt4.QtCore import QTimer
 from PyQt4.QtGui import QPixmap, QLabel, QProgressBar
 
@@ -16,7 +16,7 @@ class Status_Bar:
         self.__statusTimer.timeout.connect(self.reset_message)
 
         self.__statusLabel = QLabel("msg", self.statusBar)
-        self.tooltip = Tooltip('')
+        self.tooltip = tooltip.Tooltip('')
         self.tooltip.addWidget(self.__statusLabel)
 
         self.last_status_message = ''

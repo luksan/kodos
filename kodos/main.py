@@ -16,11 +16,11 @@ from . import help
 from . import status_bar
 from . import reference
 from . import prefs
-from recent_files import RecentFiles
-from urlDialog import URLDialog
-from regexLibrary import RegexLibrary
-from newUserDialogBA import NewUserDialog
-from flags import reFlag, reFlagList
+from . import recent_files
+from . import urlDialog
+from . import regexLibrary
+from . import newUserDialogBA
+from .flags import reFlag, reFlagList
 
 # match status
 MATCH_NA       = 0
@@ -117,8 +117,8 @@ class Kodos(kodosBA.KodosBA):
         self.show()
 
         self.prefs = prefs.Preferences(self, 1)
-        self.recent_files = RecentFiles(self,
-                                        self.prefs.recentFilesSpinBox.value())
+        self.recent_files = recent_files.RecentFiles(self,
+                                                     self.prefs.recentFilesSpinBox.value())
 
         if filename and self.openFile(filename):
             self.qApp.processEvents()
@@ -135,7 +135,7 @@ class Kodos(kodosBA.KodosBA):
     def checkIfNewUser(self):
         s = Qt.QSettings()
         if s.value('New User', "true").toPyObject() != "false":
-            self.newuserdialog = NewUserDialog()
+            self.newuserdialog = newUserDialogBA.NewUserDialog()
             self.newuserdialog.show()
         s.setValue('New User', "false")
 
@@ -654,7 +654,7 @@ class Kodos(kodosBA.KodosBA):
 
 
     def importURL(self):
-        self.urldialog = URLDialog(self, self.url)
+        self.urldialog = urlDialog.URLDialog(self, self.url)
         self.urldialog.urlImported.connect(self.urlImported)
 
 
@@ -950,7 +950,7 @@ class Kodos(kodosBA.KodosBA):
 
     def helpRegexLib(self):
         f = os.path.join("help", "regex-lib.xml")
-        self.regexlibwin = RegexLibrary(f)
+        self.regexlibwin = regexLibrary.RegexLibrary(f)
         self.regexlibwin.pasteRegexLib.connect(self.pasteFromRegexLib)
         self.regexlibwin.show()
 

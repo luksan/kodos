@@ -2,7 +2,7 @@
 #  tooltip.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
 from PyQt4 import Qt, QtCore
-from util import FALSE
+from .util import FALSE
 
 class Tooltip(Qt.QLabel):
     def __init__(self, text, bgcolor="#ffd700",fgcolor="#000000",delay=1000):
