@@ -4,8 +4,6 @@ import os
 import re
 import types
 import signal
-import string
-import urllib
 import cPickle
 import logging
 
@@ -18,7 +16,6 @@ from . import help
 from . import status_bar
 from . import reference
 from . import prefs
-from version import VERSION
 from recent_files import RecentFiles
 from urlDialog import URLDialog
 from regexLibrary import RegexLibrary
