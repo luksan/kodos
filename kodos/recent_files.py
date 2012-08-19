@@ -99,19 +99,3 @@ class RecentFiles:
     def isRecentFile(self, menuid):
         return menuid in self.__indecies
 
-
-    def move(self, filename, menuid):
-        # fix me....
-        menu = self.parent.fileMenu
-        idx = menu.indexOf(self.__indecies[0])
-        menu.removeItem(menuid)
-        menu.insertItem(QIconSet(QPixmap(":images/document-open-recent.png")),
-                        filename,
-                        -1,
-                        idx)
-        try:
-            self.__recent_files.remove(filename)
-        except:
-            pass
-        self.__indecies.insert(0, filename)
-
