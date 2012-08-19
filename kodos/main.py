@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import re
 import types
 import signal
@@ -8,16 +9,15 @@ import urllib
 import cPickle
 import logging
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt4 import Qt, QtCore
 
-from kodosBA import *
-from util import *
-from about import *
+from . import kodosBA
+from . import util
+from . import about
 from . import help
-from status_bar import *
-from reference import *
-from prefs import *
+from . import status_bar
+from . import reference
+from . import prefs
 from version import VERSION
 from recent_files import RecentFiles
 from urlDialog import URLDialog
@@ -49,8 +49,8 @@ STATE_EDITED   = 1
 GEO = "kodos_geometry"
 
 # colors for normal & examination mode
-QCOLOR_WHITE  = QColor(Qt.white)     # normal
-QCOLOR_YELLOW = QColor(255,255,127)  # examine
+QCOLOR_WHITE  = QtCore.Qt.white         # normal
+QCOLOR_YELLOW = Qt.QColor(255,255,127)  # examine
 
 try:
     signal.SIGALRM
@@ -65,9 +65,9 @@ except:
 #
 ##############################################################################
 
-class Kodos(KodosBA):
+class Kodos(kodosBA.KodosBA):
     def __init__(self, qApp, filename):
-        KodosBA.__init__(self)
+        kodosBA.KodosBA.__init__(self)
 
         self.log = logging.getLogger('kodos.main')
         self.qApp = qApp
@@ -96,10 +96,10 @@ class Kodos(KodosBA):
         self.MSG_FAIL   = self.tr("Pattern does not match")
 
 
-        self.statusPixmapsDict = {  MATCH_NA: QPixmap(":images/yellow.png"),
-                                    MATCH_OK: QPixmap(":images/green.png"),
-                                    MATCH_FAIL: QPixmap(":images/red.png"),
-                                    MATCH_PAUSED: QPixmap(":images/pause.png"),
+        self.statusPixmapsDict = {  MATCH_NA: Qt.QPixmap(":images/yellow.png"),
+                                    MATCH_OK: Qt.QPixmap(":images/green.png"),
+                                    MATCH_FAIL: Qt.QPixmap(":images/red.png"),
+                                    MATCH_PAUSED: Qt.QPixmap(":images/pause.png"),
                                 }
 
 
@@ -115,11 +115,11 @@ class Kodos(KodosBA):
                     ])
         self.reFlags.clearAll()
 
-        restoreWindowSettings(self, GEO)
+        util.restoreWindowSettings(self, GEO)
 
         self.show()
 
-        self.prefs = Preferences(self, 1)
+        self.prefs = prefs.Preferences(self, 1)
         self.recent_files = RecentFiles(self,
                                         self.prefs.recentFilesSpinBox.value())
 
@@ -128,7 +128,7 @@ class Kodos(KodosBA):
 
         self.fileMenu.triggered.connect(self.fileMenuHandler)
 
-        kodos_toolbar_logo(self.toolBar)
+        util.kodos_toolbar_logo(self.toolBar)
         if self.replace:  self.show_replace_widgets()
         else:             self.hide_replace_widgets()
 
@@ -136,7 +136,7 @@ class Kodos(KodosBA):
 
 
     def checkIfNewUser(self):
-        s = QSettings()
+        s = Qt.QSettings()
         if s.value('New User', "true").toPyObject() != "false":
             self.newuserdialog = NewUserDialog()
             self.newuserdialog.show()
@@ -144,7 +144,7 @@ class Kodos(KodosBA):
 
 
     def createStatusBar(self):
-        self.status_bar = Status_Bar(self, FALSE, "")
+        self.status_bar = status_bar.Status_Bar(self, FALSE, "")
 
 
     def updateStatus(self, status_string, status_value, duration=0, replace=FALSE, tooltip=''):
@@ -253,7 +253,7 @@ class Kodos(KodosBA):
 
 
     def __refresh_regex_widget(self, base_qcolor, regex):
-        pal = QPalette()
+        pal = Qt.QPalette()
         pal.setColor(pal.Base, base_qcolor)
         self.regexMultiLineEdit.setPalette(pal)
 
@@ -323,8 +323,8 @@ class Kodos(KodosBA):
         self.groupTable.setRowCount(rows)
         row = 0
         for t in tuples:
-            self.groupTable.setItem(row, 0, QTableWidgetItem(t[1]))
-            self.groupTable.setItem(row, 1, QTableWidgetItem(t[2]))
+            self.groupTable.setItem(row, 0, Qt.QTableWidgetItem(t[1]))
+            self.groupTable.setItem(row, 1, Qt.QTableWidgetItem(t[2]))
             row += 1
 
 
@@ -383,7 +383,7 @@ class Kodos(KodosBA):
     def colorize_strings(self, strings, widget, cursorOffset=0):
         widget.clear()
 
-        colors = (QBrush(QColor(Qt.black)), QBrush(QColor(Qt.blue)) )
+        colors = (Qt.QBrush(Qt.QColor(QtCore.Qt.black)), Qt.QBrush(Qt.QColor(QtCore.Qt.blue)) )
         cur = widget.textCursor()
         format = cur.charFormat()
 
@@ -630,7 +630,7 @@ class Kodos(KodosBA):
             ev.ignore()
             return
 
-        saveWindowSettings(self, GEO)
+        util.saveWindowSettings(self, GEO)
 
         try:
             self.regexlibwin.close()
@@ -667,7 +667,7 @@ class Kodos(KodosBA):
 
 
     def importFile(self):
-        fn = QFileDialog.getOpenFileName(self,
+        fn = Qt.QFileDialog.getOpenFileName(self,
                                          self.tr("Import File"),
                                          self.filename,
                                          self.tr("All (*)"))
@@ -697,7 +697,7 @@ class Kodos(KodosBA):
         filename = self.filename
         if filename == None:
             filename = ""
-        fn = QFileDialog.getOpenFileName(self,
+        fn = Qt.QFileDialog.getOpenFileName(self,
                                          self.tr("Open Kodos File"),
                                          filename,
                                          self.tr("Kodos file (*.kds);;All (*)"))
@@ -758,15 +758,15 @@ class Kodos(KodosBA):
         filename = self.filename
         if filename == None:
             filename = ""
-        filedialog = QFileDialog(self,
+        filedialog = Qt.QFileDialog(self,
                                  self.tr("Save Kodos File"),
                                  filename,
                                  "Kodos file (*.kds);;All (*)")
-        filedialog.setAcceptMode(QFileDialog.AcceptSave)
+        filedialog.setAcceptMode(Qt.QFileDialog.AcceptSave)
         filedialog.setDefaultSuffix("kds")
         ok = filedialog.exec_()
 
-        if ok == QDialog.Rejected:
+        if ok == Qt.QDialog.Rejected:
             self.updateStatus(self.tr("No file selected to save"), -1, 5, TRUE)
             return
 
@@ -829,17 +829,17 @@ class Kodos(KodosBA):
         if self.editstate == STATE_EDITED:
             message = self.tr("You have made changes. Would you like to save them before continuing?")
 
-            prompt = QMessageBox.warning(None,
+            prompt = Qt.QMessageBox.warning(None,
                                          self.tr("Save changes?"),
                                          message,
-                                         QMessageBox.Save |
-                                         QMessageBox.Cancel |
-                                         QMessageBox.Discard)
+                                         Qt.QMessageBox.Save |
+                                         Qt.QMessageBox.Cancel |
+                                         Qt.QMessageBox.Discard)
 
-            if prompt == QMessageBox.Cancel:
+            if prompt == Qt.QMessageBox.Cancel:
                 return False
 
-            if prompt == QMessageBox.Save:
+            if prompt == Qt.QMessageBox.Save:
                 self.fileSave()
                 if not self.filename: self.checkEditState()
 
@@ -959,7 +959,7 @@ class Kodos(KodosBA):
 
 
     def helpAbout(self):
-        self.aboutWindow = About()
+        self.aboutWindow = about.About()
         self.aboutWindow.show()
 
 
@@ -969,7 +969,7 @@ class Kodos(KodosBA):
 
 
     def launch_browser_wrapper(self, url, caption=None, message=None):
-        if launch_browser(url, caption, message):
+        if util.launch_browser(url, caption, message):
             self.status_bar.set_message(self.tr("Launching web browser"),
                                         3,
                                         TRUE)
@@ -980,7 +980,7 @@ class Kodos(KodosBA):
 
 
     def reference_guide(self):
-        self.ref_win = Reference(self)
+        self.ref_win = reference.Reference(self)
         self.ref_win.pasteSymbol.connect(self.paste_symbol)
         self.ref_win.show()
 
