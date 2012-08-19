@@ -2,7 +2,6 @@
 #  util.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
 import os
-import os.path
 import sys
 import logging
 import webbrowser
