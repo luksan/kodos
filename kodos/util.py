@@ -4,7 +4,6 @@
 import os
 import os.path
 import sys
-from debug import *
 import webbrowser
 
 from PyQt4.QtGui import *
@@ -13,8 +12,6 @@ from PyQt4.QtCore import *
 # QT constants that should be defined
 FALSE = 0
 TRUE = 1
-
-global debug
 
 def getAppPath():
     "Convenience function so that we can find the necessary images"
@@ -28,9 +25,6 @@ def getPixmap(fileStr, fileType="PNG", dir="images"):
     to the binary location and residing in it's 'images' subdirectory"""
 
     image = getAppPath() + os.sep + dir + os.sep + fileStr
-
-    if debug & DEBUG_PIXMAP: print "image:", image
-
     pixmap = QPixmap(image, fileType)
     pixmap.setMask(pixmap.createHeuristicMask(1))
 
@@ -78,8 +72,6 @@ def launch_browser(url, caption=None, message=None):
     try:
         webbrowser.open(url)
     except webbrowser.Error, e:
-        if debug:
-            print e
         print "Couldn't open URL:", url
         return False
     return True
