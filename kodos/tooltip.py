@@ -1,29 +1,27 @@
 # -*- coding: utf-8 -*-
 #  tooltip.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from util import *
+from PyQt4 import Qt, QtCore
 
-class Tooltip(QLabel):
+class Tooltip(Qt.QLabel):
     def __init__(self, text, bgcolor="#ffd700",fgcolor="#000000",delay=1000):
         self.delay = delay
-        QLabel.__init__(self, None, Qt.WindowStaysOnTopHint
-                        | Qt.FramelessWindowHint
-                        | Qt.Tool)
+        Qt.QLabel.__init__(self, None, QtCore.Qt.WindowStaysOnTopHint
+                        | QtCore.Qt.FramelessWindowHint
+                        | QtCore.Qt.Tool)
         self.setMargin(1)
         self.setIndent(0)
-        self.setFrameStyle(QFrame.Plain | QFrame.Box)
+        self.setFrameStyle(Qt.QFrame.Plain | Qt.QFrame.Box)
         self.setLineWidth(1)
         self.setText(text)
         self.adjustSize()
 
         # set the pallete...
-        pal = QPalette()
-        pal.setColor(QPalette.Active, QPalette.Window, QColor(bgcolor))
-        pal.setColor(QPalette.Active, QPalette.WindowText, QColor(fgcolor))
-        pal.setColor(QPalette.Inactive, QPalette.Window, QColor(bgcolor))
-        pal.setColor(QPalette.Inactive, QPalette.WindowText, QColor(fgcolor))
+        pal = Qt.QPalette()
+        pal.setColor(Qt.QPalette.Active, Qt.QPalette.Window, Qt.QColor(bgcolor))
+        pal.setColor(Qt.QPalette.Active, Qt.QPalette.WindowText, Qt.QColor(fgcolor))
+        pal.setColor(Qt.QPalette.Inactive, Qt.QPalette.Window, Qt.QColor(bgcolor))
+        pal.setColor(Qt.QPalette.Inactive, Qt.QPalette.WindowText, Qt.QColor(fgcolor))
         self.setPalette(pal)
 
         self.enter_timer_id = None
@@ -67,15 +65,15 @@ class Tooltip(QLabel):
 
     def eventFilter(self, obj, ev):
         type = ev.type()
-        if type == QEvent.Enter:
+        if type == Qt.QEvent.Enter:
             self.killCustomTimers()
             self.enter_timer_id = self.startTimer(self.delay)
             self.event_widget = obj
-        elif type == QEvent.Leave:
+        elif type == Qt.QEvent.Leave:
             self.killCustomTimers()
             self.leave_timer_id = self.startTimer(self.delay)
             self.event_widget = None
-        return FALSE ## Always return unhandled for this kind of filter!!!
+        return False ## Always return unhandled for this kind of filter!!!
 
 
     def tooltip_open(self):
@@ -84,7 +82,7 @@ class Tooltip(QLabel):
 
         try:
             pos = self.event_widget.mapToGlobal(
-                QPoint(0, self.event_widget.height()))
+                Qt.QPoint(0, self.event_widget.height()))
             self.move(pos.x(), pos.y())
             self.show()
             self.setFixedSize( self.sizeHint() )

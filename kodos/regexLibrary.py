@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 from PyQt4.QtCore import pyqtSignal
-from regexLibraryBA import RegexLibraryBA
-from parseRegexLib import ParseRegexLib
-from util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo
+from . import regexLibraryBA
+from . import parseRegexLib
+from .util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo
 
 GEO = "regex-lib_geometry"
 
-class RegexLibrary(RegexLibraryBA):
+class RegexLibrary(regexLibraryBA.RegexLibraryBA):
 
     pasteRegexLib = pyqtSignal(dict)
 
     def __init__(self, filename):
-        RegexLibraryBA.__init__(self, None)
+        regexLibraryBA.RegexLibraryBA.__init__(self, None)
         self.filename = filename
         self.selected = None
 
@@ -28,7 +28,7 @@ class RegexLibrary(RegexLibraryBA):
 
 
     def parseXML(self):
-        parser = ParseRegexLib(self.filename)
+        parser = parseRegexLib.ParseRegexLib(self.filename)
         self.xml_dicts = parser.parse()
 
 

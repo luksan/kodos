@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 
+import logging
+
 from PyQt4.QtGui import QIcon, QPixmap
 from PyQt4.QtCore import QSettings
 
 MAX_SIZE = 50 # max number of files to retain
 
 class RecentFiles:
-    def __init__(self, parent, numShown=5, debug=None):
+    def __init__(self, parent, numShown=5):
+        self.log = logging.getLogger('kodos.recent_files')
         self.parent = parent
         self.numShown = int(numShown)
-        self.debug = debug
         self.__recent_files = []
         self.__indecies = []
         self.load()
@@ -28,13 +30,13 @@ class RecentFiles:
                     break
                 self.__recent_files.append(str(s))
             except Exception, e:
-                print "Loading of recent file entry", i, "failed."
-                if self.debug: print e
+                self.log.error('Loading of recent file entry %i failed: %s' %
+                               (i, e))
                 settings.remove("Filename")
 
         settings.endArray()
 
-        if self.debug: print "recent_files:", self.__recent_files
+        self.log.debug("recent_files: %s" % self.__recent_files)
 
         self.addToMenu()
 
@@ -96,20 +98,4 @@ class RecentFiles:
 
     def isRecentFile(self, menuid):
         return menuid in self.__indecies
-
-
-    def move(self, filename, menuid):
-        # fix me....
-        menu = self.parent.fileMenu
-        idx = menu.indexOf(self.__indecies[0])
-        menu.removeItem(menuid)
-        menu.insertItem(QIconSet(QPixmap(":images/document-open-recent.png")),
-                        filename,
-                        -1,
-                        idx)
-        try:
-            self.__recent_files.remove(filename)
-        except:
-            pass
-        self.__indecies.insert(0, filename)
 

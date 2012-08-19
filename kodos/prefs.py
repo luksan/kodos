@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 #  prefs.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
+import logging
+
 from PyQt4.QtCore import pyqtSignal, QSettings
 from PyQt4.QtGui import QDialog, QFontDialog
-from prefsBA import PrefsBA
-import help
+from . import prefsBA
+from . import help
 
-class Preferences(PrefsBA):
+class Preferences(prefsBA.PrefsBA):
 
     prefsSaved = pyqtSignal()
 
     def __init__(self, parent, autoload=0):
+        self.log = logging.getLogger('kodos.prefs')
         self.parent = parent
-        PrefsBA.__init__(self, parent)
+        prefsBA.PrefsBA.__init__(self, parent)
 
         self.settings = QSettings()
 
@@ -27,19 +30,17 @@ class Preferences(PrefsBA):
                     self.parent.setfont(setting.toPyObject())
                 if preference == 'Match Font':
                     self.parent.setMatchFont(setting.toPyObject())
-                if preference == 'Email Server':
-                    self.emailServerEdit.setText(setting.toPyObject())
                 if preference == 'Recent Files Count':
                     self.recentFilesSpinBox.setValue(int(setting.toPyObject()))
             except Exception, e:
-                print "Loading of configuration key", preference, "failed."
+                self.log.error('Loading of configuration key %s failed: %s' %
+                               (preference, e))
                 self.settings.remove(preference)
 
 
     def save(self):
         self.settings.setValue('Font', self.parent.getfont())
         self.settings.setValue('Match Font', self.parent.getMatchFont())
-        self.settings.setValue('Email Server', self.emailServerEdit.text())
         self.settings.setValue('Recent Files Count', self.recentFilesSpinBox.text())
 
         self.settings.sync()
