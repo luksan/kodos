@@ -2,7 +2,6 @@
 #  tooltip.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
 from PyQt4 import Qt, QtCore
-from .util import FALSE
 
 class Tooltip(Qt.QLabel):
     def __init__(self, text, bgcolor="#ffd700",fgcolor="#000000",delay=1000):
@@ -74,7 +73,7 @@ class Tooltip(Qt.QLabel):
             self.killCustomTimers()
             self.leave_timer_id = self.startTimer(self.delay)
             self.event_widget = None
-        return FALSE ## Always return unhandled for this kind of filter!!!
+        return False ## Always return unhandled for this kind of filter!!!
 
 
     def tooltip_open(self):

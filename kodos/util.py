@@ -10,10 +10,6 @@ from PyQt4 import Qt
 
 log = logging.getLogger('kodos.util')
 
-# QT constants that should be defined
-FALSE = 0
-TRUE = 1
-
 def getAppPath():
     "Convenience function so that we can find the necessary images"
     fullpath = os.path.abspath(os.path.join(sys.argv[0], '..'))
