@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #  prefs.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
+import logging
+
 from PyQt4.QtCore import pyqtSignal, QSettings
 from PyQt4.QtGui import QDialog, QFontDialog
 from prefsBA import PrefsBA
@@ -11,6 +13,7 @@ class Preferences(PrefsBA):
     prefsSaved = pyqtSignal()
 
     def __init__(self, parent, autoload=0):
+        self.log = logging.getLogger('kodos.prefs')
         self.parent = parent
         PrefsBA.__init__(self, parent)
 
@@ -30,7 +33,8 @@ class Preferences(PrefsBA):
                 if preference == 'Recent Files Count':
                     self.recentFilesSpinBox.setValue(int(setting.toPyObject()))
             except Exception, e:
-                print "Loading of configuration key", preference, "failed."
+                self.log.error('Loading of configuration key %s failed: %s' %
+                               (preference, e))
                 self.settings.remove(preference)
 
 
