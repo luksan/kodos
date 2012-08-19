@@ -4,10 +4,13 @@
 import os
 import os.path
 import sys
+import logging
 import webbrowser
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
+
+log = logging.getLogger('kodos.util')
 
 # QT constants that should be defined
 FALSE = 0
@@ -72,6 +75,6 @@ def launch_browser(url, caption=None, message=None):
     try:
         webbrowser.open(url)
     except webbrowser.Error, e:
-        print "Couldn't open URL:", url
+        log.error("Couldn't open URL %r: %s" % (url, e))
         return False
     return True
