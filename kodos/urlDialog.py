@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
+
 from PyQt4.QtCore import pyqtSignal
 from PyQt4.QtGui import QMessageBox
-from urlDialogBA import URLDialogBA
-import help
+from . import urlDialogBA
+from . import help
 import urllib
 
 
-class URLDialog(URLDialogBA):
+class URLDialog(urlDialogBA.URLDialogBA):
 
     urlImported = pyqtSignal(str, str)
 
     def __init__(self, parent, url=None):
-        URLDialogBA.__init__(self, parent)
+        urlDialogBA.URLDialogBA.__init__(self, parent)
         if url:
             self.URLTextEdit.setPlainText(url)
 

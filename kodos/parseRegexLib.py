@@ -1,6 +1,6 @@
 import re
 import os
-from util import findFile
+from . import util
 
 
 rx_entry = re.compile(r"<entry>(?P<content>.*?)</entry>", re.DOTALL)
@@ -25,7 +25,7 @@ RX_DICT = {'desc': rx_desc,
 class ParseRegexLib:
     def __init__(self, filename):
         if filename:
-            path = findFile(os.path.join("help", "regex-lib.xml"))
+            path = util.findFile(os.path.join("help", "regex-lib.xml"))
             data = open(path).read()
             self.data = data
         else:
@@ -52,7 +52,7 @@ class ParseRegexLib:
 
 if __name__ == '__main__':
 
-    path = findFile(os.path.join("help", "regex-lib.xml"))
+    path = util.findFile(os.path.join("help", "regex-lib.xml"))
     x = ParseRegexLib(path)
 
     dicts = x.parse()

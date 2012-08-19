@@ -7,7 +7,7 @@ from PyQt4 import QtGui
 from PyQt4 import QtCore
 
 from . import util
-from helpBA import HelpBA
+from . import helpBA
 
 class textbrowser(QtGui.QTextBrowser):
     # reimplemented textbrowser that filters out external sources
@@ -28,9 +28,9 @@ class textbrowser(QtGui.QTextBrowser):
 
 
 
-class Help(HelpBA):
+class Help(helpBA.HelpBA):
     def __init__(self, parent, filename):
-        HelpBA.__init__(self, parent)
+        helpBA.HelpBA.__init__(self, parent)
 
         self.setGeometry(100, 50, 800, 600)
 
