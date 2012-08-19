@@ -6,6 +6,7 @@ import signal
 import string
 import urllib
 import cPickle
+import logging
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
@@ -65,10 +66,10 @@ except:
 ##############################################################################
 
 class Kodos(KodosBA):
-    def __init__(self, filename, debug):
+    def __init__(self, filename):
         KodosBA.__init__(self)
 
-        self.debug = debug
+        self.log = logging.getLogger('kodos.main')
         self.regex = ""
         self.matchstring = ""
         self.replace = ""
@@ -119,8 +120,7 @@ class Kodos(KodosBA):
 
         self.prefs = Preferences(self, 1)
         self.recent_files = RecentFiles(self,
-                                        self.prefs.recentFilesSpinBox.value(),
-                                        self.debug)
+                                        self.prefs.recentFilesSpinBox.value())
 
         if filename and self.openFile(filename):
             qApp.processEvents()
@@ -159,7 +159,7 @@ class Kodos(KodosBA):
                 self.recent_files.add(fn)
 
     def prefsSaved(self):
-        if self.debug: print "prefsSaved slot"
+        self.log.debug("prefsSaved slot")
         self.recent_files.setNumShown(self.prefs.recentFilesSpinBox.value())
 
 
@@ -206,7 +206,7 @@ class Kodos(KodosBA):
 
     def pause(self):
         self.is_paused = not self.is_paused
-        if self.debug: print "is_paused:", self.is_paused
+        self.log.debug("is_paused: %s" % self.is_paused)
 
         if self.is_paused:
             self.update_results(self.MSG_PAUSED, MATCH_PAUSED)
@@ -219,7 +219,7 @@ class Kodos(KodosBA):
 
     def examine(self):
         self.is_examined = not self.is_examined
-        if self.debug: print "is_examined:", self.is_examined
+        self.log.debug("is_examined: %s" % self.is_examined)
 
         if self.is_examined:
             color = QCOLOR_YELLOW
@@ -235,7 +235,7 @@ class Kodos(KodosBA):
                 try:
                     m = re.search(regex, self.matchstring, self.reFlags.allFlagsORed())
                     if m:
-                        if self.debug: print "examined regex:", regex
+                        self.log.debug("examined regex: %s" % regex)
                         self.__refresh_regex_widget(color, regex)
                         return
                 except:
@@ -560,11 +560,10 @@ class Kodos(KodosBA):
                 for key in keys:
                     group_nums[compile_obj.groupindex[key]] = key
 
-            if self.debug:
-                print "group_nums:", group_nums
-                print "grp index: ", compile_obj.groupindex
-                print "groups:", match_obj.groups()
-                print "span: ", match_obj.span()
+            self.log.debug("group_nums: %s" % group_nums)
+            self.log.debug("grp index: %s" % compile_obj.groupindex)
+            self.log.debug("groups: %s" % (match_obj.groups(), ))
+            self.log.debug("span: %s" % (match_obj.span(), ))
 
             # create group_tuple in the form: (group #, group name, group matches)
             g = allmatches[match_index]
@@ -726,8 +725,7 @@ class Kodos(KodosBA):
             self.matchstring = u.load()
             flags = u.load()
         except Exception, e: #FIXME: don't catch everything
-            if self.debug:
-                print unicode(e)
+            self.log.error('Error unpickling data from file: %s' % e)
             msg = "%s %s" % (unicode(self.tr("Error reading from file:")),
                              filename)
             self.updateStatus(msg, -1, 5, TRUE)
