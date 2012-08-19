@@ -29,9 +29,6 @@ MATCH_FAIL     = 2
 MATCH_PAUSED   = 3
 MATCH_EXAMINED = 4
 
-TRUE  = 1
-FALSE = 0
-
 TIMEOUT = 3
 
 # regex to find special flags which must begin at beginning of line
@@ -141,10 +138,10 @@ class Kodos(kodosBA.KodosBA):
 
 
     def createStatusBar(self):
-        self.status_bar = status_bar.Status_Bar(self, FALSE, "")
+        self.status_bar = status_bar.Status_Bar(self, False, "")
 
 
-    def updateStatus(self, status_string, status_value, duration=0, replace=FALSE, tooltip=''):
+    def updateStatus(self, status_string, status_value, duration=0, replace=False, tooltip=''):
         pixmap = self.statusPixmapsDict.get(status_value)
 
         self.status_bar.set_message(status_string, duration, replace, tooltip, pixmap)
@@ -289,14 +286,14 @@ class Kodos(kodosBA.KodosBA):
         self.replaceLabel.hide()
         self.replaceNumberSpinBox.hide()
         self.replaceTextBrowser.clear()
-        self.replaceTextBrowser.setDisabled(TRUE)
+        self.replaceTextBrowser.setDisabled(True)
 
     def show_replace_widgets(self):
         self.spacerLabel.show()
         self.replaceLabel.show()
         self.replaceNumberSpinBox.show()
-        self.replaceNumberSpinBox.setEnabled(TRUE)
-        self.replaceTextBrowser.setEnabled(TRUE)
+        self.replaceNumberSpinBox.setEnabled(True)
+        self.replaceTextBrowser.setEnabled(True)
 
     def replace_changed_slot(self):
         self.replace = unicode(self.replaceTextEdit.toPlainText())
@@ -485,8 +482,8 @@ class Kodos(kodosBA.KodosBA):
 
         self.codeTextBrowser.clear()
         self.matchTextBrowser.clear()
-        self.matchNumberSpinBox.setEnabled(FALSE)
-        self.replaceNumberSpinBox.setEnabled(FALSE)
+        self.matchNumberSpinBox.setEnabled(False)
+        self.replaceNumberSpinBox.setEnabled(False)
         self.replaceTextBrowser.clear()
         self.matchAllTextBrowser.clear()
 
@@ -515,12 +512,12 @@ class Kodos(kodosBA.KodosBA):
 
             if allmatches and len(allmatches):
                 self.matchNumberSpinBox.setMaximum(len(allmatches))
-                self.matchNumberSpinBox.setEnabled(TRUE)
+                self.matchNumberSpinBox.setEnabled(True)
                 self.replaceNumberSpinBox.setMaximum(len(allmatches))
-                self.replaceNumberSpinBox.setEnabled(TRUE)
+                self.replaceNumberSpinBox.setEnabled(True)
             else:
-                self.matchNumberSpinBox.setEnabled(FALSE)
-                self.replaceNumberSpinBox.setEnabled(FALSE)
+                self.matchNumberSpinBox.setEnabled(False)
+                self.replaceNumberSpinBox.setEnabled(False)
 
             match_obj = compile_obj.search(self.matchstring)
 
@@ -673,7 +670,7 @@ class Kodos(kodosBA.KodosBA):
             self.updateStatus(self.tr("A file was not selected for import"),
                               -1,
                               5,
-                              TRUE)
+                              True)
             return None
 
         filename = str(fn)
@@ -682,7 +679,7 @@ class Kodos(kodosBA.KodosBA):
             fp = open(filename, "r")
         except:
             msg = self.tr("Could not open file for reading: ") + filename
-            self.updateStatus(msg, -1, 5, TRUE)
+            self.updateStatus(msg, -1, 5, True)
             return None
 
         data = fp.read()
@@ -714,7 +711,7 @@ class Kodos(kodosBA.KodosBA):
             fp = open(filename, "r")
         except:
             msg = self.tr("Could not open file for reading: ") + filename
-            self.updateStatus(msg, -1, 5, TRUE)
+            self.updateStatus(msg, -1, 5, True)
             return None
 
         try:
@@ -726,7 +723,7 @@ class Kodos(kodosBA.KodosBA):
             self.log.error('Error unpickling data from file: %s' % e)
             msg = "%s %s" % (unicode(self.tr("Error reading from file:")),
                              filename)
-            self.updateStatus(msg, -1, 5, TRUE)
+            self.updateStatus(msg, -1, 5, True)
             return 0
 
         self.matchNumberSpinBox.setValue(1)
@@ -746,7 +743,7 @@ class Kodos(kodosBA.KodosBA):
 
         self.filename = filename
         msg = "%s %s" % (filename, unicode(self.tr("loaded successfully")))
-        self.updateStatus(msg, -1, 5, TRUE)
+        self.updateStatus(msg, -1, 5, True)
         self.editstate = STATE_UNEDITED
         return 1
 
@@ -764,7 +761,7 @@ class Kodos(kodosBA.KodosBA):
         ok = filedialog.exec_()
 
         if ok == Qt.QDialog.Rejected:
-            self.updateStatus(self.tr("No file selected to save"), -1, 5, TRUE)
+            self.updateStatus(self.tr("No file selected to save"), -1, 5, True)
             return
 
         filename = os.path.normcase(unicode(filedialog.selectedFiles().first()))
@@ -783,7 +780,7 @@ class Kodos(kodosBA.KodosBA):
         except:
             msg = "%s: %s" % (unicode(self.tr("Could not open file for writing:")),
                               self.filename)
-            self.updateStatus(msg, -1, 5, TRUE)
+            self.updateStatus(msg, -1, 5, True)
             return None
 
         self.editstate = STATE_UNEDITED
@@ -796,7 +793,7 @@ class Kodos(kodosBA.KodosBA):
         fp.close()
         msg = "%s %s" % (unicode(self.filename),
                          unicode(self.tr("successfully saved")))
-        self.updateStatus(msg, -1, 5, TRUE)
+        self.updateStatus(msg, -1, 5, True)
         self.recent_files.add(self.filename)
 
 
@@ -866,7 +863,7 @@ class Kodos(kodosBA.KodosBA):
             self.updateStatus(self.tr("There is no filename to revert"),
                               -1,
                               5,
-                              TRUE)
+                              True)
             return
 
         self.openFile(self.filename)
@@ -969,11 +966,11 @@ class Kodos(kodosBA.KodosBA):
         if util.launch_browser(url, caption, message):
             self.status_bar.set_message(self.tr("Launching web browser"),
                                         3,
-                                        TRUE)
+                                        True)
         else:
             self.status_bar.set_message(self.tr("Cancelled web browser launch"),
                                         3,
-                                        TRUE)
+                                        True)
 
 
     def reference_guide(self):

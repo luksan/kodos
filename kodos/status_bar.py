@@ -2,12 +2,11 @@
 #  status_bar.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
 from . import tooltip
-from .util import TRUE, FALSE
 from PyQt4.QtCore import QTimer
 from PyQt4.QtGui import QPixmap, QLabel, QProgressBar
 
 class Status_Bar:
-    def __init__(self, parent, progress_bar=FALSE, message=''):
+    def __init__(self, parent, progress_bar=False, message=''):
         self.parent = parent
 
         self.statusBar = parent.statusBar()
@@ -30,13 +29,13 @@ class Status_Bar:
         self.statusBar.addWidget(self.__statusLabel)
         if progress_bar:
             self.progressBar = QProgressBar(self.statusBar)
-            self.statusBar.addWidget(self.progressBar, 1, TRUE)
+            self.statusBar.addWidget(self.progressBar, 1, True)
 
         if message:
             self.set_message(message)
 
 
-    def set_message(self, message='', duration=0, replace=FALSE, tooltip='', pixmap=''):
+    def set_message(self, message='', duration=0, replace=False, tooltip='', pixmap=''):
         """sets the status bar message label to message.
 
         if duration is > 0 than the message is displayed for duration seconds.
