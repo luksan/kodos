@@ -13,6 +13,8 @@ class RecentFiles:
         self.__recent_files = []
         self.__indecies = []
         self.load()
+        return
+
 
     def load(self):
         settings = QSettings()
@@ -37,6 +39,8 @@ class RecentFiles:
         if self.debug: print "recent_files:", self.__recent_files
 
         self.addToMenu()
+        return
+
 
     def save(self):
         # truncate list if necessary
@@ -49,6 +53,8 @@ class RecentFiles:
             s.setValue("Filename", f)
             cnt += 1
         s.sync()
+        return
+
 
     def add(self, filename):
         try:
@@ -59,6 +65,7 @@ class RecentFiles:
         self.__recent_files.insert(0, filename)
         self.save()
         self.addToMenu()
+        return
 
 
     def clearMenu(self):
@@ -68,6 +75,7 @@ class RecentFiles:
 
         # clear list of menu entry indecies
         self.__indecies = []
+        return
 
 
     def addToMenu(self, clear=1):
@@ -82,6 +90,7 @@ class RecentFiles:
                 filename)
 
             self.__indecies.insert(0, idx)
+        return
 
 
     def setNumShown(self, numShown):
@@ -92,6 +101,7 @@ class RecentFiles:
         self.clearMenu()
         self.numShown = ns
         self.addToMenu(0)
+        return
 
 
     def isRecentFile(self, menuid):
@@ -112,4 +122,5 @@ class RecentFiles:
         except:
             pass
         self.__indecies.insert(0, filename)
+        return
 

@@ -36,6 +36,7 @@ def getPixmap(fileStr, fileType="PNG", dir="images"):
 
     return pixmap
 
+
 def kodos_toolbar_logo(toolbar):
     # hack to move logo to right
     blanklabel = QLabel()
@@ -49,13 +50,18 @@ def kodos_toolbar_logo(toolbar):
 
     return logolabel
 
+
 def saveWindowSettings(window, filename):
     settings = QSettings()
     settings.setValue(window.objectName(), window.saveGeometry())
+    return
+
 
 def restoreWindowSettings(window, filename):
     settings = QSettings()
     window.restoreGeometry(settings.value(window.objectName()).toByteArray())
+    return
+
 
 def findFile(filename):
     dirs = [getAppPath(),
@@ -67,6 +73,7 @@ def findFile(filename):
         if os.access(path, os.R_OK): return path
 
     return None
+
 
 def launch_browser(url, caption=None, message=None):
     if not caption: caption = "Info"

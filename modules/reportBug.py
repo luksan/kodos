@@ -19,6 +19,7 @@ class reportBug(reportBugBA):
         self.parent = parent
         self.kodos_main = parent.kodos_main
         self.populate()
+        return
 
 
     def populate(self):
@@ -28,10 +29,13 @@ class reportBug(reportBugBA):
         self.PyQtVersionEdit.setText(QT_VERSION_STR)
         self.regexMultiLineEdit.setPlainText(self.kodos_main.regexMultiLineEdit.toPlainText())
         self.stringMultiLineEdit.setPlainText(self.kodos_main.stringMultiLineEdit.toPlainText())
+        return
 
 
     def cancel_slot(self):
         self.parent.close()
+        return
+
 
     def submit_slot(self):
         addr = str(self.emailAddressEdit.text())
@@ -70,6 +74,7 @@ class reportBug(reportBugBA):
             QMessageBox.information(None,
                                     self.tr("An exception occurred sending bug report"),
                                     str(e))
+        return
 
 
 class reportBugWindow(QMainWindow):
@@ -89,16 +94,19 @@ class reportBugWindow(QMainWindow):
         self.createToolBar()
 
         self.show()
+        return
 
 
     def createMenu(self):
         self.menubar = self.menuBar()
         self.filemenu = self.menubar.addMenu(self.tr("&File"))
         self.filemenu.addAction(self.tr("&Close"), self, SLOT("close()"))
+        return
 
 
     def createToolBar(self):
         toolbar = QToolBar()
         self.addToolBar(toolbar)
         self.logolabel = kodos_toolbar_logo(toolbar)
+        return
 

@@ -17,11 +17,13 @@ class Reference(ReferenceBA):
 
         restoreWindowSettings(self, GEO)
         kodos_toolbar_logo(self.toolBar)
+        return
 
 
     def closeEvent(self, ev):
         saveWindowSettings(self, GEO)
         ev.accept()
+        return
 
 
     def editPaste(self):
@@ -31,10 +33,14 @@ class Reference(ReferenceBA):
 
         symbol = str(list_view_item.text(0))
         self.pasteSymbol.emit(symbol)
+        return
 
 
     def help_slot(self):
         self.parent.helpHelp()
+        return
+
 
     def help_python_slot(self):
         self.parent.helpPythonRegex()
+        return

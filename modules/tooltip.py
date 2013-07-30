@@ -28,24 +28,29 @@ class Tooltip(QLabel):
 
         self.enter_timer_id = None
         self.leave_timer_id = None
+        return
 
 
     def set_tooltip(self, text):
         self.text = text
         self.setText(text)
+        return
 
 
     def clear_tooltip(self):
         self.text = ''
         self.setText('')
+        return
 
 
     def addWidget(self, widget):
         widget.installEventFilter(self)
+        return
 
 
     def removeWidget(self, widget):
         widget.removeEventFilter(self)
+        return
 
 
     def killCustomTimers( self ):
@@ -55,6 +60,7 @@ class Tooltip(QLabel):
         if self.leave_timer_id:
             self.killTimer( self.leave_timer_id )
             self.leave_timer_id = None
+        return
 
 
     def timerEvent( self, ev ):
@@ -63,6 +69,7 @@ class Tooltip(QLabel):
         elif ev.timerId() == self.leave_timer_id:
             self.tooltip_close()
         self.killCustomTimers()
+        return
 
 
     def eventFilter(self, obj, ev):
@@ -90,7 +97,9 @@ class Tooltip(QLabel):
             self.setFixedSize( self.sizeHint() )
         except:
             pass
+        return
 
 
     def tooltip_close(self):
         self.hide()
+        return

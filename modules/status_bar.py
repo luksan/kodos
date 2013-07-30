@@ -34,6 +34,7 @@ class Status_Bar:
 
         if message:
             self.set_message(message)
+        return
 
 
     def set_message(self, message='', duration=0, replace=FALSE, tooltip='', pixmap=''):
@@ -62,7 +63,7 @@ class Status_Bar:
 
         if pixmap:
             self.pixmapLabel.setPixmap(pixmap)
-
+        return
 
 
     def reset_message(self):
@@ -71,7 +72,7 @@ class Status_Bar:
             self.__statusLabel.setText(self.last_status_message)
         else:
             self.__statusLabel.setText('')
-
+        return
 
 
     def geometry(self):

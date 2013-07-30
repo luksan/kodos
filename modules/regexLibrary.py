@@ -21,20 +21,25 @@ class RegexLibrary(RegexLibraryBA):
         kodos_toolbar_logo(self.toolBar)
 
         restoreWindowSettings(self, GEO)
+        return
+
 
     def closeEvent(self, ev):
         saveWindowSettings(self, GEO)
         ev.accept()
+        return
 
 
     def parseXML(self):
         parser = ParseRegexLib(self.filename)
         self.xml_dicts = parser.parse()
+        return
 
 
     def populateListBox(self):
         for d in self.xml_dicts:
             self.descriptionListBox.addItem(d.get('desc', "<unknown>"))
+        return
 
 
     def descSelectedSlot(self, qlistboxitem):
@@ -42,6 +47,7 @@ class RegexLibrary(RegexLibraryBA):
 
         itemnum = self.descriptionListBox.currentRow()
         self.populateSelected(self.xml_dicts[itemnum])
+        return
 
 
     def populateSelected(self, xml_dict):
@@ -49,11 +55,13 @@ class RegexLibrary(RegexLibraryBA):
         self.contribEdit.setText(xml_dict.get("contrib", ""))
         self.noteTextBrowser.setPlainText(xml_dict.get('note', ""))
         self.selected = xml_dict
+        return
 
 
     def editPaste(self):
         if self.selected:
             self.pasteRegexLib.emit(self.selected)
+        return
 
 
 

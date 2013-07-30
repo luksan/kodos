@@ -8,4 +8,5 @@ class About(aboutBA.AboutBA):
     def __init__(self):
         aboutBA.AboutBA.__init__(self)
         self.versionLabel.setText(version.VERSION)
+        return
 

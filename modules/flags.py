@@ -13,11 +13,15 @@ class reFlag(object):
         self.shortFlag = short_flag
         self.checkBox = checkbox
         self.preEmbedState = None
+        return
+
 
     def clear(self):
         self.preEmbedState = None
         self.checkBox.setEnabled(True)
         self.checkBox.setChecked(False)
+        return
+
 
     def embed(self):
         """Set the state of the checkbox to show that it
@@ -26,12 +30,16 @@ class reFlag(object):
             self.preEmbedState = self.checkBox.isChecked()
             self.checkBox.setChecked(True)
             self.checkBox.setDisabled(True)
+        return
+
 
     def deembed(self):
         if self.preEmbedState != None:
             self.checkBox.setEnabled(True)
             self.checkBox.setChecked(self.preEmbedState)
             self.preEmbedState = None
+        return
+
 
 class reFlagList(list):
     def allFlagsORed(self):
@@ -41,6 +49,8 @@ class reFlagList(list):
                 ret |= f.reFlag
         return ret
 
+
     def clearAll(self):
         for f in self:
             f.clear()
+        return

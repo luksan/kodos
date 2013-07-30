@@ -30,6 +30,8 @@ class ParseRegexLib:
             self.data = data
         else:
             self.data = ""
+        return
+
 
     def parse(self, data=""):
         if not data: data = self.data
@@ -49,6 +51,7 @@ class ParseRegexLib:
             dicts.append(d)
 
         return dicts
+
 
 if __name__ == '__main__':
 

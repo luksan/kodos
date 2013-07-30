@@ -15,6 +15,7 @@ class Convert:
         modules = self.getModules(infile)
         translations = self.getTranslations(outfile)
         self.saveQtFile(outfile, modules, translations)
+        return
 
 
     def getTranslations(self, outfile):
@@ -91,13 +92,14 @@ class Convert:
 
         fp.write("\n")
         fp.write("TRANSLATIONS = %s\n" % translations)
+        return
 
 
 ##################################################################################
 
 def usage():
     print "Usage: ", sys.argv[0], " ba.pro qt.pro"
-    sys.exit(1)
+    return
 
 def convert():
     try:
@@ -107,13 +109,16 @@ def convert():
         if infile == outfile:
             print "ba.pro and qt.pro must refer to different filenames\n"
             usage()
+            return 2
     except:
         usage()
+        return 1
 
     c = Convert(infile, outfile)
+    return 0
 
 ##################################################################################
 
 if __name__ == '__main__':
-    convert()
+    sys.exit(convert())
 

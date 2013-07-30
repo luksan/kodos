@@ -15,6 +15,7 @@ class textbrowser(QtGui.QTextBrowser):
     def __init__(self, parent=None, name=None):
         self.parent = parent
         QtGui.QTextBrowser.__init__(self)
+        return
 
 
     def setSource(self, src):
@@ -24,8 +25,7 @@ class textbrowser(QtGui.QTextBrowser):
             return
 
         QtGui.QTextBrowser.setSource(self, QtCore.QUrl(src))
-
-
+        return
 
 
 class Help(HelpBA):
@@ -42,33 +42,41 @@ class Help(HelpBA):
 
         self.fwdAvailable = 0
         self.show()
+        return
 
 
     def exitSlot(self):
         self.close()
+        return
+
 
     def backSlot(self):
         self.textBrowser.backward()
+        return
+
 
     def forwardSlot(self):
         self.textBrowser.forward()
+        return
+
 
     def homeSlot(self):
         self.textBrowser.home()
-
+        return
 
 
     def setForwardAvailable(self, bool):
         self.fwdAvailable = bool
+        return
 
 
     def forwardHandler(self):
         if self.fwdAvailable:
             self.textBrowser.forward()
+        return
+
 
     def getHelpFile(self, filename):
         f = util.findFile(os.path.join("help", filename))
         return f
-
-
 
