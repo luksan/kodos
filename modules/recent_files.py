@@ -1,7 +1,14 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8; mode: python; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; truncate-lines: 0 -*-
+# vi: set fileencoding=utf-8 filetype=python expandtab tabstop=4 shiftwidth=4 softtabstop=4 cindent:
+# :mode=python:indentSize=4:tabSize=4:noTabs=true:
+
+#-----------------------------------------------------------------------------#
+# Installed modules
 
 from PyQt4.QtGui import QIcon, QPixmap
 from PyQt4.QtCore import QSettings
+
+#-----------------------------------------------------------------------------#
 
 MAX_SIZE = 50 # max number of files to retain
 
@@ -124,3 +131,4 @@ class RecentFiles:
         self.__indecies.insert(0, filename)
         return
 
+#-----------------------------------------------------------------------------#

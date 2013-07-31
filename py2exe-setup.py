@@ -1,16 +1,27 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-from modules.version import VERSION
-from distutils.core import setup
-#from distutils.sysconfig import get_python_lib
+# -*- coding: utf-8; mode: python; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; truncate-lines: 0 -*-
+# vi: set fileencoding=utf-8 filetype=python expandtab tabstop=4 shiftwidth=4 softtabstop=4 cindent:
+# :mode=python:indentSize=4:tabSize=4:noTabs=true:
+
+#-----------------------------------------------------------------------------#
+# Built-in modules
+
 import os
-import os.path
 import sys
 from glob import glob
-try:
-     import py2exe
-except:
-     pass
+from distutils.core import setup
+
+#-----------------------------------------------------------------------------#
+# Installed modules
+
+import py2exe
+
+#-----------------------------------------------------------------------------#
+# Kodos modules
+
+from modules.version import VERSION
+
+#-----------------------------------------------------------------------------#
 
 args = sys.argv[1:]
 
@@ -33,7 +44,7 @@ SCREENSHOTS_DIR = os.path.join(libpath, "screenshots")
 MODULES_DIR = os.path.join(libpath, "modules")
 TRANSLATIONS_DIR = os.path.join(libpath, "translations")
 
-#########################################################################
+#-----------------------------------------------------------------------------#
 
 setup(name="kodos",
       version=VERSION,
@@ -62,3 +73,4 @@ setup(name="kodos",
       """
       )
 
+#-----------------------------------------------------------------------------#

@@ -1,14 +1,26 @@
-# -*- coding: utf-8 -*-
-#  util.py: -*- Python -*-  DESCRIPTIVE TEXT.
+# -*- coding: utf-8; mode: python; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; truncate-lines: 0 -*-
+# vi: set fileencoding=utf-8 filetype=python expandtab tabstop=4 shiftwidth=4 softtabstop=4 cindent:
+# :mode=python:indentSize=4:tabSize=4:noTabs=true:
+
+#-----------------------------------------------------------------------------#
+# Built-in modules
 
 import os
-import os.path
 import sys
-from debug import *
 import webbrowser
+
+#-----------------------------------------------------------------------------#
+# Installed modules
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
+
+#-----------------------------------------------------------------------------#
+# Kodos modules
+
+from debug import *
+
+#-----------------------------------------------------------------------------#
 
 # QT constants that should be defined
 FALSE = 0
@@ -90,3 +102,5 @@ def launch_browser(url, caption=None, message=None):
         print "Couldn't open URL:", url
         return False
     return True
+
+#-----------------------------------------------------------------------------#

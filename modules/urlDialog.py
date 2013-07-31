@@ -1,10 +1,25 @@
-# -*- coding: utf-8 -*-
-from PyQt4.QtCore import pyqtSignal
-from PyQt4.QtGui import QMessageBox
-from urlDialogBA import URLDialogBA
-import help
+# -*- coding: utf-8; mode: python; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; truncate-lines: 0 -*-
+# vi: set fileencoding=utf-8 filetype=python expandtab tabstop=4 shiftwidth=4 softtabstop=4 cindent:
+# :mode=python:indentSize=4:tabSize=4:noTabs=true:
+
+#-----------------------------------------------------------------------------#
+# Built-in modules
+
 import urllib
 
+#-----------------------------------------------------------------------------#
+# Installed modules
+
+from PyQt4.QtCore import pyqtSignal
+from PyQt4.QtGui import QMessageBox
+
+#-----------------------------------------------------------------------------#
+# Kodos modules
+
+from urlDialogBA import URLDialogBA
+import help
+
+#-----------------------------------------------------------------------------#
 
 class URLDialog(URLDialogBA):
 
@@ -41,3 +56,5 @@ class URLDialog(URLDialogBA):
 
         URLDialogBA.accept(self)
         return
+
+#-----------------------------------------------------------------------------#

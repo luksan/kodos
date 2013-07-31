@@ -1,7 +1,15 @@
-# coding=utf-8
+# -*- coding: utf-8; mode: python; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; truncate-lines: 0 -*-
+# vi: set fileencoding=utf-8 filetype=python expandtab tabstop=4 shiftwidth=4 softtabstop=4 cindent:
+# :mode=python:indentSize=4:tabSize=4:noTabs=true:
+
+#-----------------------------------------------------------------------------#
+# Built-in modules
+
 from __future__ import print_function, absolute_import, unicode_literals
 
 import re
+
+#-----------------------------------------------------------------------------#
 
 class reFlag(object):
     def __init__(self, flag_name, short_flag, checkbox):
@@ -54,3 +62,5 @@ class reFlagList(list):
         for f in self:
             f.clear()
         return
+
+#-----------------------------------------------------------------------------#

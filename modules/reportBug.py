@@ -1,15 +1,29 @@
-# -*- coding: utf-8 -*-
-#  reportBug.py: -*- Python -*-  DESCRIPTIVE TEXT.
+# -*- coding: utf-8; mode: python; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; truncate-lines: 0 -*-
+# vi: set fileencoding=utf-8 filetype=python expandtab tabstop=4 shiftwidth=4 softtabstop=4 cindent:
+# :mode=python:indentSize=4:tabSize=4:noTabs=true:
 
-from reportBugBA import reportBugBA
-from util import *
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from PyQt4 import *
+#-----------------------------------------------------------------------------#
+# Built-in modules
+
 import sys
 import string
 import smtplib
+
+#-----------------------------------------------------------------------------#
+# Installed modules
+
+from PyQt4.QtGui import *
+from PyQt4.QtCore import *
+from PyQt4 import *
+
+#-----------------------------------------------------------------------------#
+# Kodos modules
+
+from reportBugBA import reportBugBA
+from util import *
 from version import VERSION
+
+#-----------------------------------------------------------------------------#
 
 AUTHOR_ADDR = "phil_schwartz@users.sourceforge.net"
 
@@ -110,3 +124,4 @@ class reportBugWindow(QMainWindow):
         self.logolabel = kodos_toolbar_logo(toolbar)
         return
 
+#-----------------------------------------------------------------------------#

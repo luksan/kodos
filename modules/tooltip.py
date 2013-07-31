@@ -1,9 +1,19 @@
-# -*- coding: utf-8 -*-
-#  tooltip.py: -*- Python -*-  DESCRIPTIVE TEXT.
+# -*- coding: utf-8; mode: python; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; truncate-lines: 0 -*-
+# vi: set fileencoding=utf-8 filetype=python expandtab tabstop=4 shiftwidth=4 softtabstop=4 cindent:
+# :mode=python:indentSize=4:tabSize=4:noTabs=true:
+
+#-----------------------------------------------------------------------------#
+# Installed modules
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
+
+#-----------------------------------------------------------------------------#
+# Kodos modules
+
 from util import *
+
+#-----------------------------------------------------------------------------#
 
 class Tooltip(QLabel):
     def __init__(self, text, bgcolor="#ffd700",fgcolor="#000000",delay=1000):
@@ -103,3 +113,5 @@ class Tooltip(QLabel):
     def tooltip_close(self):
         self.hide()
         return
+
+#-----------------------------------------------------------------------------#
