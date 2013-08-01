@@ -190,7 +190,7 @@ class Kodos(KodosBA):
         return
 
     def prefsSaved(self):
-        if self.debug: print "prefsSaved slot"
+        if self.debug: print("prefsSaved slot")
         self.recent_files.setNumShown(self.prefs.recentFilesSpinBox.value())
         return
 
@@ -241,7 +241,7 @@ class Kodos(KodosBA):
 
     def pause(self):
         self.is_paused = not self.is_paused
-        if self.debug: print "is_paused:", self.is_paused
+        if self.debug: print("is_paused: {0}".format(self.is_paused))
 
         if self.is_paused:
             self.update_results(self.MSG_PAUSED, MATCH_PAUSED)
@@ -255,7 +255,7 @@ class Kodos(KodosBA):
 
     def examine(self):
         self.is_examined = not self.is_examined
-        if self.debug: print "is_examined:", self.is_examined
+        if self.debug: print("is_examined: {0}".format(self.is_examined))
 
         if self.is_examined:
             color = QCOLOR_YELLOW
@@ -271,7 +271,7 @@ class Kodos(KodosBA):
                 try:
                     m = re.search(regex, self.matchstring, self.reFlags.allFlagsORed())
                     if m:
-                        if self.debug: print "examined regex:", regex
+                        if self.debug: print("examined regex: {0}".format(regex))
                         self.__refresh_regex_widget(color, regex)
                         return
                 except:
@@ -415,21 +415,22 @@ class Kodos(KodosBA):
             named_grps = 0
             for grp in self.group_tuples:
                 i += 1
-                code += "group_%d = match_obj.group(%d)\n" % (i, i)
+                code += "group_{0} = match_obj.group({0})\n".format(i)
                 if grp[1]: named_grps = 1
 
             if named_grps:
                 code += "\n# Retrieve group(s) by name\n"
                 for grp in self.group_tuples:
                     if grp[1]:
-                        code += "%s = match_obj.group('%s')\n" % (grp[1], grp[1])
+                        code += "{0} = match_obj.group('{0}')\n".format(grp[1])
 
             code += "\n"
 
         if self.replace:
             code += "# Replace string\n"
-            code += "newstr = compile_obj.subn('%s', %d)\n" % (self.replace,
-                                                               self.replace_num)
+            code += "newstr = compile_obj.subn('{0}', {1})\n".format(
+                self.replace, self.replace_num
+            )
 
         self.codeTextBrowser.setPlainText(code)
         return
@@ -587,7 +588,7 @@ class Kodos(KodosBA):
 
             match_obj = compile_obj.search(self.matchstring)
 
-        except Exception, e:
+        except Exception as e:
             self.update_results(unicode(e), MATCH_FAIL)
             return
 
@@ -622,10 +623,10 @@ class Kodos(KodosBA):
                     group_nums[compile_obj.groupindex[key]] = key
 
             if self.debug:
-                print "group_nums:", group_nums
-                print "grp index: ", compile_obj.groupindex
-                print "groups:", match_obj.groups()
-                print "span: ", match_obj.span()
+                print("group_nums: {0}".format(group_nums))
+                print("grp index: {0}".format(compile_obj.groupindex))
+                print("groups: {0}".format(match_obj.groups()))
+                print("span: {0}".format(match_obj.span()))
 
             # create group_tuple in the form: (group #, group name, group matches)
             g = allmatches[match_index]
@@ -647,14 +648,18 @@ class Kodos(KodosBA):
         str_matches = unicode(self.tr("matches"))
 
         if len(allmatches) == 1:
-            status = "%s (%s 1 %s)" % (str_pattern_matches,
-                                       str_found,
-                                       str_match)
+            status = "{0} ({1} 1 {2})".format(
+                str_pattern_matches,
+                str_found,
+                str_match,
+            )
         else:
-            status = "%s (%s %d %s)" % (str_pattern_matches,
-                                        str_found,
-                                        len(allmatches),
-                                        str_matches)
+            status = "{0} ({1} {2} {3})".format(
+                str_pattern_matches,
+                str_found,
+                len(allmatches),
+                str_matches,
+            )
 
         self.update_results(status, MATCH_OK)
         self.populate_code_textbrowser()
@@ -793,11 +798,12 @@ class Kodos(KodosBA):
             self.regex = u.load()
             self.matchstring = u.load()
             flags = u.load()
-        except Exception, e: #FIXME: don't catch everything
+        except Exception as e: #FIXME: don't catch everything
             if self.debug:
-                print unicode(e)
-            msg = "%s %s" % (unicode(self.tr("Error reading from file:")),
-                             filename)
+                print(unicode(e))
+            msg = unicode(
+                self.tr("Error reading from file: {filename}")
+            ).format(filename=filename)
             self.updateStatus(msg, -1, 5, TRUE)
             return 0
 
@@ -817,7 +823,9 @@ class Kodos(KodosBA):
         self.replaceTextEdit.setPlainText(replace)
 
         self.filename = filename
-        msg = "%s %s" % (filename, unicode(self.tr("loaded successfully")))
+        msg = unicode(self.tr("{filename} loaded successfully")).format(
+            filename=filename
+        )
         self.updateStatus(msg, -1, 5, TRUE)
         self.editstate = STATE_UNEDITED
         return 1
@@ -854,8 +862,9 @@ class Kodos(KodosBA):
         try:
             fp = open(self.filename, "w")
         except:
-            msg = "%s: %s" % (unicode(self.tr("Could not open file for writing:")),
-                              self.filename)
+            msg = unicode(self.tr(
+                "Could not open file for writing: {filename}"
+            )).format(filename=self.filename)
             self.updateStatus(msg, -1, 5, TRUE)
             return None
 
@@ -867,8 +876,9 @@ class Kodos(KodosBA):
         p.dump(self.replace)
 
         fp.close()
-        msg = "%s %s" % (unicode(self.filename),
-                         unicode(self.tr("successfully saved")))
+        msg = unicode(self.tr("{filename} successfully saved")).format(
+            filename=unicode(self.filename)
+        )
         self.updateStatus(msg, -1, 5, TRUE)
         self.recent_files.add(self.filename)
         return
@@ -972,7 +982,7 @@ class Kodos(KodosBA):
             widget == self.replaceTextEdit or
             widget == self.codeTextBrowser):
             try:
-                eval("widget.%s" % methodstr)
+                eval("widget.{0}".format(methodstr))
             except:
                 pass
         return
@@ -1081,24 +1091,27 @@ class Kodos(KodosBA):
             latest_version = match_obj.group('version')
             if latest_version == VERSION:
                 QMessageBox.information(None,
-                                        self.tr("No Update is Available"),
-                                        unicode(self.tr("You are currently using the latest version of Kodos")) + " (%s)" % VERSION)
+                    self.tr("No Update is Available"),
+                    unicode(self.tr(
+                        "You are currently using the latest version of Kodos ({version})"
+                    )).format(version=VERSION)
+                )
             else:
-                message =  "%s\n\n%s: %s.\n%s: %s.\n\n%s\n" % \
-                          (unicode(self.tr("There is a newer version of Kodos available.")),
-                           unicode(self.tr("You are using version:")),
-                           VERSION,
-                           unicode(self.tr("The latest version is:")),
-                           latest_version,
-                           unicode(self.tr("Press OK to launch browser")))
+                message =  "{0}\n\n{1}\n{2}\n\n{3}\n".format(
+                    unicode(self.tr("There is a newer version of Kodos available.")),
+                    unicode(self.tr("You are using version: {version}.")).format(version=VERSION),
+                    unicode(self.tr("The latest version is: {version}.")).format(version=latest_version),
+                    unicode(self.tr("Press OK to launch browser")),
+                )
 
                 self.launch_browser_wrapper(url,
                                             self.tr("Kodos Update Available"),
                                             message)
         else:
-            message = "%s.\n\n%s" % \
-                      (unicode(self.tr("Unable to get version info from Sourceforge")),
-                       unicode(self.tr("Press OK to launch browser")))
+            message = "{0}\n\n{1}".format(
+                unicode(self.tr("Unable to get version info from Sourceforge.")),
+                unicode(self.tr("Press OK to launch browser")),
+            )
             self.launch_browser_wrapper(url,
                                         self.tr("Unknown version available"),
                                         message)
@@ -1135,13 +1148,13 @@ class Kodos(KodosBA):
 ##############################################################################
 
 def usage():
-    print "kodos.py [-f filename | --file=filename ] [ -d debug | --debug=debug ] [ -k kodos_dir ]"
-    print
-    print "  -f filename | --filename=filename  : Load filename on startup"
-    print "  -d debug | --debug=debug           : Set debug to this debug level"
-    print "  -k kodos_dir                       : Path containing Kodos images & help subdirs"
-    print "  -l locale | --locale=locale        : 2-letter locale (eg. en)"
-    print
+    print("kodos.py [-f filename | --file=filename ] [ -d debug | --debug=debug ] [ -k kodos_dir ]")
+    print('')
+    print("  -f filename | --filename=filename  : Load filename on startup")
+    print("  -d debug | --debug=debug           : Set debug to this debug level")
+    print("  -k kodos_dir                       : Path containing Kodos images & help subdirs")
+    print("  -l locale | --locale=locale        : 2-letter locale (eg. en)")
+    print('')
     return
 
 
@@ -1157,7 +1170,7 @@ def main():
                                         ["file=", "debug=",
                                          "help", "locale="])
     except:
-        print "\nInvalid command line option detected."
+        print("\nInvalid command line option detected.")
         usage()
         return 2
 
@@ -1171,7 +1184,7 @@ def main():
             try:
                 debug = int(arg)
             except:
-                print "debug value must be an integer"
+                print("debug value must be an integer")
                 usage()
                 return 2
         if opt in ('-f', '--file'):
@@ -1187,12 +1200,12 @@ def main():
     qApp.setOrganizationDomain("kodos.sourceforge.net")
 
     if locale not in (None, 'en'):
-        localefile = "kodos_%s.qm" % (locale or QTextCodec.locale())
+        localefile = "kodos_{0}.qm".format(locale or QTextCodec.locale())
         localepath = findFile(os.path.join("translations", localefile))
         if debug:
-            print "locale changed to:", locale
-            print localefile
-            print localepath
+            print("locale changed to: {0}".format(locale))
+            print(localefile)
+            print(localepath)
 
         translator = QTranslator(qApp)
         translator.load(localepath)

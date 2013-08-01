@@ -36,14 +36,14 @@ class RecentFiles:
                 if s == None:
                     break
                 self.__recent_files.append(str(s))
-            except Exception, e:
-                print "Loading of recent file entry", i, "failed."
-                if self.debug: print e
+            except Exception as e:
+                print("Loading of recent file entry {0} failed.".format(i))
+                if self.debug: print(e)
                 settings.remove("Filename")
 
         settings.endArray()
 
-        if self.debug: print "recent_files:", self.__recent_files
+        if self.debug: print("recent_files: {0}".format(self.__recent_files))
 
         self.addToMenu()
         return

@@ -43,8 +43,8 @@ class Preferences(PrefsBA):
                     self.emailServerEdit.setText(setting.toPyObject())
                 if preference == 'Recent Files Count':
                     self.recentFilesSpinBox.setValue(int(setting.toPyObject()))
-            except Exception, e:
-                print "Loading of configuration key", preference, "failed."
+            except Exception as e:
+                print("Loading of configuration key {0} failed.".format(preference))
                 self.settings.remove(preference)
         return
 
@@ -61,8 +61,8 @@ class Preferences(PrefsBA):
 
 
     def setFontButtonText(self, button, font):
-        #self.fontButton.setText("%s %s" % (str(font.family()),font.pointSize() ))
-        button.setText("%s %s" % (str(font.family()),font.pointSize() ))
+        #self.fontButton.setText("{0} {1}".format(str(font.family()), font.pointSize()))
+        button.setText("{0} {1}".format(str(font.family()), font.pointSize()))
         return
 
 

@@ -41,7 +41,7 @@ def getPixmap(fileStr, fileType="PNG", dir="images"):
 
     image = getAppPath() + os.sep + dir + os.sep + fileStr
 
-    if debug & DEBUG_PIXMAP: print "image:", image
+    if debug & DEBUG_PIXMAP: print("image: {0}".format(image))
 
     pixmap = QPixmap(image, fileType)
     pixmap.setMask(pixmap.createHeuristicMask(1))
@@ -96,10 +96,10 @@ def launch_browser(url, caption=None, message=None):
         return False
     try:
         webbrowser.open(url)
-    except webbrowser.Error, e:
+    except webbrowser.Error as e:
         if debug:
-            print e
-        print "Couldn't open URL:", url
+            print(e)
+        print("Couldn't open URL: {0}".format(url))
         return False
     return True
 

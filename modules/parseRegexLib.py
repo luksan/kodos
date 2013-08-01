@@ -71,6 +71,6 @@ if __name__ == '__main__':
     x = ParseRegexLib(path)
 
     dicts = x.parse()
-    print dicts
+    print(dicts)
 
 #-----------------------------------------------------------------------------#

@@ -28,7 +28,7 @@ for i in range(len(args)):
         break
 
 if not filename:
-    print "Error: could not extract filename from:", args
+    print("Error: could not extract filename from: {0}".format(args))
     sys.exit(0)
 
 fp = open(filename, "r")

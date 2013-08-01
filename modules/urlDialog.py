@@ -44,9 +44,10 @@ class URLDialog(URLDialogBA):
         try:
             fp = urllib.urlopen(url)
             lines = fp.readlines()
-        except Exception, e:
+        except Exception as e:
             QMessageBox.information(None, "Failed to open URL",
-                                    "Could not open the specified URL.  Please check to ensure that you have entered the correct URL.\n\n%s" % str(e))
+                "Could not open the specified URL.  Please check to ensure \
+                that you have entered the correct URL.\n\n{0}".format(str(e)))
             return
 
 

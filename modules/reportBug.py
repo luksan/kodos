@@ -65,16 +65,16 @@ class reportBug(reportBugBA):
             return
 
         msg = "Subject: Kodos bug report\n\n"
-        msg += "Kodos Version: %s\n" % VERSION
-        msg += "Operating System: %s\n" % unicode(self.OSEdit.text())
-        msg += "Python Version: %s\n" % unicode(self.pythonVersionEdit.text())
-        msg += "PyQt Version: %s\n" % unicode(self.PyQtVersionEdit.text())
+        msg += "Kodos Version: {0}\n".format(VERSION)
+        msg += "Operating System: {0}\n".format(unicode(self.OSEdit.text()))
+        msg += "Python Version: {0}\n".format(unicode(self.pythonVersionEdit.text()))
+        msg += "PyQt Version: {0}\n".format(unicode(self.PyQtVersionEdit.text()))
         msg += "\n" + "=" * 70 + "\n"
-        msg += "Regex:\n%s\n" % unicode(self.regexMultiLineEdit.text())
+        msg += "Regex:\n{0}\n".format(unicode(self.regexMultiLineEdit.text()))
         msg += "=" * 70 + "\n"
-        msg += "String:\n%s\n" % unicode(self.stringMultiLineEdit.text())
+        msg += "String:\n{0}\n".format(unicode(self.stringMultiLineEdit.text()))
         msg += "=" * 70 + "\n"
-        msg += "Comments:\n%s\n" % unicode(self.commentsMultiLineEdit.text())
+        msg += "Comments:\n{0}\n".format(unicode(self.commentsMultiLineEdit.text()))
         email_server = unicode(self.kodos_main.prefs.emailServerEdit.text()) or "localhost"
         try:
             server = smtplib.SMTP(email_server)
@@ -84,7 +84,7 @@ class reportBug(reportBugBA):
                                     self.tr("Bug report sent"),
                                     self.tr("Your bug report has been sent."))
             self.parent.close()
-        except Exception, e:
+        except Exception as e:
             QMessageBox.information(None,
                                     self.tr("An exception occurred sending bug report"),
                                     str(e))

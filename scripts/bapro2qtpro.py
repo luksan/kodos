@@ -99,17 +99,17 @@ class Convert:
         fp.write("SOURCES = ");
 
         for module in modules:
-            fp.write("%s " % module)
+            fp.write("{0} ".format(module))
 
         fp.write("\n")
-        fp.write("TRANSLATIONS = %s\n" % translations)
+        fp.write("TRANSLATIONS = {0}\n".format(translations))
         return
 
 
 #-----------------------------------------------------------------------------#
 
 def usage():
-    print "Usage: ", sys.argv[0], " ba.pro qt.pro"
+    print("Usage: {0} ba.pro qt.pro".format(sys.argv[0]))
     return
 
 def convert():
@@ -118,7 +118,7 @@ def convert():
         outfile = sys.argv[2]
 
         if infile == outfile:
-            print "ba.pro and qt.pro must refer to different filenames\n"
+            print("ba.pro and qt.pro must refer to different filenames\n")
             usage()
             return 2
     except:
