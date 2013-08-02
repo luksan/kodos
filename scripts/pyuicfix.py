@@ -13,7 +13,6 @@ which is used as the source AND destination file.
 # Built-in modules
 
 import sys
-import os
 import re
 
 #-----------------------------------------------------------------------------#

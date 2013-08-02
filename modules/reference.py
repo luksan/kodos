@@ -10,8 +10,8 @@ from PyQt4.QtCore import pyqtSignal
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from referenceBA import ReferenceBA
-from util import kodos_toolbar_logo, restoreWindowSettings, saveWindowSettings
+from .referenceBA import ReferenceBA
+from .util import kodos_toolbar_logo, restoreWindowSettings, saveWindowSettings
 
 #-----------------------------------------------------------------------------#
 

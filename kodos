@@ -6,22 +6,28 @@
 #-----------------------------------------------------------------------------#
 # Built-in modules
 
-import sys
 import os
-import string
+import sys
 import re
-import cPickle
+import string
 import types
 import getopt
 import urllib
 import signal
+try:
+    # Python 2.x: try to use cPickle if available
+    import cPickle as pickle
+except ImportError:
+    # Python 3.x: pickle imports cPickle internally
+    import pickle
 
 #-----------------------------------------------------------------------------#
 # Installed modules
 
 try:
-    from PyQt4.QtGui import *
-    from PyQt4.QtCore import *
+    from PyQt4.QtGui import (QApplication, QMessageBox, QDialog, QFileDialog,
+        QPixmap, QTableWidgetItem, QColor, QPalette, QBrush)
+    from PyQt4.QtCore import Qt, QSettings, QTranslator, QTextCodec
 except:
     sys.exit("""Could not locate the PyQt module.  Please make sure that
 you have installed PyQt for the version of Python that you are running.""")
@@ -33,13 +39,14 @@ you have installed PyQt for the version of Python that you are running.""")
 from distutils.sysconfig import get_python_lib
 sys.path.append(os.path.join(get_python_lib(), "kodos"))
 
-from modules.kodosBA import *
-from modules.util import *
-from modules.about import *
+from modules.kodosBA import KodosBA
+from modules.util import (findFile, launch_browser, kodos_toolbar_logo,
+                          saveWindowSettings, restoreWindowSettings)
+from modules.about import About
 import modules.help as help
-from modules.status_bar import *
-from modules.reference import *
-from modules.prefs import *
+from modules.status_bar import Status_Bar
+from modules.reference import Reference
+from modules.prefs import Preferences
 from modules.reportBug import reportBugWindow
 from modules.version import VERSION
 from modules.recent_files import RecentFiles
@@ -149,7 +156,7 @@ class Kodos(KodosBA):
                                         self.debug)
 
         if filename and self.openFile(filename):
-            qApp.processEvents()
+            QApplication.processEvents()
 
         self.fileMenu.triggered.connect(self.fileMenuHandler)
 
@@ -794,7 +801,7 @@ class Kodos(KodosBA):
             return None
 
         try:
-            u = cPickle.Unpickler(fp)
+            u = pickle.Unpickler(fp)
             self.regex = u.load()
             self.matchstring = u.load()
             flags = u.load()
@@ -869,7 +876,7 @@ class Kodos(KodosBA):
             return None
 
         self.editstate = STATE_UNEDITED
-        p = cPickle.Pickler(fp)
+        p = pickle.Pickler(fp)
         p.dump(self.regex)
         p.dump(self.matchstring)
         p.dump(self.reFlags.allFlagsORed())
@@ -961,7 +968,7 @@ class Kodos(KodosBA):
 
 
     def getWidget(self):
-        widget = qApp.focusWidget()
+        widget = QApplication.focusWidget()
         if (widget == self.regexMultiLineEdit or
             widget == self.stringMultiLineEdit or
             widget == self.replaceTextEdit or
@@ -975,7 +982,7 @@ class Kodos(KodosBA):
         # execute the methodstr of widget only if widget
         # is one of the editable widgets OR if the method
         # may be applied to any widget.
-        widget = qApp.focusWidget()
+        widget = QApplication.focusWidget()
         if anywidget or (
             widget == self.regexMultiLineEdit or
             widget == self.stringMultiLineEdit or

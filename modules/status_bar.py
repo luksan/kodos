@@ -11,8 +11,8 @@ from PyQt4.QtGui import QPixmap, QLabel, QProgressBar
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from tooltip import Tooltip
-from util import TRUE, FALSE
+from .tooltip import Tooltip
+from .util import TRUE, FALSE
 
 #-----------------------------------------------------------------------------#
 

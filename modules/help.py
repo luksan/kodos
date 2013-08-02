@@ -17,7 +17,7 @@ from PyQt4 import QtCore
 # Kodos modules
 
 from . import util
-from helpBA import HelpBA
+from .helpBA import HelpBA
 
 #-----------------------------------------------------------------------------#
 

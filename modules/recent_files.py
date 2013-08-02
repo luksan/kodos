@@ -25,8 +25,9 @@ class RecentFiles:
 
     def load(self):
         settings = QSettings()
-        cnt = settings.beginReadArray("RecentFiles")
-        # PyQt bug: cnt is always 0, workaround with "None" test below
+        # PyQt-BUG: beginReadArray() should return array size but returns always 0
+        # as a workaround we loop until a value is "None".
+        settings.beginReadArray("RecentFiles")
         i = -1
         while True:
             i += 1
@@ -115,11 +116,13 @@ class RecentFiles:
         return menuid in self.__indecies
 
 
+"""
     def move(self, filename, menuid):
         # fix me....
         menu = self.parent.fileMenu
         idx = menu.indexOf(self.__indecies[0])
         menu.removeItem(menuid)
+        # FIXME there is no QtGui.QIconSet
         menu.insertItem(QIconSet(QPixmap(":images/document-open-recent.png")),
                         filename,
                         -1,
@@ -130,5 +133,6 @@ class RecentFiles:
             pass
         self.__indecies.insert(0, filename)
         return
+"""
 
 #-----------------------------------------------------------------------------#

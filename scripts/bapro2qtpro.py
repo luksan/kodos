@@ -125,7 +125,7 @@ def convert():
         usage()
         return 1
 
-    c = Convert(infile, outfile)
+    Convert(infile, outfile)
     return 0
 
 #-----------------------------------------------------------------------------#

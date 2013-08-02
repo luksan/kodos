@@ -5,13 +5,13 @@
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt4.QtGui import QFrame, QLabel, QColor, QPalette
+from PyQt4.QtCore import Qt, QEvent, QPoint
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from util import *
+from .util import FALSE
 
 #-----------------------------------------------------------------------------#
 

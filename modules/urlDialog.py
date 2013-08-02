@@ -16,8 +16,8 @@ from PyQt4.QtGui import QMessageBox
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from urlDialogBA import URLDialogBA
-import help
+from .urlDialogBA import URLDialogBA
+from . import help
 
 #-----------------------------------------------------------------------------#
 

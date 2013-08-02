@@ -12,16 +12,15 @@ import smtplib
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from PyQt4 import *
+from PyQt4.QtGui import QMainWindow, QMessageBox, QToolBar, QPixmap, QIcon
+from PyQt4.QtCore import SLOT, QT_VERSION_STR
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from reportBugBA import reportBugBA
-from util import *
-from version import VERSION
+from .reportBugBA import reportBugBA
+from .util import kodos_toolbar_logo
+from .version import VERSION
 
 #-----------------------------------------------------------------------------#
 

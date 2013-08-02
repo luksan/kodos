@@ -11,8 +11,8 @@ from PyQt4.QtGui import QDialog, QFontDialog
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from prefsBA import PrefsBA
-import help
+from .prefsBA import PrefsBA
+from . import help
 
 #-----------------------------------------------------------------------------#
 
@@ -43,7 +43,7 @@ class Preferences(PrefsBA):
                     self.emailServerEdit.setText(setting.toPyObject())
                 if preference == 'Recent Files Count':
                     self.recentFilesSpinBox.setValue(int(setting.toPyObject()))
-            except Exception as e:
+            except Exception:
                 print("Loading of configuration key {0} failed.".format(preference))
                 self.settings.remove(preference)
         return

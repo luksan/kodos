@@ -12,13 +12,13 @@ import webbrowser
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt4.QtGui import QMessageBox, QLabel, QSizePolicy, QPixmap
+from PyQt4.QtCore import QSettings
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from debug import *
+from .debug import debug, DEBUG_PIXMAP
 
 #-----------------------------------------------------------------------------#
 

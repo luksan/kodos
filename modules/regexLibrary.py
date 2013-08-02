@@ -10,9 +10,9 @@ from PyQt4.QtCore import pyqtSignal
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from regexLibraryBA import RegexLibraryBA
-from parseRegexLib import ParseRegexLib
-from util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo
+from .regexLibraryBA import RegexLibraryBA
+from .parseRegexLib import ParseRegexLib
+from .util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo
 
 #-----------------------------------------------------------------------------#
 
