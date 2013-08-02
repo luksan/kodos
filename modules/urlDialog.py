@@ -10,8 +10,7 @@ import urllib
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4.QtCore import pyqtSignal
-from PyQt4.QtGui import QMessageBox
+from PyQt4 import QtGui, QtCore
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
@@ -23,7 +22,7 @@ from . import help
 
 class URLDialog(URLDialogBA):
 
-    urlImported = pyqtSignal(str, str)
+    urlImported = QtCore.pyqtSignal(str, str)
 
     def __init__(self, parent, url=None):
         URLDialogBA.__init__(self, parent)
@@ -45,9 +44,12 @@ class URLDialog(URLDialogBA):
             fp = urllib.urlopen(url)
             lines = fp.readlines()
         except Exception as e:
-            QMessageBox.information(None, "Failed to open URL",
+            QtGui.QMessageBox.information(
+                None,
+                "Failed to open URL",
                 "Could not open the specified URL.  Please check to ensure \
-                that you have entered the correct URL.\n\n{0}".format(str(e)))
+                that you have entered the correct URL.\n\n{0}".format(str(e))
+            )
             return
 
 

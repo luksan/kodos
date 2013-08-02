@@ -5,8 +5,7 @@
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4.QtGui import QFrame, QLabel, QColor, QPalette
-from PyQt4.QtCore import Qt, QEvent, QPoint
+from PyQt4 import QtGui, QtCore
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
@@ -15,25 +14,33 @@ from .util import FALSE
 
 #-----------------------------------------------------------------------------#
 
-class Tooltip(QLabel):
+class Tooltip(QtGui.QLabel):
     def __init__(self, text, bgcolor="#ffd700",fgcolor="#000000",delay=1000):
         self.delay = delay
-        QLabel.__init__(self, None, Qt.WindowStaysOnTopHint
-                        | Qt.FramelessWindowHint
-                        | Qt.Tool)
+        QtGui.QLabel.__init__(
+            self,
+            None,
+            QtCore.Qt.WindowStaysOnTopHint |
+                QtCore.Qt.FramelessWindowHint |
+                QtCore.Qt.Tool
+        )
         self.setMargin(1)
         self.setIndent(0)
-        self.setFrameStyle(QFrame.Plain | QFrame.Box)
+        self.setFrameStyle(QtGui.QFrame.Plain | QtGui.QFrame.Box)
         self.setLineWidth(1)
         self.setText(text)
         self.adjustSize()
 
         # set the pallete...
-        pal = QPalette()
-        pal.setColor(QPalette.Active, QPalette.Window, QColor(bgcolor))
-        pal.setColor(QPalette.Active, QPalette.WindowText, QColor(fgcolor))
-        pal.setColor(QPalette.Inactive, QPalette.Window, QColor(bgcolor))
-        pal.setColor(QPalette.Inactive, QPalette.WindowText, QColor(fgcolor))
+        pal = QtGui.QPalette()
+        pal.setColor(QtGui.QPalette.Active, QtGui.QPalette.Window,
+                     QtGui.QColor(bgcolor))
+        pal.setColor(QtGui.QPalette.Active, QtGui.QPalette.WindowText,
+                     QtGui.QColor(fgcolor))
+        pal.setColor(QtGui.QPalette.Inactive, QtGui.QPalette.Window,
+                     QtGui.QColor(bgcolor))
+        pal.setColor(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText,
+                     QtGui.QColor(fgcolor))
         self.setPalette(pal)
 
         self.enter_timer_id = None
@@ -84,11 +91,11 @@ class Tooltip(QLabel):
 
     def eventFilter(self, obj, ev):
         type = ev.type()
-        if type == QEvent.Enter:
+        if type == QtCore.QEvent.Enter:
             self.killCustomTimers()
             self.enter_timer_id = self.startTimer(self.delay)
             self.event_widget = obj
-        elif type == QEvent.Leave:
+        elif type == QtCore.QEvent.Leave:
             self.killCustomTimers()
             self.leave_timer_id = self.startTimer(self.delay)
             self.event_widget = None
@@ -101,7 +108,7 @@ class Tooltip(QLabel):
 
         try:
             pos = self.event_widget.mapToGlobal(
-                QPoint(0, self.event_widget.height()))
+                QtCore.QPoint(0, self.event_widget.height()))
             self.move(pos.x(), pos.y())
             self.show()
             self.setFixedSize( self.sizeHint() )

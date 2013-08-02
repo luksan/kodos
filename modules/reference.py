@@ -5,7 +5,7 @@
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4.QtCore import pyqtSignal
+from PyQt4 import QtCore
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
@@ -19,7 +19,7 @@ GEO = "regex-ref_geometry"
 
 class Reference(ReferenceBA):
 
-    pasteSymbol = pyqtSignal(str)
+    pasteSymbol = QtCore.pyqtSignal(str)
 
     def __init__(self, parent):
         ReferenceBA.__init__(self, None)

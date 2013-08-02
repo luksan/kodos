@@ -5,8 +5,7 @@
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4.QtCore import pyqtSignal, QSettings
-from PyQt4.QtGui import QDialog, QFontDialog
+from PyQt4 import QtGui, QtCore
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
@@ -18,13 +17,13 @@ from . import help
 
 class Preferences(PrefsBA):
 
-    prefsSaved = pyqtSignal()
+    prefsSaved = QtCore.pyqtSignal()
 
     def __init__(self, parent, autoload=0):
         self.parent = parent
         PrefsBA.__init__(self, parent)
 
-        self.settings = QSettings()
+        self.settings = QtCore.QSettings()
 
         if autoload:
             self.load()
@@ -80,7 +79,7 @@ class Preferences(PrefsBA):
 
 
     def font_slot(self):
-        (font, ok) = QFontDialog.getFont(self.fontButton.font())
+        (font, ok) = QtGui.QFontDialog.getFont(self.fontButton.font())
         if ok:
             self.fontButton.setFont(font)
             self.setFontButtonText(self.fontButton, font)
@@ -88,7 +87,7 @@ class Preferences(PrefsBA):
 
 
     def match_font_slot(self):
-        (font, ok) = QFontDialog.getFont(self.fontButtonMatch.font())
+        (font, ok) = QtGui.QFontDialog.getFont(self.fontButtonMatch.font())
         if ok:
             self.fontButtonMatch.setFont(font)
             self.setFontButtonText(self.fontButtonMatch, font)
@@ -104,7 +103,7 @@ class Preferences(PrefsBA):
 
     def accept(self):
         self.apply_slot()
-        QDialog.accept(self)
+        QtGui.QDialog.accept(self)
         return
 
 

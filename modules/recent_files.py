@@ -5,8 +5,7 @@
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4.QtGui import QIcon, QPixmap
-from PyQt4.QtCore import QSettings
+from PyQt4 import QtGui, QtCore
 
 #-----------------------------------------------------------------------------#
 
@@ -24,7 +23,7 @@ class RecentFiles:
 
 
     def load(self):
-        settings = QSettings()
+        settings = QtCore.QSettings()
         # PyQt-BUG: beginReadArray() should return array size but returns always 0
         # as a workaround we loop until a value is "None".
         settings.beginReadArray("RecentFiles")
@@ -53,7 +52,7 @@ class RecentFiles:
     def save(self):
         # truncate list if necessary
         self.__recent_files = self.__recent_files[:MAX_SIZE]
-        s = QSettings()
+        s = QtCore.QSettings()
         s.beginWriteArray("RecentFiles")
         cnt = 0
         for f in self.__recent_files:
@@ -94,7 +93,7 @@ class RecentFiles:
         for i in range(num):
             filename = self.__recent_files[i]
             idx = self.parent.fileMenu.addAction(
-                QIcon(QPixmap(":images/document-open-recent.png")),
+                QtGui.QIcon(QtGui.QPixmap(":images/document-open-recent.png")),
                 filename)
 
             self.__indecies.insert(0, idx)
@@ -122,8 +121,8 @@ class RecentFiles:
         menu = self.parent.fileMenu
         idx = menu.indexOf(self.__indecies[0])
         menu.removeItem(menuid)
-        # FIXME there is no QtGui.QIconSet
-        menu.insertItem(QIconSet(QPixmap(":images/document-open-recent.png")),
+        # FIXME there is no QIconSet
+        menu.insertItem(QIconSet(QtGui.QPixmap(":images/document-open-recent.png")),
                         filename,
                         -1,
                         idx)

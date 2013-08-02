@@ -5,8 +5,7 @@
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4.QtCore import QTimer
-from PyQt4.QtGui import QPixmap, QLabel, QProgressBar
+from PyQt4 import QtGui, QtCore
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
@@ -21,25 +20,25 @@ class Status_Bar:
         self.parent = parent
 
         self.statusBar = parent.statusBar()
-        self.__statusTimer = QTimer(self.parent)
+        self.__statusTimer = QtCore.QTimer(self.parent)
 
         self.__statusTimer.timeout.connect(self.reset_message)
 
-        self.__statusLabel = QLabel("msg", self.statusBar)
+        self.__statusLabel = QtGui.QLabel("msg", self.statusBar)
         self.tooltip = Tooltip('')
         self.tooltip.addWidget(self.__statusLabel)
 
         self.last_status_message = ''
 
-        pixmap = QPixmap(":images/yellow.png")
+        pixmap = QtGui.QPixmap(":images/yellow.png")
 
-        self.pixmapLabel = QLabel("image", self.statusBar)
+        self.pixmapLabel = QtGui.QLabel("image", self.statusBar)
         self.pixmapLabel.setPixmap(pixmap)
 
         self.statusBar.addWidget(self.pixmapLabel)
         self.statusBar.addWidget(self.__statusLabel)
         if progress_bar:
-            self.progressBar = QProgressBar(self.statusBar)
+            self.progressBar = QtGui.QProgressBar(self.statusBar)
             self.statusBar.addWidget(self.progressBar, 1, TRUE)
 
         if message:

@@ -5,7 +5,7 @@
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4.QtCore import pyqtSignal
+from PyQt4 import QtCore
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
@@ -20,7 +20,7 @@ GEO = "regex-lib_geometry"
 
 class RegexLibrary(RegexLibraryBA):
 
-    pasteRegexLib = pyqtSignal(dict)
+    pasteRegexLib = QtCore.pyqtSignal(dict)
 
     def __init__(self, filename):
         RegexLibraryBA.__init__(self, None)

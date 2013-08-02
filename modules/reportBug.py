@@ -12,8 +12,7 @@ import smtplib
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4.QtGui import QMainWindow, QMessageBox, QToolBar, QPixmap, QIcon
-from PyQt4.QtCore import SLOT, QT_VERSION_STR
+from PyQt4 import QtGui, QtCore
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
@@ -39,7 +38,7 @@ class reportBug(reportBugBA):
         self.OSEdit.setText(sys.platform)
         pyvers = string.replace(sys.version, "\n", " - ")
         self.pythonVersionEdit.setText(pyvers)
-        self.PyQtVersionEdit.setText(QT_VERSION_STR)
+        self.PyQtVersionEdit.setText(QtCore.QT_VERSION_STR)
         self.regexMultiLineEdit.setPlainText(self.kodos_main.regexMultiLineEdit.toPlainText())
         self.stringMultiLineEdit.setPlainText(self.kodos_main.stringMultiLineEdit.toPlainText())
         return
@@ -58,9 +57,11 @@ class reportBug(reportBugBA):
                 "can contact you.  Your email address will not "
                 "be used for any other purposes.")
 
-            QMessageBox.information(None,
-                                    self.tr("You must supply a valid email address"),
-                                    msg)
+            QtGui.QMessageBox.information(
+                None,
+                self.tr("You must supply a valid email address"),
+                msg
+            )
             return
 
         msg = "Subject: Kodos bug report\n\n"
@@ -79,25 +80,29 @@ class reportBug(reportBugBA):
             server = smtplib.SMTP(email_server)
             server.sendmail(addr, AUTHOR_ADDR, msg)
             server.quit()
-            QMessageBox.information(None,
-                                    self.tr("Bug report sent"),
-                                    self.tr("Your bug report has been sent."))
+            QtGui.QMessageBox.information(
+                None,
+                self.tr("Bug report sent"),
+                self.tr("Your bug report has been sent.")
+            )
             self.parent.close()
         except Exception as e:
-            QMessageBox.information(None,
-                                    self.tr("An exception occurred sending bug report"),
-                                    str(e))
+            QtGui.QMessageBox.information(
+                None,
+                self.tr("An exception occurred sending bug report"),
+                str(e)
+            )
         return
 
 
-class reportBugWindow(QMainWindow):
+class reportBugWindow(QtGui.QMainWindow):
     def __init__(self, kodos_main):
         self.kodos_main = kodos_main
-        QMainWindow.__init__(self, kodos_main)#, Qt.Window | Qt.WA_DeleteOnClose)
+        QtGui.QMainWindow.__init__(self, kodos_main)
 
         self.setGeometry(100, 50, 800, 600)
         self.setWindowTitle(self.tr("Report a Bug"))
-        self.setWindowIcon(QIcon(QPixmap(":images/kodos_icon.png")))
+        self.setWindowIcon(QtGui.QIcon(QtGui.QPixmap(":images/kodos_icon.png")))
 
         self.bug_report = reportBug(self)
         self.setCentralWidget(self.bug_report)
@@ -113,12 +118,12 @@ class reportBugWindow(QMainWindow):
     def createMenu(self):
         self.menubar = self.menuBar()
         self.filemenu = self.menubar.addMenu(self.tr("&File"))
-        self.filemenu.addAction(self.tr("&Close"), self, SLOT("close()"))
+        self.filemenu.addAction(self.tr("&Close"), self, QtCore.SLOT("close()"))
         return
 
 
     def createToolBar(self):
-        toolbar = QToolBar()
+        toolbar = QtGui.QToolBar()
         self.addToolBar(toolbar)
         self.logolabel = kodos_toolbar_logo(toolbar)
         return

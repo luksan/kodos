@@ -25,9 +25,7 @@ except ImportError:
 # Installed modules
 
 try:
-    from PyQt4.QtGui import (QApplication, QMessageBox, QDialog, QFileDialog,
-        QPixmap, QTableWidgetItem, QColor, QPalette, QBrush)
-    from PyQt4.QtCore import Qt, QSettings, QTranslator, QTextCodec
+    from PyQt4 import QtGui, QtCore
 except:
     sys.exit("""Could not locate the PyQt module.  Please make sure that
 you have installed PyQt for the version of Python that you are running.""")
@@ -81,8 +79,8 @@ STATE_EDITED   = 1
 GEO = "kodos_geometry"
 
 # colors for normal & examination mode
-QCOLOR_WHITE  = QColor(Qt.white)     # normal
-QCOLOR_YELLOW = QColor(255,255,127)  # examine
+QCOLOR_WHITE  = QtGui.QColor(QtCore.Qt.white) # normal
+QCOLOR_YELLOW = QtGui.QColor(255,255,127) # examine
 
 try:
     signal.SIGALRM
@@ -127,23 +125,24 @@ class Kodos(KodosBA):
         self.MSG_FAIL   = self.tr("Pattern does not match")
 
 
-        self.statusPixmapsDict = {  MATCH_NA: QPixmap(":images/yellow.png"),
-                                    MATCH_OK: QPixmap(":images/green.png"),
-                                    MATCH_FAIL: QPixmap(":images/red.png"),
-                                    MATCH_PAUSED: QPixmap(":images/pause.png"),
-                                }
+        self.statusPixmapsDict = {
+            MATCH_NA: QtGui.QPixmap(":images/yellow.png"),
+            MATCH_OK: QtGui.QPixmap(":images/green.png"),
+            MATCH_FAIL: QtGui.QPixmap(":images/red.png"),
+            MATCH_PAUSED: QtGui.QPixmap(":images/pause.png"),
+        }
 
 
         self.updateStatus(self.MSG_NA, MATCH_NA)
 
         self.reFlags = reFlagList([
-                    reFlag("re.IGNORECASE", "i", self.ignorecaseCheckBox),
-                    reFlag("re.MULTILINE",  "m", self.multilineCheckBox),
-                    reFlag("re.DOTALL",     "s", self.dotallCheckBox),
-                    reFlag("re.VERBOSE",    "x", self.verboseCheckBox),
-                    reFlag("re.LOCALE",     "L", self.localeCheckBox),
-                    reFlag("re.UNICODE",    "u", self.unicodeCheckBox),
-                    ])
+            reFlag("re.IGNORECASE", "i", self.ignorecaseCheckBox),
+            reFlag("re.MULTILINE",  "m", self.multilineCheckBox),
+            reFlag("re.DOTALL",     "s", self.dotallCheckBox),
+            reFlag("re.VERBOSE",    "x", self.verboseCheckBox),
+            reFlag("re.LOCALE",     "L", self.localeCheckBox),
+            reFlag("re.UNICODE",    "u", self.unicodeCheckBox),
+        ])
         self.reFlags.clearAll()
 
         restoreWindowSettings(self, GEO)
@@ -151,12 +150,14 @@ class Kodos(KodosBA):
         self.show()
 
         self.prefs = Preferences(self, 1)
-        self.recent_files = RecentFiles(self,
-                                        self.prefs.recentFilesSpinBox.value(),
-                                        self.debug)
+        self.recent_files = RecentFiles(
+            self,
+            self.prefs.recentFilesSpinBox.value(),
+            self.debug
+        )
 
         if filename and self.openFile(filename):
-            QApplication.processEvents()
+            QtGui.QApplication.processEvents()
 
         self.fileMenu.triggered.connect(self.fileMenuHandler)
 
@@ -169,7 +170,7 @@ class Kodos(KodosBA):
 
 
     def checkIfNewUser(self):
-        s = QSettings()
+        s = QtCore.QSettings()
         if s.value('New User', "true").toPyObject() != "false":
             self.newuserdialog = NewUserDialog()
             self.newuserdialog.show()
@@ -296,7 +297,7 @@ class Kodos(KodosBA):
 
 
     def __refresh_regex_widget(self, base_qcolor, regex):
-        pal = QPalette()
+        pal = QtGui.QPalette()
         pal.setColor(pal.Base, base_qcolor)
         self.regexMultiLineEdit.setPalette(pal)
 
@@ -383,8 +384,8 @@ class Kodos(KodosBA):
         self.groupTable.setRowCount(rows)
         row = 0
         for t in tuples:
-            self.groupTable.setItem(row, 0, QTableWidgetItem(t[1]))
-            self.groupTable.setItem(row, 1, QTableWidgetItem(t[2]))
+            self.groupTable.setItem(row, 0, QtGui.QTableWidgetItem(t[1]))
+            self.groupTable.setItem(row, 1, QtGui.QTableWidgetItem(t[2]))
             row += 1
         return
 
@@ -446,7 +447,10 @@ class Kodos(KodosBA):
     def colorize_strings(self, strings, widget, cursorOffset=0):
         widget.clear()
 
-        colors = (QBrush(QColor(Qt.black)), QBrush(QColor(Qt.blue)) )
+        colors = (
+            QtGui.QBrush(QtGui.QColor(QtCore.Qt.black)),
+            QtGui.QBrush(QtGui.QColor(QtCore.Qt.blue)),
+        )
         cur = widget.textCursor()
         format = cur.charFormat()
 
@@ -745,16 +749,20 @@ class Kodos(KodosBA):
 
 
     def importFile(self):
-        fn = QFileDialog.getOpenFileName(self,
-                                         self.tr("Import File"),
-                                         self.filename,
-                                         self.tr("All (*)"))
+        fn = QtGui.QFileDialog.getOpenFileName(
+            self,
+            self.tr("Import File"),
+            self.filename,
+            self.tr("All (*)")
+        )
 
         if fn.isEmpty():
-            self.updateStatus(self.tr("A file was not selected for import"),
-                              -1,
-                              5,
-                              TRUE)
+            self.updateStatus(
+                self.tr("A file was not selected for import"),
+                -1,
+                5,
+                TRUE
+            )
             return None
 
         filename = str(fn)
@@ -776,10 +784,12 @@ class Kodos(KodosBA):
         filename = self.filename
         if filename == None:
             filename = ""
-        fn = QFileDialog.getOpenFileName(self,
-                                         self.tr("Open Kodos File"),
-                                         filename,
-                                         self.tr("Kodos file (*.kds);;All (*)"))
+        fn = QtGui.QFileDialog.getOpenFileName(
+            self,
+            self.tr("Open Kodos File"),
+            filename,
+            self.tr("Kodos file (*.kds);;All (*)")
+        )
         if not fn.isEmpty():
             filename = str(fn)
             if self.openFile(filename):
@@ -842,15 +852,17 @@ class Kodos(KodosBA):
         filename = self.filename
         if filename == None:
             filename = ""
-        filedialog = QFileDialog(self,
-                                 self.tr("Save Kodos File"),
-                                 filename,
-                                 "Kodos file (*.kds);;All (*)")
-        filedialog.setAcceptMode(QFileDialog.AcceptSave)
+        filedialog = QtGui.QFileDialog(
+            self,
+            self.tr("Save Kodos File"),
+            filename,
+            "Kodos file (*.kds);;All (*)"
+        )
+        filedialog.setAcceptMode(QtGui.QFileDialog.AcceptSave)
         filedialog.setDefaultSuffix("kds")
         ok = filedialog.exec_()
 
-        if ok == QDialog.Rejected:
+        if ok == QtGui.QDialog.Rejected:
             self.updateStatus(self.tr("No file selected to save"), -1, 5, TRUE)
             return
 
@@ -919,17 +931,19 @@ class Kodos(KodosBA):
         if self.editstate == STATE_EDITED:
             message = self.tr("You have made changes. Would you like to save them before continuing?")
 
-            prompt = QMessageBox.warning(None,
-                                         self.tr("Save changes?"),
-                                         message,
-                                         QMessageBox.Save |
-                                         QMessageBox.Cancel |
-                                         QMessageBox.Discard)
+            prompt = QtGui.QMessageBox.warning(
+                None,
+                self.tr("Save changes?"),
+                message,
+                QtGui.QMessageBox.Save |
+                    QtGui.QMessageBox.Cancel |
+                    QtGui.QMessageBox.Discard
+            )
 
-            if prompt == QMessageBox.Cancel:
+            if prompt == QtGui.QMessageBox.Cancel:
                 return False
 
-            if prompt == QMessageBox.Save:
+            if prompt == QtGui.QMessageBox.Save:
                 self.fileSave()
                 if not self.filename: self.checkEditState()
 
@@ -968,7 +982,7 @@ class Kodos(KodosBA):
 
 
     def getWidget(self):
-        widget = QApplication.focusWidget()
+        widget = QtGui.QApplication.focusWidget()
         if (widget == self.regexMultiLineEdit or
             widget == self.stringMultiLineEdit or
             widget == self.replaceTextEdit or
@@ -982,7 +996,7 @@ class Kodos(KodosBA):
         # execute the methodstr of widget only if widget
         # is one of the editable widgets OR if the method
         # may be applied to any widget.
-        widget = QApplication.focusWidget()
+        widget = QtGui.QApplication.focusWidget()
         if anywidget or (
             widget == self.regexMultiLineEdit or
             widget == self.stringMultiLineEdit or
@@ -1097,7 +1111,8 @@ class Kodos(KodosBA):
         if match_obj:
             latest_version = match_obj.group('version')
             if latest_version == VERSION:
-                QMessageBox.information(None,
+                QtGui.QMessageBox.information(
+                    None,
                     self.tr("No Update is Available"),
                     unicode(self.tr(
                         "You are currently using the latest version of Kodos ({version})"
@@ -1106,8 +1121,10 @@ class Kodos(KodosBA):
             else:
                 message =  "{0}\n\n{1}\n{2}\n\n{3}\n".format(
                     unicode(self.tr("There is a newer version of Kodos available.")),
-                    unicode(self.tr("You are using version: {version}.")).format(version=VERSION),
-                    unicode(self.tr("The latest version is: {version}.")).format(version=latest_version),
+                    unicode(self.tr("You are using version: {version}."
+                                    )).format(version=VERSION),
+                    unicode(self.tr("The latest version is: {version}."
+                                    )).format(version=latest_version),
                     unicode(self.tr("Press OK to launch browser")),
                 )
 
@@ -1201,20 +1218,20 @@ def main():
 
     os.environ['KODOS_DIR'] = kodos_dir
 
-    qApp = QApplication(sys.argv)
+    qApp = QtGui.QApplication(sys.argv)
     qApp.setOrganizationName("kodos")
     qApp.setApplicationName("kodos")
     qApp.setOrganizationDomain("kodos.sourceforge.net")
 
     if locale not in (None, 'en'):
-        localefile = "kodos_{0}.qm".format(locale or QTextCodec.locale())
+        localefile = "kodos_{0}.qm".format(locale or QtCore.QTextCodec.locale())
         localepath = findFile(os.path.join("translations", localefile))
         if debug:
             print("locale changed to: {0}".format(locale))
             print(localefile)
             print(localepath)
 
-        translator = QTranslator(qApp)
+        translator = QtCore.QTranslator(qApp)
         translator.load(localepath)
 
         qApp.installTranslator(translator)
