@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+
+Files: *
+Copyright: 2002-2006 Phil Schwartz <phil_schwartz AT users DOT sourceforge DOT net>
+           2010 Lukas Sandström (luksan) <luksan AT gmail DOT com>
+           2010 Felipe Prenholato (chronos[sc]) <philipe DOT rp AT gmail DOT com>
+           2012 Justus Winter (teythoon) <4winter At informatik DOT uni-hamburg DOT de>
+           2013 Per H. (phobie) <kodos DOT phobie AT safersignup DOT com>
+License: GPL-2+
+ See LICENSE.txt
+
+Files: images/*
+Copyright: 2005 Konstantin Ryabitsev <icon fedoraproject org>
+License: GPL-2+
+ See LICENSE.txt
