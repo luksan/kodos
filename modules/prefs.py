@@ -10,21 +10,21 @@ from PyQt4 import QtGui, QtCore
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from .prefsBA import PrefsBA
-from . import help
+from .prefsBA import Ui_PrefsBA
+from .help import Help
 
 #-----------------------------------------------------------------------------#
 
-class Preferences(PrefsBA):
+class Preferences(QtGui.QDialog, Ui_PrefsBA):
 
     prefsSaved = QtCore.pyqtSignal()
 
-    def __init__(self, parent, autoload=0):
+    def __init__(self, autoload=0, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QDialog.__init__(self, parent, f)
+        self.setupUi(self)
+
         self.parent = parent
-        PrefsBA.__init__(self, parent)
-
         self.settings = QtCore.QSettings()
-
         if autoload:
             self.load()
         return
@@ -108,7 +108,7 @@ class Preferences(PrefsBA):
 
 
     def help_slot(self):
-        self.helpWindow = help.Help(self, "prefs.html")
+        self.helpWindow = Help(filename="prefs.html", parent=self)
         return
 
 #-----------------------------------------------------------------------------#

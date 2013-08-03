@@ -16,7 +16,7 @@ from PyQt4 import QtGui, QtCore
 # Kodos modules
 
 from . import util
-from .helpBA import HelpBA
+from .helpBA import Ui_HelpBA
 
 #-----------------------------------------------------------------------------#
 
@@ -39,18 +39,16 @@ class textbrowser(QtGui.QTextBrowser):
         return
 
 
-class Help(HelpBA):
-    def __init__(self, parent, filename):
-        HelpBA.__init__(self, parent)
+class Help(QtGui.QMainWindow, Ui_HelpBA):
+    def __init__(self, filename, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QMainWindow.__init__(self, parent, f)
+        self.setupUi(self)
 
         self.setGeometry(100, 50, 800, 600)
-
         self.textBrowser = textbrowser(self)
         absPath = self.getHelpFile(filename)
-
         self.setCentralWidget(self.textBrowser)
         self.textBrowser.setSource(absPath)
-
         self.fwdAvailable = 0
         self.show()
         return

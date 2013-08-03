@@ -5,12 +5,12 @@
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4 import QtCore
+from PyQt4 import QtGui, QtCore
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from .regexLibraryBA import RegexLibraryBA
+from .regexLibraryBA import Ui_RegexLibraryBA
 from .parseRegexLib import ParseRegexLib
 from .util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo
 
@@ -18,20 +18,20 @@ from .util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo
 
 GEO = "regex-lib_geometry"
 
-class RegexLibrary(RegexLibraryBA):
+class RegexLibrary(QtGui.QMainWindow, Ui_RegexLibraryBA):
 
     pasteRegexLib = QtCore.pyqtSignal(dict)
 
-    def __init__(self, filename):
-        RegexLibraryBA.__init__(self, None)
+    def __init__(self, filename, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QMainWindow.__init__(self, parent, f)
+        self.setupUi(self)
+
         self.filename = filename
+        self.parent = parent
         self.selected = None
-
         self.parseXML()
-
         self.populateListBox()
         kodos_toolbar_logo(self.toolBar)
-
         restoreWindowSettings(self, GEO)
         return
 
@@ -73,6 +73,10 @@ class RegexLibrary(RegexLibraryBA):
     def editPaste(self):
         if self.selected:
             self.pasteRegexLib.emit(self.selected)
+        return
+
+    def help_help_slot(self):
+        self.parent.helpHelp()
         return
 
 #-----------------------------------------------------------------------------#

@@ -15,20 +15,21 @@ from PyQt4 import QtGui, QtCore
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from .urlDialogBA import URLDialogBA
+from .urlDialogBA import Ui_URLDialogBA
 from . import help
 
 #-----------------------------------------------------------------------------#
 
-class URLDialog(URLDialogBA):
+class URLDialog(QtGui.QDialog, Ui_URLDialogBA):
 
     urlImported = QtCore.pyqtSignal(str, str)
 
-    def __init__(self, parent, url=None):
-        URLDialogBA.__init__(self, parent)
+    def __init__(self, url=None, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QDialog.__init__(self, parent, f)
+        self.setupUi(self)
+
         if url:
             self.URLTextEdit.setPlainText(url)
-
         self.show()
         return
 

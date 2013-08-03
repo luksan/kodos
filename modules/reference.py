@@ -5,26 +5,27 @@
 #-----------------------------------------------------------------------------#
 # Installed modules
 
-from PyQt4 import QtCore
+from PyQt4 import QtGui, QtCore
 
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from .referenceBA import ReferenceBA
+from .referenceBA import Ui_ReferenceBA
 from .util import kodos_toolbar_logo, restoreWindowSettings, saveWindowSettings
 
 #-----------------------------------------------------------------------------#
 
 GEO = "regex-ref_geometry"
 
-class Reference(ReferenceBA):
+class Reference(QtGui.QMainWindow, Ui_ReferenceBA):
 
     pasteSymbol = QtCore.pyqtSignal(str)
 
-    def __init__(self, parent):
-        ReferenceBA.__init__(self, None)
-        self.parent = parent
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QMainWindow.__init__(self, parent, f)
+        self.setupUi(self)
 
+        self.parent = parent
         restoreWindowSettings(self, GEO)
         kodos_toolbar_logo(self.toolBar)
         return
@@ -46,7 +47,7 @@ class Reference(ReferenceBA):
         return
 
 
-    def help_slot(self):
+    def help_help_slot(self):
         self.parent.helpHelp()
         return
 

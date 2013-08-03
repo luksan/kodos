@@ -37,11 +37,11 @@ you have installed PyQt for the version of Python that you are running.""")
 from distutils.sysconfig import get_python_lib
 sys.path.append(os.path.join(get_python_lib(), "kodos"))
 
-from modules.kodosBA import KodosBA
+from modules.kodosBA import Ui_KodosBA
 from modules.util import (findFile, launch_browser, kodos_toolbar_logo,
                           saveWindowSettings, restoreWindowSettings)
 from modules.about import About
-import modules.help as help
+from modules.help import Help
 from modules.status_bar import Status_Bar
 from modules.reference import Reference
 from modules.prefs import Preferences
@@ -50,7 +50,7 @@ from modules.version import VERSION
 from modules.recent_files import RecentFiles
 from modules.urlDialog import URLDialog
 from modules.regexLibrary import RegexLibrary
-from modules.newUserDialogBA import NewUserDialog
+from modules.newUserDialog import NewUserDialog
 from modules.flags import reFlag, reFlagList
 
 #-----------------------------------------------------------------------------#
@@ -95,9 +95,10 @@ except:
 #
 ##############################################################################
 
-class Kodos(KodosBA):
-    def __init__(self, filename, debug):
-        KodosBA.__init__(self)
+class Kodos(QtGui.QMainWindow, Ui_KodosBA):
+    def __init__(self, filename, debug, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QMainWindow.__init__(self, parent, f)
+        self.setupUi(self)
 
         self.debug = debug
         self.regex = ""
@@ -149,7 +150,7 @@ class Kodos(KodosBA):
 
         self.show()
 
-        self.prefs = Preferences(self, 1)
+        self.prefs = Preferences(autoload=1, parent=self)
         self.recent_files = RecentFiles(
             self,
             self.prefs.recentFilesSpinBox.value(),
@@ -1065,18 +1066,18 @@ class Kodos(KodosBA):
 
 
     def helpHelp(self):
-        self.helpWindow = help.Help(self, "kodos.html")
+        self.helpWindow = Help(filename="kodos.html", parent=self)
         return
 
 
     def helpPythonRegex(self):
-        self.helpWindow = help.Help(self, os.path.join("python", "module-re.html"))
+        self.helpWindow = Help(filename=os.path.join("python", "module-re.html"), parent=self)
         return
 
 
     def helpRegexLib(self):
         f = os.path.join("help", "regex-lib.xml")
-        self.regexlibwin = RegexLibrary(f)
+        self.regexlibwin = RegexLibrary(filename=f, parent=self)
         self.regexlibwin.pasteRegexLib.connect(self.pasteFromRegexLib)
         self.regexlibwin.show()
         return

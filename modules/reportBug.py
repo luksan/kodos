@@ -17,7 +17,7 @@ from PyQt4 import QtGui, QtCore
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from .reportBugBA import reportBugBA
+from .reportBugBA import Ui_reportBugBA
 from .util import kodos_toolbar_logo
 from .version import VERSION
 
@@ -25,9 +25,11 @@ from .version import VERSION
 
 AUTHOR_ADDR = "phil_schwartz@users.sourceforge.net"
 
-class reportBug(reportBugBA):
-    def __init__(self, parent=None, name=None):
-        reportBugBA.__init__(self, parent)
+class reportBug(QtGui.QWidget, Ui_reportBugBA):
+    def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
+        QtGui.QWidget.__init__(self, parent, f)
+        self.setupUi(self)
+
         self.parent = parent
         self.kodos_main = parent.kodos_main
         self.populate()
