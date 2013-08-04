@@ -58,7 +58,7 @@ class URLDialog(QtGui.QDialog, Ui_URLDialogBA):
 
         self.urlImported.emit(html, url)
 
-        URLDialogBA.accept(self)
+        self.accept()
         return
 
 #-----------------------------------------------------------------------------#

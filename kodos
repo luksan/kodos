@@ -738,7 +738,7 @@ class Kodos(QtGui.QMainWindow, Ui_KodosBA):
 
 
     def importURL(self):
-        self.urldialog = URLDialog(self, self.url)
+        self.urldialog = URLDialog(url=self.url, parent=self)
         self.urldialog.urlImported.connect(self.urlImported)
         return
 

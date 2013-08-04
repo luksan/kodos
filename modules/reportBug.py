@@ -106,7 +106,7 @@ class reportBugWindow(QtGui.QMainWindow):
         self.setWindowTitle(self.tr("Report a Bug"))
         self.setWindowIcon(QtGui.QIcon(QtGui.QPixmap(":images/kodos_icon.png")))
 
-        self.bug_report = reportBug(self)
+        self.bug_report = reportBug(parent=self)
         self.setCentralWidget(self.bug_report)
 
 
