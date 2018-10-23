@@ -1,0 +1,2 @@
+ #!/bin/bash
+xdg-desktop-menu install /usr/share/applications/kodos.desktop --novendor
