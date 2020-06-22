@@ -1,5 +1,12 @@
 *.pyc
+*.pyo
 *~
+/.pc/
+/build/
+/debian/
+/dist/
 /MANIFEST
-/dist
-/build
+/modules/*BA.py
+/modules/kodos_rc.py
+/translations/*.qm
+/translations/*.ts

@@ -1,0 +1,2 @@
+#!/bin/bash
+xdg-desktop-menu uninstall /usr/share/applications/kodos.desktop

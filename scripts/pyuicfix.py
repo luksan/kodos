@@ -1,9 +1,21 @@
-#!/bin/env python
-#
-# this should be invoked by a pyuic wrapper
-# it looks for the arg after the -o cmd line flag
-# which is used as the source AND destination file.
-import sys, os, re
+#!/usr/bin/env python
+# -*- coding: utf-8; mode: python; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; truncate-lines: 0 -*-
+# vi: set fileencoding=utf-8 filetype=python expandtab tabstop=4 shiftwidth=4 softtabstop=4 cindent:
+# :mode=python:indentSize=4:tabSize=4:noTabs=true:
+
+"""
+this should be invoked by a pyuic wrapper
+it looks for the arg after the -o cmd line flag
+which is used as the source AND destination file.
+"""
+
+#-----------------------------------------------------------------------------#
+# Built-in modules
+
+import sys
+import re
+
+#-----------------------------------------------------------------------------#
 
 filename = None
 args = sys.argv[1:]
@@ -15,13 +27,12 @@ for i in range(len(args)):
         break
 
 if not filename:
-    print "Error: could not extract filename from:", args
+    print("Error: could not extract filename from: {0}".format(args))
     sys.exit(0)
 
 fp = open(filename, "r")
 pycode = fp.read()
 fp.close()
-
 
 
 # regex from Kodos (of course!)
@@ -32,7 +43,6 @@ repl = """try:
             pass
 """
 pycode = rx.sub(repl, pycode)
-
 
 
 rx = re.compile(r"""\.setAccel\((?P<tr>.*)""")
@@ -49,10 +59,8 @@ while 1:
              pycode[m.end():]
 
 
-
-
-
 fp = open(filename, "w")
 fp.write(pycode)
 fp.close()
 
+#-----------------------------------------------------------------------------#

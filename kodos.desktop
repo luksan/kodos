@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Kodos
+GenericName=Visual RegEx Editor
+Comment=Kodos is a Visual regular expression editor
+Exec=kodos
+Icon=kodos_icon.png
+Terminal=false
+Type=Application
+Categories=Application;Development;
+StartupNotify=false

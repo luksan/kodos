@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=kodos
+Comment[en]=The regex debugger
+Exec=kodos
+Icon=/usr/share/pixmaps/kodos_icon.png
+Terminal=false
+Type=Application
+Categories=Application;Science;Engineering;Math;
+StartupNotify=false

@@ -3,6 +3,11 @@
 # :mode=python:indentSize=4:tabSize=4:noTabs=true:
 
 #-----------------------------------------------------------------------------#
+# Built-in modules
+
+from __future__ import absolute_import, print_function, unicode_literals
+
+#-----------------------------------------------------------------------------#
 # Installed modules
 
 from PyQt4 import QtGui, QtCore
@@ -10,17 +15,14 @@ from PyQt4 import QtGui, QtCore
 #-----------------------------------------------------------------------------#
 # Kodos modules
 
-from .aboutBA import Ui_AboutBA
-from . import version
+from .newUserDialogBA import Ui_NewUserDialog
 
 #-----------------------------------------------------------------------------#
 
-class About(QtGui.QDialog, Ui_AboutBA):
+class NewUserDialog(QtGui.QDialog, Ui_NewUserDialog):
     def __init__(self, parent=None, f=QtCore.Qt.WindowFlags()):
         QtGui.QDialog.__init__(self, parent, f)
-        self.setupUi(self)
 
-        self.versionLabel.setText(version.VERSION)
-        return
+        self.setupUi(self)
 
 #-----------------------------------------------------------------------------#
