@@ -16,15 +16,16 @@ SOURCES = kodos
 	modules/version.py
 
 TRANSLATIONS =	translations/kodos_en.ts \
-	translations/kodos_de.ts \
-	translations/kodos_pl.ts
+		translations/kodos_pl.ts \
+		translations/kodos_sv.ts
 
 FORMS =	modules/aboutBA.ui \
 	modules/helpBA.ui \
 	modules/kodosBA.ui \
-	modules/newUserDialogBA.ui \
+	modules/newUserDialogBA.ui
 	modules/prefsBA.ui \
 	modules/referenceBA.ui \
 	modules/regexLibraryBA.ui \
 	modules/reportBugBA.ui \
+	modules/resultsBA.ui \
 	modules/urlDialogBA.ui
