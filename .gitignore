@@ -1,11 +1,13 @@
 *.pyc
 *.pyo
 *~
+*.rej
+*.orig
 /.pc/
 /build/
 /debian/
 /dist/
 /MANIFEST
-/modules/*BA.py
-/modules/kodos_rc.py
+*BA.py
+kodos_rc.py
 /translations/*.qm
