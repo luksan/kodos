@@ -36,4 +36,4 @@ class URLDialog(urlDialogBA.URLDialogBA):
 
         self.urlImported.emit(html, url)
 
-        URLDialogBA.accept(self)
+        urlDialogBA.URLDialogBA.accept(self)
