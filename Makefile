@@ -8,4 +8,4 @@ clean:
 	$(MAKE) clean -C kodos
 
 kodos/kodos_rc.py: kodos.qrc
-	pyrcc4 -o $@ $<
+	pyrcc4 -py3 -o $@ $<
