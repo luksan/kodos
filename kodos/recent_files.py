@@ -25,11 +25,11 @@ class RecentFiles:
             i += 1
             settings.setArrayIndex(i)
             try:
-                s = settings.value("Filename").toPyObject()
+                s = settings.value("Filename")
                 if s == None:
                     break
                 self.__recent_files.append(str(s))
-            except Exception, e:
+            except Exception as e:
                 self.log.error('Loading of recent file entry %i failed: %s' %
                                (i, e))
                 settings.remove("Filename")

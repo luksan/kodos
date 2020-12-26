@@ -46,7 +46,7 @@ def saveWindowSettings(window, filename):
 
 def restoreWindowSettings(window, filename):
     settings = Qt.QSettings()
-    window.restoreGeometry(settings.value(window.objectName()).toByteArray())
+    #window.restoreGeometry(settings.value(window.objectName()).toByteArray())
 
 def findFile(filename):
     dirs = [getAppPath(),
@@ -68,7 +68,7 @@ def launch_browser(url, caption=None, message=None):
         return False
     try:
         webbrowser.open(url)
-    except webbrowser.Error, e:
+    except webbrowser.Error as e:
         log.error("Couldn't open URL %r: %s" % (url, e))
         return False
     return True

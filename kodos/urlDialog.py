@@ -4,7 +4,7 @@ from PyQt4.QtCore import pyqtSignal
 from PyQt4.QtGui import QMessageBox
 from . import urlDialogBA
 from . import help
-import urllib
+import urllib.request
 
 
 class URLDialog(urlDialogBA.URLDialogBA):
@@ -22,17 +22,16 @@ class URLDialog(urlDialogBA.URLDialogBA):
         self.helpWindow = help.Help(self, "importURL.html")
 
     def ok_slot(self):
-        url = str(self.URLTextEdit.toPlainText())
+        url = self.URLTextEdit.toPlainText()
         try:
-            fp = urllib.urlopen(url)
-            lines = fp.readlines()
-        except Exception, e:
+            fp = urllib.request.urlopen(url)
+            charset = fp.info().get_content_charset() or "utf-8"
+            html = fp.read().decode(charset)
+        except Exception as e:
             QMessageBox.information(None, "Failed to open URL",
                                     "Could not open the specified URL.  Please check to ensure that you have entered the correct URL.\n\n%s" % str(e))
             return
 
-
-        html = ''.join(lines)
 
         self.urlImported.emit(html, url)
 

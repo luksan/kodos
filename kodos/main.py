@@ -4,7 +4,7 @@ import os
 import re
 import types
 import signal
-import cPickle
+import pickle
 import logging
 
 from PyQt4 import Qt, QtCore
@@ -131,7 +131,7 @@ class Kodos(kodosBA.KodosBA):
 
     def checkIfNewUser(self):
         s = Qt.QSettings()
-        if s.value('New User', "true").toPyObject() != "false":
+        if s.value('New User', "true") != "false":
             self.newuserdialog = newUserDialogBA.NewUserDialog()
             self.newuserdialog.show()
         s.setValue('New User', "false")
@@ -149,9 +149,9 @@ class Kodos(kodosBA.KodosBA):
 
     def fileMenuHandler(self, menuid):
         if self.recent_files.isRecentFile(menuid):
-            fn = str(menuid.text())
-            if self.openFile(fn):
-                self.recent_files.add(fn)
+            filename = menuid.text()
+            if self.openFile(filename):
+                self.recent_files.add(filename)
 
     def prefsSaved(self):
         self.log.debug("prefsSaved slot")
@@ -268,12 +268,12 @@ class Kodos(kodosBA.KodosBA):
 
 
     def regex_changed_slot(self):
-        self.regex = unicode(self.regexMultiLineEdit.toPlainText())
+        self.regex = self.regexMultiLineEdit.toPlainText()
         self.process_regex()
 
 
     def string_changed_slot(self):
-        self.matchstring = unicode(self.stringMultiLineEdit.toPlainText())
+        self.matchstring = self.stringMultiLineEdit.toPlainText()
         self.process_regex()
 
     def helpContents(self, x = None):
@@ -296,7 +296,7 @@ class Kodos(kodosBA.KodosBA):
         self.replaceTextBrowser.setEnabled(True)
 
     def replace_changed_slot(self):
-        self.replace = unicode(self.replaceTextEdit.toPlainText())
+        self.replace = self.replaceTextEdit.toPlainText()
         self.process_regex()
         if not self.replace:
             self.hide_replace_widgets()
@@ -420,7 +420,7 @@ class Kodos(kodosBA.KodosBA):
         if num == 0: num = nummatches
         text = self.matchstring
 
-        replace_text = unicode(self.replaceTextEdit.toPlainText())
+        replace_text = self.replaceTextEdit.toPlainText()
         if RX_BACKREF.search(replace_text):
             # if the replace string contains a backref we just use the
             # python regex methods for the substitution
@@ -521,8 +521,8 @@ class Kodos(kodosBA.KodosBA):
 
             match_obj = compile_obj.search(self.matchstring)
 
-        except Exception, e:
-            self.update_results(unicode(e), MATCH_FAIL)
+        except Exception as e:
+            self.update_results(str(e), MATCH_FAIL)
             return
 
         if HAS_ALARM:
@@ -551,7 +551,7 @@ class Kodos(kodosBA.KodosBA):
         if match_obj.groups():
             group_nums = {}
             if compile_obj.groupindex:
-                keys = compile_obj.groupindex.keys()
+                keys = list(compile_obj.groupindex.keys())
                 for key in keys:
                     group_nums[compile_obj.groupindex[key]] = key
 
@@ -562,7 +562,7 @@ class Kodos(kodosBA.KodosBA):
 
             # create group_tuple in the form: (group #, group name, group matches)
             g = allmatches[match_index]
-            if type(g) == types.TupleType:
+            if type(g) == tuple:
                 for i in range(len(g)):
                     group_tuple = (i+1, group_nums.get(i+1, ""), g[i])
                     self.group_tuples.append(group_tuple)
@@ -574,10 +574,10 @@ class Kodos(kodosBA.KodosBA):
             # clear the group table
             self.populate_group_table([])
 
-        str_pattern_matches = unicode(self.tr("Pattern matches"))
-        str_found = unicode(self.tr("found"))
-        str_match = unicode(self.tr("match"))
-        str_matches = unicode(self.tr("matches"))
+        str_pattern_matches = self.tr("Pattern matches")
+        str_found = self.tr("found")
+        str_match = self.tr("match")
+        str_matches = self.tr("matches")
 
         if len(allmatches) == 1:
             status = "%s (%s 1 %s)" % (str_pattern_matches,
@@ -661,19 +661,17 @@ class Kodos(kodosBA.KodosBA):
 
 
     def importFile(self):
-        fn = Qt.QFileDialog.getOpenFileName(self,
+        filename = Qt.QFileDialog.getOpenFileName(self,
                                          self.tr("Import File"),
                                          self.filename,
                                          self.tr("All (*)"))
 
-        if fn.isEmpty():
+        if filename == "" :
             self.updateStatus(self.tr("A file was not selected for import"),
                               -1,
                               5,
                               True)
             return None
-
-        filename = str(fn)
 
         try:
             fp = open(filename, "r")
@@ -691,12 +689,11 @@ class Kodos(kodosBA.KodosBA):
         filename = self.filename
         if filename == None:
             filename = ""
-        fn = Qt.QFileDialog.getOpenFileName(self,
+        filename = Qt.QFileDialog.getOpenFileName(self,
                                          self.tr("Open Kodos File"),
                                          filename,
                                          self.tr("Kodos file (*.kds);;All (*)"))
-        if not fn.isEmpty():
-            filename = str(fn)
+        if filename != "":
             if self.openFile(filename):
                 self.recent_files.add(filename)
 
@@ -708,20 +705,20 @@ class Kodos(kodosBA.KodosBA):
         self.filename = None
 
         try:
-            fp = open(filename, "r")
+            fp = open(filename, "rb")
         except:
             msg = self.tr("Could not open file for reading: ") + filename
             self.updateStatus(msg, -1, 5, True)
             return None
 
         try:
-            u = cPickle.Unpickler(fp)
+            u = pickle.Unpickler(fp)
             self.regex = u.load()
             self.matchstring = u.load()
             flags = u.load()
-        except Exception, e: #FIXME: don't catch everything
+        except Exception as e: #FIXME: don't catch everything
             self.log.error('Error unpickling data from file: %s' % e)
-            msg = "%s %s" % (unicode(self.tr("Error reading from file:")),
+            msg = "%s %s" % (str(self.tr("Error reading from file:")),
                              filename)
             self.updateStatus(msg, -1, 5, True)
             return 0
@@ -742,7 +739,7 @@ class Kodos(kodosBA.KodosBA):
         self.replaceTextEdit.setPlainText(replace)
 
         self.filename = filename
-        msg = "%s %s" % (filename, unicode(self.tr("loaded successfully")))
+        msg = "%s %s" % (filename, str(self.tr("loaded successfully")))
         self.updateStatus(msg, -1, 5, True)
         self.editstate = STATE_UNEDITED
         return 1
@@ -764,7 +761,7 @@ class Kodos(kodosBA.KodosBA):
             self.updateStatus(self.tr("No file selected to save"), -1, 5, True)
             return
 
-        filename = os.path.normcase(unicode(filedialog.selectedFiles().first()))
+        filename = os.path.normcase(str(filedialog.selectedFiles()[0]))
 
         self.filename = filename
         self.fileSave()
@@ -776,23 +773,23 @@ class Kodos(kodosBA.KodosBA):
             return
 
         try:
-            fp = open(self.filename, "w")
+            fp = open(self.filename, "wb")
         except:
-            msg = "%s: %s" % (unicode(self.tr("Could not open file for writing:")),
+            msg = "%s: %s" % (str(self.tr("Could not open file for writing:")),
                               self.filename)
             self.updateStatus(msg, -1, 5, True)
             return None
 
         self.editstate = STATE_UNEDITED
-        p = cPickle.Pickler(fp)
+        p = pickle.Pickler(fp)
         p.dump(self.regex)
         p.dump(self.matchstring)
         p.dump(self.reFlags.allFlagsORed())
         p.dump(self.replace)
 
         fp.close()
-        msg = "%s %s" % (unicode(self.filename),
-                         unicode(self.tr("successfully saved")))
+        msg = "%s %s" % (str(self.filename),
+                         str(self.tr("successfully saved")))
         self.updateStatus(msg, -1, 5, True)
         self.recent_files.add(self.filename)
 

@@ -32,7 +32,7 @@ class Preferences(prefsBA.PrefsBA):
                     self.parent.setMatchFont(setting.toPyObject())
                 if preference == 'Recent Files Count':
                     self.recentFilesSpinBox.setValue(int(setting.toPyObject()))
-            except Exception, e:
+            except Exception as e:
                 self.log.error('Loading of configuration key %s failed: %s' %
                                (preference, e))
                 self.settings.remove(preference)

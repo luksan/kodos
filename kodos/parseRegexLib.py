@@ -36,7 +36,7 @@ class ParseRegexLib:
 
         dicts = []
         allmatches = rx_entry.findall(data)
-        rx_keys = RX_DICT.keys()
+        rx_keys = list(RX_DICT.keys())
         for match in allmatches:
             d = {}
             for key in rx_keys:
@@ -56,6 +56,6 @@ if __name__ == '__main__':
     x = ParseRegexLib(path)
 
     dicts = x.parse()
-    print dicts
+    print(dicts)
 
 
