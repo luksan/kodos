@@ -6,7 +6,7 @@ import sys
 import logging
 import webbrowser
 
-from PyQt4 import Qt
+from PyQt5 import Qt
 
 log = logging.getLogger('kodos.util')
 

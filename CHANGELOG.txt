@@ -1,5 +1,10 @@
 Kodos ChangeLog
 
+2.6.0
+=====
+*) Migrated to PyQt5
+*) Added code to make sure all child windows open in the same screeen where parent is.
+
 2.5.2
 =====
  *) First Python3 version , still using PyQt4, python3-PyQt4 is now required

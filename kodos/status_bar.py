@@ -2,8 +2,8 @@
 #  status_bar.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
 from . import tooltip
-from PyQt4.QtCore import QTimer
-from PyQt4.QtGui import QPixmap, QLabel, QProgressBar
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QPixmap, QLabel, QProgressBar
 
 class Status_Bar:
     def __init__(self, parent, progress_bar=False, message=''):

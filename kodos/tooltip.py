@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #  tooltip.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from PyQt4 import Qt, QtCore
+from PyQt5 import Qt, QtCore
 
 class Tooltip(Qt.QLabel):
     def __init__(self, text, bgcolor="#ffd700",fgcolor="#000000",delay=1000):

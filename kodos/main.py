@@ -7,7 +7,7 @@ import signal
 import pickle
 import logging
 
-from PyQt4 import Qt, QtCore
+from PyQt5 import Qt, QtCore
 
 from . import kodosBA
 from . import util

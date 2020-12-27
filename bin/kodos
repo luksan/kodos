@@ -8,8 +8,8 @@ import logging
 import optparse
 
 try:
-    from PyQt4 import QtGui
-    from PyQt4 import QtCore
+    from PyQt5 import QtGui
+    from PyQt5 import QtCore
 except:
     sys.exit("""Could not locate the PyQt module.  Please make sure that
 you have installed PyQt for the version of Python that you are running.""")

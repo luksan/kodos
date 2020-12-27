@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #  reference.py: -*- Python -*-  DESCRIPTIVE TEXT.
 
-from PyQt4.QtCore import pyqtSignal
+from PyQt5.QtCore import pyqtSignal
 from . import referenceBA
 from .util import kodos_toolbar_logo, restoreWindowSettings, saveWindowSettings
 

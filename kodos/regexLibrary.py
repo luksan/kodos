@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from PyQt4.QtCore import pyqtSignal
+from PyQt5.QtCore import pyqtSignal
 from . import regexLibraryBA
 from . import parseRegexLib
 from .util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo

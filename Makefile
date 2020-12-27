@@ -1,6 +1,6 @@
 all: kodos/kodos_rc.py
 	$(MAKE) -C kodos
-	pylupdate4 kodos.pro
+	pylupdate5 kodos.pro
 	$(MAKE) -C translations
 
 clean:
@@ -8,4 +8,4 @@ clean:
 	$(MAKE) clean -C kodos
 
 kodos/kodos_rc.py: kodos.qrc
-	pyrcc4 -py3 -o $@ $<
+	pyrcc5 -o $@ $<

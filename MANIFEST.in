@@ -10,6 +10,4 @@ include LICENSE.txt
 include README.txt
 include kodos/*.ui
 include kodos/*.py
-include windows/build.bat
-include windows/installer.iss
 include CHANGELOG.txt

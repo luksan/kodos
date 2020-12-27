@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>590</width>
+    <width>607</width>
     <height>900</height>
    </rect>
   </property>
@@ -357,8 +357,8 @@ database. New in Python version 2.0.</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>590</width>
-     <height>24</height>
+     <width>607</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
@@ -854,7 +854,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>editCopyAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>editCopy()</slot>
    <hints>
@@ -870,7 +870,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>editCutAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>editCut()</slot>
    <hints>
@@ -886,7 +886,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>editPasteAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>editPaste()</slot>
    <hints>
@@ -902,7 +902,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>editRedoAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>editRedo()</slot>
    <hints>
@@ -918,7 +918,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>editUndoAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>editUndo()</slot>
    <hints>
@@ -934,7 +934,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>examineAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered(bool)</signal>
    <receiver>KodosBA</receiver>
    <slot>examine()</slot>
    <hints>
@@ -950,7 +950,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>fileExitAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>close()</slot>
    <hints>
@@ -966,7 +966,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>fileNewAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>fileNew()</slot>
    <hints>
@@ -982,7 +982,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>fileOpenAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>fileOpen()</slot>
    <hints>
@@ -998,7 +998,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>fileSaveAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>fileSave()</slot>
    <hints>
@@ -1014,7 +1014,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>fileSaveAsAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>fileSaveAs()</slot>
    <hints>
@@ -1030,7 +1030,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>helpAboutAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>helpAbout()</slot>
    <hints>
@@ -1046,7 +1046,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>helpContentsAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>helpContents()</slot>
    <hints>
@@ -1062,7 +1062,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>helpHelpAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>helpHelp()</slot>
    <hints>
@@ -1078,7 +1078,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>helpIndexAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>helpIndex()</slot>
    <hints>
@@ -1206,7 +1206,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>editPreferencesAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>preferences()</slot>
    <hints>
@@ -1222,7 +1222,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>helpReportBugAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>report_bug()</slot>
    <hints>
@@ -1238,7 +1238,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>helpPythonHelpAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>helpPythonRegex()</slot>
    <hints>
@@ -1254,7 +1254,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>helpRegexReferenceAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>reference_guide()</slot>
    <hints>
@@ -1270,7 +1270,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>helpVisitWebsiteAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>kodos_website()</slot>
    <hints>
@@ -1318,7 +1318,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>fileImportFileAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>importFile()</slot>
    <hints>
@@ -1334,7 +1334,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>fileImportURLAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>importURL()</slot>
    <hints>
@@ -1350,7 +1350,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>helpRegexLibAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>helpRegexLib()</slot>
    <hints>
@@ -1478,7 +1478,7 @@ database. New in Python version 2.0.</string>
   </connection>
   <connection>
    <sender>FileRevertAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>KodosBA</receiver>
    <slot>revert_file_slot()</slot>
    <hints>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import pyqtSignal
-from PyQt4.QtGui import QMessageBox
+from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtGui import QMessageBox
 from . import urlDialogBA
 from . import help
 import urllib.request

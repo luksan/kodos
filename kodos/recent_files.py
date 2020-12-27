@@ -2,8 +2,8 @@
 
 import logging
 
-from PyQt4.QtGui import QIcon, QPixmap
-from PyQt4.QtCore import QSettings
+from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtCore import QSettings
 
 MAX_SIZE = 50 # max number of files to retain
 

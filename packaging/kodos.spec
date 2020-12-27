@@ -1,5 +1,5 @@
 Name:           kodos
-Version:        2.5.2
+Version:        2.6.0
 Release:        1%{?dist}
 Summary:        Visual regular expression editor
 
@@ -12,9 +12,9 @@ Source0:        https://github.com/sergiomb2/kodos/archive/v%{version}/%{name}-%
 BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  python3-PyQt4-devel
+BuildRequires:  python3-qt5-devel
 
-Requires:       python3-PyQt4
+Requires:       python3-qt5
 
 
 %description
@@ -50,6 +50,9 @@ desktop-file-install --dir %{buildroot}%{_datadir}/applications \
 
 
 %changelog
+* Sun Dec 27 2020 Sérgio Basto <sergio@serjux.com> - 2.6.0-1
+- Update to 2.6.0 qt5
+
 * Fri Dec 25 2020 Sérgio Basto <sergio@serjux.com> - 2.5.2-1
 - Update to 2.5.2 (pyhton3 version)
 

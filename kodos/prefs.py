@@ -3,8 +3,8 @@
 
 import logging
 
-from PyQt4.QtCore import pyqtSignal, QSettings
-from PyQt4.QtGui import QDialog, QFontDialog
+from PyQt5.QtCore import pyqtSignal, QSettings
+from PyQt5.QtGui import QDialog, QFontDialog
 from . import prefsBA
 from . import help
 
