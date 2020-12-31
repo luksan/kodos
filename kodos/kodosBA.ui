@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>607</width>
+    <width>590</width>
     <height>900</height>
    </rect>
   </property>
@@ -357,8 +357,8 @@ database. New in Python version 2.0.</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>607</width>
-     <height>23</height>
+     <width>590</width>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
