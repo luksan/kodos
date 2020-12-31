@@ -128,7 +128,7 @@
  <connections>
   <connection>
    <sender>fileExitAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>HelpBA</receiver>
    <slot>exitSlot()</slot>
    <hints>
@@ -144,7 +144,7 @@
   </connection>
   <connection>
    <sender>fileBackAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>HelpBA</receiver>
    <slot>backSlot()</slot>
    <hints>
@@ -160,7 +160,7 @@
   </connection>
   <connection>
    <sender>fileForwardAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>HelpBA</receiver>
    <slot>forwardSlot()</slot>
    <hints>
@@ -176,7 +176,7 @@
   </connection>
   <connection>
    <sender>fileHomeAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>HelpBA</receiver>
    <slot>homeSlot()</slot>
    <hints>

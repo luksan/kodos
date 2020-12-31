@@ -178,7 +178,7 @@
  <connections>
   <connection>
    <sender>editPasteAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>RegexLibraryBA</receiver>
    <slot>editPaste()</slot>
    <hints>
@@ -194,7 +194,7 @@
   </connection>
   <connection>
    <sender>exitAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>RegexLibraryBA</receiver>
    <slot>close()</slot>
    <hints>

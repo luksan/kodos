@@ -646,7 +646,7 @@
  <connections>
   <connection>
    <sender>fileExitAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>ReferenceBA</receiver>
    <slot>close()</slot>
    <hints>
@@ -662,7 +662,7 @@
   </connection>
   <connection>
    <sender>editPasteAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>ReferenceBA</receiver>
    <slot>editPaste()</slot>
    <hints>
@@ -678,7 +678,7 @@
   </connection>
   <connection>
    <sender>helpAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>ReferenceBA</receiver>
    <slot>help_slot()</slot>
    <hints>
@@ -710,7 +710,7 @@
   </connection>
   <connection>
    <sender>helpPythonAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>ReferenceBA</receiver>
    <slot>help_python_slot()</slot>
    <hints>
