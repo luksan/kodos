@@ -3,7 +3,8 @@
 
 from . import tooltip
 from PyQt5.QtCore import QTimer
-from PyQt5.QtGui import QPixmap, QLabel, QProgressBar
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QLabel, QProgressBar
 
 class Status_Bar:
     def __init__(self, parent, progress_bar=False, message=''):

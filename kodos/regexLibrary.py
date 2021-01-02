@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
 from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtWidgets import QMainWindow
 from . import regexLibraryBA
 from . import parseRegexLib
 from .util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo
 
 GEO = "regex-lib_geometry"
 
-class RegexLibrary(regexLibraryBA.RegexLibraryBA):
+class RegexLibrary(QMainWindow, regexLibraryBA.Ui_RegexLibraryBA):
 
     pasteRegexLib = pyqtSignal(dict)
 
     def __init__(self, filename):
-        regexLibraryBA.RegexLibraryBA.__init__(self, None)
+        super(RegexLibrary, self).__init__()
+        self.setupUi(self)
         self.filename = filename
         self.selected = None
 

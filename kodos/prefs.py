@@ -4,19 +4,19 @@
 import logging
 
 from PyQt5.QtCore import pyqtSignal, QSettings
-from PyQt5.QtGui import QDialog, QFontDialog
+from PyQt5.QtWidgets import QDialog, QFontDialog
 from . import prefsBA
 from . import help
 
-class Preferences(prefsBA.PrefsBA):
+class Preferences(QDialog, prefsBA.Ui_PrefsBA):
 
     prefsSaved = pyqtSignal()
 
     def __init__(self, parent, autoload=0):
         self.log = logging.getLogger('kodos.prefs')
+        super(Preferences, self).__init__(parent=parent)
+        self.setupUi(self)
         self.parent = parent
-        prefsBA.PrefsBA.__init__(self, parent)
-
         self.settings = QSettings()
 
         if autoload:
@@ -27,11 +27,11 @@ class Preferences(prefsBA.PrefsBA):
             try:
                 setting = self.settings.value(preference)
                 if preference == 'Font':
-                    self.parent.setfont(setting.toPyObject())
+                    self.parent.setfont(setting)
                 if preference == 'Match Font':
-                    self.parent.setMatchFont(setting.toPyObject())
+                    self.parent.setMatchFont(setting)
                 if preference == 'Recent Files Count':
-                    self.recentFilesSpinBox.setValue(int(setting.toPyObject()))
+                    self.recentFilesSpinBox.setValue(int(setting))
             except Exception as e:
                 self.log.error('Loading of configuration key %s failed: %s' %
                                (preference, e))
@@ -47,7 +47,7 @@ class Preferences(prefsBA.PrefsBA):
         self.prefsSaved.emit()
 
     def setFontButtonText(self, button, font):
-        #self.fontButton.setText("%s %s" % (str(font.family()),font.pointSize() ))
+        self.fontButton.setText("%s %s" % (str(font.family()),font.pointSize() ))
         button.setText("%s %s" % (str(font.family()),font.pointSize() ))
 
     def showPrefsDialog(self):
@@ -77,10 +77,6 @@ class Preferences(prefsBA.PrefsBA):
         self.parent.setfont(self.fontButton.font())
         self.parent.setMatchFont(self.fontButtonMatch.font())
         self.save()
-
-    def accept(self):
-        self.apply_slot()
-        QDialog.accept(self)
 
     def help_slot(self):
         self.helpWindow = help.Help(self, "prefs.html")

@@ -3,18 +3,18 @@
 
 import os
 
-from PyQt5 import QtGui
-from PyQt5 import QtCore
+from PyQt5.QtWidgets import QTextBrowser, QMainWindow
+from PyQt5.QtCore import QUrl
 
 from . import util
 from . import helpBA
 
-class textbrowser(QtGui.QTextBrowser):
+class textbrowser(QTextBrowser):
     # reimplemented textbrowser that filters out external sources
     # future: launch web browser
     def __init__(self, parent=None, name=None):
         self.parent = parent
-        QtGui.QTextBrowser.__init__(self)
+        QTextBrowser.__init__(self)
 
 
     def setSource(self, src):
@@ -23,14 +23,16 @@ class textbrowser(QtGui.QTextBrowser):
             util.launch_browser(s)
             return
 
-        QtGui.QTextBrowser.setSource(self, QtCore.QUrl(src))
+        QTextBrowser.setSource(self, QUrl(src))
 
 
 
 
-class Help(helpBA.HelpBA):
+class Help(QMainWindow, helpBA.Ui_HelpBA):
     def __init__(self, parent, filename):
-        helpBA.HelpBA.__init__(self, parent)
+        super(Help, self).__init__(parent=parent)
+        self.setupUi(self)
+        self.parent = parent
 
         self.setGeometry(100, 50, 800, 600)
 

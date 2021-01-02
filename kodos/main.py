@@ -8,6 +8,7 @@ import pickle
 import logging
 
 from PyQt5 import Qt, QtCore
+from PyQt5.QtWidgets import QMainWindow
 
 from . import kodosBA
 from . import util
@@ -59,9 +60,10 @@ except:
 #
 ##############################################################################
 
-class Kodos(kodosBA.KodosBA):
+class Kodos(QMainWindow, kodosBA.Ui_KodosBA):
     def __init__(self, qApp, filename):
-        kodosBA.KodosBA.__init__(self)
+        super(Kodos,self).__init__()
+        self.setupUi(self)
 
         self.log = logging.getLogger('kodos.main')
         self.qApp = qApp
@@ -661,7 +663,7 @@ class Kodos(kodosBA.KodosBA):
 
 
     def importFile(self):
-        filename = Qt.QFileDialog.getOpenFileName(self,
+        filename, _filter = Qt.QFileDialog.getOpenFileName(self,
                                          self.tr("Import File"),
                                          self.filename,
                                          self.tr("All (*)"))
@@ -689,7 +691,7 @@ class Kodos(kodosBA.KodosBA):
         filename = self.filename
         if filename == None:
             filename = ""
-        filename = Qt.QFileDialog.getOpenFileName(self,
+        filename, _filter = Qt.QFileDialog.getOpenFileName(self,
                                          self.tr("Open Kodos File"),
                                          filename,
                                          self.tr("Kodos file (*.kds);;All (*)"))
