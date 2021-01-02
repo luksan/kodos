@@ -358,7 +358,7 @@ database. New in Python version 2.0.</string>
      <x>0</x>
      <y>0</y>
      <width>590</width>
-     <height>24</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
