@@ -1,12 +1,10 @@
 Metadata-Version: 1.0
 Name: kodos
-Version: 2.4.9
+Version: 2.5.2
 Summary: Kodos is a visual regular expression editor
-Home-page: http://kodos.sourceforge.net
+Home-page: https://github.com/sergiomb2/kodos
 Author: Phil Schwartz
 Author-email: phil_schwartz@users.sourceforge.net
 License: GPL
-Description: 
-        Kodos is a visual regular expression editor and debugger.
-        
+Description: Kodos is a visual regular expression editor and debugger.
 Platform: UNKNOWN

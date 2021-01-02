@@ -23,7 +23,7 @@ endif()
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Johannes Maier <maier_jo@gmx.de>")
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../dist/kodos DESTINATION bin PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/kodos.desktop DESTINATION /usr/share/applications)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../kodos.desktop DESTINATION /usr/share/applications)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../images/kodos_icon.png DESTINATION /usr/share/pixmaps)
 
 

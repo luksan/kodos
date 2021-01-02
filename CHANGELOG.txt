@@ -1,5 +1,13 @@
 Kodos ChangeLog
 
+2.5.2
+=====
+ *) First Python3 version , still using PyQt4, python3-PyQt4 is now required
+
+2.5.1
+=====
+ *) Migrated to PyQt4 completed using teythoon repo
+
 2.4.9
 =====
  *) Fixed help window (corrects problem related to tooltip api changes)

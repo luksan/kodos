@@ -7,4 +7,4 @@ clean:
 	$(RM) -vf *.pyc
 
 %.py: %.ui
-	pyuic4 --from-imports -o $*.py $<
+	pyuic4 --from-imports -w -o $*.py $<

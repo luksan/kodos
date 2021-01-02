@@ -224,12 +224,6 @@
     </hint>
    </hints>
   </connection>
-  <connection>
-   <sender>helpHelpAction</sender>
-   <signal>activated()</signal>
-   <receiver>RegexLibraryBA</receiver>
-   <slot>help_help_slot()</slot>
-  </connection>
  </connections>
  <slots>
   <slot>descSelectedSlot()</slot>

@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Kodos
-GenericName=Visual RegEx Editor
+GenericName=The Python Regular Expression Debugger
 Comment=Kodos is a Visual regular expression editor
 Exec=kodos
 Icon=kodos_icon.png

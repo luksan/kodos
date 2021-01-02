@@ -357,7 +357,7 @@
     <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="helpHelpAction"/>
+    <addaction name="helpAction"/>
     <addaction name="helpPythonAction"/>
    </widget>
    <addaction name="fileMenu"/>
@@ -612,7 +612,7 @@
     <cstring>helpAboutAction</cstring>
    </property>
   </action>
-  <action name="helpHelpAction">
+  <action name="helpAction">
    <property name="icon">
     <iconset resource="../kodos.qrc">
      <normaloff>:/images/help.png</normaloff>:/images/help.png</iconset>
@@ -624,7 +624,7 @@
     <string>Help</string>
    </property>
    <property name="name" stdset="0">
-    <cstring>helpHelpAction</cstring>
+    <cstring>helpAction</cstring>
    </property>
   </action>
   <action name="helpPythonAction">
@@ -677,10 +677,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>helpHelpAction</sender>
+   <sender>helpAction</sender>
    <signal>activated()</signal>
    <receiver>ReferenceBA</receiver>
-   <slot>help_help_slot()</slot>
+   <slot>help_slot()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

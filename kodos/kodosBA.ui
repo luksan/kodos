@@ -406,7 +406,6 @@ database. New in Python version 2.0.</string>
     <addaction name="helpRegexLibAction"/>
     <addaction name="separator"/>
     <addaction name="helpVisitWebsiteAction"/>
-    <addaction name="helpCheckForUpdateAction"/>
     <addaction name="helpReportBugAction"/>
     <addaction name="separator"/>
     <addaction name="helpAboutAction"/>
@@ -1274,22 +1273,6 @@ database. New in Python version 2.0.</string>
    <signal>activated()</signal>
    <receiver>KodosBA</receiver>
    <slot>kodos_website()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>helpCheckForUpdateAction</sender>
-   <signal>activated()</signal>
-   <receiver>KodosBA</receiver>
-   <slot>check_for_update()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
