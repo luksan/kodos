@@ -8,7 +8,7 @@ import pickle
 import logging
 
 from PyQt5 import Qt, QtCore
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QDialog
 
 from . import kodosBA
 from . import util
@@ -53,6 +53,11 @@ try:
 except:
     HAS_ALARM = 0
 
+
+class NewUserDialog(QDialog, newUserDialogBA.Ui_NewUserDialog):
+    def __init__(self):
+        super(NewUserDialog, self).__init__()
+        self.setupUi(self)
 
 ##############################################################################
 #
@@ -134,7 +139,7 @@ class Kodos(QMainWindow, kodosBA.Ui_KodosBA):
     def checkIfNewUser(self):
         s = Qt.QSettings()
         if s.value('New User', "true") != "false":
-            self.newuserdialog = newUserDialogBA.NewUserDialog()
+            self.newuserdialog = NewUserDialog()
             self.newuserdialog.show()
         s.setValue('New User', "false")
 
