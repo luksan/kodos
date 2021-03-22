@@ -12,20 +12,19 @@ from . import helpBA
 class textbrowser(QTextBrowser):
     # reimplemented textbrowser that filters out external sources
     # future: launch web browser
-    def __init__(self, parent=None, name=None):
+    def __init__(self, parent=None, name=None, basePath=None):
         self.parent = parent
+        self.basePath = os.path.dirname(basePath)
         QTextBrowser.__init__(self)
 
 
     def setSource(self, src):
-        s = str(src)
+        s = src.toString()
         if s[:7] == 'http://':
             util.launch_browser(s)
             return
 
-        QTextBrowser.setSource(self, QUrl(src))
-
-
+        QTextBrowser.setSource(self, QUrl(os.path.join(self.basePath, s)))
 
 
 class Help(QMainWindow, helpBA.Ui_HelpBA):
@@ -36,11 +35,11 @@ class Help(QMainWindow, helpBA.Ui_HelpBA):
 
         self.setGeometry(100, 50, 800, 600)
 
-        self.textBrowser = textbrowser(self)
         absPath = self.getHelpFile(filename)
+        self.textBrowser = textbrowser(self, basePath=absPath)
 
         self.setCentralWidget(self.textBrowser)
-        self.textBrowser.setSource(absPath)
+        self.textBrowser.setSource(QUrl(absPath))
 
         self.fwdAvailable = 0
         self.show()
@@ -58,11 +57,8 @@ class Help(QMainWindow, helpBA.Ui_HelpBA):
     def homeSlot(self):
         self.textBrowser.home()
 
-
-
     def setForwardAvailable(self, bool):
         self.fwdAvailable = bool
-
 
     def forwardHandler(self):
         if self.fwdAvailable:
