@@ -957,7 +957,7 @@ class Kodos(QMainWindow, kodosBA.Ui_KodosBA):
 
 
     def kodos_website(self):
-        self.launch_browser_wrapper('https://github.com/luksan/kodos',
+        self.launch_browser_wrapper('https://github.com/sergiomb2/kodos',
                                     message=self.tr('Launch web browser to go to the kodos project page?'))
 
 
@@ -979,5 +979,5 @@ class Kodos(QMainWindow, kodosBA.Ui_KodosBA):
 
 
     def report_bug(self):
-        self.launch_browser_wrapper('https://github.com/luksan/kodos/issues',
+        self.launch_browser_wrapper('https://github.com/sergiomb2/kodos/issues',
                                     message=self.tr("Launch web browser to report a bug in kodos?"))
