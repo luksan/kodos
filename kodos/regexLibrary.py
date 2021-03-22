@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from PyQt5.QtCore import pyqtSignal
+
 from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtCore import pyqtSignal
 from . import regexLibraryBA
 from . import parseRegexLib
 from .util import restoreWindowSettings, saveWindowSettings, kodos_toolbar_logo
@@ -11,9 +12,10 @@ class RegexLibrary(QMainWindow, regexLibraryBA.Ui_RegexLibraryBA):
 
     pasteRegexLib = pyqtSignal(dict)
 
-    def __init__(self, filename):
-        super(RegexLibrary, self).__init__()
+    def __init__(self, parent, filename):
+        super(RegexLibrary, self).__init__(parent=parent)
         self.setupUi(self)
+        self.parent = parent
         self.filename = filename
         self.selected = None
 
@@ -40,7 +42,8 @@ class RegexLibrary(QMainWindow, regexLibraryBA.Ui_RegexLibraryBA):
 
 
     def descSelectedSlot(self, qlistboxitem):
-        if qlistboxitem == None: return
+        if qlistboxitem == None:
+            return
 
         itemnum = self.descriptionListBox.currentRow()
         self.populateSelected(self.xml_dicts[itemnum])
@@ -58,6 +61,8 @@ class RegexLibrary(QMainWindow, regexLibraryBA.Ui_RegexLibraryBA):
             self.pasteRegexLib.emit(self.selected)
 
 
+    def help_slot(self):
+        self.parent.helpHelp()
 
 
 

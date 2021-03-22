@@ -55,7 +55,8 @@ def findFile(filename):
 
     for d in dirs:
         path = os.path.join(d, filename)
-        if os.access(path, os.R_OK): return path
+        if os.access(path, os.R_OK):
+            return path
 
     return None
 

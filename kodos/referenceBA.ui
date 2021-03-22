@@ -623,6 +623,9 @@
    <property name="iconText">
     <string>Help</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+/</string>
+   </property>
    <property name="name" stdset="0">
     <cstring>helpAction</cstring>
    </property>

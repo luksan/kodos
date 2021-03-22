@@ -224,6 +224,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>helpHelpAction</sender>
+   <signal>triggered()</signal>
+   <receiver>RegexLibraryBA</receiver>
+   <slot>help_slot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>descSelectedSlot()</slot>

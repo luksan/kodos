@@ -946,7 +946,7 @@ class Kodos(QMainWindow, kodosBA.Ui_KodosBA):
 
     def helpRegexLib(self):
         f = os.path.join("help", "regex-lib.xml")
-        self.regexlibwin = regexLibrary.RegexLibrary(f)
+        self.regexlibwin = regexLibrary.RegexLibrary(self, f)
         self.regexlibwin.pasteRegexLib.connect(self.pasteFromRegexLib)
         self.regexlibwin.show()
 
