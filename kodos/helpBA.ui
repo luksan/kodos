@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>HelpBA</class>
  <widget class="QMainWindow" name="HelpBA">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>494</width>
-    <height>585</height>
+    <width>840</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,7 +38,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>494</width>
+     <width>840</width>
      <height>30</height>
     </rect>
    </property>
