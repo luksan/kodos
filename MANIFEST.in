@@ -8,8 +8,6 @@ include screenshots/*.png
 include MANIFEST.in
 include LICENSE.txt
 include README.txt
-include modules/*.ui
-include modules/*.py
-include windows/build.bat
-include windows/installer.iss
+include kodos/*.ui
+include kodos/*.py
 include CHANGELOG.txt

@@ -1,19 +1,7 @@
-# -*- coding: utf-8; mode: python; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; truncate-lines: 0 -*-
-# vi: set fileencoding=utf-8 filetype=python expandtab tabstop=4 shiftwidth=4 softtabstop=4 cindent:
-# :mode=python:indentSize=4:tabSize=4:noTabs=true:
-
-#-----------------------------------------------------------------------------#
-# Built-in modules
-
 import re
 import os
+from . import util
 
-#-----------------------------------------------------------------------------#
-# Kodos modules
-
-from .util import findFile
-
-#-----------------------------------------------------------------------------#
 
 rx_entry = re.compile(r"<entry>(?P<content>.*?)</entry>", re.DOTALL)
 
@@ -37,20 +25,18 @@ RX_DICT = {'desc': rx_desc,
 class ParseRegexLib:
     def __init__(self, filename):
         if filename:
-            path = findFile(os.path.join("help", "regex-lib.xml"))
+            path = util.findFile(os.path.join("help", "regex-lib.xml"))
             data = open(path).read()
             self.data = data
         else:
             self.data = ""
-        return
-
 
     def parse(self, data=""):
         if not data: data = self.data
 
         dicts = []
         allmatches = rx_entry.findall(data)
-        rx_keys = RX_DICT.keys()
+        rx_keys = list(RX_DICT.keys())
         for match in allmatches:
             d = {}
             for key in rx_keys:
@@ -64,13 +50,12 @@ class ParseRegexLib:
 
         return dicts
 
-
 if __name__ == '__main__':
 
-    path = findFile(os.path.join("help", "regex-lib.xml"))
+    path = util.findFile(os.path.join("help", "regex-lib.xml"))
     x = ParseRegexLib(path)
 
     dicts = x.parse()
     print(dicts)
 
-#-----------------------------------------------------------------------------#
+

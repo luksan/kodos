@@ -1,23 +1,12 @@
 #!/usr/bin/env python
-# -*- coding: utf-8; mode: python; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; truncate-lines: 0 -*-
-# vi: set fileencoding=utf-8 filetype=python expandtab tabstop=4 shiftwidth=4 softtabstop=4 cindent:
-# :mode=python:indentSize=4:tabSize=4:noTabs=true:
-
-#-----------------------------------------------------------------------------#
-# Built-in modules
-
+# -*- coding: utf-8 -*-
+from kodos.version import VERSION
+from distutils.core import setup
+from distutils.command.build_py import build_py as _build_py
 import os
 import sys
 from glob import glob
-from distutils.core import setup
-from distutils.command.install import install as DistutilsInstall
-
-#-----------------------------------------------------------------------------#
-# Kodos modules
-
-from modules.version import VERSION
-
-#-----------------------------------------------------------------------------#
+import subprocess
 
 args = sys.argv[1:]
 
@@ -25,8 +14,7 @@ if sys.platform == 'win32':
 #     libpath = '.\\'
      libpath = r"lib\site-packages\kodos"
 else:
-     #libpath = "/usr/local/kodos" # 2.4.0 and prior
-     libpath = "/usr/share/kodos"  # as of 2.4.1
+     libpath = "/usr/share/kodos"
 
 for arg in args:
     if arg == "--formats=wininst":
@@ -37,15 +25,12 @@ HELP_DIR = os.path.join(libpath, "help")
 HELP_PY_DIR = os.path.join(libpath,  "help", "python")
 IMAGES_DIR = os.path.join(libpath, "images")
 SCREENSHOTS_DIR = os.path.join(libpath, "screenshots")
-MODULES_DIR = os.path.join(libpath, "modules")
 TRANSLATIONS_DIR = os.path.join(libpath, "translations")
 
-class MyInstall(DistutilsInstall):
+class build_py(_build_py):
   def run(self):
-    os.system('make')
-    DistutilsInstall.run(self)
-
-#-----------------------------------------------------------------------------#
+    subprocess.check_call(['make'])
+    _build_py.run(self)
 
 setup(name="kodos",
       version=VERSION,
@@ -53,22 +38,17 @@ setup(name="kodos",
       author="Phil Schwartz",
       author_email="phil_schwartz@users.sourceforge.net",
       url="http://kodos.sourceforge.net",
-      scripts=['kodos'],
-      ##package_dir={'': 'modules'},
-      packages=['modules', "."],
+      scripts=['bin/kodos'],
+      packages=['kodos'],
       data_files=[(HELP_DIR, glob(os.path.join("help", "*.*ml"))),
                   (HELP_PY_DIR, glob(os.path.join("help", "python", "*.html"))),
                   (IMAGES_DIR, glob(os.path.join("images", "*.png"))),
                   (SCREENSHOTS_DIR, glob(os.path.join("screenshots", "*.png"))),
                   (TRANSLATIONS_DIR, glob(os.path.join("translations", "*"))),
-                  (MODULES_DIR, glob("modules/*.ui"))
                   ],
       license="GPL",
-      extra_path='kodos',
       long_description="""
       Kodos is a visual regular expression editor and debugger.
       """,
-      cmdclass={'install':MyInstall},
+      cmdclass={'build_py': build_py},
       )
-
-#-----------------------------------------------------------------------------#

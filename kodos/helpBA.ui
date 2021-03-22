@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>HelpBA</class>
  <widget class="QMainWindow" name="HelpBA">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>494</width>
-    <height>585</height>
+    <width>840</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,8 +38,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>494</width>
-     <height>24</height>
+     <width>840</width>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
@@ -128,7 +131,7 @@
  <connections>
   <connection>
    <sender>fileExitAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>HelpBA</receiver>
    <slot>exitSlot()</slot>
    <hints>
@@ -144,7 +147,7 @@
   </connection>
   <connection>
    <sender>fileBackAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>HelpBA</receiver>
    <slot>backSlot()</slot>
    <hints>
@@ -160,7 +163,7 @@
   </connection>
   <connection>
    <sender>fileForwardAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>HelpBA</receiver>
    <slot>forwardSlot()</slot>
    <hints>
@@ -176,7 +179,7 @@
   </connection>
   <connection>
    <sender>fileHomeAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>HelpBA</receiver>
    <slot>homeSlot()</slot>
    <hints>
