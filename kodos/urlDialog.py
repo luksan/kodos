@@ -28,7 +28,7 @@ class URLDialog(QDialog, urlDialogBA.Ui_URLDialogBA):
         try:
             fp = urllib.request.urlopen(url)
             charset = fp.info().get_content_charset() or "utf-8"
-            html = fp.read().decode(charset)
+            html = fp.read().decode(charset, errors='replace')
         except Exception as e:
             QMessageBox.information(None, "Failed to open URL",
                                     "Could not open the specified URL.  Please check to ensure that you have entered the correct URL.\n\n%s" % str(e))
